@@ -1,80 +1,4 @@
-:root {
-  --pds-color-foreground: rgb(244 244 244);
-  --pds-color-grey-tone-50: rgb(255 255 255 / 60%);
-  --pds-color-grey-tone-20: rgb(255 255 255 / 38%);
-  --pds-color-grey-tone-10: rgb(255 255 255 / 24%);
-  --pds-color-grey-tone-8: rgb(255 255 255 / 14%);
-  --pds-color-grey-tone-5: rgb(255 255 255 / 10%);
-  --pds-color-grey-tone-2: rgb(255 255 255 / 6%);
-  --pds-color-accent: rgb(79 85 241);
-  --pds-color-accent-neutral: rgb(255 255 255);
-  --pds-color-on-accent: rgb(255 255 255);
-  --pds-color-on-accent-neutral: rgb(0 0 0);
-  --pds-color-action-background: rgb(79 85 241 / 15%);
-  --pds-color-action-background-neutral: rgb(255 255 255 / 5%);
-  --pds-color-base-grouped-background: rgb(0 0 0);
-  --pds-color-base-widget-background: rgb(255 255 255 / 10%);
-  --pds-color-base-nested-background: rgb(0 0 0 / 15%);
-  --pds-color-base-popover-background: rgb(36 36 36);
-  --pds-color-base-search-background: rgb(255 255 255 / 14%);
-  --pds-color-base-segmented-background: rgb(255 255 255 / 10%);
-  --pds-color-elevated-grouped-background: rgb(10 10 10);
-  --pds-color-elevated-widget-background: rgb(255 255 255 / 14%);
-  --pds-color-elevated-nested-background: rgb(0 0 0 / 11%);
-  --pds-color-elevated-popover-background: rgb(45 45 45);
-  --pds-color-elevated-search-background: rgb(255 255 255 / 18%);
-  --pds-color-elevated-segmented-background: rgb(255 255 255 / 14%);
-  --pds-color-segmented-active: rgb(255 255 255 / 20%);
-  --pds-color-status-success: rgb(26 192 151);
-  --pds-color-status-warning: rgb(255 159 10);
-  --pds-color-status-danger: rgb(238 74 89);
-  --pds-color-status-inactive: rgb(255 255 255 / 60%);
-  --pds-color-performance-positive: rgb(0 184 139);
-  --pds-color-performance-negative: rgb(226 59 74);
-  --pds-color-overlay-fill: rgb(0 0 0 / 60%);
-  --pds-color-base-grouped-background-0pct: rgb(0 0 0 / 0%);
-  --pds-color-base-grouped-background-20pct: rgb(0 0 0 / 20%);
-  --pds-color-base-grouped-background-40pct: rgb(0 0 0 / 40%);
-  --pds-color-base-grouped-background-60pct: rgb(0 0 0 / 60%);
-  --pds-color-base-grouped-background-80pct: rgb(0 0 0 / 80%);
-  --pds-color-shimmer: rgb(255 255 255 / 20%);
-  --pds-color-brand-black: rgb(25 28 31);
-  --pds-color-brand-white: rgb(255 255 255);
-  --pds-color-brand-grey-2: rgb(247 247 247);
-  --pds-color-brand-grey-20: rgb(187 196 205);
-  --pds-color-brand-grey-50: rgb(117 128 138);
-  --pds-color-brand-deep-grey: rgb(106 140 173);
-  --pds-color-brand-blue: rgb(111 160 255);
-  --pds-color-brand-cold-blue: rgb(6 102 235);
-  --pds-color-brand-light-blue: rgb(0 143 225);
-  --pds-color-brand-cyan: rgb(12 208 221);
-  --pds-color-brand-teal: rgb(0 190 144);
-  --pds-color-brand-green: rgb(9 190 103);
-  --pds-color-brand-lime: rgb(203 221 0);
-  --pds-color-brand-orange: rgb(236 126 0);
-  --pds-color-brand-terracotta: rgb(238 122 64);
-  --pds-color-brand-red: rgb(245 76 62);
-  --pds-color-brand-deep-pink: rgb(237 91 123);
-  --pds-color-brand-indigo: rgb(98 98 211);
-  --pds-color-brand-deep-purple: rgb(128 92 245);
-  --pds-font-sans:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  --pds-space-sp-50: 2px;
-  --pds-space-sp-100: 4px;
-  --pds-space-sp-200: 8px;
-  --pds-space-sp-300: 12px;
-  --pds-space-sp-400: 16px;
-  --pds-space-sp-500: 20px;
-  --pds-space-sp-600: 24px;
-  --pds-space-sp-800: 32px;
-  --pds-space-sp-1000: 40px;
-  --pds-radius-primary: 24px;
-  --pds-radius-nested: 20px;
-  --pds-radius-full: 999px;
-  --pds-shadow-surface: 0 1px 2px var(--pds-color-base-grouped-background-40pct);
-  --pds-shadow-focus: 0 0 0 3px var(--pds-color-action-background);
-}
+@import "../../tokens/src/styles.css";
 
 .pds-sr-only {
   position: absolute;
@@ -93,7 +17,6 @@
   font-family: var(--pds-font-sans);
   color: var(--pds-color-foreground);
   background: var(--pds-color-base-grouped-background);
-  border: 1px solid var(--pds-color-grey-tone-8);
   border-radius: var(--pds-radius-primary);
   box-shadow: var(--pds-shadow-surface);
   padding: var(--pds-space-sp-400);
@@ -130,7 +53,6 @@
   height: 2rem;
   color: var(--pds-color-foreground);
   background: var(--pds-color-elevated-widget-background);
-  border: 1px solid var(--pds-color-grey-tone-8);
   border-radius: var(--pds-radius-full);
   font-size: 0.75rem;
   font-weight: 700;
@@ -141,10 +63,7 @@
   color: var(--pds-color-accent);
 }
 
-.pds-agent-message[data-from="system"] .pds-agent-message__avatar {
-  color: var(--pds-color-grey-tone-20);
-}
-
+.pds-agent-message[data-from="system"] .pds-agent-message__avatar,
 .pds-agent-message[data-from="tool"] .pds-agent-message__avatar {
   color: var(--pds-color-grey-tone-20);
 }
@@ -192,8 +111,8 @@
   min-width: 0;
   color: var(--pds-color-foreground);
   background: var(--pds-color-elevated-widget-background);
-  border: 1px solid var(--pds-color-grey-tone-8);
   border-radius: var(--pds-radius-primary);
+  box-shadow: var(--pds-shadow-surface);
   font-family: var(--pds-font-sans);
   overflow: hidden;
 }
@@ -267,8 +186,10 @@
 .pds-agent-tool-call__io {
   display: grid;
   gap: var(--pds-space-sp-400);
+  margin-block-start: var(--pds-space-sp-50);
   padding: var(--pds-space-sp-400);
-  border-block-start: 1px solid var(--pds-color-grey-tone-8);
+  background: var(--pds-color-elevated-nested-background);
+  border-radius: var(--pds-radius-nested);
 }
 
 .pds-agent-tool-call__block {
@@ -292,7 +213,6 @@
   overflow: auto;
   color: var(--pds-color-foreground);
   background: var(--pds-color-base-nested-background);
-  border: 1px solid var(--pds-color-grey-tone-8);
   border-radius: var(--pds-radius-nested);
   font-size: 0.8125rem;
   line-height: 1.5;
@@ -303,7 +223,6 @@
   gap: var(--pds-space-sp-400);
   color: var(--pds-color-foreground);
   background: var(--pds-color-base-widget-background);
-  border: 1px solid var(--pds-color-grey-tone-8);
   border-radius: var(--pds-radius-primary);
   box-shadow: var(--pds-shadow-surface);
   font-family: var(--pds-font-sans);
@@ -311,7 +230,6 @@
 }
 
 .pds-agent-composer:focus-within {
-  border-color: var(--pds-color-accent);
   box-shadow: var(--pds-shadow-focus);
 }
 
@@ -359,7 +277,7 @@
   padding: 0 var(--pds-space-sp-400);
   color: var(--pds-color-on-accent);
   background: var(--pds-color-accent);
-  border: 1px solid transparent;
+  border: 0;
   border-radius: var(--pds-radius-full);
   font: inherit;
   font-size: 0.8125rem;

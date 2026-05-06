@@ -31,7 +31,7 @@ Choose tokens by usage, not by hue.
 
 - Use `--pds-color-grey-tone-2` for ultra-subtle overlays and minimal interaction states.
 - Use `--pds-color-grey-tone-5` for subtle hover states, light overlays, and disabled states.
-- Use `--pds-color-grey-tone-8` for stronger hover, pressed, divider, and border treatment when no dedicated border token exists.
+- Use `--pds-color-grey-tone-8` for stronger hover and pressed treatment. Use it for separator fallback only when a physical stroke is truly necessary.
 - Use `--pds-color-grey-tone-10` for pressed states, focused states, and stronger interaction emphasis.
 - Use `--pds-color-grey-tone-20` for inactive states, disabled surfaces, and stronger muted overlays.
 

@@ -28,7 +28,31 @@ Choose spacing tokens by layout role, not by numeric preference.
 
 - Use `--pds-radius-primary` (`24px`) for widgets, cards, grouped containers, list modules, panels, and most elevated component surfaces.
 - Use `--pds-radius-nested` (`20px`) for components inside `WidgetBackground` containers, usually paired with `NestedBackground`.
+- Use `--pds-radius-divider` (`2px`) for fake divider gaps between adjacent stacked surfaces.
 - Use `--pds-radius-full` (`999px`) for buttons, tabs, segmented controls, search bars, chips, pills, filter controls, and compact interactive rounded elements.
+
+## Divider Philosophy
+
+- Avoid physical dividers. Minimize strokes, borders, and separator lines across the system.
+- Prefer spatial separation. Use spacing tokens, surface contrast, grouping, and composition before adding a line.
+- Use dividers as a last resort only when clarity, accessibility, or complex data readability requires them.
+- Lists, grouped rows, and stacked content should create hierarchy through spacing and radius relationships rather than borders.
+
+## Fake Divider Pattern
+
+- Replace physical list dividers with `--pds-space-sp-50` (`2px`) between adjacent cells.
+- Use `--pds-radius-divider` (`2px`) on touching corners so the exposed background gap feels soft instead of cut.
+- Upper cells should use `--pds-radius-divider` on their bottom-left and bottom-right corners when another cell follows.
+- Lower cells should use `--pds-radius-divider` on their top-left and top-right corners when another cell precedes.
+- The outer grouped list perimeter should preserve `--pds-radius-primary`.
+- The separation should appear created by exposed background and surface composition, not by a drawn stroke.
+- Surface-driven separation should feel like natural spacing between layers rather than a hard bordered list.
+
+## List Composition Example
+
+- Outer list radius: `--pds-radius-primary`.
+- Space between cells: `--pds-space-sp-50`.
+- Internal divider radius: `--pds-radius-divider`.
 
 ## Spacing Philosophy
 
@@ -37,4 +61,8 @@ Choose spacing tokens by layout role, not by numeric preference.
 - Spacing should feel visually balanced rather than mathematically equal everywhere.
 - Components should visually align with one another even when their internal composition differs.
 - Smaller spacing tokens primarily exist to balance internal atom composition rather than page-level layout structure.
+- Interfaces should feel layered and spatial rather than mechanically separated by lines.
+- Hierarchy should emerge from surfaces, spacing, and elevation rather than borders.
+- Components should feel visually grouped while preserving breathable separation between elements.
+- Strokes should not define the visual language of PDS. Spatial rhythm and surface composition should.
 - Do not invent one-off spacing or radius values for product layout. Exceptions are element dimensions, typography, accessibility utilities, and externally imposed embed sizes.
