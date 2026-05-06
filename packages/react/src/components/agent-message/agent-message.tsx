@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import type { HTMLAttributes, ReactNode } from "react";
 
-import { cx } from "./classes";
+import { cx } from "../../utilities/classes";
 
 export type AgentMessageFrom = "assistant" | "user" | "system" | "tool";
 

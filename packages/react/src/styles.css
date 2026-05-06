@@ -1,4 +1,4 @@
-@import "../../tokens/src/styles.css";
+@import "@pds/tokens/styles.css";
 
 .pds-sr-only {
   position: absolute;

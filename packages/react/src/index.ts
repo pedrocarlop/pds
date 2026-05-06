@@ -1,18 +1,19 @@
-export { AgentComposer } from "./agent-composer";
-export type { AgentComposerProps } from "./agent-composer";
-export { AgentMessage } from "./agent-message";
-export type { AgentMessageFrom, AgentMessageProps } from "./agent-message";
-export { AgentSurface } from "./agent-surface";
-export type { AgentSurfaceProps } from "./agent-surface";
-export { AgentToolCall } from "./agent-tool-call";
+export {
+  AgentComposer,
+  AgentMessage,
+  AgentSurface,
+  AgentToolCall,
+  AgentTranscript
+} from "./components";
 export type {
+  AgentComposerProps,
+  AgentMessageFrom,
+  AgentMessageProps,
+  AgentSurfaceProps,
   AgentToolCallProps,
-  AgentToolCallStatus
-} from "./agent-tool-call";
-export { AgentTranscript } from "./agent-transcript";
-export type {
+  AgentToolCallStatus,
   AgentTranscriptDensity,
   AgentTranscriptProps
-} from "./agent-transcript";
+} from "./components";
 
 import "./styles.css";

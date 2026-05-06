@@ -1,0 +1,32 @@
+{
+  "name": "pds",
+  "version": "0.0.0",
+  "description": "PDS React primitives for agent-facing product UI.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/pds.cjs",
+  "module": "./dist/pds.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/pds.js",
+      "require": "./dist/pds.cjs"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": ["dist"],
+  "sideEffects": ["**/*.css"],
+  "scripts": {
+    "build": "vite build",
+    "lint": "eslint src vite.config.ts --max-warnings=0",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@pds/tokens": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=18.3.0 || >=19.0.0",
+    "react-dom": ">=18.3.0 || >=19.0.0"
+  }
+}

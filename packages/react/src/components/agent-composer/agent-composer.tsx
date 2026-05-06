@@ -7,7 +7,7 @@ import type {
   TextareaHTMLAttributes
 } from "react";
 
-import { cx } from "./classes";
+import { cx } from "../../utilities/classes";
 
 export interface AgentComposerProps
   extends Omit<FormHTMLAttributes<HTMLFormElement>, "onSubmit"> {
