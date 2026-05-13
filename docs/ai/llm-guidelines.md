@@ -25,9 +25,10 @@ linked docs and the token package source before making a visual decision.
 ## How To Use PDS In Generated Code
 
 - Import tokens from `@pds/tokens`.
-- Import styles from `@pds/tokens/styles.css` by default.
+- Import `pds/styles.css` when using React components from `pds`.
+- Import `@pds/tokens/styles.css` directly only for token-only consumers.
 - Use scoped imports such as `@pds/tokens/colour.css` or `@pds/tokens/motion.css` only when a consumer deliberately needs one foundation.
-- Do not import React primitives from `pds`; the package is a reserved shell.
+- Import React components from `pds`; do not deep-import from package source directories.
 - Choose tokens by role, not by visual preference.
 - Keep generated UI operational, dense, and inspectable.
 

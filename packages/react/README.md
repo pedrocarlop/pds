@@ -1,17 +1,35 @@
 # pds
 
-Reserved future React package shell for PDS.
+React components for PDS agent-facing product surfaces.
 
 ## Owns
 
-- The future public `pds` package boundary.
-- An empty `src/index.ts` module so the package can build without exporting UI.
+- Public React component exports from `pds`.
+- The package stylesheet at `pds/styles.css`.
+- Component CSS that consumes `@pds/tokens` CSS variables.
 
 ## Current Surface
 
-- No React primitives are exported yet.
-- No `pds/styles.css` export exists.
-- Use `@pds/tokens/styles.css` directly until components are explicitly added.
+- Button, Badge, Avatar, Surface, Tooltip, Dialog, Input, and Textarea.
+- `pds/styles.css` imports `@pds/tokens/styles.css` and component styles.
+- Components use PDS-specific props and stable `data-*` attributes rather than Tailwind classes.
+
+## Usage
+
+```tsx
+import { Button, Surface, SurfaceContent } from "pds";
+import "pds/styles.css";
+
+export function Example() {
+  return (
+    <Surface>
+      <SurfaceContent>
+        <Button>Run agent</Button>
+      </SurfaceContent>
+    </Surface>
+  );
+}
+```
 
 ## Related Docs
 

@@ -30,9 +30,14 @@ the token system needs it.
 
 ### `packages/react`
 
-Reserves the future `pds` React package name. It currently exports no UI,
-depends on no runtime package, and exists so the public package boundary is clear
-before components are explicitly designed.
+Owns the `pds` React package. It exports the initial PDS component slice and
+`pds/styles.css`, which imports token CSS and package component CSS.
+
+Current source:
+
+- `src/components`: Button, Badge, Avatar, Surface, Tooltip, Dialog, Input, and Textarea.
+- `src/components.css`: token-first component styles.
+- `src/styles.css`: aggregate stylesheet for package consumers.
 
 ## Documentation
 

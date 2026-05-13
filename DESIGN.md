@@ -167,7 +167,7 @@ rules for this repo.
 - Use [docs/foundations/content-resilience.md](docs/foundations/content-resilience.md) for translation, zoom, and overflow behavior.
 - Use [docs/architecture/repository-structure.md](docs/architecture/repository-structure.md) before moving files or adding packages.
 - Use the foundation CSS files in [packages/tokens/src](packages/tokens/src), bundled by [packages/tokens/src/styles.css](packages/tokens/src/styles.css), as the implementation source for CSS variables.
-- Use [packages/react](packages/react) only as the reserved future React package shell.
+- Use [packages/react](packages/react) for the PDS React component package and package stylesheet.
 
 ## Colors
 
@@ -246,13 +246,13 @@ adding it. The detailed rules live in [docs/foundations/motion.md](docs/foundati
 
 ## Components
 
-PDS does not currently publish component contracts or React primitives. The
-`pds` package is reserved as a future React package shell, and product code
-should use `@pds/tokens/styles.css` directly until components are explicitly
-designed and added. Scoped token imports are also available from
-`@pds/tokens/colour.css`, `@pds/tokens/typography.css`,
-`@pds/tokens/spacing.css`, `@pds/tokens/elevation.css`, and
-`@pds/tokens/motion.css`.
+PDS publishes a first React component slice from `pds`: Button, Badge, Avatar,
+Surface, Tooltip, Dialog, Input, and Textarea. Product code using those
+components should import `pds/styles.css` once, which loads PDS tokens and
+component styles. Token-only consumers can still use `@pds/tokens/styles.css` or
+scoped token imports from `@pds/tokens/colour.css`,
+`@pds/tokens/typography.css`, `@pds/tokens/spacing.css`,
+`@pds/tokens/elevation.css`, and `@pds/tokens/motion.css`.
 
 ## Do's and Don'ts
 

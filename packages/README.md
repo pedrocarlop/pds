@@ -6,12 +6,12 @@ consumer, build output, or ownership boundary.
 ## Current Packages
 
 - `tokens`: `@pds/tokens`, the framework-agnostic token package.
-- `react`: `pds`, the reserved future React package shell.
+- `react`: `pds`, the React component package.
 
 ## Dependency Direction
 
-Future implementation packages may depend on `packages/tokens`. Token packages
-should not depend on React or app code.
+Implementation packages may depend on `packages/tokens`. Token packages should
+not depend on React or app code.
 
 ## Related Docs
 

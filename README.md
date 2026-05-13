@@ -2,9 +2,9 @@
 
 PDS is a small design system workspace for agent-facing product surfaces.
 
-This repo is intentionally structured before it grows: tokens, a reserved React
-package shell, human guidance, and agent-readable guidance live in separate
-places so future components can be added without blurring ownership.
+This repo is intentionally structured as it grows: tokens, React components,
+human guidance, and agent-readable guidance live in separate places so package
+ownership stays clear.
 
 ## Start Here
 
@@ -15,7 +15,7 @@ places so future components can be added without blurring ownership.
 - [docs/foundations](docs/foundations) contains source guidance for tokens and visual decisions.
 - [packages/README.md](packages/README.md) explains package boundaries.
 - [packages/tokens](packages/tokens) owns CSS custom properties.
-- [packages/react](packages/react) reserves the future `pds` React package.
+- [packages/react](packages/react) owns the first `pds` React components.
 
 ## Install
 
@@ -32,10 +32,13 @@ pnpm check
 ## Package Boundaries
 
 - `@pds/tokens`: design tokens and CSS variables.
-- `pds`: reserved future React package; it exports no UI yet.
+- `pds`: React components for agent-facing product surfaces.
 
-No website, documentation app, or React component surface is required for this
-phase.
+Import `pds/styles.css` once in a consuming app to load PDS tokens and component
+styles.
+
+No website, documentation app, Storybook, or visual regression suite is required
+for this phase.
 
 ## Documentation Contract
 

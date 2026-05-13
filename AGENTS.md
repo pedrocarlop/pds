@@ -18,14 +18,14 @@ Use this file as the navigation layer for AI coding agents working in PDS.
 - [docs](docs) routes repo knowledge to humans and LLMs.
 - [packages/README.md](packages/README.md) routes package ownership.
 - [packages/tokens](packages/tokens) implements the CSS variables referenced by design guidance.
-- [packages/react](packages/react) reserves the future `pds` React package.
+- [packages/react](packages/react) implements the `pds` React package.
 
 ## Working Rules
 
 - Keep this repo token-first. Add or change tokens before hard-coding visual values.
 - Keep package boundaries boring and explicit.
 - `packages/tokens` owns CSS custom properties and token outputs.
-- `packages/react` is a reserved package shell and exports no UI until components are explicitly added.
+- `packages/react` owns PDS React components and their package stylesheet.
 - `docs/` explains repo and token guidance for humans and LLMs.
 - Do not create websites, docs apps, demos, or new components unless the task asks for them.
 - Do not commit generated `dist/` output unless publishing policy changes.
