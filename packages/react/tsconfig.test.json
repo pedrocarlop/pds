@@ -4,6 +4,6 @@
     "noEmit": true,
     "types": ["vitest/globals"]
   },
-  "include": ["src/**/*.test.ts", "src/**/*.test.tsx"],
+  "include": ["test/**/*.d.ts", "src/**/*.test.ts", "src/**/*.test.tsx"],
   "exclude": []
 }

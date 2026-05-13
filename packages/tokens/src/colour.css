@@ -7,6 +7,7 @@
   --pds-color-grey-tone-20: rgb(255 255 255 / 38%);
   --pds-color-grey-tone-50: rgb(255 255 255 / 60%);
   --pds-color-accent: rgb(79 85 241);
+  --pds-color-accent-hover: rgb(98 98 211);
   --pds-color-accent-neutral: rgb(255 255 255);
   --pds-color-on-accent: rgb(255 255 255);
   --pds-color-on-accent-neutral: rgb(0 0 0);
@@ -33,9 +34,18 @@
   --pds-color-status-success: rgb(26 192 151);
   --pds-color-status-warning: rgb(255 159 10);
   --pds-color-status-danger: rgb(238 74 89);
+  --pds-color-status-danger-hover: rgb(226 59 74);
   --pds-color-status-inactive: rgb(255 255 255 / 60%);
   --pds-color-performance-positive: rgb(0 184 139);
   --pds-color-performance-negative: rgb(226 59 74);
+  --pds-color-state-layer-hover: var(--pds-color-grey-tone-8);
+  --pds-color-state-layer-pressed: var(--pds-color-grey-tone-10);
+  --pds-color-state-layer-selected: var(--pds-color-segmented-active);
+  --pds-color-state-layer-on-solid-hover: rgb(0 0 0 / 6%);
+  --pds-color-state-layer-on-solid-pressed: rgb(0 0 0 / 12%);
+  --pds-color-state-focus-ring: var(--pds-color-action-background);
+  --pds-color-state-invalid-ring: rgb(238 74 89 / 24%);
+  --pds-state-disabled-opacity: 0.5;
   --pds-color-overlay-fill: rgb(0 0 0 / 60%);
   --pds-color-shimmer: rgb(255 255 255 / 20%);
   --pds-color-brand-black: rgb(25 28 31);

@@ -178,8 +178,11 @@ metadata or disabled affordances.
 
 Use `accent` only for primary actions, active states, links, focus emphasis, and
 important interactive feedback. Use semantic colors only for actual success,
-warning, or danger states. The front matter includes the portable color contract;
-the full semantic palette lives in [docs/foundations/colour.md](docs/foundations/colour.md) and
+warning, or danger states. Interaction feedback uses reusable state layer tokens
+for hover, pressed, selected, focus, disabled, and invalid treatment instead of
+new per-intent hover colors. The front matter includes the portable color
+contract; the full semantic palette lives in
+[docs/foundations/colour.md](docs/foundations/colour.md) and
 [packages/tokens/src/colour.css](packages/tokens/src/colour.css).
 
 Do not invent ad hoc colors in components. Existing CSS variables in

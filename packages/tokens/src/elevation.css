@@ -1,4 +1,4 @@
 :root {
   --pds-shadow-surface: 0 1px 2px var(--pds-color-base-grouped-background-40pct);
-  --pds-shadow-focus: 0 0 0 3px var(--pds-color-action-background);
+  --pds-shadow-focus: 0 0 0 3px var(--pds-color-state-focus-ring);
 }
