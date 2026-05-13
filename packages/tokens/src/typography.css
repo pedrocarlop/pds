@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  --pds-font-sans:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --pds-font-tabular: var(--pds-font-sans);
+  --pds-font-marketing: var(--pds-font-sans);
+  --pds-fw-regular: 400;
+  --pds-fw-medium: 500;
+  --pds-fw-semibold: 600;
+  --pds-fw-bold: 700;
+  --pds-display1: 56px;
+  --pds-lh-display1: 64px;
+  --pds-display2: 44px;
+  --pds-lh-display2: 52px;
+  --pds-heading1: 32px;
+  --pds-lh-heading1: 40px;
+  --pds-heading2: 24px;
+  --pds-lh-heading2: 32px;
+  --pds-heading3: 20px;
+  --pds-lh-heading3: 28px;
+  --pds-emphasis1: 16px;
+  --pds-lh-emphasis1: 20px;
+  --pds-emphasis2: 14px;
+  --pds-lh-emphasis2: 20px;
+  --pds-emphasis3: 12px;
+  --pds-lh-emphasis3: 16px;
+  --pds-emphasis4: 11px;
+  --pds-lh-emphasis4: 14px;
+  --pds-body1: 16px;
+  --pds-lh-body1: 24px;
+  --pds-body2: 14px;
+  --pds-lh-body2: 20px;
+  --pds-body3: 12px;
+  --pds-lh-body3: 16px;
+  --pds-fw-display: var(--pds-fw-semibold);
+  --pds-fw-heading: var(--pds-fw-semibold);
+  --pds-fw-emphasis: var(--pds-fw-medium);
+  --pds-fw-emphasis-strong: var(--pds-fw-semibold);
+  --pds-fw-body: var(--pds-fw-regular);
+  --pds-marketing-display1: 56px;
+  --pds-lh-marketing-display1: 64px;
+  --pds-marketing-display2: 40px;
+  --pds-lh-marketing-display2: 48px;
+  --pds-marketing-display3: 32px;
+  --pds-lh-marketing-display3: 40px;
+  --pds-marketing-heading3: 20px;
+  --pds-lh-marketing-heading3: 28px;
+  --pds-tabular-display1: 56px;
+  --pds-lh-tabular-display1: 64px;
+  --pds-tabular-display2: 44px;
+  --pds-lh-tabular-display2: 52px;
+  --pds-tabular-heading1: 32px;
+  --pds-lh-tabular-heading1: 40px;
+  --pds-tabular-heading2: 24px;
+  --pds-lh-tabular-heading2: 32px;
+  --pds-tabular-heading3: 20px;
+  --pds-lh-tabular-heading3: 28px;
+  --pds-tabular-emphasis1: 16px;
+  --pds-lh-tabular-emphasis1: 20px;
+  --pds-tabular-emphasis2: 14px;
+  --pds-lh-tabular-emphasis2: 20px;
+  --pds-tabular-emphasis3: 12px;
+  --pds-lh-tabular-emphasis3: 16px;
+  --pds-tabular-emphasis4: 11px;
+  --pds-lh-tabular-emphasis4: 14px;
+  --pds-tabular-body1: 16px;
+  --pds-lh-tabular-body1: 24px;
+  --pds-tabular-body2: 14px;
+  --pds-lh-tabular-body2: 20px;
+  --pds-tabular-body3: 12px;
+  --pds-lh-tabular-body3: 16px;
+}
+
+.pds-tabular {
+  font-family: var(--pds-font-tabular);
+  font-feature-settings:
+    "tnum" 1,
+    "lnum" 1;
+  font-variant-numeric: tabular-nums lining-nums;
+}

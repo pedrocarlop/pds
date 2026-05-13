@@ -4,17 +4,30 @@ PDS is designed to be usable by coding agents through markdown source files.
 
 ## Read Order
 
-1. `DESIGN.md`
-2. `AGENTS.md`
-3. `docs/foundations/colour.md`
-4. `docs/foundations/spacing.md`
-5. `docs/architecture/repository-structure.md`
+1. [DESIGN.md](../../DESIGN.md)
+2. [AGENTS.md](../../AGENTS.md)
+3. [docs/start-here.md](../start-here.md)
+4. [docs/foundations/tokens.md](../foundations/tokens.md)
+5. [docs/foundations/colour.md](../foundations/colour.md)
+6. [docs/foundations/typography.md](../foundations/typography.md)
+7. [docs/foundations/spacing.md](../foundations/spacing.md)
+8. [docs/foundations/motion.md](../foundations/motion.md)
+9. [docs/foundations/content-resilience.md](../foundations/content-resilience.md)
+10. [docs/architecture/repository-structure.md](../architecture/repository-structure.md)
+
+## DESIGN.md Relationship
+
+[DESIGN.md](../../DESIGN.md) is the compact contract for tools that understand
+design markdown. It should route agents into the rest of this repo, not replace
+the foundation docs. When front matter tokens are not detailed enough, use the
+linked docs and the token package source before making a visual decision.
 
 ## How To Use PDS In Generated Code
 
-- Import React primitives from `pds`.
-- Import styles from `pds/styles.css`.
-- Use CSS variables from `@pds/tokens` through the stylesheet.
+- Import tokens from `@pds/tokens`.
+- Import styles from `@pds/tokens/styles.css` by default.
+- Use scoped imports such as `@pds/tokens/colour.css` or `@pds/tokens/motion.css` only when a consumer deliberately needs one foundation.
+- Do not import React primitives from `pds`; the package is a reserved shell.
 - Choose tokens by role, not by visual preference.
 - Keep generated UI operational, dense, and inspectable.
 
@@ -24,8 +37,11 @@ PDS is designed to be usable by coding agents through markdown source files.
 - Prefer surfaces, spacing, and radius over borders.
 - Use accent color sparingly for intent and active state.
 - Preserve readable contrast on dark surfaces.
+- Use tokenized motion for state, hierarchy, and spatial continuity; respect `prefers-reduced-motion`.
 - Use status colors only for status.
 - Use performance colors only for metric direction.
+- Keep layouts resilient to translation, user-generated content, accessibility text settings, and 200% browser zoom.
+- Do not truncate primary actions, required form labels, error messages, or state feedback.
 
 ## Repo Change Rules
 
@@ -34,6 +50,7 @@ PDS is designed to be usable by coding agents through markdown source files.
 - Do not introduce a new package before documenting its ownership boundary.
 - Do not deep-import from another package source directory.
 - Do not duplicate token values across packages.
+- Do not change `DESIGN.md` without checking whether `docs/foundations` or package READMEs also need updates.
 
 ## When Unsure
 

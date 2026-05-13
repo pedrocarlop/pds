@@ -1,0 +1,15 @@
+:root {
+  --pds-space-sp-50: 2px;
+  --pds-space-sp-100: 4px;
+  --pds-space-sp-200: 8px;
+  --pds-space-sp-300: 12px;
+  --pds-space-sp-400: 16px;
+  --pds-space-sp-500: 20px;
+  --pds-space-sp-600: 24px;
+  --pds-space-sp-800: 32px;
+  --pds-space-sp-1000: 40px;
+  --pds-radius-primary: 24px;
+  --pds-radius-nested: 20px;
+  --pds-radius-divider: 2px;
+  --pds-radius-full: 999px;
+}

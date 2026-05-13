@@ -3,6 +3,10 @@
 This file is for LLMs and contributors applying PDS colours in product UI.
 Choose tokens by usage, not by hue.
 
+Related sources: start with [DESIGN.md](../../DESIGN.md) for the portable
+contract, then use [packages/tokens/src/colour.css](../../packages/tokens/src/colour.css)
+for implementation values.
+
 ## Core Rules
 
 - Use `--pds-color-foreground` for primary readable text.

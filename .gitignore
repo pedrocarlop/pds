@@ -1,6 +1,6 @@
 node_modules
 dist
-.turbo
+.turbo/
 .DS_Store
 *.log
 .env

@@ -3,6 +3,10 @@
 This file is for LLMs and contributors applying PDS spacing, layout rhythm, and radius.
 Choose spacing tokens by layout role, not by numeric preference.
 
+Related sources: start with [DESIGN.md](../../DESIGN.md) for the portable
+contract, then use [packages/tokens/src/spacing.css](../../packages/tokens/src/spacing.css)
+for implementation values.
+
 ## Component Spacing Rules
 
 - Default component padding should generally be `--pds-space-sp-400` (`16px`) on all sides for widgets, lists, cards, inputs, and grouped surfaces.
@@ -57,7 +61,7 @@ Choose spacing tokens by layout role, not by numeric preference.
 ## Spacing Philosophy
 
 - Outer spacing and component paddings should remain highly consistent across the system.
-- Inner spacing may adapt depending on typography, icon size, density, and component composition.
+- Inner spacing may adapt depending on the active type recipe, icon size, density, and component composition.
 - Spacing should feel visually balanced rather than mathematically equal everywhere.
 - Components should visually align with one another even when their internal composition differs.
 - Smaller spacing tokens primarily exist to balance internal atom composition rather than page-level layout structure.
@@ -65,4 +69,4 @@ Choose spacing tokens by layout role, not by numeric preference.
 - Hierarchy should emerge from surfaces, spacing, and elevation rather than borders.
 - Components should feel visually grouped while preserving breathable separation between elements.
 - Strokes should not define the visual language of PDS. Spatial rhythm and surface composition should.
-- Do not invent one-off spacing or radius values for product layout. Exceptions are element dimensions, typography, accessibility utilities, and externally imposed embed sizes.
+- Do not invent one-off spacing or radius values for product layout. Exceptions are element dimensions, type recipes, accessibility utilities, and externally imposed embed sizes.
