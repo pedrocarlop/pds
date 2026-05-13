@@ -11,12 +11,14 @@
     "pnpm": ">=9.0.0"
   },
   "scripts": {
-    "build": "turbo run build",
+    "build": "turbo run build --filter=./packages/*",
     "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm design:lint",
     "design:lint": "design.md lint DESIGN.md",
-    "lint": "turbo run lint",
+    "examples:build": "pnpm --filter pds build && pnpm --filter @pds/examples-react build",
+    "examples:dev": "pnpm --filter pds build && pnpm --filter @pds/examples-react dev",
+    "lint": "turbo run lint --filter=./packages/*",
     "test": "pnpm --filter pds test",
-    "typecheck": "turbo run typecheck"
+    "typecheck": "turbo run typecheck --filter=./packages/*"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

@@ -10,6 +10,7 @@ source, and generated outputs kept out of source control.
 - `AGENTS.md`: instructions for LLM coding agents.
 - `docs/`: human and agent guidance.
 - `packages/`: publishable packages.
+- `examples/`: private demo consumers that exercise publishable packages.
 - `turbo.json`: package task graph.
 - `pnpm-workspace.yaml`: workspace package discovery.
 
@@ -52,6 +53,13 @@ and LLMs.
 `DESIGN.md` is intentionally top-level because design tools and coding agents can
 discover it quickly. It should stay connected to docs and package source through
 links rather than becoming the only place where design rules are written.
+
+## Examples
+
+`examples/react` is a private Vite browser demo that consumes the public `pds`
+package like an application would. It exists to demonstrate starter primitives
+in real layout states; it is not a publishable package, Storybook replacement,
+full documentation site, or product UI surface.
 
 ## Scaling Rules
 

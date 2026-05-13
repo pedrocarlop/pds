@@ -12,6 +12,8 @@ PDS is organized as a design system workspace, not a single package dump.
 - `docs/ai`: LLM-specific usage guidance.
 - `packages/tokens`: token implementation package.
 - `packages/react`: PDS React component package.
+- `examples/react`: private browser demo consumer for starter React primitives;
+  not a publishable package or full docs site.
 
 ## First Principles
 
@@ -24,8 +26,9 @@ PDS is organized as a design system workspace, not a single package dump.
 ## Current Scope
 
 The current workspace supports tokens, an initial React component slice, tests,
-and agent-readable guidance. It does not include a website, Storybook, visual
-regression suite, or broader component library in this phase.
+agent-readable guidance, and a lightweight private React examples app. It does
+not include a website, Storybook, visual regression suite, or broader component
+library in this phase.
 
 ## Navigation Rule
 
