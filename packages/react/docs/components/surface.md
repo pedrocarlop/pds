@@ -18,7 +18,7 @@ action placement without imposing application landmarks or data behavior.
 ## When Not To Use
 
 - Do not use Surface as a replacement for every layout `div`.
-- Do not use Surface for tiny inline metadata; use Badge or text.
+- Do not use Surface for tiny inline metadata; use [Badge](badge.md) or text.
 - Do not add headings, landmarks, or application roles unless the consuming
   surface needs them.
 - Do not create new surface levels without updating CSS, docs, examples, and

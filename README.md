@@ -29,6 +29,12 @@ pnpm install
 pnpm check
 ```
 
+Clean ignored build/cache artifacts without deleting installed dependencies:
+
+```sh
+pnpm clean:workspace
+```
+
 ## Package Boundaries
 
 - `@pds/tokens`: design tokens and CSS variables.

@@ -1,8 +1,10 @@
 # Agent Guide
 
-Use this file as the navigation layer for AI coding agents working in PDS.
+Use this file as the navigation layer for AI coding agents working in PDS. Start
+here, then follow only the links needed for the package or design area you are
+changing.
 
-## Read Order
+## Read Order After This File
 
 1. [DESIGN.md](DESIGN.md) for the portable visual contract.
 2. [docs/ai/llm-guidelines.md](docs/ai/llm-guidelines.md) for agent-specific editing rules.
@@ -13,11 +15,19 @@ Use this file as the navigation layer for AI coding agents working in PDS.
 7. [docs/architecture/repository-structure.md](docs/architecture/repository-structure.md) before moving files or adding packages.
 8. [packages/react/docs/components](packages/react/docs/components) before editing documented React components, component CSS, examples, tests, or public APIs.
 
+## Task Routes
+
+- Visual tokens or usage guidance: read `DESIGN.md`, then the matching foundation doc and `packages/tokens/src`.
+- React component source, CSS, examples, tests, or public APIs: read `packages/react/README.md`, then the matching file in `packages/react/docs/components`.
+- Package boundaries, new packages, or moved files: read `docs/architecture/repository-structure.md` and `packages/README.md`.
+- Repository cleanup: preserve generated output policy, do not delete `node_modules`, and use `pnpm clean:workspace` for ignored build/cache artifacts.
+
 ## Source Graph
 
 - [DESIGN.md](DESIGN.md) routes visual decisions to the detailed foundation docs.
 - [docs](docs) routes repo knowledge to humans and LLMs.
 - [packages/README.md](packages/README.md) routes package ownership.
+- [scripts](scripts) contains repeatable repository maintenance scripts.
 - [packages/tokens](packages/tokens) implements the CSS variables referenced by design guidance.
 - [packages/react](packages/react) implements the `pds` React package.
 - [packages/react/docs/components](packages/react/docs/components) explains implementation-specific component contracts for agents.
@@ -41,3 +51,4 @@ Use this file as the navigation layer for AI coding agents working in PDS.
 - Update package READMEs when ownership or imports change.
 - Update package manifests when a package boundary changes.
 - Run `pnpm check` before handing work back.
+- Run `pnpm clean:workspace` after checks when ignored build/cache artifacts should be cleared.

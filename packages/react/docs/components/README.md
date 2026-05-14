@@ -23,23 +23,18 @@ limitations.
 
 ## Current Context Files
 
+- [Avatar](avatar.md)
+- [Badge](badge.md)
 - [Button](button.md)
 - [Surface](surface.md)
 - [Message](message.md)
 - [Composer](composer.md)
-
-## Remaining Exported Components
-
-Add these after the first context slice settles:
-
-- Badge
-- Input
-- Textarea
-- Avatar
-- Tooltip
-- Dialog
-- RunStatus
-- Transcript
+- [Dialog](dialog.md)
+- [Input](input.md)
+- [RunStatus](run-status.md)
+- [Textarea](textarea.md)
+- [Tooltip](tooltip.md)
+- [Transcript](transcript.md)
 
 ## Validation Expectations
 

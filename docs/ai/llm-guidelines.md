@@ -1,11 +1,13 @@
 # LLM Guidelines
 
 PDS is designed to be usable by coding agents through markdown source files.
+Use these rules after the repository-level routing in
+[AGENTS.md](../../AGENTS.md).
 
 ## Read Order
 
-1. [DESIGN.md](../../DESIGN.md)
-2. [AGENTS.md](../../AGENTS.md)
+1. [AGENTS.md](../../AGENTS.md)
+2. [DESIGN.md](../../DESIGN.md)
 3. [docs/start-here.md](../start-here.md)
 4. [docs/foundations/tokens.md](../foundations/tokens.md)
 5. [docs/foundations/colour.md](../foundations/colour.md)
@@ -14,6 +16,17 @@ PDS is designed to be usable by coding agents through markdown source files.
 8. [docs/foundations/motion.md](../foundations/motion.md)
 9. [docs/foundations/content-resilience.md](../foundations/content-resilience.md)
 10. [docs/architecture/repository-structure.md](../architecture/repository-structure.md)
+
+## Task Routing
+
+- For visual decisions, use `DESIGN.md` first, then the matching foundation doc,
+  then token source in `packages/tokens/src`.
+- For React component edits, use `packages/react/README.md` for package scope and
+  the matching file in `packages/react/docs/components` for component contracts.
+- For package or file moves, use `docs/architecture/repository-structure.md`
+  before changing the tree.
+- For cleanup, use `pnpm clean:workspace`; it removes ignored build/cache files
+  and `.DS_Store` files while preserving installed dependencies.
 
 ## DESIGN.md Relationship
 
@@ -52,6 +65,7 @@ linked docs and the token package source before making a visual decision.
 - Do not deep-import from another package source directory.
 - Do not duplicate token values across packages.
 - Do not change `DESIGN.md` without checking whether `docs/foundations` or package READMEs also need updates.
+- Do not delete `node_modules` as part of routine cleanup.
 
 ## When Unsure
 

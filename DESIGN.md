@@ -168,6 +168,7 @@ rules for this repo.
 - Use [docs/architecture/repository-structure.md](docs/architecture/repository-structure.md) before moving files or adding packages.
 - Use the foundation CSS files in [packages/tokens/src](packages/tokens/src), bundled by [packages/tokens/src/styles.css](packages/tokens/src/styles.css), as the implementation source for CSS variables.
 - Use [packages/react](packages/react) for the PDS React component package and package stylesheet.
+- Use [packages/react/docs/components](packages/react/docs/components) before editing component source, CSS, examples, tests, or public APIs.
 
 ## Colors
 
@@ -250,10 +251,10 @@ adding it. The detailed rules live in [docs/foundations/motion.md](docs/foundati
 ## Components
 
 PDS publishes a first React component slice from `pds`: Button, Badge, Avatar,
-Surface, Tooltip, Dialog, Input, and Textarea. Product code using those
-components should import `pds/styles.css` once, which loads PDS tokens and
-component styles. Token-only consumers can still use `@pds/tokens/styles.css` or
-scoped token imports from `@pds/tokens/colour.css`,
+Surface, Tooltip, Dialog, Input, Textarea, RunStatus, Message, Transcript, and
+Composer. Product code using those components should import `pds/styles.css`
+once, which loads PDS tokens and component styles. Token-only consumers can
+still use `@pds/tokens/styles.css` or scoped token imports from `@pds/tokens/colour.css`,
 `@pds/tokens/typography.css`, `@pds/tokens/spacing.css`,
 `@pds/tokens/elevation.css`, and `@pds/tokens/motion.css`.
 

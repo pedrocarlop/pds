@@ -10,7 +10,7 @@ persistence.
 
 ## When To Use
 
-- Use for message entry at the end of a Transcript or agent surface.
+- Use for message entry at the end of a [Transcript](transcript.md) or agent surface.
 - Use when a product surface needs a PDS-styled form with a textarea and action
   row.
 - Use `busy` when submission or generation is in progress.
@@ -35,7 +35,7 @@ persistence.
 </Composer>
 ```
 
-`ComposerInput` is built on PDS Textarea. `ComposerActions` usually contains one
+`ComposerInput` is built on PDS [Textarea](textarea.md). `ComposerActions` usually contains one
 or more Buttons. `ComposerFooter` is for helper text, status text, or compact
 metadata.
 
@@ -44,7 +44,7 @@ metadata.
 | Export | Notes |
 | --- | --- |
 | `Composer` | Root `form`; accepts `busy`, `disabled`, and `invalid`. |
-| `ComposerInput` | Textarea-based input that receives Composer context by default. |
+| `ComposerInput` | [Textarea](textarea.md)-based input that receives Composer context by default. |
 | `ComposerActions` | Action row slot. |
 | `ComposerFooter` | Helper/status/footer slot. |
 
@@ -56,7 +56,7 @@ metadata.
 | `aria-busy` | React ARIA busy value | `undefined` | Preserved when provided. |
 
 `Composer` extends native form attributes except for a narrowed `aria-busy`
-typing. `ComposerInput` uses the same props as Textarea.
+typing. `ComposerInput` uses the same props as [Textarea](textarea.md).
 
 ## Data Attributes
 
@@ -70,7 +70,7 @@ typing. `ComposerInput` uses the same props as Textarea.
 | `data-slot` | `composer-actions` | `ComposerActions` |
 | `data-slot` | `composer-footer` | `ComposerFooter` |
 
-`ComposerInput` also receives Textarea behavior, classes, `data-density`, and
+`ComposerInput` also receives [Textarea](textarea.md) behavior, classes, `data-density`, and
 `data-invalid` from the underlying Textarea. The composed slot overrides the
 base textarea slot with `data-slot="composer-input"`.
 
@@ -103,7 +103,7 @@ The root class is `pds-composer`; slot classes use the `pds-composer-*` prefix.
 Styling lives in `packages/react/src/components.css`.
 
 CSS depends on `:focus-within`, `data-invalid`, `data-busy`, and
-`data-disabled`. `ComposerInput` composes `pds-composer-input` with Textarea
+`data-disabled`. `ComposerInput` composes `pds-composer-input` with [Textarea](textarea.md)
 styling.
 
 ## Token Usage
@@ -172,8 +172,8 @@ Don't:
 
 - [Button](button.md)
 - [Message](message.md)
-- Transcript
-- Textarea
+- [Transcript](transcript.md)
+- [Textarea](textarea.md)
 
 ## Related Sources
 

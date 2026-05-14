@@ -9,7 +9,7 @@ data, markdown parsing, streaming, or persistence.
 
 ## When To Use
 
-- Use inside Transcript or another conversation-like surface.
+- Use inside [Transcript](transcript.md) or another conversation-like surface.
 - Use for user, assistant, system, or tool messages that need consistent PDS
   spacing and role treatment.
 - Use `variant="compact"` when the surrounding surface needs denser transcript
@@ -39,14 +39,14 @@ data, markdown parsing, streaming, or persistence.
 </Message>
 ```
 
-`MessageHeader` can include other compact metadata, such as `RunStatus`.
+`MessageHeader` can include other compact metadata, such as [RunStatus](run-status.md).
 
 ## Public API
 
 | Export | Notes |
 | --- | --- |
 | `Message` | Root `article`; accepts `role` and `variant`. |
-| `MessageAvatar` | Avatar placement slot. |
+| `MessageAvatar` | [Avatar](avatar.md) placement slot. |
 | `MessageHeader` | Author and metadata row. |
 | `MessageAuthor` | Author label. |
 | `MessageMeta` | Timestamp, model, run id, or quiet metadata. |
@@ -112,7 +112,7 @@ do not introduce brand colors or performance colors.
 
 Message has no internal interactive or async state. Action state belongs to
 children. Streaming, loading, retry, and error behavior should be composed with
-existing child components such as RunStatus or Button until a new component is
+existing child components such as [RunStatus](run-status.md) or Button until a new component is
 explicitly requested.
 
 ## Composition Examples
@@ -167,7 +167,7 @@ Do:
 - Preserve `article`, slot exports, `data-role`, and `data-variant`.
 - Keep message body content available by default.
 - Compose status and actions with existing components.
-- Update Transcript examples when changing message layout assumptions.
+- Update [Transcript](transcript.md) examples when changing message layout assumptions.
 
 Don't:
 
@@ -180,9 +180,9 @@ Don't:
 
 - [Composer](composer.md)
 - [Surface](surface.md)
-- Transcript
-- RunStatus
-- Avatar
+- [Transcript](transcript.md)
+- [RunStatus](run-status.md)
+- [Avatar](avatar.md)
 - [Button](button.md)
 
 ## Related Sources

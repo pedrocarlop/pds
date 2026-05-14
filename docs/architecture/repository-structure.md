@@ -9,6 +9,7 @@ source, and generated outputs kept out of source control.
 - `DESIGN.md`: machine-readable tokens plus human-readable visual rationale.
 - `AGENTS.md`: instructions for LLM coding agents.
 - `docs/`: human and agent guidance.
+- `scripts/`: repeatable repository maintenance scripts.
 - `packages/`: publishable packages.
 - `examples/`: private demo consumers that exercise publishable packages.
 - `turbo.json`: package task graph.
@@ -66,4 +67,6 @@ full documentation site, or product UI surface.
 - Add a package only when it has a separate publishing or ownership boundary.
 - Add docs before abstractions when the missing piece is shared understanding.
 - Keep generated files in `dist/` and out of version control.
+- Use `pnpm clean:workspace` to remove ignored `dist/`, `.turbo/`, and
+  `.DS_Store` artifacts while preserving installed dependencies.
 - Prefer stable import paths over deep imports from implementation files.

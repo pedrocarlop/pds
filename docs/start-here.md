@@ -10,10 +10,17 @@ PDS is organized as a design system workspace, not a single package dump.
 - `docs/foundations`: token guidance, visual rationale, motion, and content resilience rules.
 - `docs/architecture`: structure, ownership, and scaling guidance.
 - `docs/ai`: LLM-specific usage guidance.
+- `scripts`: repository maintenance scripts for repeatable local hygiene.
 - `packages/tokens`: token implementation package.
 - `packages/react`: PDS React component package.
 - `examples/react`: private browser demo consumer for starter React primitives;
   not a publishable package or full docs site.
+
+## Common Commands
+
+- `pnpm check`: run lint, typecheck, tests, package builds, and `DESIGN.md` lint.
+- `pnpm clean:workspace`: remove ignored `dist/`, `.turbo/`, and `.DS_Store`
+  artifacts without deleting `node_modules`.
 
 ## First Principles
 

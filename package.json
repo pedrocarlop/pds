@@ -13,6 +13,7 @@
   "scripts": {
     "build": "turbo run build --filter=./packages/*",
     "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm design:lint",
+    "clean:workspace": "node scripts/clean-workspace.mjs",
     "design:lint": "design.md lint DESIGN.md",
     "examples:build": "pnpm --filter pds build && pnpm --filter @pds/examples-react build",
     "examples:dev": "pnpm --filter pds build && pnpm --filter @pds/examples-react dev",
