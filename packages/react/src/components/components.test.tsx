@@ -2,7 +2,7 @@ import "@testing-library/jest-dom/vitest";
 
 import * as React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import {
   Avatar,
@@ -13,6 +13,10 @@ import {
   AvatarImage,
   Badge,
   Button,
+  Composer,
+  ComposerActions,
+  ComposerFooter,
+  ComposerInput,
   Dialog,
   DialogClose,
   DialogContent,
@@ -24,6 +28,14 @@ import {
   DialogTitle,
   DialogTrigger,
   Input,
+  Message,
+  MessageActions,
+  MessageAuthor,
+  MessageAvatar,
+  MessageContent,
+  MessageHeader,
+  MessageMeta,
+  RunStatus,
   Surface,
   SurfaceAction,
   SurfaceContent,
@@ -35,7 +47,10 @@ import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger
+  TooltipTrigger,
+  Transcript,
+  TranscriptEmpty,
+  TranscriptList
 } from "../index";
 
 describe("PDS starter components", () => {
@@ -201,6 +216,212 @@ describe("PDS starter components", () => {
       "data-slot",
       "surface-footer"
     );
+  });
+
+  it("renders RunStatus statuses with badge-compatible attributes", () => {
+    const statuses = [
+      "idle",
+      "queued",
+      "running",
+      "success",
+      "warning",
+      "error",
+      "cancelled"
+    ] as const;
+
+    render(
+      <div>
+        {statuses.map((status) => (
+          <RunStatus key={status} status={status} />
+        ))}
+      </div>
+    );
+
+    for (const status of statuses) {
+      const label = status === "error" ? "Error" : status[0].toUpperCase() + status.slice(1);
+      const runStatus = screen.getByText(label);
+      expect(runStatus).toHaveAttribute("data-slot", "run-status");
+      expect(runStatus).toHaveAttribute("data-status", status);
+      expect(runStatus).toHaveAttribute("data-emphasis", "soft");
+      expect(runStatus).toHaveClass("pds-badge", "pds-run-status");
+    }
+  });
+
+  it("supports RunStatus asChild and consumer-owned live region behavior", () => {
+    render(
+      <RunStatus asChild aria-live="polite" status="running">
+        <span>Working</span>
+      </RunStatus>
+    );
+
+    const status = screen.getByText("Working");
+    expect(status).toHaveAttribute("data-slot", "run-status");
+    expect(status).toHaveAttribute("data-status", "running");
+    expect(status).toHaveAttribute("aria-live", "polite");
+  });
+
+  it("renders Message layout slots with data attributes, className, and refs", () => {
+    const ref = React.createRef<HTMLElement>();
+
+    render(
+      <Message
+        ref={ref}
+        aria-label="Assistant message"
+        className="custom-message"
+        role="assistant"
+        variant="compact"
+      >
+        <MessageAvatar>Avatar</MessageAvatar>
+        <MessageHeader>
+          <MessageAuthor>Agent</MessageAuthor>
+          <MessageMeta>12:04</MessageMeta>
+          <RunStatus status="success">Done</RunStatus>
+        </MessageHeader>
+        <MessageContent>Generated answer</MessageContent>
+        <MessageActions>
+          <Button size="sm">Copy</Button>
+        </MessageActions>
+      </Message>
+    );
+
+    const message = screen.getByRole("article", { name: "Assistant message" });
+    expect(message).toHaveAttribute("data-slot", "message");
+    expect(message).toHaveAttribute("data-role", "assistant");
+    expect(message).toHaveAttribute("data-variant", "compact");
+    expect(message).toHaveClass("pds-message", "custom-message");
+    expect(ref.current).toBe(message);
+    expect(screen.getByText("Avatar")).toHaveAttribute(
+      "data-slot",
+      "message-avatar"
+    );
+    expect(screen.getByText("Agent")).toHaveAttribute(
+      "data-slot",
+      "message-author"
+    );
+    expect(screen.getByText("12:04")).toHaveAttribute(
+      "data-slot",
+      "message-meta"
+    );
+    expect(screen.getByText("Generated answer")).toHaveAttribute(
+      "data-slot",
+      "message-content"
+    );
+    expect(screen.getByRole("button", { name: "Copy" }).closest(
+      '[data-slot="message-actions"]'
+    )).toHaveClass("pds-message-actions");
+  });
+
+  it("renders Transcript list and empty states", () => {
+    const ref = React.createRef<HTMLElement>();
+
+    const { rerender } = render(
+      <Transcript
+        ref={ref}
+        aria-label="Conversation"
+        className="custom-transcript"
+        density="compact"
+      >
+        <TranscriptList className="custom-list">
+          <Message role="user">Hello</Message>
+        </TranscriptList>
+      </Transcript>
+    );
+
+    const transcript = screen.getByRole("region", { name: "Conversation" });
+    expect(transcript).toHaveAttribute("data-slot", "transcript");
+    expect(transcript).toHaveAttribute("data-density", "compact");
+    expect(transcript).toHaveClass("pds-transcript", "custom-transcript");
+    expect(ref.current).toBe(transcript);
+    expect(screen.getByText("Hello").closest('[data-slot="transcript-list"]')).toHaveClass(
+      "pds-transcript-list",
+      "custom-list"
+    );
+
+    rerender(
+      <Transcript aria-label="Empty conversation" empty="No messages yet" />
+    );
+
+    expect(screen.getByText("No messages yet")).toHaveAttribute(
+      "data-slot",
+      "transcript-empty"
+    );
+  });
+
+  it("supports explicit TranscriptEmpty composition", () => {
+    render(
+      <Transcript aria-label="Conversation">
+        <TranscriptEmpty className="custom-empty">Nothing here</TranscriptEmpty>
+      </Transcript>
+    );
+
+    expect(screen.getByText("Nothing here")).toHaveClass(
+      "pds-transcript-empty",
+      "custom-empty"
+    );
+  });
+
+  it("maps Composer state to form and input accessibility attributes", () => {
+    const ref = React.createRef<HTMLFormElement>();
+    const inputRef = React.createRef<HTMLTextAreaElement>();
+
+    render(
+      <Composer
+        ref={ref}
+        aria-label="Message composer"
+        busy
+        className="custom-composer"
+        disabled
+        invalid
+      >
+        <ComposerInput ref={inputRef} aria-label="Message" />
+        <ComposerActions>
+          <Button type="submit">Send</Button>
+        </ComposerActions>
+        <ComposerFooter>Review before sending.</ComposerFooter>
+      </Composer>
+    );
+
+    const composer = screen.getByRole("form", { name: "Message composer" });
+    expect(composer).toHaveAttribute("aria-busy", "true");
+    expect(composer).toHaveAttribute("data-slot", "composer");
+    expect(composer).toHaveAttribute("data-busy", "true");
+    expect(composer).toHaveAttribute("data-disabled", "true");
+    expect(composer).toHaveAttribute("data-invalid", "true");
+    expect(composer).toHaveClass("pds-composer", "custom-composer");
+    expect(ref.current).toBe(composer);
+
+    const input = screen.getByLabelText("Message");
+    expect(input).toHaveAttribute("data-slot", "composer-input");
+    expect(input).toHaveAttribute("aria-invalid", "true");
+    expect(input).toBeDisabled();
+    expect(input).toHaveClass("pds-textarea", "pds-composer-input");
+    expect(inputRef.current).toBe(input);
+    expect(screen.getByRole("button", { name: "Send" }).closest(
+      '[data-slot="composer-actions"]'
+    )).toHaveClass("pds-composer-actions");
+    expect(screen.getByText("Review before sending.")).toHaveAttribute(
+      "data-slot",
+      "composer-footer"
+    );
+  });
+
+  it("submits Composer through consumer-owned submit controls", () => {
+    const handleSubmit = vi.fn((event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+    });
+
+    render(
+      <Composer aria-label="Message composer" onSubmit={handleSubmit}>
+        <ComposerInput aria-label="Message" defaultValue="Ship it" />
+        <ComposerActions>
+          <Button type="submit">Send</Button>
+        </ComposerActions>
+      </Composer>
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Send" }));
+
+    expect(handleSubmit).toHaveBeenCalledTimes(1);
   });
 
   it("maps Input invalid and disabled states to accessibility attributes", () => {

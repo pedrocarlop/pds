@@ -39,6 +39,28 @@ describe("PDS CSS contract", () => {
       ".pds-avatar-group-count",
       ".pds-surface",
       '.pds-surface[data-level="nested"]',
+      ".pds-run-status",
+      ".pds-message",
+      '.pds-message[data-role="user"]',
+      '.pds-message[data-role="system"]',
+      '.pds-message[data-variant="compact"]',
+      ".pds-message-avatar",
+      ".pds-message-header",
+      ".pds-message-author",
+      ".pds-message-meta",
+      ".pds-message-content",
+      ".pds-message-actions",
+      ".pds-transcript",
+      '.pds-transcript[data-density="compact"]',
+      ".pds-transcript-list",
+      ".pds-transcript-empty",
+      ".pds-composer",
+      '.pds-composer[data-busy="true"]',
+      '.pds-composer[data-disabled="true"]',
+      '.pds-composer[data-invalid="true"]',
+      ".pds-composer-input",
+      ".pds-composer-actions",
+      ".pds-composer-footer",
       ".pds-tooltip-content",
       ".pds-dialog-overlay",
       ".pds-dialog-content",
@@ -95,6 +117,12 @@ describe("PDS CSS contract", () => {
     expect(componentStyles).not.toMatch(/--pds-color-performance-/);
   });
 
+  it("does not introduce Tailwind, CVA, or shadcn styling hooks", () => {
+    expect(componentStyles).not.toMatch(/\btailwind\b/i);
+    expect(componentStyles).not.toMatch(/\bcva\b/i);
+    expect(componentStyles).not.toMatch(/\bshadcn\b/i);
+  });
+
   it("keeps text-bearing components resilient in narrow containers", () => {
     const resilientSelectors = [
       ".pds-button",
@@ -103,6 +131,19 @@ describe("PDS CSS contract", () => {
       ".pds-surface-title",
       ".pds-surface-description",
       ".pds-surface-content",
+      ".pds-run-status",
+      ".pds-message",
+      ".pds-message-header",
+      ".pds-message-author",
+      ".pds-message-meta",
+      ".pds-message-content",
+      ".pds-message-actions",
+      ".pds-transcript",
+      ".pds-transcript-list",
+      ".pds-transcript-empty",
+      ".pds-composer",
+      ".pds-composer-actions",
+      ".pds-composer-footer",
       ".pds-tooltip-content",
       ".pds-dialog-content",
       ".pds-dialog-title",
@@ -116,6 +157,14 @@ describe("PDS CSS contract", () => {
         "overflow-wrap: anywhere;"
       );
     }
+  });
+
+  it("does not impose fixed transcript height", () => {
+    const transcriptBlock = componentStyles.match(/\.pds-transcript\s*{[^}]*}/)?.[0];
+
+    expect(transcriptBlock).toBeDefined();
+    expect(transcriptBlock).not.toMatch(/(^|\s)height:/);
+    expect(transcriptBlock).not.toMatch(/max-height:/);
   });
 
   it("does not apply hover treatments to disabled controls", () => {

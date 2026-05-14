@@ -1,3 +1,4 @@
+import { AgentSurfaceSection } from "./sections/AgentSurfaceSection";
 import { AvatarsSection } from "./sections/AvatarsSection";
 import { BadgesSection } from "./sections/BadgesSection";
 import { ButtonsSection } from "./sections/ButtonsSection";
@@ -19,6 +20,7 @@ export function App() {
       </header>
 
       <div className="examples-stack">
+        <AgentSurfaceSection />
         <ButtonsSection />
         <BadgesSection />
         <FieldsSection />

@@ -24,6 +24,10 @@ describe("PDS package contract", () => {
       "AvatarImage",
       "Badge",
       "Button",
+      "Composer",
+      "ComposerActions",
+      "ComposerFooter",
+      "ComposerInput",
       "Dialog",
       "DialogClose",
       "DialogContent",
@@ -35,6 +39,14 @@ describe("PDS package contract", () => {
       "DialogTitle",
       "DialogTrigger",
       "Input",
+      "Message",
+      "MessageActions",
+      "MessageAuthor",
+      "MessageAvatar",
+      "MessageContent",
+      "MessageHeader",
+      "MessageMeta",
+      "RunStatus",
       "Surface",
       "SurfaceAction",
       "SurfaceContent",
@@ -46,7 +58,10 @@ describe("PDS package contract", () => {
       "Tooltip",
       "TooltipContent",
       "TooltipProvider",
-      "TooltipTrigger"
+      "TooltipTrigger",
+      "Transcript",
+      "TranscriptEmpty",
+      "TranscriptList"
     ]);
   });
 

@@ -189,6 +189,12 @@ a {
   padding-right: var(--pds-space-sp-100);
 }
 
+.examples-agent-shell {
+  display: grid;
+  min-width: 0;
+  gap: var(--pds-space-sp-400);
+}
+
 @media (max-width: 760px) {
   .examples-page {
     width: min(100% - var(--pds-space-sp-400), 1120px);

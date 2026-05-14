@@ -11,6 +11,7 @@ Use this file as the navigation layer for AI coding agents working in PDS.
 5. [docs/foundations/colour.md](docs/foundations/colour.md), [docs/foundations/typography.md](docs/foundations/typography.md), [docs/foundations/spacing.md](docs/foundations/spacing.md), and [docs/foundations/motion.md](docs/foundations/motion.md) for token usage.
 6. [docs/foundations/content-resilience.md](docs/foundations/content-resilience.md) for translation, zoom, and overflow behavior.
 7. [docs/architecture/repository-structure.md](docs/architecture/repository-structure.md) before moving files or adding packages.
+8. [packages/react/docs/components](packages/react/docs/components) before editing documented React components, component CSS, examples, tests, or public APIs.
 
 ## Source Graph
 
@@ -19,6 +20,7 @@ Use this file as the navigation layer for AI coding agents working in PDS.
 - [packages/README.md](packages/README.md) routes package ownership.
 - [packages/tokens](packages/tokens) implements the CSS variables referenced by design guidance.
 - [packages/react](packages/react) implements the `pds` React package.
+- [packages/react/docs/components](packages/react/docs/components) explains implementation-specific component contracts for agents.
 
 ## Working Rules
 
@@ -26,6 +28,7 @@ Use this file as the navigation layer for AI coding agents working in PDS.
 - Keep package boundaries boring and explicit.
 - `packages/tokens` owns CSS custom properties and token outputs.
 - `packages/react` owns PDS React components and their package stylesheet.
+- Component context markdown in `packages/react/docs/components` owns per-component guidance for slots, data attributes, accessibility, styling, and composition.
 - `docs/` explains repo and token guidance for humans and LLMs.
 - Do not create websites, docs apps, demos, or new components unless the task asks for them.
 - Do not commit generated `dist/` output unless publishing policy changes.
@@ -34,6 +37,7 @@ Use this file as the navigation layer for AI coding agents working in PDS.
 
 - Update `DESIGN.md` when the visual contract changes.
 - Update foundation docs when usage guidance changes.
+- Update component context docs when React component behavior, slots, styling hooks, or public APIs change.
 - Update package READMEs when ownership or imports change.
 - Update package manifests when a package boundary changes.
 - Run `pnpm check` before handing work back.

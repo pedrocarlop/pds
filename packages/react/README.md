@@ -11,6 +11,7 @@ React components for PDS agent-facing product surfaces.
 ## Current Surface
 
 - Button, Badge, Avatar, Surface, Tooltip, Dialog, Input, and Textarea.
+- Product components: RunStatus, Message, Transcript, and Composer.
 - `pds/styles.css` imports `@pds/tokens/styles.css` and component styles.
 - Components use PDS-specific props and stable `data-*` attributes rather than Tailwind classes.
 - This is a starter component slice, not a full production-maturity component library. APIs, behavior, and styling contracts should harden incrementally as real PDS surfaces need them.
@@ -42,7 +43,8 @@ Component styles are plain CSS built on PDS CSS variables. Do not use Tailwind,
 CVA, shadcn aliases, or generated shadcn setup inside this package. Prefer
 semantic PDS tokens over one-off values. Component DOM includes stable
 `data-slot` attributes and state attributes such as `data-intent`, `data-size`,
-`data-tone`, `data-emphasis`, `data-level`, `data-density`, and `data-invalid`.
+`data-tone`, `data-emphasis`, `data-level`, `data-density`, `data-status`,
+`data-role`, `data-variant`, `data-busy`, `data-disabled`, and `data-invalid`.
 
 Text-bearing components are designed to keep content available in narrow
 containers: Button, Badge, Surface, Dialog, and Tooltip allow long labels or user
@@ -50,7 +52,108 @@ content to wrap instead of relying on truncation by default. Fixed dimensions ar
 limited to intentionally fixed affordances such as icon buttons, avatars, avatar
 badges, and dialog close controls.
 
-## Components
+## Component Context
+
+Lightweight per-component guidance lives in
+[docs/components](docs/components/README.md). Read the matching component context
+before changing component source, `components.css`, examples, tests, or public
+APIs.
+
+The package README stays as the package overview. Component context explains
+implementation-specific slots, stable `data-*` attributes, accessibility
+contracts, content resilience rules, styling hooks, token categories, examples,
+and known limitations.
+
+## Product Components
+
+### RunStatus
+
+```tsx
+<RunStatus status="running">Running</RunStatus>
+```
+
+| Prop | Values | Default |
+| --- | --- | --- |
+| `status` | `idle`, `queued`, `running`, `success`, `warning`, `error`, `cancelled` | `idle` |
+| `asChild` | `boolean` | `false` |
+
+RunStatus is compact run metadata aligned with Badge semantics. It does not
+auto-announce status changes; pass `aria-live` when a consuming surface needs a
+status update announced.
+
+### Message
+
+```tsx
+<Message role="assistant">
+  <MessageHeader>
+    <MessageAuthor>Agent</MessageAuthor>
+    <MessageMeta>12:04</MessageMeta>
+    <RunStatus status="success">Done</RunStatus>
+  </MessageHeader>
+  <MessageContent>Generated answer</MessageContent>
+</Message>
+```
+
+| Prop | Values | Default |
+| --- | --- | --- |
+| `role` | `user`, `assistant`, `system`, `tool` | `assistant` |
+| `variant` | `default`, `compact` | `default` |
+
+Message owns layout only. It renders an `article` and exports
+`MessageAvatar`, `MessageHeader`, `MessageAuthor`, `MessageMeta`,
+`MessageContent`, and `MessageActions` slots. It does not parse markdown,
+handle streaming, sanitize content, persist messages, or apply product logic.
+
+### Transcript
+
+```tsx
+<Transcript aria-label="Conversation" empty="No messages yet">
+  <TranscriptList>
+    <Message role="user">Hello</Message>
+  </TranscriptList>
+</Transcript>
+```
+
+| Prop | Values | Default |
+| --- | --- | --- |
+| `density` | `default`, `compact` | `default` |
+| `empty` | `React.ReactNode` | `undefined` |
+
+Transcript renders a `section` and owns transcript spacing, empty state, and
+accessible section structure. It does not fetch, order, group, auto-scroll,
+virtualize, or create live regions.
+
+### Composer
+
+```tsx
+<Composer onSubmit={handleSubmit}>
+  <ComposerInput aria-label="Message" />
+  <ComposerActions>
+    <Button type="submit">Send</Button>
+  </ComposerActions>
+</Composer>
+```
+
+| Prop | Values | Default |
+| --- | --- | --- |
+| `busy` | `boolean` | `false` |
+| `disabled` | `boolean` | `false` |
+| `invalid` | `boolean` | `false` |
+
+Composer renders a `form`. `busy` maps to `aria-busy="true"` on the form,
+`invalid` maps to `aria-invalid` through `ComposerInput`, and `disabled`
+disables `ComposerInput`. Submit buttons remain consumer-owned in
+`ComposerActions`; Composer does not own submission side effects.
+
+### Product Limitations
+
+- No markdown renderer.
+- No streaming logic.
+- No virtualization.
+- No tool output rendering.
+- No form submission side effects.
+
+## Primitive Components
 
 ### Button
 
@@ -198,4 +301,5 @@ components exist.
 - [DESIGN.md](../../DESIGN.md) for the portable visual contract.
 - [docs/ai/llm-guidelines.md](../../docs/ai/llm-guidelines.md) for agent usage rules.
 - [docs/architecture/repository-structure.md](../../docs/architecture/repository-structure.md) for package boundaries.
+- [packages/react/docs/components](docs/components/README.md) for component context.
 - [packages/tokens/README.md](../tokens/README.md) for token ownership.
