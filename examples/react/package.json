@@ -7,6 +7,7 @@
   "scripts": {
     "build": "pnpm typecheck && vite build",
     "dev": "vite",
+    "lint": "eslint src --max-warnings=0",
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {

@@ -22,8 +22,8 @@
   "files": ["dist"],
   "sideEffects": ["**/*.css"],
   "scripts": {
-    "build": "pnpm clean && tsc -p tsconfig.json && node -e \"const fs=require('node:fs');fs.mkdirSync('dist',{recursive:true});for(const file of fs.readdirSync('src').filter((name)=>name.endsWith('.css'))){fs.copyFileSync('src/'+file,'dist/'+file)}\"",
-    "clean": "node -e \"const fs=require('node:fs');fs.rmSync('dist',{recursive:true,force:true})\"",
+    "build": "pnpm clean && tsc -p tsconfig.json && node ../../scripts/copy-package-css.mjs",
+    "clean": "node ../../scripts/clean-package.mjs",
     "lint": "eslint src --max-warnings=0",
     "typecheck": "tsc --noEmit -p tsconfig.json"
   }

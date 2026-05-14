@@ -29,6 +29,9 @@ pnpm install
 pnpm check
 ```
 
+`pnpm check` validates the publishable packages and builds the private React
+example consumer so public imports stay usable.
+
 Clean ignored build/cache artifacts without deleting installed dependencies:
 
 ```sh

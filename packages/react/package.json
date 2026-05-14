@@ -21,8 +21,8 @@
     "**/*.css"
   ],
   "scripts": {
-    "build": "pnpm clean && tsc -p tsconfig.json && node -e \"const fs=require('node:fs');const path=require('node:path');const walk=(dir)=>{for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const source=path.join(dir,entry.name);if(entry.isDirectory()) walk(source); else if(entry.name.endsWith('.css')){const output=path.join('dist',path.relative('src',source));fs.mkdirSync(path.dirname(output),{recursive:true});fs.copyFileSync(source,output)}}};walk('src')\"",
-    "clean": "node -e \"const fs=require('node:fs');fs.rmSync('dist',{recursive:true,force:true})\"",
+    "build": "pnpm clean && tsc -p tsconfig.json && node ../../scripts/copy-package-css.mjs",
+    "clean": "node ../../scripts/clean-package.mjs",
     "lint": "eslint src --max-warnings=0",
     "test": "vitest run",
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.test.json"

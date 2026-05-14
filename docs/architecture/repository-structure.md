@@ -55,6 +55,12 @@ and LLMs.
 discover it quickly. It should stay connected to docs and package source through
 links rather than becoming the only place where design rules are written.
 
+## Scripts
+
+The `scripts` folder owns repeatable workspace and package maintenance commands.
+Package manifests should call these scripts instead of embedding long shell or
+Node one-liners when the behavior is shared across packages.
+
 ## Examples
 
 `examples/react` is a private Vite browser demo that consumes the public `pds`

@@ -23,6 +23,8 @@ Use these rules after the repository-level routing in
   then token source in `packages/tokens/src`.
 - For React component edits, use `packages/react/README.md` for package scope and
   the matching file in `packages/react/docs/components` for component contracts.
+- For verification, use `pnpm check`; it covers publishable packages, the private
+  React example consumer, and `DESIGN.md` lint.
 - For package or file moves, use `docs/architecture/repository-structure.md`
   before changing the tree.
 - For cleanup, use `pnpm clean:workspace`; it removes ignored build/cache files

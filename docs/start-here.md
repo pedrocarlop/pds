@@ -18,7 +18,7 @@ PDS is organized as a design system workspace, not a single package dump.
 
 ## Common Commands
 
-- `pnpm check`: run lint, typecheck, tests, package builds, and `DESIGN.md` lint.
+- `pnpm check`: run lint, typecheck, tests, package builds, the private React example build, and `DESIGN.md` lint.
 - `pnpm clean:workspace`: remove ignored `dist/`, `.turbo/`, and `.DS_Store`
   artifacts without deleting `node_modules`.
 
