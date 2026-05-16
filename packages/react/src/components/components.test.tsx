@@ -5,6 +5,11 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 import {
+  ActionMenu,
+  ActionMenuContent,
+  ActionMenuItem,
+  ActionMenuShortcut,
+  ActionMenuTrigger,
   Avatar,
   AvatarBadge,
   AvatarFallback,
@@ -12,6 +17,13 @@ import {
   AvatarGroupCount,
   AvatarImage,
   Badge,
+  Breadcrumbs,
+  BreadcrumbsEllipsis,
+  BreadcrumbsItem,
+  BreadcrumbsLink,
+  BreadcrumbsList,
+  BreadcrumbsPage,
+  BreadcrumbsSeparator,
   BottomSheet,
   BottomSheetBody,
   BottomSheetClose,
@@ -24,10 +36,16 @@ import {
   BottomSheetTitle,
   BottomSheetTrigger,
   Button,
+  Checkbox,
+  CheckboxIndicator,
   Composer,
   ComposerActions,
   ComposerFooter,
   ComposerInput,
+  DataList,
+  DataListDescription,
+  DataListItem,
+  DataListTerm,
   Dialog,
   DialogClose,
   DialogContent,
@@ -38,7 +56,21 @@ import {
   DialogPortal,
   DialogTitle,
   DialogTrigger,
+  InlineAlert,
+  InlineAlertActions,
+  InlineAlertDescription,
+  InlineAlertTitle,
   Input,
+  Menu,
+  MenuCheckboxItem,
+  MenuContent,
+  MenuItem,
+  MenuLabel,
+  MenuRadioGroup,
+  MenuRadioItem,
+  MenuSeparator,
+  MenuShortcut,
+  MenuTrigger,
   Message,
   MessageActions,
   MessageAuthor,
@@ -46,7 +78,32 @@ import {
   MessageContent,
   MessageHeader,
   MessageMeta,
+  Pagination,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationList,
+  PaginationNext,
+  PaginationPrevious,
+  Popover,
+  PopoverClose,
+  PopoverContent,
+  PopoverTrigger,
+  Progress,
+  ProgressIndicator,
+  RadioGroup,
+  RadioGroupIndicator,
+  RadioGroupItem,
   RunStatus,
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+  Skeleton,
   Surface,
   SurfaceAction,
   SurfaceContent,
@@ -54,6 +111,20 @@ import {
   SurfaceFooter,
   SurfaceHeader,
   SurfaceTitle,
+  Switch,
+  SwitchThumb,
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableHeader,
+  TableRow,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
   Textarea,
   Toast,
   ToastAction,
@@ -814,6 +885,396 @@ describe("PDS starter components", () => {
 
     expect(await screen.findByRole("tooltip")).toHaveTextContent(
       "Agent status"
+    );
+  });
+
+  it("renders Select slots with density, invalid state, and item content", () => {
+    render(
+      <Select defaultValue="running" open>
+        <SelectTrigger
+          aria-label="Run status"
+          className="custom-select"
+          density="compact"
+          invalid
+        >
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent showScrollButtons={false}>
+          <SelectGroup>
+            <SelectLabel>Status</SelectLabel>
+            <SelectItem value="queued">Queued</SelectItem>
+            <SelectSeparator />
+            <SelectItem value="running">Running</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    );
+
+    const trigger = document.querySelector('[data-slot="select-trigger"]');
+    expect(trigger).toHaveAttribute("data-slot", "select-trigger");
+    expect(trigger).toHaveAttribute("data-density", "compact");
+    expect(trigger).toHaveAttribute("data-invalid", "true");
+    expect(trigger).toHaveAttribute("aria-invalid", "true");
+    expect(trigger).toHaveClass("pds-select-trigger", "custom-select");
+    expect(document.querySelector('[data-slot="select-content"]')).toHaveClass(
+      "pds-select-content"
+    );
+    expect(screen.getByText("Status")).toHaveAttribute(
+      "data-slot",
+      "select-label"
+    );
+    expect(screen.getByText("Queued").closest('[data-slot="select-item"]')).toHaveClass(
+      "pds-select-item"
+    );
+  });
+
+  it("renders Checkbox with default and custom indicators", () => {
+    const ref = React.createRef<HTMLButtonElement>();
+
+    const { container: defaultContainer } = render(
+      <Checkbox
+        ref={ref}
+        aria-label="Include archived"
+        checked="indeterminate"
+        className="custom-checkbox"
+        invalid
+      />
+    );
+
+    const checkbox = screen.getByRole("checkbox", { name: "Include archived" });
+    expect(checkbox).toHaveAttribute("data-slot", "checkbox");
+    expect(checkbox).toHaveAttribute("data-state", "indeterminate");
+    expect(checkbox).toHaveAttribute("aria-invalid", "true");
+    expect(checkbox).toHaveClass("pds-checkbox", "custom-checkbox");
+    expect(ref.current).toBe(checkbox);
+    expect(defaultContainer.querySelector('[data-slot="checkbox-indicator"]')).toHaveClass(
+      "pds-checkbox-indicator"
+    );
+
+    const { container: customContainer } = render(
+      <Checkbox aria-label="Custom checkbox" checked>
+        <CheckboxIndicator className="custom-indicator" />
+      </Checkbox>
+    );
+
+    expect(customContainer.querySelector('[data-slot="checkbox-indicator"]')).toHaveClass(
+      "pds-checkbox-indicator",
+      "custom-indicator"
+    );
+  });
+
+  it("renders RadioGroup, Switch, and Tabs primitives with state attributes", () => {
+    render(
+      <>
+        <RadioGroup aria-label="Run mode" defaultValue="safe" orientation="horizontal">
+          <RadioGroupItem value="safe" aria-label="Safe" />
+          <RadioGroupItem value="fast" aria-label="Fast">
+            <RadioGroupIndicator className="custom-radio-indicator" />
+          </RadioGroupItem>
+        </RadioGroup>
+        <Switch aria-label="Enable automation" defaultChecked>
+          <SwitchThumb className="custom-switch-thumb" />
+        </Switch>
+        <Tabs defaultValue="runs">
+          <TabsList variant="segmented">
+            <TabsTrigger value="runs">Runs</TabsTrigger>
+            <TabsTrigger value="settings">Settings</TabsTrigger>
+          </TabsList>
+          <TabsContent value="runs">Recent runs</TabsContent>
+          <TabsContent value="settings">Settings panel</TabsContent>
+        </Tabs>
+      </>
+    );
+
+    const group = screen.getByRole("radiogroup", { name: "Run mode" });
+    expect(group).toHaveAttribute("data-slot", "radio-group");
+    expect(group).toHaveAttribute("data-orientation", "horizontal");
+    expect(screen.getByRole("radio", { name: "Safe" })).toHaveAttribute(
+      "data-state",
+      "checked"
+    );
+    expect(document.querySelector('[data-slot="radio-group-indicator"]')).toHaveClass(
+      "pds-radio-group-indicator"
+    );
+
+    const switchControl = screen.getByRole("switch", {
+      name: "Enable automation"
+    });
+    expect(switchControl).toHaveAttribute("data-slot", "switch");
+    expect(switchControl).toHaveAttribute("data-state", "checked");
+    expect(document.querySelector('[data-slot="switch-thumb"]')).toHaveClass(
+      "pds-switch-thumb",
+      "custom-switch-thumb"
+    );
+
+    expect(screen.getByRole("tablist")).toHaveAttribute("data-variant", "segmented");
+    expect(screen.getByRole("tab", { name: "Runs" })).toHaveAttribute(
+      "data-state",
+      "active"
+    );
+    expect(screen.getByRole("tabpanel")).toHaveAttribute(
+      "data-slot",
+      "tabs-content"
+    );
+  });
+
+  it("renders Menu, Popover, and ActionMenu overlay primitives", () => {
+    render(
+      <>
+        <Menu open>
+          <MenuTrigger>Open menu</MenuTrigger>
+          <MenuContent>
+            <MenuLabel>Run actions</MenuLabel>
+            <MenuItem>
+              Copy <MenuShortcut>⌘C</MenuShortcut>
+            </MenuItem>
+            <MenuSeparator />
+            <MenuCheckboxItem checked>Show archived</MenuCheckboxItem>
+            <MenuRadioGroup value="safe">
+              <MenuRadioItem value="safe">Safe mode</MenuRadioItem>
+            </MenuRadioGroup>
+            <MenuItem intent="danger">Delete</MenuItem>
+          </MenuContent>
+        </Menu>
+        <Popover open>
+          <PopoverTrigger>Open popover</PopoverTrigger>
+          <PopoverContent>
+            Popover body
+            <PopoverClose>Close popover</PopoverClose>
+          </PopoverContent>
+        </Popover>
+        <ActionMenu open>
+          <ActionMenuTrigger>Open actions</ActionMenuTrigger>
+          <ActionMenuContent>
+            <ActionMenuItem>
+              Duplicate <ActionMenuShortcut>D</ActionMenuShortcut>
+            </ActionMenuItem>
+            <ActionMenuItem intent="danger">Remove</ActionMenuItem>
+          </ActionMenuContent>
+        </ActionMenu>
+      </>
+    );
+
+    expect(screen.getByText("Open menu")).toHaveAttribute(
+      "data-slot",
+      "menu-trigger"
+    );
+    expect(document.querySelector('[data-slot="menu-content"]')).toHaveClass(
+      "pds-menu-content"
+    );
+    expect(screen.getByText("Copy").closest('[data-slot="menu-item"]')).toHaveAttribute(
+      "data-intent",
+      "default"
+    );
+    expect(screen.getByText("⌘C")).toHaveAttribute("data-slot", "menu-shortcut");
+    expect(screen.getByText("Show archived")).toHaveAttribute(
+      "data-slot",
+      "menu-checkbox-item"
+    );
+    expect(screen.getByText("Safe mode")).toHaveAttribute(
+      "data-slot",
+      "menu-radio-item"
+    );
+    expect(screen.getByText("Delete")).toHaveAttribute("data-intent", "danger");
+
+    expect(screen.getByText("Open popover")).toHaveAttribute(
+      "data-slot",
+      "popover-trigger"
+    );
+    expect(screen.getByText("Popover body")).toHaveAttribute(
+      "data-slot",
+      "popover-content"
+    );
+    expect(screen.getByText("Close popover")).toHaveAttribute(
+      "data-slot",
+      "popover-close"
+    );
+    expect(document.querySelector('[data-slot="popover-arrow"]')).toBeInTheDocument();
+
+    expect(screen.getByText("Open actions")).toHaveAttribute(
+      "data-slot",
+      "action-menu-trigger"
+    );
+    expect(screen.getByText("Duplicate").closest(
+      '[data-slot="action-menu-item"]'
+    )).toHaveClass("pds-action-menu-item");
+    expect(screen.getByText("D")).toHaveAttribute(
+      "data-slot",
+      "action-menu-shortcut"
+    );
+    expect(screen.getByText("Remove")).toHaveAttribute("data-intent", "danger");
+  });
+
+  it("renders Skeleton, Progress, and InlineAlert feedback primitives", () => {
+    render(
+      <>
+        <Skeleton className="custom-skeleton" shape="text" />
+        <Progress aria-label="Run progress" value={40}>
+          <ProgressIndicator className="custom-progress-indicator" />
+        </Progress>
+        <InlineAlert className="custom-alert" tone="danger">
+          <InlineAlertTitle>Run failed</InlineAlertTitle>
+          <InlineAlertDescription>Credentials expired.</InlineAlertDescription>
+          <InlineAlertActions>
+            <Button>Reconnect</Button>
+          </InlineAlertActions>
+        </InlineAlert>
+      </>
+    );
+
+    expect(document.querySelector('[data-slot="skeleton"]')).toHaveAttribute(
+      "data-shape",
+      "text"
+    );
+    expect(document.querySelector('[data-slot="skeleton"]')).toHaveClass(
+      "pds-skeleton",
+      "custom-skeleton"
+    );
+
+    const progress = screen.getByRole("progressbar", { name: "Run progress" });
+    expect(progress).toHaveAttribute("data-slot", "progress");
+    expect(progress).toHaveStyle({ "--pds-progress-value": "40%" });
+    expect(document.querySelector('[data-slot="progress-indicator"]')).toHaveClass(
+      "pds-progress-indicator",
+      "custom-progress-indicator"
+    );
+
+    const alert = screen.getByRole("alert");
+    expect(alert).toHaveAttribute("data-tone", "danger");
+    expect(alert).toHaveClass("pds-inline-alert", "custom-alert");
+    expect(screen.getByText("Run failed")).toHaveAttribute(
+      "data-slot",
+      "inline-alert-title"
+    );
+    expect(screen.getByText("Credentials expired.")).toHaveAttribute(
+      "data-slot",
+      "inline-alert-description"
+    );
+    expect(screen.getByRole("button", { name: "Reconnect" }).closest(
+      '[data-slot="inline-alert-actions"]'
+    )).toHaveClass("pds-inline-alert-actions");
+  });
+
+  it("renders Table and DataList semantic data primitives", () => {
+    render(
+      <>
+        <TableContainer className="custom-table-container">
+          <Table density="compact">
+            <TableCaption>Runs</TableCaption>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Status</TableHead>
+                <TableHead>Owner</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell>Running</TableCell>
+                <TableCell>Agent</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <DataList density="compact">
+          <DataListItem>
+            <DataListTerm>Run ID</DataListTerm>
+            <DataListDescription>run_123</DataListDescription>
+          </DataListItem>
+        </DataList>
+      </>
+    );
+
+    expect(screen.getByText("Runs")).toHaveAttribute("data-slot", "table-caption");
+    expect(screen.getByRole("table")).toHaveAttribute("data-density", "compact");
+    expect(screen.getByText("Status")).toHaveAttribute("data-slot", "table-head");
+    expect(screen.getByText("Running")).toHaveAttribute("data-slot", "table-cell");
+    expect(document.querySelector('[data-slot="table-container"]')).toHaveClass(
+      "pds-table-container",
+      "custom-table-container"
+    );
+
+    expect(screen.getByText("Run ID")).toHaveAttribute(
+      "data-slot",
+      "data-list-term"
+    );
+    expect(screen.getByText("run_123")).toHaveAttribute(
+      "data-slot",
+      "data-list-description"
+    );
+    expect(document.querySelector('[data-slot="data-list"]')).toHaveAttribute(
+      "data-density",
+      "compact"
+    );
+  });
+
+  it("renders Breadcrumbs and Pagination navigation primitives", () => {
+    render(
+      <>
+        <Breadcrumbs>
+          <BreadcrumbsList>
+            <BreadcrumbsItem>
+              <BreadcrumbsLink href="/runs">Runs</BreadcrumbsLink>
+              <BreadcrumbsSeparator />
+            </BreadcrumbsItem>
+            <BreadcrumbsItem>
+              <BreadcrumbsEllipsis />
+              <BreadcrumbsSeparator />
+            </BreadcrumbsItem>
+            <BreadcrumbsItem>
+              <BreadcrumbsPage>Run 123</BreadcrumbsPage>
+            </BreadcrumbsItem>
+          </BreadcrumbsList>
+        </Breadcrumbs>
+        <Pagination>
+          <PaginationList>
+            <PaginationItem>
+              <PaginationPrevious href="?page=1" />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="?page=2" isCurrent>
+                2
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext href="?page=3" />
+            </PaginationItem>
+          </PaginationList>
+        </Pagination>
+      </>
+    );
+
+    expect(screen.getByRole("navigation", { name: "Breadcrumb" })).toHaveAttribute(
+      "data-slot",
+      "breadcrumbs"
+    );
+    expect(screen.getByRole("link", { name: "Runs" })).toHaveAttribute(
+      "data-slot",
+      "breadcrumbs-link"
+    );
+    expect(screen.getByText("Run 123")).toHaveAttribute("aria-current", "page");
+    expect(screen.getAllByLabelText("More pages")[0]).toHaveAttribute(
+      "data-slot",
+      "breadcrumbs-ellipsis"
+    );
+
+    expect(screen.getByRole("navigation", { name: "Pagination" })).toHaveAttribute(
+      "data-slot",
+      "pagination"
+    );
+    expect(screen.getByRole("link", { name: "2" })).toHaveAttribute(
+      "aria-current",
+      "page"
+    );
+    expect(screen.getByRole("link", { name: "Previous" })).toHaveAttribute(
+      "data-slot",
+      "pagination-previous"
+    );
+    expect(screen.getByRole("link", { name: "Next" })).toHaveAttribute(
+      "data-slot",
+      "pagination-next"
     );
   });
 });

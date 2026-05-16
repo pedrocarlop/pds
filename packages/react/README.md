@@ -11,7 +11,9 @@ React components for PDS agent-facing product surfaces.
 ## Current Surface
 
 - Button, Badge, Avatar, Surface, Tooltip, Dialog, BottomSheet, Toast, Input,
-  and Textarea.
+  Textarea, Select, Checkbox, RadioGroup, Switch, Tabs, Menu, Popover,
+  Skeleton, Progress, InlineAlert, Table, DataList, Breadcrumbs, Pagination,
+  and ActionMenu.
 - Product components: RunStatus, Message, Transcript, and Composer.
 - `pds/styles.css` imports `@pds/tokens/styles.css` and component styles.
 - Components use PDS-specific props and stable `data-*` attributes rather than Tailwind classes.
@@ -72,16 +74,31 @@ Use those files before editing source, CSS, examples, tests, or public APIs.
 
 | Component | Context |
 | --- | --- |
+| ActionMenu | [action-menu.md](docs/components/action-menu.md) |
 | Avatar | [avatar.md](docs/components/avatar.md) |
 | Badge | [badge.md](docs/components/badge.md) |
+| Breadcrumbs | [breadcrumbs.md](docs/components/breadcrumbs.md) |
 | BottomSheet | [bottom-sheet.md](docs/components/bottom-sheet.md) |
 | Button | [button.md](docs/components/button.md) |
+| Checkbox | [checkbox.md](docs/components/checkbox.md) |
 | Composer | [composer.md](docs/components/composer.md) |
+| DataList | [data-list.md](docs/components/data-list.md) |
 | Dialog | [dialog.md](docs/components/dialog.md) |
+| InlineAlert | [inline-alert.md](docs/components/inline-alert.md) |
 | Input | [input.md](docs/components/input.md) |
+| Menu | [menu.md](docs/components/menu.md) |
 | Message | [message.md](docs/components/message.md) |
+| Pagination | [pagination.md](docs/components/pagination.md) |
+| Popover | [popover.md](docs/components/popover.md) |
+| Progress | [progress.md](docs/components/progress.md) |
+| RadioGroup | [radio-group.md](docs/components/radio-group.md) |
 | RunStatus | [run-status.md](docs/components/run-status.md) |
+| Select | [select.md](docs/components/select.md) |
+| Skeleton | [skeleton.md](docs/components/skeleton.md) |
 | Surface | [surface.md](docs/components/surface.md) |
+| Switch | [switch.md](docs/components/switch.md) |
+| Table | [table.md](docs/components/table.md) |
+| Tabs | [tabs.md](docs/components/tabs.md) |
 | Textarea | [textarea.md](docs/components/textarea.md) |
 | Toast | [toast.md](docs/components/toast.md) |
 | Tooltip | [tooltip.md](docs/components/tooltip.md) |
