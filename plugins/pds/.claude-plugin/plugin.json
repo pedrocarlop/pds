@@ -1,0 +1,21 @@
+{
+  "name": "pds",
+  "version": "0.1.0",
+  "description": "Audit, implement, review, and bootstrap designer-ready React apps with the PDS design system.",
+  "author": {
+    "name": "PDS"
+  },
+  "license": "MIT",
+  "keywords": [
+    "pds",
+    "design-system",
+    "react",
+    "vite",
+    "starter",
+    "audit",
+    "review",
+    "figma",
+    "handoff"
+  ],
+  "skills": "./skills/"
+}

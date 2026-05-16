@@ -5,10 +5,10 @@
   },
   "plugins": [
     {
-      "name": "revolut",
+      "name": "pds",
       "source": {
         "source": "local",
-        "path": "./plugins/revolut"
+        "path": "./plugins/pds"
       },
       "policy": {
         "installation": "AVAILABLE",

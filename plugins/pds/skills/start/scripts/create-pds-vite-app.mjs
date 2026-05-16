@@ -45,8 +45,8 @@ function main() {
 
   run("pnpm", ["build"], { cwd: pdsRepo });
 
-  const packDir = mkdtempSync(path.join(tmpdir(), "revolut-pds-packages-"));
-  const viteDir = mkdtempSync(path.join(tmpdir(), "revolut-pds-vite-"));
+  const packDir = mkdtempSync(path.join(tmpdir(), "pds-packages-"));
+  const viteDir = mkdtempSync(path.join(tmpdir(), "pds-vite-"));
 
   try {
     packPdsPackages(pdsRepo, packDir);
@@ -389,7 +389,7 @@ function updatePackageJson(targetDir) {
     .replace(/[^a-z0-9-]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-  packageJson.name = safeName || "revolut-pds-app";
+  packageJson.name = safeName || "pds-app";
   writeFileSync(`${packagePath}`, `${JSON.stringify(packageJson, null, 2)}\n`, "utf8");
 }
 

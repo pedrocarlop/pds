@@ -8,7 +8,7 @@ allowed-tools: [Bash, Read]
 
 # Start A PDS App
 
-Use this skill only when the user explicitly invokes the Revolut starter and
+Use this skill only when the user explicitly invokes the PDS starter and
 wants the current folder turned into a new PDS-backed React app.
 
 ## Behavior
@@ -51,7 +51,7 @@ is available, locate this `SKILL.md` file and run:
 node ./scripts/create-pds-vite-app.mjs
 ```
 
-from `plugins/revolut/skills/start`, passing `--target <empty-folder>` when the
+from `plugins/pds/skills/start`, passing `--target <empty-folder>` when the
 current working directory is not the target app folder.
 
 ## Completion Message
