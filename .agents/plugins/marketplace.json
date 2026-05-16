@@ -1,0 +1,20 @@
+{
+  "name": "pds-local",
+  "interface": {
+    "displayName": "PDS Local"
+  },
+  "plugins": [
+    {
+      "name": "revolut",
+      "source": {
+        "source": "local",
+        "path": "./plugins/revolut"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Design"
+    }
+  ]
+}
