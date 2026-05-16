@@ -1,7 +1,7 @@
 {
   "name": "pds",
   "version": "0.1.0",
-  "description": "Audit, implement, review, and bootstrap designer-ready React apps with the PDS design system.",
+  "description": "Teach, audit, implement, review, and bootstrap designer-ready React apps with the PDS design system.",
   "author": {
     "name": "PDS"
   },
@@ -12,6 +12,8 @@
     "react",
     "vite",
     "starter",
+    "help",
+    "onboarding",
     "audit",
     "review",
     "figma",
@@ -20,8 +22,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "PDS",
-    "shortDescription": "Use PDS to audit, build, review, or start React web apps.",
-    "longDescription": "Helps product designers and AI coding agents adopt PDS in React web projects: audit existing apps, implement product screens from briefs or Figma handoff, review generated UI against PDS, and bootstrap new Vite React apps.",
+    "shortDescription": "Use PDS to learn, audit, build, review, or start React web apps.",
+    "longDescription": "Helps product designers and AI coding agents adopt PDS in React web projects: learn the plugin workflow, audit existing apps, implement product screens from briefs or Figma handoff, review generated UI against PDS, and bootstrap new Vite React apps.",
     "developerName": "PDS",
     "category": "Design",
     "capabilities": [
@@ -29,6 +31,7 @@
       "Write"
     ],
     "defaultPrompt": [
+      "Teach me how to use the PDS plugin",
       "Audit this app for PDS adoption",
       "Implement this screen using PDS",
       "Review this UI against PDS",

@@ -1,12 +1,15 @@
 # PDS Plugin
 
 This plugin helps designers and AI coding agents use PDS in React web projects.
-It can audit an existing app, implement a product screen from a brief or Figma
-handoff, review generated UI against PDS, or bootstrap an empty folder into a
-Vite React TypeScript app.
+It can teach the workflow, audit an existing app, implement a product screen
+from a brief or Figma handoff, review generated UI against PDS, or bootstrap an
+empty folder into a Vite React TypeScript app.
 
 ## Skills
 
+- `/pds:help`: onboarding guide for choosing the right PDS workflow, inspecting
+  a project, understanding what the plugin checks, and troubleshooting common
+  adoption issues.
 - `/pds:audit`: read-only project audit for PDS adoption. Detects the web
   stack, package/style integration, likely app entrypoints, token usage, and
   migration risks.
@@ -50,6 +53,7 @@ invoke the relevant skill from the target project or empty folder.
 Examples:
 
 ```sh
+/pds:help
 /pds:audit
 /pds:implement-screen Build the approval review screen from this brief
 /pds:review-pds src/App.tsx
@@ -67,6 +71,7 @@ claude --plugin-dir ./plugins/pds
 Then run a namespaced skill from the target project:
 
 ```sh
+/pds:help
 /pds:audit
 /pds:implement-screen Build the approval review screen from this brief
 /pds:review-pds src/App.tsx

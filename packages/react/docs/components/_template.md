@@ -5,6 +5,13 @@
 Describe the component's job in PDS product surfaces. Keep this about the
 component contract, not a general design-system essay.
 
+## Landing Requirement
+
+Before a new component lands, the change must include component source,
+component CSS, this docs file, example usage in `examples/react`, tests, stable
+`data-slot` / `data-*` attributes, content-resilience notes, and keyboard/focus
+behavior when the component is interactive.
+
 ## When To Use
 
 - Use when ...

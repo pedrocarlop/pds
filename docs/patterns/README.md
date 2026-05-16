@@ -10,7 +10,10 @@ legal, safety, audit, or task-completion requirements.
 
 ## Current Patterns
 
+- [Agent workspace](agent-workspace.md)
 - [Agreement signing](agreement-signing.md)
+- [Review queue](review-queue.md)
+- [Settings and system](settings-system.md)
 
 ## Authoring
 

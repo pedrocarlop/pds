@@ -12,7 +12,7 @@ import {
 } from "pds";
 
 export function ToastsSection() {
-  const [successOpen, setSuccessOpen] = useState(true);
+  const [successOpen, setSuccessOpen] = useState(false);
   const [dangerOpen, setDangerOpen] = useState(false);
 
   return (

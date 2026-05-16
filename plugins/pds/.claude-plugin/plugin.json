@@ -1,7 +1,7 @@
 {
   "name": "pds",
   "version": "0.1.0",
-  "description": "Audit, implement, review, and bootstrap designer-ready React apps with the PDS design system.",
+  "description": "Teach, audit, implement, review, and bootstrap designer-ready React apps with the PDS design system.",
   "author": {
     "name": "PDS"
   },
@@ -12,6 +12,8 @@
     "react",
     "vite",
     "starter",
+    "help",
+    "onboarding",
     "audit",
     "review",
     "figma",

@@ -59,6 +59,10 @@ Keep checks lightweight in this phase:
 
 - Every documented component should name its public slots and stable data
   attributes.
+- Every new component must land with source, component CSS, this docs file,
+  example usage in `examples/react`, tests, stable `data-slot` / `data-*`
+  attributes, content-resilience notes, and keyboard/focus behavior when
+  interactive.
 - Component docs should not duplicate token values from `DESIGN.md` or
   `packages/tokens`.
 - Component docs should reference current exported component names.

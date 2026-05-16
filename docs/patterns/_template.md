@@ -18,6 +18,11 @@ List the required states and what must remain visible in each state.
 | Success | Confirm completion without hiding audit-relevant state. |
 | Error | Keep recovery in context. |
 
+## Layout Anatomy
+
+Name the stable regions of the page or flow, the hierarchy between them, and
+which regions may collapse, wrap, or become secondary on narrow screens.
+
 ## Flow Variants
 
 | Flow | Use |
@@ -49,6 +54,8 @@ PDS does not own.
 
 - Scenario to test.
 - Scenario to test.
+- Keyboard and focus scenario to test.
+- Long-content or 200% zoom scenario to test.
 
 ## Do's And Don'ts
 
