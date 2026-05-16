@@ -168,7 +168,8 @@ a {
 
 .examples-body-copy,
 .examples-surface-content p,
-.examples-dialog-long-copy p {
+.examples-dialog-long-copy p,
+.examples-document-copy p {
   margin: 0;
   color: var(--pds-color-grey-tone-50);
   font-size: var(--pds-body2);
@@ -187,6 +188,12 @@ a {
   gap: var(--pds-space-sp-300);
   overflow: auto;
   padding-right: var(--pds-space-sp-100);
+}
+
+.examples-document-copy {
+  display: grid;
+  min-width: 0;
+  gap: var(--pds-space-sp-300);
 }
 
 .examples-agent-shell {

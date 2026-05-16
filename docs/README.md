@@ -12,6 +12,8 @@ This folder contains the detailed guidance that `DESIGN.md` points to.
 - [foundations/spacing.md](foundations/spacing.md): spacing and radius usage rules.
 - [foundations/motion.md](foundations/motion.md): motion duration, easing, and reduced-motion rules.
 - [foundations/content-resilience.md](foundations/content-resilience.md): translation, zoom, and overflow behavior.
+- [recipes](recipes): practical React app setup and PDS adoption recipes.
+- [patterns](patterns): repeatable product flow guidance.
 - [architecture/repository-structure.md](architecture/repository-structure.md): package and documentation structure.
 
 ## Relationship To DESIGN.md

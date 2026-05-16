@@ -25,6 +25,7 @@ limitations.
 
 - [Avatar](avatar.md)
 - [Badge](badge.md)
+- [BottomSheet](bottom-sheet.md)
 - [Button](button.md)
 - [Surface](surface.md)
 - [Message](message.md)
@@ -33,6 +34,7 @@ limitations.
 - [Input](input.md)
 - [RunStatus](run-status.md)
 - [Textarea](textarea.md)
+- [Toast](toast.md)
 - [Tooltip](tooltip.md)
 - [Transcript](transcript.md)
 

@@ -15,7 +15,9 @@ Use these rules after the repository-level routing in
 7. [docs/foundations/spacing.md](../foundations/spacing.md)
 8. [docs/foundations/motion.md](../foundations/motion.md)
 9. [docs/foundations/content-resilience.md](../foundations/content-resilience.md)
-10. [docs/architecture/repository-structure.md](../architecture/repository-structure.md)
+10. [docs/recipes](../recipes)
+11. [docs/patterns](../patterns)
+12. [docs/architecture/repository-structure.md](../architecture/repository-structure.md)
 
 ## Task Routing
 
@@ -23,6 +25,9 @@ Use these rules after the repository-level routing in
   then token source in `packages/tokens/src`.
 - For React component edits, use `packages/react/README.md` for package scope and
   the matching file in `packages/react/docs/components` for component contracts.
+- For React app setup or PDS adoption, use the matching file in `docs/recipes`.
+- For documented product flows, use the matching file in `docs/patterns`, then
+  the involved component context docs.
 - For verification, use `pnpm check`; it covers publishable packages, the private
   React example consumer, and `DESIGN.md` lint.
 - For package or file moves, use `docs/architecture/repository-structure.md`
@@ -56,6 +61,8 @@ linked docs and the token package source before making a visual decision.
 - Use tokenized motion for state, hierarchy, and spatial continuity; respect `prefers-reduced-motion`.
 - Use status colors only for status.
 - Use performance colors only for metric direction.
+- Use pattern docs when they narrow component guidance for a repeated product
+  flow.
 - Keep layouts resilient to translation, user-generated content, accessibility text settings, and 200% browser zoom.
 - Do not truncate primary actions, required form labels, error messages, or state feedback.
 

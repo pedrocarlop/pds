@@ -1,5 +1,19 @@
 export { Badge } from "./badge";
 export type { BadgeEmphasis, BadgeProps, BadgeTone } from "./badge";
+export {
+  BottomSheet,
+  BottomSheetBody,
+  BottomSheetClose,
+  BottomSheetContent,
+  BottomSheetDescription,
+  BottomSheetFooter,
+  BottomSheetHeader,
+  BottomSheetOverlay,
+  BottomSheetPortal,
+  BottomSheetTitle,
+  BottomSheetTrigger
+} from "./bottom-sheet";
+export type { BottomSheetContentProps } from "./bottom-sheet";
 export { Button } from "./button";
 export type { ButtonIntent, ButtonProps, ButtonSize } from "./button";
 export {
@@ -64,6 +78,16 @@ export {
   TooltipTrigger
 } from "./tooltip";
 export type { TooltipContentProps } from "./tooltip";
+export {
+  Toast,
+  ToastAction,
+  ToastClose,
+  ToastDescription,
+  ToastProvider,
+  ToastTitle,
+  ToastViewport
+} from "./toast";
+export type { ToastProps, ToastTone } from "./toast";
 export {
   Transcript,
   TranscriptEmpty,

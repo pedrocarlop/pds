@@ -13,6 +13,7 @@ ownership stays clear.
 - [docs/README.md](docs/README.md) indexes human and LLM documentation.
 - [docs/start-here.md](docs/start-here.md) explains the repo structure for humans.
 - [docs/foundations](docs/foundations) contains source guidance for tokens and visual decisions.
+- [docs/patterns](docs/patterns) contains repeatable product flow guidance.
 - [packages/README.md](packages/README.md) explains package boundaries.
 - [packages/tokens](packages/tokens) owns CSS custom properties.
 - [packages/react](packages/react) owns the first `pds` React components.
@@ -41,7 +42,8 @@ pnpm clean:workspace
 ## Package Boundaries
 
 - `@pds/tokens`: design tokens and CSS variables.
-- `pds`: React components for agent-facing product surfaces.
+- `pds`: React components for agent-facing product surfaces, including starter
+  feedback and overlay primitives.
 
 Import `pds/styles.css` once in a consuming app to load PDS tokens and component
 styles.

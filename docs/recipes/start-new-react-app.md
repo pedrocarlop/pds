@@ -1,0 +1,203 @@
+# Start A New React App With PDS
+
+Use this recipe when starting a new React app that consumes PDS from this repo.
+The app can live inside this workspace while it is a private consumer, or it can
+live outside the repo and install packed local packages until PDS is published.
+
+## Choose The App Location
+
+For a private in-repo consumer, create the app under an existing workspace glob
+such as `examples/*`. This gives the app a workspace dependency on `pds` and
+matches the existing [examples/react](../../examples/react) model.
+
+For a standalone app outside this repo, pack the local packages and install the
+tarballs. This is useful when validating PDS in a real product repo before a
+registry release exists.
+
+Do not add a new app to the PDS repo unless the task explicitly asks for one.
+
+## Create The React App
+
+Use the team's chosen React toolchain. For a Vite React TypeScript app:
+
+```sh
+pnpm create vite my-pds-app --template react-ts
+cd my-pds-app
+pnpm install
+```
+
+If the app should live inside this workspace, create it under `examples/` or add
+its folder to [pnpm-workspace.yaml](../../pnpm-workspace.yaml) before installing
+workspace dependencies.
+
+## Install PDS
+
+For an in-repo app in this workspace:
+
+```sh
+pnpm --filter <app-package-name> add pds@workspace:^
+```
+
+For an external local app before PDS is published:
+
+```sh
+cd /path/to/PDS
+pnpm build
+mkdir -p /tmp/pds-packages
+pnpm --dir packages/tokens pack --pack-destination /tmp/pds-packages
+pnpm --dir packages/react pack --pack-destination /tmp/pds-packages
+
+cd /path/to/my-pds-app
+pnpm add /tmp/pds-packages/pds-tokens-0.0.0.tgz /tmp/pds-packages/pds-0.0.0.tgz
+```
+
+Install both tarballs for external local apps. The packed `pds` package depends
+on `@pds/tokens`, and the local token package is not available from a registry
+until it is published.
+
+When PDS is published, use the registry install:
+
+```sh
+pnpm add pds
+```
+
+## Wire The App Root
+
+Import PDS styles once in the root entry file before app CSS.
+
+```tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+
+import "pds/styles.css";
+import "./app.css";
+
+import { App } from "./App";
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+Start app CSS from PDS tokens instead of introducing a parallel visual system:
+
+```css
+:root {
+  color: var(--pds-color-foreground);
+  background: var(--pds-color-base-grouped-background);
+  font-family: var(--pds-font-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  color: var(--pds-color-foreground);
+  background: var(--pds-color-base-grouped-background);
+}
+
+#root {
+  min-height: 100vh;
+}
+```
+
+## Build The First Screen
+
+Start with app-owned page layout and PDS components for the product module:
+
+```tsx
+import {
+  Badge,
+  Button,
+  Surface,
+  SurfaceAction,
+  SurfaceContent,
+  SurfaceDescription,
+  SurfaceHeader,
+  SurfaceTitle
+} from "pds";
+
+export function App() {
+  return (
+    <main className="app-shell">
+      <Surface level="elevated">
+        <SurfaceHeader>
+          <div>
+            <SurfaceTitle>Operations review</SurfaceTitle>
+            <SurfaceDescription>
+              Inspect generated work before sending it forward.
+            </SurfaceDescription>
+          </div>
+          <SurfaceAction>
+            <Badge tone="accent">Ready</Badge>
+          </SurfaceAction>
+        </SurfaceHeader>
+        <SurfaceContent>
+          <div className="app-actions">
+            <Button type="button">Start review</Button>
+            <Button intent="secondary" type="button">
+              Save draft
+            </Button>
+          </div>
+        </SurfaceContent>
+      </Surface>
+    </main>
+  );
+}
+```
+
+Keep the surrounding shell CSS layout-focused:
+
+```css
+.app-shell {
+  display: grid;
+  width: min(960px, calc(100vw - var(--pds-space-sp-800)));
+  min-height: 100vh;
+  margin: 0 auto;
+  align-content: center;
+  padding: var(--pds-space-sp-800) 0;
+}
+
+.app-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--pds-space-sp-200);
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    width: min(100% - var(--pds-space-sp-400), 960px);
+    align-content: start;
+    padding: var(--pds-space-sp-500) 0;
+  }
+}
+```
+
+## Grow From PDS Primitives
+
+- Use `Surface` for grouped modules and inspectable panels.
+- Use `Button`, `Badge`, `Input`, and `Textarea` for common controls before
+  creating local equivalents.
+- Use `Dialog`, `BottomSheet`, `Toast`, and `Tooltip` when the interaction
+  matches their component contracts.
+- Use `Message`, `Transcript`, `Composer`, and `RunStatus` for agent-facing
+  conversation or run surfaces.
+- Keep business logic, routing, persistence, and network behavior in the app.
+
+## Acceptance Check
+
+- The app installs PDS through a workspace dependency or both local tarballs.
+- `pds/styles.css` is imported once at the root.
+- Root CSS uses PDS tokens for base color, typography, spacing, and layout.
+- The first screen uses public imports from `pds`.
+- The app builds without deep imports or copied token values.
+- Narrow viewport and 200% zoom checks keep primary actions and required text
+  visible.

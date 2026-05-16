@@ -27,6 +27,8 @@ rules for this repo.
 - Use [docs/foundations/spacing.md](docs/foundations/spacing.md) for detailed spacing and radius decisions.
 - Use [docs/foundations/motion.md](docs/foundations/motion.md) for detailed motion decisions.
 - Use [docs/foundations/content-resilience.md](docs/foundations/content-resilience.md) for translation, zoom, and overflow behavior.
+- Use [docs/recipes](docs/recipes) for practical React app setup and PDS adoption paths.
+- Use [docs/patterns](docs/patterns) for repeatable product flow guidance that composes foundations and components.
 - Use [docs/architecture/repository-structure.md](docs/architecture/repository-structure.md) before moving files or adding packages.
 - Use the foundation CSS files in [packages/tokens/src](packages/tokens/src), bundled by [packages/tokens/src/styles.css](packages/tokens/src/styles.css), as the implementation source for CSS variables.
 - Use [packages/react](packages/react) for the PDS React component package and package stylesheet.
@@ -114,9 +116,10 @@ adding it. The detailed rules live in [docs/foundations/motion.md](docs/foundati
 
 PDS publishes a first React component slice from `pds`: Button, Badge, Avatar,
 Surface, Tooltip, Dialog, Input, Textarea, RunStatus, Message, Transcript, and
-Composer. Product code using those components should import `pds/styles.css`
-once, which loads PDS tokens and component styles. Token-only consumers can
-still use `@pds/tokens/styles.css` or scoped token imports from `@pds/tokens/colour.css`,
+Composer, plus feedback and overlay primitives Toast and BottomSheet. Product
+code using those components should import `pds/styles.css` once, which loads PDS
+tokens and component styles. Token-only consumers can still use
+`@pds/tokens/styles.css` or scoped token imports from `@pds/tokens/colour.css`,
 `@pds/tokens/typography.css`, `@pds/tokens/spacing.css`,
 `@pds/tokens/elevation.css`, and `@pds/tokens/motion.css`.
 
@@ -125,6 +128,8 @@ still use `@pds/tokens/styles.css` or scoped token imports from `@pds/tokens/col
 - Do use [DESIGN.md](DESIGN.md) before making visual choices.
 - Do read [AGENTS.md](AGENTS.md) before changing code structure.
 - Do use [docs/foundations/colour.md](docs/foundations/colour.md), [docs/foundations/typography.md](docs/foundations/typography.md), [docs/foundations/spacing.md](docs/foundations/spacing.md), [docs/foundations/motion.md](docs/foundations/motion.md), and [docs/foundations/content-resilience.md](docs/foundations/content-resilience.md) for detailed usage rules.
+- Do use [docs/recipes](docs/recipes) when installing PDS into a React app or starting a React app with PDS.
+- Do use [docs/patterns](docs/patterns) when a request maps to a documented product flow.
 - Do update linked foundation docs when changing the front matter contract.
 - Do keep `DESIGN.md`, `AGENTS.md`, and `docs/ai/llm-guidelines.md` in sync when agent workflow changes.
 - Do keep package boundaries clear: tokens first, React second.

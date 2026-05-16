@@ -12,6 +12,17 @@ import {
   AvatarGroupCount,
   AvatarImage,
   Badge,
+  BottomSheet,
+  BottomSheetBody,
+  BottomSheetClose,
+  BottomSheetContent,
+  BottomSheetDescription,
+  BottomSheetFooter,
+  BottomSheetHeader,
+  BottomSheetOverlay,
+  BottomSheetPortal,
+  BottomSheetTitle,
+  BottomSheetTrigger,
   Button,
   Composer,
   ComposerActions,
@@ -44,6 +55,13 @@ import {
   SurfaceHeader,
   SurfaceTitle,
   Textarea,
+  Toast,
+  ToastAction,
+  ToastClose,
+  ToastDescription,
+  ToastProvider,
+  ToastTitle,
+  ToastViewport,
   Tooltip,
   TooltipContent,
   TooltipProvider,
@@ -582,6 +600,159 @@ describe("PDS starter components", () => {
     expect(document.querySelector('[data-slot="dialog-overlay"]')).toHaveClass(
       "pds-dialog-overlay",
       "custom-overlay"
+    );
+    expect(screen.queryByRole("button", { name: "Close" })).not.toBeInTheDocument();
+  });
+
+  it("renders Toast feedback with tone, slots, action, close, and viewport", () => {
+    render(
+      <ToastProvider swipeDirection="right">
+        <ToastViewport className="custom-viewport" />
+        <Toast className="custom-toast" open tone="success">
+          <ToastTitle>Agreement signed</ToastTitle>
+          <ToastDescription>We saved the acceptance timestamp.</ToastDescription>
+          <ToastAction altText="Review agreement details">Review</ToastAction>
+          <ToastClose />
+        </Toast>
+      </ToastProvider>
+    );
+
+    expect(document.querySelector('[data-slot="toast-viewport"]')).toHaveClass(
+      "pds-toast-viewport",
+      "custom-viewport"
+    );
+
+    const toast = screen.getByText("Agreement signed").closest('[data-slot="toast"]');
+    expect(toast).toHaveAttribute("data-tone", "success");
+    expect(toast).toHaveClass("pds-toast", "custom-toast");
+    expect(screen.getByText("Agreement signed")).toHaveAttribute(
+      "data-slot",
+      "toast-title"
+    );
+    expect(screen.getByText("We saved the acceptance timestamp.")).toHaveAttribute(
+      "data-slot",
+      "toast-description"
+    );
+    expect(screen.getByRole("button", { name: "Review" })).toHaveAttribute(
+      "data-slot",
+      "toast-action"
+    );
+    expect(screen.getByRole("button", { name: "Dismiss notification" })).toHaveAttribute(
+      "data-slot",
+      "toast-close"
+    );
+  });
+
+  it("defaults Toast tone to neutral and supports custom close content", () => {
+    render(
+      <ToastProvider>
+        <ToastViewport />
+        <Toast open>
+          <ToastTitle>Saved</ToastTitle>
+          <ToastClose>Dismiss</ToastClose>
+        </Toast>
+      </ToastProvider>
+    );
+
+    expect(screen.getByText("Saved").closest('[data-slot="toast"]')).toHaveAttribute(
+      "data-tone",
+      "neutral"
+    );
+    expect(screen.getByRole("button", { name: "Dismiss" })).toHaveAttribute(
+      "data-slot",
+      "toast-close"
+    );
+  });
+
+  it("wires BottomSheet primitives and accessible content", () => {
+    render(
+      <BottomSheet open>
+        <BottomSheetContent className="custom-sheet">
+          <BottomSheetHeader>
+            <BottomSheetTitle>Review agreement</BottomSheetTitle>
+            <BottomSheetDescription>
+              Open the document before accepting.
+            </BottomSheetDescription>
+          </BottomSheetHeader>
+          <BottomSheetBody>Document body</BottomSheetBody>
+          <BottomSheetFooter>
+            <BottomSheetClose>Cancel</BottomSheetClose>
+            <Button>Accept</Button>
+          </BottomSheetFooter>
+        </BottomSheetContent>
+      </BottomSheet>
+    );
+
+    const sheet = screen.getByRole("dialog", { name: "Review agreement" });
+    expect(sheet).toHaveAttribute("data-slot", "bottom-sheet-content");
+    expect(sheet).toHaveClass("pds-bottom-sheet-content", "custom-sheet");
+    expect(sheet).toHaveAccessibleDescription("Open the document before accepting.");
+    expect(screen.getByText("Review agreement")).toHaveAttribute(
+      "data-slot",
+      "bottom-sheet-title"
+    );
+    expect(screen.getByText("Open the document before accepting.")).toHaveAttribute(
+      "data-slot",
+      "bottom-sheet-description"
+    );
+    expect(screen.getByText("Document body")).toHaveAttribute(
+      "data-slot",
+      "bottom-sheet-body"
+    );
+    expect(screen.getByRole("button", { name: "Close" })).toHaveAttribute(
+      "data-slot",
+      "bottom-sheet-close"
+    );
+    expect(screen.getByRole("button", { name: "Cancel" })).toHaveAttribute(
+      "data-slot",
+      "bottom-sheet-close"
+    );
+    expect(screen.getByRole("button", { name: "Accept" }).closest(
+      '[data-slot="bottom-sheet-footer"]'
+    )).toHaveClass("pds-bottom-sheet-footer");
+  });
+
+  it("opens and dismisses BottomSheet through Radix trigger and keyboard behavior", async () => {
+    render(
+      <BottomSheet>
+        <BottomSheetTrigger>Open sheet</BottomSheetTrigger>
+        <BottomSheetContent>
+          <BottomSheetHeader>
+            <BottomSheetTitle>Agreement details</BottomSheetTitle>
+            <BottomSheetDescription>Read the summary.</BottomSheetDescription>
+          </BottomSheetHeader>
+          <BottomSheetBody>Summary</BottomSheetBody>
+        </BottomSheetContent>
+      </BottomSheet>
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Open sheet" }));
+
+    const sheet = await screen.findByRole("dialog");
+    expect(sheet).toHaveTextContent("Agreement details");
+
+    fireEvent.keyDown(sheet, { code: "Escape", key: "Escape" });
+
+    await waitFor(() => {
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+  });
+
+  it("allows explicit BottomSheet portal and overlay composition", () => {
+    render(
+      <BottomSheet open>
+        <BottomSheetPortal>
+          <BottomSheetOverlay className="custom-sheet-overlay" />
+          <BottomSheetContent showCloseButton={false}>
+            <BottomSheetTitle>Inspect agreement</BottomSheetTitle>
+          </BottomSheetContent>
+        </BottomSheetPortal>
+      </BottomSheet>
+    );
+
+    expect(document.querySelector('[data-slot="bottom-sheet-overlay"]')).toHaveClass(
+      "pds-bottom-sheet-overlay",
+      "custom-sheet-overlay"
     );
     expect(screen.queryByRole("button", { name: "Close" })).not.toBeInTheDocument();
   });

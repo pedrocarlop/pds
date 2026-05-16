@@ -1,11 +1,13 @@
 import { AgentSurfaceSection } from "./sections/AgentSurfaceSection";
 import { AvatarsSection } from "./sections/AvatarsSection";
 import { BadgesSection } from "./sections/BadgesSection";
+import { BottomSheetsSection } from "./sections/BottomSheetsSection";
 import { ButtonsSection } from "./sections/ButtonsSection";
 import { DialogsSection } from "./sections/DialogsSection";
 import { FieldsSection } from "./sections/FieldsSection";
 import { SurfacesSection } from "./sections/SurfacesSection";
 import { TooltipsSection } from "./sections/TooltipsSection";
+import { ToastsSection } from "./sections/ToastsSection";
 
 export function App() {
   return (
@@ -28,6 +30,8 @@ export function App() {
         <AvatarsSection />
         <TooltipsSection />
         <DialogsSection />
+        <BottomSheetsSection />
+        <ToastsSection />
       </div>
     </main>
   );

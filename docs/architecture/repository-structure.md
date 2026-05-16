@@ -9,6 +9,7 @@ source, and generated outputs kept out of source control.
 - `DESIGN.md`: machine-readable tokens plus human-readable visual rationale.
 - `AGENTS.md`: instructions for LLM coding agents.
 - `docs/`: human and agent guidance.
+- `docs/patterns`: repeatable product flow guidance.
 - `scripts/`: repeatable repository maintenance scripts.
 - `packages/`: publishable packages.
 - `examples/`: private demo consumers that exercise publishable packages.
@@ -37,7 +38,8 @@ Owns the `pds` React package. It exports the initial PDS component slice and
 
 Current source:
 
-- `src/components`: Button, Badge, Avatar, Surface, Tooltip, Dialog, Input, and Textarea.
+- `src/components`: starter PDS primitives for actions, feedback, overlays,
+  fields, surfaces, and agent-facing product composition.
 - `src/components.css`: token-first component styles.
 - `src/styles.css`: aggregate stylesheet for package consumers.
 
@@ -45,6 +47,7 @@ Current source:
 
 - `docs/README.md`: index of documentation sources.
 - `docs/foundations`: design rules by foundation, including motion and resilient content behavior.
+- `docs/patterns`: flow-level guidance for composing foundations and components.
 - `docs/ai`: guidance for coding agents and LLM consumers.
 - `docs/architecture`: how the system is organized.
 

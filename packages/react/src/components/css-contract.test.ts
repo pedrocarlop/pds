@@ -18,6 +18,10 @@ const tokenElevation = readFileSync(
 );
 
 describe("PDS CSS contract", () => {
+  function escapeSelector(selector: string) {
+    return selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
   it("loads token CSS before component CSS through pds/styles.css", () => {
     expect(packageStyles.trim().split(/\n+/)).toEqual([
       '@import "@pds/tokens/styles.css";',
@@ -62,8 +66,26 @@ describe("PDS CSS contract", () => {
       ".pds-composer-actions",
       ".pds-composer-footer",
       ".pds-tooltip-content",
+      ".pds-toast-viewport",
+      ".pds-toast",
+      '.pds-toast[data-tone="success"]',
+      '.pds-toast[data-tone="warning"]',
+      '.pds-toast[data-tone="danger"]',
+      '.pds-toast[data-state="open"]',
+      '.pds-toast[data-swipe="move"]',
+      ".pds-toast-title",
+      ".pds-toast-description",
+      ".pds-toast-action",
+      ".pds-toast-close",
       ".pds-dialog-overlay",
       ".pds-dialog-content",
+      ".pds-bottom-sheet-overlay",
+      ".pds-bottom-sheet-content",
+      ".pds-bottom-sheet-header",
+      ".pds-bottom-sheet-body",
+      ".pds-bottom-sheet-footer",
+      ".pds-bottom-sheet-title",
+      ".pds-bottom-sheet-description",
       ".pds-input",
       '.pds-input[data-density="compact"]',
       ".pds-textarea",
@@ -145,16 +167,24 @@ describe("PDS CSS contract", () => {
       ".pds-composer-actions",
       ".pds-composer-footer",
       ".pds-tooltip-content",
+      ".pds-toast",
+      ".pds-toast-title",
+      ".pds-toast-description",
+      ".pds-toast-action",
       ".pds-dialog-content",
       ".pds-dialog-title",
-      ".pds-dialog-description"
+      ".pds-dialog-description",
+      ".pds-bottom-sheet-content",
+      ".pds-bottom-sheet-header",
+      ".pds-bottom-sheet-body",
+      ".pds-bottom-sheet-footer",
+      ".pds-bottom-sheet-title",
+      ".pds-bottom-sheet-description"
     ];
 
     for (const selector of resilientSelectors) {
-      const selectorIndex = componentStyles.indexOf(selector);
-      expect(selectorIndex).toBeGreaterThanOrEqual(0);
-      expect(componentStyles.slice(selectorIndex, selectorIndex + 800)).toContain(
-        "overflow-wrap: anywhere;"
+      expect(componentStyles).toMatch(
+        new RegExp(`${escapeSelector(selector)}\\s*{[^}]*overflow-wrap: anywhere;`)
       );
     }
   });
@@ -178,5 +208,10 @@ describe("PDS CSS contract", () => {
     expect(componentStyles).toContain(".pds-textarea:not(:disabled):hover");
     expect(componentStyles).toContain(".pds-dialog-close:not(:disabled):hover");
     expect(componentStyles).toContain(".pds-dialog-close:not(:disabled):active");
+    expect(componentStyles).toContain(".pds-toast-action:not(:disabled):hover");
+    expect(componentStyles).toContain(".pds-toast-close:not(:disabled):hover");
+    expect(componentStyles).toContain(
+      ".pds-bottom-sheet-close:not(:disabled):hover"
+    );
   });
 });

@@ -12,12 +12,14 @@ changing.
 4. [docs/foundations/tokens.md](docs/foundations/tokens.md) for token ownership.
 5. [docs/foundations/colour.md](docs/foundations/colour.md), [docs/foundations/typography.md](docs/foundations/typography.md), [docs/foundations/spacing.md](docs/foundations/spacing.md), and [docs/foundations/motion.md](docs/foundations/motion.md) for token usage.
 6. [docs/foundations/content-resilience.md](docs/foundations/content-resilience.md) for translation, zoom, and overflow behavior.
-7. [docs/architecture/repository-structure.md](docs/architecture/repository-structure.md) before moving files or adding packages.
-8. [packages/react/docs/components](packages/react/docs/components) before editing documented React components, component CSS, examples, tests, or public APIs.
+7. [docs/patterns](docs/patterns) when changing or implementing a documented product flow.
+8. [docs/architecture/repository-structure.md](docs/architecture/repository-structure.md) before moving files or adding packages.
+9. [packages/react/docs/components](packages/react/docs/components) before editing documented React components, component CSS, examples, tests, or public APIs.
 
 ## Task Routes
 
 - Visual tokens or usage guidance: read `DESIGN.md`, then the matching foundation doc and `packages/tokens/src`.
+- Product flow patterns: read `DESIGN.md`, then the matching file in `docs/patterns`, then the involved component context docs.
 - React component source, CSS, examples, tests, or public APIs: read `packages/react/README.md`, then the matching file in `packages/react/docs/components`.
 - Package boundaries, new packages, or moved files: read `docs/architecture/repository-structure.md` and `packages/README.md`.
 - Repository cleanup: preserve generated output policy, do not delete `node_modules`, and use `pnpm clean:workspace` for ignored build/cache artifacts.
@@ -26,6 +28,7 @@ changing.
 
 - [DESIGN.md](DESIGN.md) routes visual decisions to the detailed foundation docs.
 - [docs](docs) routes repo knowledge to humans and LLMs.
+- [docs/patterns](docs/patterns) routes repeatable product flows to foundation and component guidance.
 - [packages/README.md](packages/README.md) routes package ownership.
 - [scripts](scripts) contains repeatable repository maintenance scripts.
 - [packages/tokens](packages/tokens) implements the CSS variables referenced by design guidance.
@@ -47,6 +50,7 @@ changing.
 
 - Update `DESIGN.md` when the visual contract changes.
 - Update foundation docs when usage guidance changes.
+- Update pattern docs when a documented flow changes.
 - Update component context docs when React component behavior, slots, styling hooks, or public APIs change.
 - Update package READMEs when ownership or imports change.
 - Update package manifests when a package boundary changes.

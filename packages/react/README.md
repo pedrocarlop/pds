@@ -10,7 +10,8 @@ React components for PDS agent-facing product surfaces.
 
 ## Current Surface
 
-- Button, Badge, Avatar, Surface, Tooltip, Dialog, Input, and Textarea.
+- Button, Badge, Avatar, Surface, Tooltip, Dialog, BottomSheet, Toast, Input,
+  and Textarea.
 - Product components: RunStatus, Message, Transcript, and Composer.
 - `pds/styles.css` imports `@pds/tokens/styles.css` and component styles.
 - Components use PDS-specific props and stable `data-*` attributes rather than Tailwind classes.
@@ -47,10 +48,10 @@ semantic PDS tokens over one-off values. Component DOM includes stable
 `data-role`, `data-variant`, `data-busy`, `data-disabled`, and `data-invalid`.
 
 Text-bearing components are designed to keep content available in narrow
-containers: Button, Badge, Surface, Dialog, and Tooltip allow long labels or user
-content to wrap instead of relying on truncation by default. Fixed dimensions are
-limited to intentionally fixed affordances such as icon buttons, avatars, avatar
-badges, and dialog close controls.
+containers: Button, Badge, Surface, Dialog, BottomSheet, Toast, and Tooltip allow
+long labels or user content to wrap instead of relying on truncation by default.
+Fixed dimensions are limited to intentionally fixed affordances such as icon
+buttons, avatars, avatar badges, and close controls.
 
 ## Component Context
 
@@ -73,6 +74,7 @@ Use those files before editing source, CSS, examples, tests, or public APIs.
 | --- | --- |
 | Avatar | [avatar.md](docs/components/avatar.md) |
 | Badge | [badge.md](docs/components/badge.md) |
+| BottomSheet | [bottom-sheet.md](docs/components/bottom-sheet.md) |
 | Button | [button.md](docs/components/button.md) |
 | Composer | [composer.md](docs/components/composer.md) |
 | Dialog | [dialog.md](docs/components/dialog.md) |
@@ -81,6 +83,7 @@ Use those files before editing source, CSS, examples, tests, or public APIs.
 | RunStatus | [run-status.md](docs/components/run-status.md) |
 | Surface | [surface.md](docs/components/surface.md) |
 | Textarea | [textarea.md](docs/components/textarea.md) |
+| Toast | [toast.md](docs/components/toast.md) |
 | Tooltip | [tooltip.md](docs/components/tooltip.md) |
 | Transcript | [transcript.md](docs/components/transcript.md) |
 

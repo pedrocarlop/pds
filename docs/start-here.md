@@ -8,6 +8,8 @@ PDS is organized as a design system workspace, not a single package dump.
 - `AGENTS.md`: working rules and read order for coding agents.
 - `docs/README.md`: documentation index.
 - `docs/foundations`: token guidance, visual rationale, motion, and content resilience rules.
+- `docs/recipes`: practical React app setup and PDS adoption recipes.
+- `docs/patterns`: repeatable product flow guidance that composes foundations and components.
 - `docs/architecture`: structure, ownership, and scaling guidance.
 - `docs/ai`: LLM-specific usage guidance.
 - `scripts`: repository maintenance scripts for repeatable local hygiene.
@@ -32,10 +34,10 @@ PDS is organized as a design system workspace, not a single package dump.
 
 ## Current Scope
 
-The current workspace supports tokens, an initial React component slice, tests,
-agent-readable guidance, and a lightweight private React examples app. It does
-not include a website, Storybook, visual regression suite, or broader component
-library in this phase.
+The current workspace supports tokens, an initial React component slice, pattern
+guidance, React adoption recipes, tests, agent-readable guidance, and a
+lightweight private React examples app. It does not include a website,
+Storybook, visual regression suite, or broader component library in this phase.
 
 ## Navigation Rule
 
