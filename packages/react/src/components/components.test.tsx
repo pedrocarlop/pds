@@ -47,6 +47,16 @@ import {
   DataListDescription,
   DataListItem,
   DataListTerm,
+  Details,
+  DetailsCell,
+  DetailsCellSkeleton,
+  DetailsContent,
+  DetailsNote,
+  DetailsSkeleton,
+  DetailsSkeletonContent,
+  DetailsSkeletonNote,
+  DetailsSkeletonTitle,
+  DetailsTitle,
   Dialog,
   DialogClose,
   DialogContent,
@@ -247,6 +257,152 @@ describe("PDS starter components", () => {
     const cell = screen.getByText("Label row");
     expect(cell).toHaveAttribute("aria-disabled", "true");
     expect(cell).toHaveAttribute("data-disabled", "true");
+  });
+
+  it("renders Details with named slots, variants, indent, and forwarded refs", () => {
+    const ref = React.createRef<HTMLElement>();
+
+    render(
+      <Details ref={ref} className="custom-details" indent={2} variant="header">
+        <DetailsTitle>Plan</DetailsTitle>
+        <DetailsContent>Team</DetailsContent>
+        <DetailsNote>Includes shared agent runs.</DetailsNote>
+      </Details>
+    );
+
+    const details = screen.getByText("Plan").closest('[data-slot="details"]');
+    expect(details).toHaveAttribute("data-variant", "header");
+    expect(details).toHaveClass("pds-details", "custom-details");
+    expect((details as HTMLElement).style.getPropertyValue(
+      "--pds-details-indent"
+    )).toBe("2");
+    expect(screen.getByText("Plan")).toHaveAttribute(
+      "data-slot",
+      "details-title"
+    );
+    expect(screen.getByText("Team")).toHaveAttribute(
+      "data-slot",
+      "details-content"
+    );
+    expect(screen.getByText("Includes shared agent runs.")).toHaveAttribute(
+      "data-slot",
+      "details-note"
+    );
+    expect(ref.current).toBe(details);
+  });
+
+  it("renders Details and DetailsCell compound slots", () => {
+    render(
+      <>
+        <Details>
+          <Details.Title>Owner</Details.Title>
+          <Details.Content>Agent</Details.Content>
+          <Details.Note>Assigned during triage.</Details.Note>
+        </Details>
+        <DetailsCell className="custom-details-cell">
+          <DetailsCell.Title>Risk</DetailsCell.Title>
+          <DetailsCell.Content>Medium</DetailsCell.Content>
+        </DetailsCell>
+      </>
+    );
+
+    expect(screen.getByText("Owner")).toHaveAttribute(
+      "data-slot",
+      "details-title"
+    );
+    expect(screen.getByText("Agent")).toHaveAttribute(
+      "data-slot",
+      "details-content"
+    );
+    expect(screen.getByText("Assigned during triage.")).toHaveAttribute(
+      "data-slot",
+      "details-note"
+    );
+    expect(screen.getByText("Risk").closest('[data-slot="details-cell"]')).toHaveClass(
+      "pds-details",
+      "pds-details-cell",
+      "custom-details-cell"
+    );
+  });
+
+  it("renders Details as a button with native disabled behavior", () => {
+    const handleClick = vi.fn();
+
+    render(
+      <Details disabled onClick={handleClick} use="button">
+        Disabled detail
+      </Details>
+    );
+
+    const details = screen.getByRole("button", { name: "Disabled detail" });
+    expect(details).toHaveAttribute("data-disabled", "true");
+    expect(details).toHaveAttribute("type", "button");
+    expect(details).toBeDisabled();
+
+    fireEvent.click(details);
+
+    expect(handleClick).not.toHaveBeenCalled();
+  });
+
+  it("maps disabled non-button DetailsCell roots to aria-disabled", () => {
+    render(
+      <DetailsCell disabled use="section">
+        <DetailsTitle>Billing period</DetailsTitle>
+        <DetailsContent>Monthly</DetailsContent>
+      </DetailsCell>
+    );
+
+    const details = screen
+      .getByText("Billing period")
+      .closest('[data-slot="details-cell"]');
+    expect(details).toHaveAttribute("aria-disabled", "true");
+    expect(details).toHaveAttribute("data-disabled", "true");
+  });
+
+  it("renders Details skeleton defaults and explicit note slots", () => {
+    render(
+      <>
+        <DetailsSkeleton className="custom-details-skeleton" />
+        <DetailsSkeleton>
+          <DetailsSkeletonTitle className="custom-skeleton-title" />
+          <DetailsSkeletonContent />
+          <DetailsSkeletonNote />
+        </DetailsSkeleton>
+        <DetailsCellSkeleton>
+          <DetailsCellSkeleton.Title />
+          <DetailsCellSkeleton.Content />
+          <DetailsCellSkeleton.Note className="custom-skeleton-note" />
+        </DetailsCellSkeleton>
+      </>
+    );
+
+    const skeletons = document.querySelectorAll('[data-slot="details-skeleton"]');
+    expect(skeletons[0]).toHaveAttribute("aria-hidden", "true");
+    expect(skeletons[0]).toHaveClass(
+      "pds-details",
+      "pds-details-skeleton",
+      "custom-details-skeleton"
+    );
+    expect(skeletons[0].querySelectorAll('[data-slot^="details-skeleton-"]')).toHaveLength(
+      2
+    );
+    expect(document.querySelector('[data-slot="details-skeleton-title"]')).toHaveClass(
+      "pds-skeleton",
+      "pds-details-skeleton-title"
+    );
+    expect(document.querySelector(".custom-skeleton-title")).toHaveAttribute(
+      "data-slot",
+      "details-skeleton-title"
+    );
+    expect(document.querySelector(".custom-skeleton-note")).toHaveAttribute(
+      "data-slot",
+      "details-skeleton-note"
+    );
+    expect(document.querySelector('[data-slot="details-cell-skeleton"]')).toHaveClass(
+      "pds-details",
+      "pds-details-cell",
+      "pds-details-cell-skeleton"
+    );
   });
 
   it("renders Badge with tone, emphasis, className, and forwarded refs", () => {

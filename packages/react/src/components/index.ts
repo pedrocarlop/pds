@@ -56,6 +56,27 @@ export {
 } from "./data-list";
 export type { DataListProps } from "./data-list";
 export {
+  Details,
+  DetailsCell,
+  DetailsCellSkeleton,
+  DetailsContent,
+  DetailsNote,
+  DetailsSkeleton,
+  DetailsSkeletonContent,
+  DetailsSkeletonNote,
+  DetailsSkeletonTitle,
+  DetailsTitle
+} from "./details";
+export type {
+  DetailsCellProps,
+  DetailsCellSkeletonProps,
+  DetailsProps,
+  DetailsSkeletonProps,
+  DetailsSkeletonSlotProps,
+  DetailsSlotProps,
+  DetailsVariant
+} from "./details";
+export {
   Avatar,
   AvatarBadge,
   AvatarFallback,

@@ -33,6 +33,7 @@ limitations.
 - [Checkbox](checkbox.md)
 - [Surface](surface.md)
 - [DataList](data-list.md)
+- [Details](details.md)
 - [Message](message.md)
 - [Composer](composer.md)
 - [Dialog](dialog.md)

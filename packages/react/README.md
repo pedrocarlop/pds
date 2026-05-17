@@ -10,8 +10,8 @@ React components for PDS agent-facing product surfaces.
 
 ## Current Surface
 
-- Button, Badge, Avatar, Surface, Cell, Tooltip, Dialog, BottomSheet, Toast,
-  Input, Textarea, Select, Checkbox, RadioGroup, Switch, Tabs, Menu, Popover,
+- Button, Badge, Avatar, Surface, Cell, Details, Tooltip, Dialog, BottomSheet,
+  Toast, Input, Textarea, Select, Checkbox, RadioGroup, Switch, Tabs, Menu, Popover,
   Skeleton, Progress, InlineAlert, Table, DataList, Breadcrumbs, Pagination, and
   ActionMenu.
 - Product components: RunStatus, Message, Transcript, and Composer.
@@ -85,6 +85,7 @@ Use those files before editing source, CSS, examples, tests, or public APIs.
 | Checkbox | [checkbox.md](docs/components/checkbox.md) |
 | Composer | [composer.md](docs/components/composer.md) |
 | DataList | [data-list.md](docs/components/data-list.md) |
+| Details | [details.md](docs/components/details.md) |
 | Dialog | [dialog.md](docs/components/dialog.md) |
 | InlineAlert | [inline-alert.md](docs/components/inline-alert.md) |
 | Input | [input.md](docs/components/input.md) |
