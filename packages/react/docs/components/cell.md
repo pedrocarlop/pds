@@ -99,6 +99,20 @@ Cell uses PDS surface color, state layer, accent, typography, spacing, radius,
 focus, disabled opacity, and motion tokens. Do not add hard-coded colors,
 spacing, radii, transitions, or one-off divider strokes.
 
+The default Cell surface is widget background, not page/grouped background and
+not a custom cell-specific background token. In PDS tokens that maps to
+`--pds-color-base-widget-background`.
+
+The default outer row radius is the list/widget radius, currently represented by
+`--pds-radius-primary` (`24px`). Do not use nested radius for the root Cell
+shape.
+
+The default row padding is `--pds-space-sp-300` vertically and
+`--pds-space-sp-400` horizontally. Primary row text uses foreground color and an
+`emphasis1` type recipe. Supporting description text inside a Cell should use
+`--pds-color-grey-tone-50` with a `body1` type recipe when the consumer provides
+that content.
+
 ## State Behavior
 
 - Hover and active treatments apply only to interactive roots and are suppressed

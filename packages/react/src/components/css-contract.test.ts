@@ -290,6 +290,7 @@ describe("PDS CSS contract", () => {
     expect(componentStyles).toContain(
       '.pds-cell:is(button, a, label, [role="button"]):not(:disabled, [aria-disabled="true"]):active'
     );
+    expect(componentStyles).not.toContain("--pds-cell-background");
     expect(componentStyles).toContain(".pds-input:not(:disabled):hover");
     expect(componentStyles).toContain(".pds-textarea:not(:disabled):hover");
     expect(componentStyles).toContain(".pds-select-trigger:not(:disabled):hover");

@@ -218,8 +218,6 @@
 }
 
 .pds-cell {
-  --pds-cell-background: var(--pds-color-base-nested-background);
-
   position: relative;
   display: flex;
   width: 100%;
@@ -228,13 +226,13 @@
   align-items: center;
   gap: var(--pds-space-sp-300);
   border: 0;
-  border-radius: var(--pds-radius-nested);
+  border-radius: var(--pds-radius-primary);
   padding: var(--pds-space-sp-300) var(--pds-space-sp-400);
   color: var(--pds-color-foreground);
-  background: var(--pds-cell-background);
-  font-size: var(--pds-body2);
-  font-weight: var(--pds-fw-body);
-  line-height: var(--pds-lh-body2);
+  background: var(--pds-color-base-widget-background);
+  font-size: var(--pds-emphasis1);
+  font-weight: var(--pds-fw-emphasis);
+  line-height: var(--pds-lh-emphasis1);
   text-align: left;
   text-decoration: none;
   outline: none;
@@ -257,7 +255,7 @@
       var(--pds-color-state-layer-hover),
       var(--pds-color-state-layer-hover)
     ),
-    var(--pds-cell-background);
+    var(--pds-color-base-widget-background);
 }
 
 .pds-cell:is(button, a, label, [role="button"]):not(:disabled, [aria-disabled="true"]):active {
@@ -266,11 +264,16 @@
       var(--pds-color-state-layer-pressed),
       var(--pds-color-state-layer-pressed)
     ),
-    var(--pds-cell-background);
+    var(--pds-color-base-widget-background);
 }
 
 .pds-cell[aria-pressed="true"] {
-  --pds-cell-background: var(--pds-color-state-layer-selected);
+  background:
+    linear-gradient(
+      var(--pds-color-state-layer-selected),
+      var(--pds-color-state-layer-selected)
+    ),
+    var(--pds-color-base-widget-background);
 }
 
 .pds-cell[data-inactive="true"] {
@@ -283,13 +286,47 @@
 }
 
 .pds-cell[data-variant="accent"] {
-  --pds-cell-background: var(--pds-color-action-background);
+  background: var(--pds-color-action-background);
+}
+
+.pds-cell[data-variant="accent"]:is(button, a, label, [role="button"]):not(:disabled, [aria-disabled="true"]):hover {
+  background:
+    linear-gradient(
+      var(--pds-color-state-layer-hover),
+      var(--pds-color-state-layer-hover)
+    ),
+    var(--pds-color-action-background);
+}
+
+.pds-cell[data-variant="accent"]:is(button, a, label, [role="button"]):not(:disabled, [aria-disabled="true"]):active {
+  background:
+    linear-gradient(
+      var(--pds-color-state-layer-pressed),
+      var(--pds-color-state-layer-pressed)
+    ),
+    var(--pds-color-action-background);
 }
 
 .pds-cell[data-variant="nested"] {
-  --pds-cell-background: var(--pds-color-grey-tone-5);
+  background: var(--pds-color-grey-tone-5);
+}
 
-  border-radius: var(--pds-radius-divider);
+.pds-cell[data-variant="nested"]:is(button, a, label, [role="button"]):not(:disabled, [aria-disabled="true"]):hover {
+  background:
+    linear-gradient(
+      var(--pds-color-state-layer-hover),
+      var(--pds-color-state-layer-hover)
+    ),
+    var(--pds-color-grey-tone-5);
+}
+
+.pds-cell[data-variant="nested"]:is(button, a, label, [role="button"]):not(:disabled, [aria-disabled="true"]):active {
+  background:
+    linear-gradient(
+      var(--pds-color-state-layer-pressed),
+      var(--pds-color-state-layer-pressed)
+    ),
+    var(--pds-color-grey-tone-5);
 }
 
 .pds-cell[data-variant="disclosure"],

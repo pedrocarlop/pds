@@ -22,6 +22,11 @@ patch the smallest durable guidance owner.
 
 2. Reconstruct the evidence before editing:
    - inspect the current source, diff, generated UI, screenshot, or Figma handoff
+   - if the feedback mentions an original component, raw code, upstream
+     primitive, or imported design-system behavior, separate the original
+     construction laws from the PDS mapping before changing files
+   - inspect the actual original source when available; if it is missing, ask for
+     it or record assumptions instead of treating inferred PDS defaults as fact
    - for component feedback, read `packages/react/README.md`, the matching file in
      `packages/react/docs/components`, the component source, `components.css`,
      and relevant tests
@@ -43,6 +48,9 @@ patch the smallest durable guidance owner.
    - Ownership gap: no source clearly owned the rule.
    - Missing enforcement: guidance existed but no script, check, or review step
      would catch the same miss.
+   - Premature systemization: the agent mapped to convenient PDS conventions
+     before extracting the original component's fill, radius, spacing,
+     typography, state, or accessibility laws.
 
 4. Choose the smallest durable owner:
    - Component behavior, styling hooks, slots, accessibility, data attributes,
@@ -73,6 +81,9 @@ patch the smallest durable guidance owner.
    - avoid broad global rules for one-off subjective preferences
    - when feedback says "never" or "always", make the rule checkable in docs and
      scripts where practical
+   - when the miss came from a raw/original component translation, write the
+     durable rule as two parts: the original construction law and the exact PDS
+     token or implementation mapping
 
 6. Fix the artifact when the user expects a fix now:
    - make the smallest source change that satisfies the feedback
@@ -81,6 +92,8 @@ patch the smallest durable guidance owner.
    - keep app or example CSS layout-focused and token-first
    - remove hard-coded colors from CSS, inline SVGs, data URI assets, examples,
      and fixtures unless the file is the token implementation source
+   - map visual concepts only to CSS variables exposed by `packages/tokens/src`;
+     do not add local token-like names for missing component concepts
 
 7. Verify:
    - run `pnpm check` before handing work back

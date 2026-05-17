@@ -62,7 +62,14 @@ linked docs and the token package source before making a visual decision.
 - Use semantic token names as the first clue.
 - Prefer surfaces, spacing, and radius over borders.
 - Use layout tokens for shared app widths, readable measures, side-panel minimums, and breakpoints.
+- When a request references an original component, raw code, or an upstream
+  design-system primitive, extract the original fill, radius, spacing,
+  typography, state, and accessibility laws before mapping them to PDS.
+- If the original source is missing, ask for it or document assumptions; do not
+  present inferred PDS defaults as the original component contract.
 - Never hard-code colors in UI CSS, component code, examples, inline SVGs, or data URI assets.
+- Only map design concepts to CSS variables that exist in `packages/tokens/src`;
+  do not invent local token-like names for missing component concepts.
 - Use accent color sparingly for intent and active state.
 - Preserve readable contrast on dark surfaces.
 - Use tokenized motion for state, hierarchy, and spatial continuity; respect `prefers-reduced-motion`.
