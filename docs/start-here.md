@@ -5,15 +5,18 @@ PDS is organized as a design system workspace, not a single package dump.
 ## Repository Map
 
 - `DESIGN.md`: portable design contract for LLMs and design tooling; links to detailed guidelines.
-- `AGENTS.md`: working rules and read order for coding agents.
+- `AGENTS.md`: Codex-compatible adapter that points to `docs/agent`.
+- `CLAUDE.md`: Claude-compatible adapter that imports `AGENTS.md`.
 - `docs/README.md`: documentation index.
+- `docs/agent`: canonical agent workflows, component contracts, patterns, and
+  skill workflows.
 - `docs/foundations`: token guidance, visual rationale, layout types, motion, and content resilience rules.
 - `docs/recipes`: practical React app setup and PDS adoption recipes.
-- `docs/patterns`: repeatable product flow guidance that composes foundations and components.
 - `docs/architecture`: structure, ownership, and scaling guidance.
-- `docs/ai`: LLM-specific usage guidance.
 - `plugins/pds`: repo-local PDS agent plugin skills for help, audit,
   implementation, review, self-improvement from feedback, and app bootstrapping.
+  Its `SKILL.md` files are discovery adapters for canonical workflows in
+  `docs/agent/skills`.
 - `scripts`: repository maintenance scripts for repeatable local hygiene.
 - `packages/tokens`: token implementation package.
 - `packages/react`: PDS React component package.
@@ -22,7 +25,8 @@ PDS is organized as a design system workspace, not a single package dump.
 
 ## Common Commands
 
-- `pnpm check`: run lint, typecheck, tests, package builds, the private React example build, and `DESIGN.md` lint.
+- `pnpm check`: run lint, docs lint, typecheck, tests, package builds, the
+  private React example build, and `DESIGN.md` lint.
 - `pnpm clean:workspace`: remove ignored `dist/`, `.turbo/`, and `.DS_Store`
   artifacts without deleting `node_modules`.
 
@@ -31,7 +35,7 @@ PDS is organized as a design system workspace, not a single package dump.
 - Tokens are the source of visual consistency.
 - Documentation should explain why, not repeat every implementation line.
 - Packages should have one clear reason to exist.
-- LLM guidance should be close to the code and easy to parse.
+- Agent guidance should be centralized in `docs/agent` and easy to parse.
 - Generated files should be reproducible from source.
 
 ## Current Scope

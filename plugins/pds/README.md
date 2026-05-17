@@ -7,6 +7,10 @@ design feedback, or bootstrap an empty folder into a Vite React TypeScript app.
 
 ## Skills
 
+Canonical skill workflows live in
+[docs/agent/skills](../../docs/agent/skills/README.md). The `SKILL.md` files in
+this plugin are discovery adapters for Codex and Claude.
+
 - `/pds:help`: onboarding guide for choosing the right PDS workflow, inspecting
   a project, understanding what the plugin checks, and troubleshooting common
   adoption issues.

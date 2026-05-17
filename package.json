@@ -12,10 +12,11 @@
   },
   "scripts": {
     "build": "turbo run build --filter=./packages/*",
-    "check": "pnpm lint && pnpm css:lint && pnpm typecheck && pnpm test && pnpm examples:build && pnpm design:lint",
+    "check": "pnpm lint && pnpm docs:lint && pnpm css:lint && pnpm typecheck && pnpm test && pnpm examples:build && pnpm design:lint",
     "clean:workspace": "node scripts/clean-workspace.mjs",
     "css:lint": "node scripts/lint-component-css-tokens.mjs",
     "design:lint": "design.md lint DESIGN.md",
+    "docs:lint": "node scripts/lint-agent-docs.mjs",
     "examples:build": "turbo run build --filter=@pds/examples-react",
     "examples:dev": "pnpm build && pnpm --filter @pds/examples-react dev",
     "lint": "eslint scripts --max-warnings=0 && turbo run lint --filter=./packages/* --filter=./examples/*",

@@ -59,9 +59,9 @@ buttons, avatars, avatar badges, and close controls.
 ## Component Context
 
 Lightweight per-component guidance lives in
-[docs/components](docs/components/README.md). Read the matching component context
-before changing component source, `components.css`, examples, tests, or public
-APIs.
+[docs/agent/components](../../docs/agent/components/README.md). Read the
+matching component contract before changing component source, `components.css`,
+examples, tests, or public APIs.
 
 The package README stays as the package overview. Component context explains
 implementation-specific slots, stable `data-*` attributes, accessibility
@@ -70,42 +70,43 @@ and known limitations.
 
 ## Component Index
 
-Detailed component contracts live in [docs/components](docs/components/README.md).
+Detailed component contracts live in
+[docs/agent/components](../../docs/agent/components/README.md).
 Use those files before editing source, CSS, examples, tests, or public APIs.
 
 | Component | Context |
 | --- | --- |
-| ActionMenu | [action-menu.md](docs/components/action-menu.md) |
-| Avatar | [avatar.md](docs/components/avatar.md) |
-| Badge | [badge.md](docs/components/badge.md) |
-| Breadcrumbs | [breadcrumbs.md](docs/components/breadcrumbs.md) |
-| BottomSheet | [bottom-sheet.md](docs/components/bottom-sheet.md) |
-| Button | [button.md](docs/components/button.md) |
-| Cell | [cell.md](docs/components/cell.md) |
-| Checkbox | [checkbox.md](docs/components/checkbox.md) |
-| Composer | [composer.md](docs/components/composer.md) |
-| DataList | [data-list.md](docs/components/data-list.md) |
-| Details | [details.md](docs/components/details.md) |
-| Dialog | [dialog.md](docs/components/dialog.md) |
-| InlineAlert | [inline-alert.md](docs/components/inline-alert.md) |
-| Input | [input.md](docs/components/input.md) |
-| Menu | [menu.md](docs/components/menu.md) |
-| Message | [message.md](docs/components/message.md) |
-| Pagination | [pagination.md](docs/components/pagination.md) |
-| Popover | [popover.md](docs/components/popover.md) |
-| Progress | [progress.md](docs/components/progress.md) |
-| RadioGroup | [radio-group.md](docs/components/radio-group.md) |
-| RunStatus | [run-status.md](docs/components/run-status.md) |
-| Select | [select.md](docs/components/select.md) |
-| Skeleton | [skeleton.md](docs/components/skeleton.md) |
-| Surface | [surface.md](docs/components/surface.md) |
-| Switch | [switch.md](docs/components/switch.md) |
-| Table | [table.md](docs/components/table.md) |
-| Tabs | [tabs.md](docs/components/tabs.md) |
-| Textarea | [textarea.md](docs/components/textarea.md) |
-| Toast | [toast.md](docs/components/toast.md) |
-| Tooltip | [tooltip.md](docs/components/tooltip.md) |
-| Transcript | [transcript.md](docs/components/transcript.md) |
+| ActionMenu | [action-menu.md](../../docs/agent/components/action-menu.md) |
+| Avatar | [avatar.md](../../docs/agent/components/avatar.md) |
+| Badge | [badge.md](../../docs/agent/components/badge.md) |
+| Breadcrumbs | [breadcrumbs.md](../../docs/agent/components/breadcrumbs.md) |
+| BottomSheet | [bottom-sheet.md](../../docs/agent/components/bottom-sheet.md) |
+| Button | [button.md](../../docs/agent/components/button.md) |
+| Cell | [cell.md](../../docs/agent/components/cell.md) |
+| Checkbox | [checkbox.md](../../docs/agent/components/checkbox.md) |
+| Composer | [composer.md](../../docs/agent/components/composer.md) |
+| DataList | [data-list.md](../../docs/agent/components/data-list.md) |
+| Details | [details.md](../../docs/agent/components/details.md) |
+| Dialog | [dialog.md](../../docs/agent/components/dialog.md) |
+| InlineAlert | [inline-alert.md](../../docs/agent/components/inline-alert.md) |
+| Input | [input.md](../../docs/agent/components/input.md) |
+| Menu | [menu.md](../../docs/agent/components/menu.md) |
+| Message | [message.md](../../docs/agent/components/message.md) |
+| Pagination | [pagination.md](../../docs/agent/components/pagination.md) |
+| Popover | [popover.md](../../docs/agent/components/popover.md) |
+| Progress | [progress.md](../../docs/agent/components/progress.md) |
+| RadioGroup | [radio-group.md](../../docs/agent/components/radio-group.md) |
+| RunStatus | [run-status.md](../../docs/agent/components/run-status.md) |
+| Select | [select.md](../../docs/agent/components/select.md) |
+| Skeleton | [skeleton.md](../../docs/agent/components/skeleton.md) |
+| Surface | [surface.md](../../docs/agent/components/surface.md) |
+| Switch | [switch.md](../../docs/agent/components/switch.md) |
+| Table | [table.md](../../docs/agent/components/table.md) |
+| Tabs | [tabs.md](../../docs/agent/components/tabs.md) |
+| Textarea | [textarea.md](../../docs/agent/components/textarea.md) |
+| Toast | [toast.md](../../docs/agent/components/toast.md) |
+| Tooltip | [tooltip.md](../../docs/agent/components/tooltip.md) |
+| Transcript | [transcript.md](../../docs/agent/components/transcript.md) |
 
 ## Current Limitations
 
@@ -119,7 +120,7 @@ Use those files before editing source, CSS, examples, tests, or public APIs.
 ## Related Docs
 
 - [DESIGN.md](../../DESIGN.md) for the portable visual contract.
-- [docs/ai/llm-guidelines.md](../../docs/ai/llm-guidelines.md) for agent usage rules.
+- [docs/agent/workflow.md](../../docs/agent/workflow.md) for agent usage rules.
 - [docs/architecture/repository-structure.md](../../docs/architecture/repository-structure.md) for package boundaries.
-- [packages/react/docs/components](docs/components/README.md) for component context.
+- [docs/agent/components](../../docs/agent/components/README.md) for component context.
 - [packages/tokens/README.md](../tokens/README.md) for token ownership.

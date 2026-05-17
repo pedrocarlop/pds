@@ -7,9 +7,11 @@ source, and generated outputs kept out of source control.
 ## Top Level
 
 - `DESIGN.md`: machine-readable tokens plus human-readable visual rationale.
-- `AGENTS.md`: instructions for LLM coding agents.
+- `AGENTS.md`: Codex-compatible adapter for agent instructions.
+- `CLAUDE.md`: Claude-compatible adapter that imports `AGENTS.md`.
 - `docs/`: human and agent guidance.
-- `docs/patterns`: repeatable product flow guidance.
+- `docs/agent`: canonical agent workflows, component contracts, patterns, and
+  skill workflows.
 - `scripts/`: repeatable repository maintenance scripts.
 - `plugins/`: repo-local agent plugins and skills.
 - `packages/`: publishable packages.
@@ -48,8 +50,8 @@ Current source:
 
 - `docs/README.md`: index of documentation sources.
 - `docs/foundations`: design rules by foundation, including motion and resilient content behavior.
-- `docs/patterns`: flow-level guidance for composing foundations and components.
-- `docs/ai`: guidance for coding agents and LLM consumers.
+- `docs/agent`: all canonical agent-only guidance, including flow-level
+  patterns and React component contracts.
 - `docs/architecture`: how the system is organized.
 
 Docs should be short, navigable, and written as source material for both humans
@@ -62,13 +64,13 @@ links rather than becoming the only place where design rules are written.
 ## Plugins
 
 `plugins/pds` owns repo-local agent skills for PDS adoption workflows. Skills
-should route agents to the canonical docs and package source rather than copying
-long design-system rules into plugin text.
+should route agents to `docs/agent/skills` and package source rather than
+copying long design-system rules into plugin text.
 
 Plugin skills may create or modify app code, but durable PDS guidance should
-live in the narrowest source of truth: component context docs for component
-rules, foundation docs for shared visual rules, pattern docs for flow rules, and
-plugin skill files for workflow rules.
+live in the narrowest source of truth: `docs/agent/components` for component
+rules, foundation docs for shared visual rules, `docs/agent/patterns` for flow
+rules, and `docs/agent/skills` for plugin workflow rules.
 
 ## Scripts
 

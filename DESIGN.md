@@ -20,7 +20,10 @@ rules for this repo.
 
 - Start with [AGENTS.md](AGENTS.md) for agent workflow and repo rules.
 - Use [docs/start-here.md](docs/start-here.md) as the human-readable repository index.
-- Use [docs/ai/llm-guidelines.md](docs/ai/llm-guidelines.md) for LLM-specific read order and edit rules.
+- Use [docs/agent](docs/agent/README.md) for canonical agent routing,
+  workflows, component contracts, patterns, and skill workflows.
+- Use [docs/agent/workflow.md](docs/agent/workflow.md) for agent-specific read
+  order and edit rules.
 - Use [docs/foundations/tokens.md](docs/foundations/tokens.md) to understand token ownership and outputs.
 - Use [docs/foundations/colour.md](docs/foundations/colour.md) for detailed color decisions.
 - Use [docs/foundations/typography.md](docs/foundations/typography.md) for detailed typography decisions.
@@ -29,11 +32,13 @@ rules for this repo.
 - Use [docs/foundations/motion.md](docs/foundations/motion.md) for detailed motion decisions.
 - Use [docs/foundations/content-resilience.md](docs/foundations/content-resilience.md) for translation, zoom, and overflow behavior.
 - Use [docs/recipes](docs/recipes) for practical React app setup and PDS adoption paths.
-- Use [docs/patterns](docs/patterns) for repeatable product flow guidance that composes foundations and components.
+- Use [docs/agent/patterns](docs/agent/patterns/README.md) for repeatable
+  product flow guidance that composes foundations and components.
 - Use [docs/architecture/repository-structure.md](docs/architecture/repository-structure.md) before moving files or adding packages.
 - Use the foundation CSS files in [packages/tokens/src](packages/tokens/src), bundled by [packages/tokens/src/styles.css](packages/tokens/src/styles.css), as the implementation source for CSS variables.
 - Use [packages/react](packages/react) for the PDS React component package and package stylesheet.
-- Use [packages/react/docs/components](packages/react/docs/components) before editing component source, CSS, examples, tests, or public APIs.
+- Use [docs/agent/components](docs/agent/components/README.md) before editing
+  component source, CSS, examples, tests, or public APIs.
 
 ## Colors
 
@@ -140,11 +145,13 @@ tokens and component styles. Token-only consumers can still use
 - Do read [AGENTS.md](AGENTS.md) before changing code structure.
 - Do use [docs/foundations/colour.md](docs/foundations/colour.md), [docs/foundations/typography.md](docs/foundations/typography.md), [docs/foundations/spacing.md](docs/foundations/spacing.md), [docs/foundations/layout-types.md](docs/foundations/layout-types.md), [docs/foundations/motion.md](docs/foundations/motion.md), and [docs/foundations/content-resilience.md](docs/foundations/content-resilience.md) for detailed usage rules.
 - Do use [docs/recipes](docs/recipes) when installing PDS into a React app or starting a React app with PDS.
-- Do use [docs/patterns](docs/patterns) when a request maps to a documented product flow.
-- Do use the repo-local PDS self-improvement skill when user design feedback
+- Do use [docs/agent/patterns](docs/agent/patterns/README.md) when a request
+  maps to a documented product flow.
+- Do use the repo-local PDS self-improvement workflow when user design feedback
   reveals a missing, failed, ambiguous, conflicting, or unowned instruction.
 - Do update linked foundation docs when changing the front matter contract.
-- Do keep `DESIGN.md`, `AGENTS.md`, and `docs/ai/llm-guidelines.md` in sync when agent workflow changes.
+- Do keep `DESIGN.md`, `AGENTS.md`, `CLAUDE.md`, and `docs/agent` in sync when
+  agent workflow changes.
 - Do keep package boundaries clear: tokens first, React second.
 - Do not create a website, marketing page, or new UI component unless the task explicitly asks for it.
 - Do not add one-off hex, rgb, hsl, named color, inline SVG color, data URI color, spacing, radius, layout breakpoint, or shared layout dimension values to product components or examples.

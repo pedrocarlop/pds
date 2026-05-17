@@ -1,8 +1,9 @@
 # PDS Recipes
 
 Recipes are practical setup paths for consuming PDS from React applications.
-They complement [patterns](../patterns), which describe repeatable product
-flows, and [foundations](../foundations), which own token and visual rules.
+They complement [patterns](../agent/patterns/README.md), which describe
+repeatable product flows, and [foundations](../foundations), which own token and
+visual rules.
 
 Use these recipes after [DESIGN.md](../../DESIGN.md) and
 [docs/start-here.md](../start-here.md). They should stay copyable without
@@ -33,6 +34,6 @@ Application code should still import React components from `pds` and import
 ## Related Sources
 
 - [DESIGN.md](../../DESIGN.md)
-- [LLM guidelines](../ai/llm-guidelines.md)
+- [Agent workflow](../agent/workflow.md)
 - [PDS React package](../../packages/react)
-- [PDS React component docs](../../packages/react/docs/components/README.md)
+- [PDS React component contracts](../agent/components/README.md)

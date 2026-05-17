@@ -1,61 +1,34 @@
 # Agent Guide
 
-Use this file as the navigation layer for AI coding agents working in PDS. Start
-here, then follow only the links needed for the package or design area you are
-changing.
+This is the Codex-compatible root adapter for PDS. The canonical agent
+documentation lives in [docs/agent](docs/agent/README.md) so humans can review
+agent behavior in one place.
 
-## Read Order After This File
+## Start Here
 
-1. [DESIGN.md](DESIGN.md) for the portable visual contract.
-2. [docs/ai/llm-guidelines.md](docs/ai/llm-guidelines.md) for agent-specific editing rules.
-3. [docs/start-here.md](docs/start-here.md) for repository orientation.
-4. [docs/foundations/tokens.md](docs/foundations/tokens.md) for token ownership.
-5. [docs/foundations/colour.md](docs/foundations/colour.md), [docs/foundations/typography.md](docs/foundations/typography.md), [docs/foundations/spacing.md](docs/foundations/spacing.md), [docs/foundations/layout-types.md](docs/foundations/layout-types.md), and [docs/foundations/motion.md](docs/foundations/motion.md) for token usage.
-6. [docs/foundations/content-resilience.md](docs/foundations/content-resilience.md) for translation, zoom, and overflow behavior.
-7. [docs/patterns](docs/patterns) when changing or implementing a documented product flow.
-8. [docs/architecture/repository-structure.md](docs/architecture/repository-structure.md) before moving files or adding packages.
-9. [packages/react/docs/components](packages/react/docs/components) before editing documented React components, component CSS, examples, tests, or public APIs.
+1. Read [docs/agent/README.md](docs/agent/README.md) for task routing.
+2. Read [DESIGN.md](DESIGN.md) before making visual decisions.
+3. Read [docs/agent/workflow.md](docs/agent/workflow.md) before editing files.
+4. Follow only the component, pattern, recipe, package, or skill docs needed for
+   the task.
 
-## Task Routes
+## Repository Rules
 
-- Visual tokens or usage guidance: read `DESIGN.md`, then the matching foundation doc and `packages/tokens/src`.
-- Product flow patterns: read `DESIGN.md`, then the matching file in `docs/patterns`, then the involved component context docs.
-- React component source, CSS, examples, tests, or public APIs: read `packages/react/README.md`, then the matching file in `packages/react/docs/components`.
-- Design feedback or critique after PDS output/review: use `plugins/pds/skills/self-improve/SKILL.md`; if feedback targets a component, update the matching file in `packages/react/docs/components` unless the rule already exists and the miss was only failure to follow it.
-- Package boundaries, new packages, or moved files: read `docs/architecture/repository-structure.md` and `packages/README.md`.
-- Repository cleanup: preserve generated output policy, do not delete `node_modules`, and use `pnpm clean:workspace` for ignored build/cache artifacts.
-
-## Source Graph
-
-- [DESIGN.md](DESIGN.md) routes visual decisions to the detailed foundation docs.
-- [docs](docs) routes repo knowledge to humans and LLMs.
-- [docs/patterns](docs/patterns) routes repeatable product flows to foundation and component guidance.
-- [packages/README.md](packages/README.md) routes package ownership.
-- [scripts](scripts) contains repeatable repository maintenance scripts.
-- [packages/tokens](packages/tokens) implements the CSS variables referenced by design guidance.
-- [packages/react](packages/react) implements the `pds` React package.
-- [packages/react/docs/components](packages/react/docs/components) explains implementation-specific component contracts for agents.
-- [plugins/pds](plugins/pds) owns repo-local PDS skills for teaching, auditing, implementing, reviewing, self-improving from feedback, and bootstrapping PDS apps.
-
-## Working Rules
-
-- Keep this repo token-first. Add or change tokens before hard-coding visual values.
-- Keep package boundaries boring and explicit.
-- `packages/tokens` owns CSS custom properties and token outputs.
-- `packages/react` owns PDS React components and their package stylesheet.
-- Component context markdown in `packages/react/docs/components` owns per-component guidance for slots, data attributes, accessibility, styling, and composition.
-- User design feedback is a source for self-improvement. Diagnose whether guidance was missing, failed, ambiguous, conflicting, or unowned, then patch the smallest durable owner.
-- `docs/` explains repo and token guidance for humans and LLMs.
-- Do not create websites, docs apps, demos, or new components unless the task asks for them.
+- Keep this repo token-first. Add or change tokens before hard-coding visual
+  values.
+- Keep package boundaries explicit: `packages/tokens` owns CSS custom
+  properties, and `packages/react` owns PDS React components and styles.
+- Do not create websites, docs apps, demos, or new components unless the task
+  asks for them.
 - Do not commit generated `dist/` output unless publishing policy changes.
+- Preserve generated output policy, do not delete `node_modules`, and use
+  `pnpm clean:workspace` for ignored build/cache artifacts when cleanup is
+  needed.
 
-## Change Checklist
+## Checks
 
-- Update `DESIGN.md` when the visual contract changes.
-- Update foundation docs when usage guidance changes.
-- Update pattern docs when a documented flow changes.
-- Update component context docs when React component behavior, slots, styling hooks, or public APIs change.
-- Update package READMEs when ownership or imports change.
-- Update package manifests when a package boundary changes.
 - Run `pnpm check` before handing work back.
-- Run `pnpm clean:workspace` after checks when ignored build/cache artifacts should be cleared.
+- Run `pnpm clean:workspace` after checks when ignored build/cache artifacts
+  should be cleared.
+
+Do not duplicate the detailed agent workflow here. Update `docs/agent` instead.

@@ -92,7 +92,7 @@ motion values.
   values.
 - Put product state, routing, data fetching, analytics, and side effects in the
   app, not in PDS components.
-- Read the matching [component docs](../../packages/react/docs/components/README.md)
+- Read the matching [component contracts](../agent/components/README.md)
   before changing PDS component APIs or depending on component-specific slots.
 
 ## Troubleshooting

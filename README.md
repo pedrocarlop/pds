@@ -9,11 +9,14 @@ ownership stays clear.
 ## Start Here
 
 - [DESIGN.md](DESIGN.md) is the portable visual contract and links to the detailed guidelines.
-- [AGENTS.md](AGENTS.md) is the repository map for coding agents.
-- [docs/README.md](docs/README.md) indexes human and LLM documentation.
+- [AGENTS.md](AGENTS.md) is the Codex-compatible adapter for coding agents.
+- [CLAUDE.md](CLAUDE.md) is the Claude-compatible adapter that imports `AGENTS.md`.
+- [docs/README.md](docs/README.md) indexes human and agent documentation.
+- [docs/agent](docs/agent/README.md) centralizes canonical agent workflows,
+  component contracts, patterns, and skill workflows.
 - [docs/start-here.md](docs/start-here.md) explains the repo structure for humans.
 - [docs/foundations](docs/foundations) contains source guidance for tokens and visual decisions.
-- [docs/patterns](docs/patterns) contains repeatable product flow guidance.
+- [docs/agent/patterns](docs/agent/patterns) contains repeatable product flow guidance.
 - [packages/README.md](packages/README.md) explains package boundaries.
 - [packages/tokens](packages/tokens) owns CSS custom properties.
 - [packages/react](packages/react) owns the first `pds` React components.
