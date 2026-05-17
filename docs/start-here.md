@@ -12,6 +12,8 @@ PDS is organized as a design system workspace, not a single package dump.
 - `docs/patterns`: repeatable product flow guidance that composes foundations and components.
 - `docs/architecture`: structure, ownership, and scaling guidance.
 - `docs/ai`: LLM-specific usage guidance.
+- `plugins/pds`: repo-local PDS agent plugin skills for help, audit,
+  implementation, review, self-improvement from feedback, and app bootstrapping.
 - `scripts`: repository maintenance scripts for repeatable local hygiene.
 - `packages/tokens`: token implementation package.
 - `packages/react`: PDS React component package.

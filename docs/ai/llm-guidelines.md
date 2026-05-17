@@ -25,6 +25,10 @@ Use these rules after the repository-level routing in
   then token source in `packages/tokens/src`.
 - For React component edits, use `packages/react/README.md` for package scope and
   the matching file in `packages/react/docs/components` for component contracts.
+- For user design feedback after a PDS output or review, use
+  `plugins/pds/skills/self-improve/SKILL.md`. Component feedback should update
+  the matching component context doc unless the existing doc already contained
+  the exact rule and the miss was only failure to follow it.
 - For React app setup or PDS adoption, use the matching file in `docs/recipes`.
 - For documented product flows, use the matching file in `docs/patterns`, then
   the involved component context docs.
@@ -65,6 +69,9 @@ linked docs and the token package source before making a visual decision.
   flow.
 - Keep layouts resilient to translation, user-generated content, accessibility text settings, and 200% browser zoom.
 - Do not truncate primary actions, required form labels, error messages, or state feedback.
+- Treat valid design critique as a guidance gap until evidence shows otherwise:
+  identify whether the rule was missing, failed, ambiguous, conflicting, or
+  unowned, then update the smallest durable owner.
 
 ## Repo Change Rules
 
@@ -75,6 +82,9 @@ linked docs and the token package source before making a visual decision.
 - Do not duplicate token values across packages.
 - Do not change `DESIGN.md` without checking whether `docs/foundations` or package READMEs also need updates.
 - Do not delete `node_modules` as part of routine cleanup.
+- Do not leave component-level design feedback only in the chat transcript when
+  it reveals reusable guidance; self-improve the relevant component docs or
+  failed workflow instructions.
 
 ## When Unsure
 

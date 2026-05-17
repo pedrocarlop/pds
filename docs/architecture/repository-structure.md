@@ -11,6 +11,7 @@ source, and generated outputs kept out of source control.
 - `docs/`: human and agent guidance.
 - `docs/patterns`: repeatable product flow guidance.
 - `scripts/`: repeatable repository maintenance scripts.
+- `plugins/`: repo-local agent plugins and skills.
 - `packages/`: publishable packages.
 - `examples/`: private demo consumers that exercise publishable packages.
 - `turbo.json`: package task graph.
@@ -57,6 +58,17 @@ and LLMs.
 `DESIGN.md` is intentionally top-level because design tools and coding agents can
 discover it quickly. It should stay connected to docs and package source through
 links rather than becoming the only place where design rules are written.
+
+## Plugins
+
+`plugins/pds` owns repo-local agent skills for PDS adoption workflows. Skills
+should route agents to the canonical docs and package source rather than copying
+long design-system rules into plugin text.
+
+Plugin skills may create or modify app code, but durable PDS guidance should
+live in the narrowest source of truth: component context docs for component
+rules, foundation docs for shared visual rules, pattern docs for flow rules, and
+plugin skill files for workflow rules.
 
 ## Scripts
 

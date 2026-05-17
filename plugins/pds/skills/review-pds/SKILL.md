@@ -41,6 +41,10 @@ from `plugins/pds/skills/review-pds`.
    layout, use `DESIGN.md`, foundation docs, pattern docs, and component docs as
    the review source of truth.
 5. Return findings first, ordered by severity, with file and line references.
+6. If the user pushes back on a design finding or gives component-level design
+   feedback, switch to `/pds:self-improve`. Reconstruct why the review missed or
+   misread the issue, then update the smallest durable PDS guidance owner instead
+   of only revising the local answer.
 
 ## Review Checklist
 
@@ -56,6 +60,9 @@ from `plugins/pds/skills/review-pds`.
 - Loading, empty, error, success, disabled, focused, and active states are
   represented where the flow needs them.
 - Interactions have accessible names, keyboard behavior, and visible focus.
+- Review misses should feed back into PDS guidance. Component-specific misses
+  should update the matching `packages/react/docs/components` file or the failed
+  review workflow rule.
 
 ## Output Shape
 

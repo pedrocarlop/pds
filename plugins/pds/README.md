@@ -2,8 +2,8 @@
 
 This plugin helps designers and AI coding agents use PDS in React web projects.
 It can teach the workflow, audit an existing app, implement a product screen
-from a brief or Figma handoff, review generated UI against PDS, or bootstrap an
-empty folder into a Vite React TypeScript app.
+from a brief or Figma handoff, review generated UI against PDS, learn from
+design feedback, or bootstrap an empty folder into a Vite React TypeScript app.
 
 ## Skills
 
@@ -19,6 +19,10 @@ empty folder into a Vite React TypeScript app.
 - `/pds:review-pds`: review pass for generated or changed UI. Checks PDS
   imports, stylesheet wiring, token usage, component fit, accessibility, content
   resilience, and state coverage.
+- `/pds:self-improve`: internal feedback loop for user design critique. Inspects
+  why a PDS output or review missed the mark, fixes the artifact when needed,
+  and updates the smallest durable guidance owner. Component feedback should
+  self-improve the matching component context doc.
 - `/pds:start`: bootstraps a new Vite React TypeScript app wired to PDS.
 
 ## What `/pds:start` Creates
@@ -57,6 +61,7 @@ Examples:
 /pds:audit
 /pds:implement-screen Build the approval review screen from this brief
 /pds:review-pds src/App.tsx
+/pds:self-improve The component feedback is that this Button treatment hides the primary action
 /pds:start
 ```
 
@@ -75,6 +80,7 @@ Then run a namespaced skill from the target project:
 /pds:audit
 /pds:implement-screen Build the approval review screen from this brief
 /pds:review-pds src/App.tsx
+/pds:self-improve The component feedback is that this Button treatment hides the primary action
 /pds:start
 ```
 

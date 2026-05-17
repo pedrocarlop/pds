@@ -21,6 +21,7 @@ changing.
 - Visual tokens or usage guidance: read `DESIGN.md`, then the matching foundation doc and `packages/tokens/src`.
 - Product flow patterns: read `DESIGN.md`, then the matching file in `docs/patterns`, then the involved component context docs.
 - React component source, CSS, examples, tests, or public APIs: read `packages/react/README.md`, then the matching file in `packages/react/docs/components`.
+- Design feedback or critique after PDS output/review: use `plugins/pds/skills/self-improve/SKILL.md`; if feedback targets a component, update the matching file in `packages/react/docs/components` unless the rule already exists and the miss was only failure to follow it.
 - Package boundaries, new packages, or moved files: read `docs/architecture/repository-structure.md` and `packages/README.md`.
 - Repository cleanup: preserve generated output policy, do not delete `node_modules`, and use `pnpm clean:workspace` for ignored build/cache artifacts.
 
@@ -34,6 +35,7 @@ changing.
 - [packages/tokens](packages/tokens) implements the CSS variables referenced by design guidance.
 - [packages/react](packages/react) implements the `pds` React package.
 - [packages/react/docs/components](packages/react/docs/components) explains implementation-specific component contracts for agents.
+- [plugins/pds](plugins/pds) owns repo-local PDS skills for teaching, auditing, implementing, reviewing, self-improving from feedback, and bootstrapping PDS apps.
 
 ## Working Rules
 
@@ -42,6 +44,7 @@ changing.
 - `packages/tokens` owns CSS custom properties and token outputs.
 - `packages/react` owns PDS React components and their package stylesheet.
 - Component context markdown in `packages/react/docs/components` owns per-component guidance for slots, data attributes, accessibility, styling, and composition.
+- User design feedback is a source for self-improvement. Diagnose whether guidance was missing, failed, ambiguous, conflicting, or unowned, then patch the smallest durable owner.
 - `docs/` explains repo and token guidance for humans and LLMs.
 - Do not create websites, docs apps, demos, or new components unless the task asks for them.
 - Do not commit generated `dist/` output unless publishing policy changes.

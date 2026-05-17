@@ -14,13 +14,16 @@ the current folder when useful, then explain the next best workflow.
 
 PDS helps designers and AI coding agents move from design intent to React web
 implementation while staying inside the PDS design system. `/pds:help` is the
-onboarding and routing entrypoint. The plugin then supports four delivery jobs:
+onboarding and routing entrypoint. The plugin then supports four delivery jobs
+and one internal feedback loop:
 
 - Start a new PDS-backed Vite React app with `/pds:start`.
 - Audit an existing React web app for PDS adoption with `/pds:audit`.
 - Implement or modify a product screen from a brief, screenshot, or Figma
   handoff with `/pds:implement-screen`.
 - Review generated or changed UI against PDS with `/pds:review-pds`.
+- Learn from user design feedback with `/pds:self-improve` by fixing the
+  artifact when needed and updating the durable PDS guidance that failed.
 
 Use this `/pds:help` skill to explain those jobs, recommend a workflow, and show
 the user how to inspect what is happening.
@@ -33,6 +36,8 @@ the user how to inspect what is happening.
   `/pds:implement-screen`.
 - User has generated code or a diff and wants design-system feedback: use
   `/pds:review-pds`.
+- User corrects a design decision, component treatment, or PDS review finding:
+  use `/pds:self-improve`.
 - User is unsure what to do: use `/pds:help`, inspect the folder, and recommend
   one of the above.
 
@@ -136,6 +141,20 @@ The review should focus on PDS imports, stylesheet wiring, token usage,
 component fit, accessibility, state coverage, content resilience, and whether
 the screen holds up under narrow viewports and 200% zoom.
 
+### Learn From Design Feedback
+
+Use:
+
+```sh
+/pds:self-improve The Button feedback is that icon-only actions feel ambiguous in this flow
+```
+
+The skill should inspect the artifact and relevant PDS docs, identify whether a
+rule was missing, failed, ambiguous, conflicting, or unowned, then update the
+smallest durable owner. Component feedback should normally self-improve the
+matching file in `packages/react/docs/components` and only broaden into
+foundation or plugin workflow guidance when the root cause is shared.
+
 ## Common Checks To Explain
 
 - PDS package: `pds` should be installed for React component use.
@@ -159,6 +178,9 @@ the screen holds up under narrow viewports and 200% zoom.
 - The generated screen feels off-system: run `/pds:review-pds`, then fix token
   usage, component selection, state coverage, and layout resilience before
   changing the design system.
+- The user gives design feedback after review or implementation: run
+  `/pds:self-improve` so the component, foundation, pattern, or plugin guidance
+  is updated where the miss originated.
 - The user is coming from Figma: explain that PDS implementation translates
   design intent into system components and tokens; it should not blindly copy
   pixels when that would violate PDS guidance.

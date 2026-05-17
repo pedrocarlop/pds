@@ -132,6 +132,8 @@ tokens and component styles. Token-only consumers can still use
 - Do use [docs/foundations/colour.md](docs/foundations/colour.md), [docs/foundations/typography.md](docs/foundations/typography.md), [docs/foundations/spacing.md](docs/foundations/spacing.md), [docs/foundations/motion.md](docs/foundations/motion.md), and [docs/foundations/content-resilience.md](docs/foundations/content-resilience.md) for detailed usage rules.
 - Do use [docs/recipes](docs/recipes) when installing PDS into a React app or starting a React app with PDS.
 - Do use [docs/patterns](docs/patterns) when a request maps to a documented product flow.
+- Do use the repo-local PDS self-improvement skill when user design feedback
+  reveals a missing, failed, ambiguous, conflicting, or unowned instruction.
 - Do update linked foundation docs when changing the front matter contract.
 - Do keep `DESIGN.md`, `AGENTS.md`, and `docs/ai/llm-guidelines.md` in sync when agent workflow changes.
 - Do keep package boundaries clear: tokens first, React second.
