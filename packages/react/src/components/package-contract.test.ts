@@ -51,6 +51,7 @@ describe("PDS package contract", () => {
       "BreadcrumbsPage",
       "BreadcrumbsSeparator",
       "Button",
+      "Cell",
       "Checkbox",
       "CheckboxIndicator",
       "Composer",

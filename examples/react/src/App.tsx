@@ -2,6 +2,7 @@ import { AvatarsSection } from "./sections/AvatarsSection";
 import { BadgesSection } from "./sections/BadgesSection";
 import { BottomSheetsSection } from "./sections/BottomSheetsSection";
 import { ButtonsSection } from "./sections/ButtonsSection";
+import { CellsSection } from "./sections/CellsSection";
 import { DialogsSection } from "./sections/DialogsSection";
 import { FieldsSection } from "./sections/FieldsSection";
 import { ProductSurfacesSection } from "./sections/ProductSurfacesSection";
@@ -35,6 +36,7 @@ export function App() {
 
           <div className="examples-stack">
             <ButtonsSection />
+            <CellsSection />
             <BadgesSection />
             <FieldsSection />
             <SurfacesSection />

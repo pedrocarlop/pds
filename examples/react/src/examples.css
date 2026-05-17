@@ -246,10 +246,22 @@ a {
 .examples-review-list,
 .examples-loading-stack,
 .examples-account-list,
+.examples-cell-stack,
 .examples-settings-form {
   display: grid;
   min-width: 0;
   gap: var(--pds-space-sp-200);
+}
+
+.examples-cell-copy {
+  min-width: 0;
+}
+
+.examples-cell-native-control {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  accent-color: var(--pds-color-accent);
 }
 
 .examples-tool-row,

@@ -10,10 +10,10 @@ React components for PDS agent-facing product surfaces.
 
 ## Current Surface
 
-- Button, Badge, Avatar, Surface, Tooltip, Dialog, BottomSheet, Toast, Input,
-  Textarea, Select, Checkbox, RadioGroup, Switch, Tabs, Menu, Popover,
-  Skeleton, Progress, InlineAlert, Table, DataList, Breadcrumbs, Pagination,
-  and ActionMenu.
+- Button, Badge, Avatar, Surface, Cell, Tooltip, Dialog, BottomSheet, Toast,
+  Input, Textarea, Select, Checkbox, RadioGroup, Switch, Tabs, Menu, Popover,
+  Skeleton, Progress, InlineAlert, Table, DataList, Breadcrumbs, Pagination, and
+  ActionMenu.
 - Product components: RunStatus, Message, Transcript, and Composer.
 - `pds/styles.css` imports `@pds/tokens/styles.css` and component styles.
 - Components use PDS-specific props and stable `data-*` attributes rather than Tailwind classes.
@@ -50,8 +50,9 @@ semantic PDS tokens over one-off values. Component DOM includes stable
 `data-role`, `data-variant`, `data-busy`, `data-disabled`, and `data-invalid`.
 
 Text-bearing components are designed to keep content available in narrow
-containers: Button, Badge, Surface, Dialog, BottomSheet, Toast, and Tooltip allow
-long labels or user content to wrap instead of relying on truncation by default.
+containers: Button, Badge, Cell, Surface, Dialog, BottomSheet, Toast, and Tooltip
+allow long labels or user content to wrap instead of relying on truncation by
+default.
 Fixed dimensions are limited to intentionally fixed affordances such as icon
 buttons, avatars, avatar badges, and close controls.
 
@@ -80,6 +81,7 @@ Use those files before editing source, CSS, examples, tests, or public APIs.
 | Breadcrumbs | [breadcrumbs.md](docs/components/breadcrumbs.md) |
 | BottomSheet | [bottom-sheet.md](docs/components/bottom-sheet.md) |
 | Button | [button.md](docs/components/button.md) |
+| Cell | [cell.md](docs/components/cell.md) |
 | Checkbox | [checkbox.md](docs/components/checkbox.md) |
 | Composer | [composer.md](docs/components/composer.md) |
 | DataList | [data-list.md](docs/components/data-list.md) |

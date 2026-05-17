@@ -29,6 +29,7 @@ limitations.
 - [Breadcrumbs](breadcrumbs.md)
 - [BottomSheet](bottom-sheet.md)
 - [Button](button.md)
+- [Cell](cell.md)
 - [Checkbox](checkbox.md)
 - [Surface](surface.md)
 - [DataList](data-list.md)

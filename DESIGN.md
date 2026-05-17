@@ -122,7 +122,7 @@ adding it. The detailed rules live in [docs/foundations/motion.md](docs/foundati
 ## Components
 
 PDS publishes a React component slice from `pds`: Button, Badge, Avatar,
-Surface, Tooltip, Dialog, Input, Textarea, Select, Checkbox, RadioGroup,
+Surface, Cell, Tooltip, Dialog, Input, Textarea, Select, Checkbox, RadioGroup,
 Switch, Tabs, Menu, Popover, Skeleton, Progress, InlineAlert, Table, DataList,
 Breadcrumbs, Pagination, ActionMenu, RunStatus, Message, Transcript, and
 Composer, plus feedback and overlay primitives Toast and BottomSheet. Product

@@ -37,6 +37,8 @@ export {
 export type { BottomSheetContentProps } from "./bottom-sheet";
 export { Button } from "./button";
 export type { ButtonIntent, ButtonProps, ButtonSize } from "./button";
+export { Cell } from "./cell";
+export type { CellProps, CellVariant } from "./cell";
 export { Checkbox, CheckboxIndicator } from "./checkbox";
 export type { CheckboxProps } from "./checkbox";
 export {

@@ -43,6 +43,15 @@ describe("PDS CSS contract", () => {
       '.pds-badge[data-emphasis="outline"]',
       ".pds-breadcrumbs",
       ".pds-breadcrumbs-link",
+      ".pds-cell",
+      '.pds-cell[data-variant="disclosure"]',
+      '.pds-cell[data-variant="choice"]',
+      '.pds-cell[data-variant="choice"][aria-pressed="true"]::after',
+      '.pds-cell[data-variant="compact"]',
+      '.pds-cell[data-variant="accent"]',
+      '.pds-cell[data-variant="nested"]',
+      '.pds-cell[aria-pressed="true"]',
+      '.pds-cell[data-inactive="true"]',
       ".pds-avatar",
       '.pds-avatar[data-size="lg"]',
       ".pds-avatar-group-count",
@@ -195,6 +204,7 @@ describe("PDS CSS contract", () => {
       ".pds-breadcrumbs",
       ".pds-breadcrumbs-link",
       ".pds-breadcrumbs-page",
+      ".pds-cell",
       ".pds-data-list",
       ".pds-data-list-item",
       ".pds-data-list-term",
@@ -273,6 +283,12 @@ describe("PDS CSS contract", () => {
     );
     expect(componentStyles).toContain(
       '.pds-button[data-intent="primary"]:not(:disabled, [aria-disabled="true"]):active'
+    );
+    expect(componentStyles).toContain(
+      '.pds-cell:is(button, a, label, [role="button"]):not(:disabled, [aria-disabled="true"]):hover'
+    );
+    expect(componentStyles).toContain(
+      '.pds-cell:is(button, a, label, [role="button"]):not(:disabled, [aria-disabled="true"]):active'
     );
     expect(componentStyles).toContain(".pds-input:not(:disabled):hover");
     expect(componentStyles).toContain(".pds-textarea:not(:disabled):hover");

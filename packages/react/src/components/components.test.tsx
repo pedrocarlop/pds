@@ -36,6 +36,7 @@ import {
   BottomSheetTitle,
   BottomSheetTrigger,
   Button,
+  Cell,
   Checkbox,
   CheckboxIndicator,
   Composer,
@@ -187,6 +188,65 @@ describe("PDS starter components", () => {
     render(<Button>{label}</Button>);
 
     expect(screen.getByRole("button", { name: label })).toHaveTextContent(label);
+  });
+
+  it("renders Cell with row attributes, variants, and forwarded refs", () => {
+    const ref = React.createRef<HTMLElement>();
+
+    render(
+      <Cell ref={ref} className="custom-cell" variant="disclosure">
+        Open details
+      </Cell>
+    );
+
+    const cell = screen.getByText("Open details");
+    expect(cell).toHaveAttribute("data-slot", "cell");
+    expect(cell).toHaveAttribute("data-variant", "disclosure");
+    expect(cell).toHaveClass("pds-cell", "custom-cell");
+    expect(ref.current).toBe(cell);
+  });
+
+  it("renders Cell as a button with native disabled behavior and default button type", () => {
+    const handleClick = vi.fn();
+
+    render(
+      <Cell disabled onClick={handleClick} use="button">
+        Disabled row
+      </Cell>
+    );
+
+    const cell = screen.getByRole("button", { name: "Disabled row" });
+    expect(cell).toHaveAttribute("data-disabled", "true");
+    expect(cell).toHaveAttribute("type", "button");
+    expect(cell).toBeDisabled();
+
+    fireEvent.click(cell);
+
+    expect(handleClick).not.toHaveBeenCalled();
+  });
+
+  it("uses aria-pressed for selectable Cell state", () => {
+    render(
+      <Cell aria-pressed use="button" variant="choice">
+        Manual review
+      </Cell>
+    );
+
+    const cell = screen.getByRole("button", { name: "Manual review" });
+    expect(cell).toHaveAttribute("aria-pressed", "true");
+    expect(cell).toHaveAttribute("data-variant", "choice");
+  });
+
+  it("maps disabled non-button Cell roots to aria-disabled", () => {
+    render(
+      <Cell disabled use="label">
+        Label row
+      </Cell>
+    );
+
+    const cell = screen.getByText("Label row");
+    expect(cell).toHaveAttribute("aria-disabled", "true");
+    expect(cell).toHaveAttribute("data-disabled", "true");
   });
 
   it("renders Badge with tone, emphasis, className, and forwarded refs", () => {
