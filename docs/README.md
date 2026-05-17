@@ -1,7 +1,12 @@
 # Documentation
 
-This folder contains the detailed guidance that `DESIGN.md` points to.
-Agent-facing guidance is centralized under [agent](agent/README.md).
+This file is only the documentation index. It points readers to the document
+that owns each topic instead of repeating setup steps, repo orientation, or
+agent workflow.
+
+For package install and update commands, use the root [README](../README.md).
+For human repo orientation, use [start-here.md](start-here.md). Agent-facing
+guidance is centralized under [agent](agent/README.md).
 
 ## Index
 

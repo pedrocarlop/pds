@@ -1,5 +1,12 @@
 # Start Here
 
+This file is the human maintainer orientation for the repository. It explains
+what each top-level area owns and what should not be added casually.
+
+It is not the package install guide; use the root [README](../README.md) for
+install and update commands. It is not the agent workflow; use
+[AGENTS.md](../AGENTS.md) and [docs/agent](agent/README.md) for that.
+
 PDS is organized as a design system workspace, not a single package dump.
 
 ## Repository Map
@@ -22,13 +29,6 @@ PDS is organized as a design system workspace, not a single package dump.
 - `packages/react`: PDS React component package.
 - `examples/react`: private browser demo consumer for starter React primitives;
   not a publishable package or full docs site.
-
-## Common Commands
-
-- `pnpm check`: run lint, docs lint, typecheck, tests, package builds, the
-  private React example build, and `DESIGN.md` lint.
-- `pnpm clean:workspace`: remove ignored `dist/`, `.turbo/`, and `.DS_Store`
-  artifacts without deleting `node_modules`.
 
 ## First Principles
 

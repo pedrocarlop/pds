@@ -9,6 +9,34 @@ Framework-agnostic design tokens for PDS.
 - The default exported stylesheet at `@pds/tokens/styles.css`.
 - Scoped foundation stylesheets at `@pds/tokens/colour.css`, `@pds/tokens/typography.css`, `@pds/tokens/spacing.css`, `@pds/tokens/layout.css`, `@pds/tokens/elevation.css`, and `@pds/tokens/motion.css`.
 
+## Install
+
+Most React apps should install `pds` instead; it includes this token package.
+Install `@pds/tokens` directly only for token-only consumers.
+
+```sh
+pnpm add @pds/tokens@latest
+```
+
+Import all token CSS:
+
+```tsx
+import "@pds/tokens/styles.css";
+```
+
+Or import one foundation stylesheet when the consumer deliberately needs only
+that token group:
+
+```tsx
+import "@pds/tokens/colour.css";
+```
+
+To update to the latest published token release:
+
+```sh
+pnpm add @pds/tokens@latest
+```
+
 ## Source Files
 
 - `src/colour.css`, `src/typography.css`, `src/spacing.css`, `src/layout.css`, `src/elevation.css`, and `src/motion.css`: implementation sources for foundation CSS variables.

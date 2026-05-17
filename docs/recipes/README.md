@@ -16,20 +16,28 @@ becoming a generated starter app or documentation site.
 
 ## Install Model
 
-PDS is currently a local workspace with publishable packages, not a documented
-registry release. Prefer local workspace dependencies for in-repo consumers. For
-external local app experiments, build and pack both publishable packages from
-this repo, then install both tarballs in the app.
-
-When `pds` is published to a registry, registry install commands can replace the
-local tarball step without changing application imports:
+For published releases, install the React package from the app folder:
 
 ```sh
-pnpm add pds
+pnpm add pds@latest
 ```
 
-Application code should still import React components from `pds` and import
-`pds/styles.css` once at the app root.
+Then import `pds/styles.css` once at the app root and import components from
+`pds`. The `pds` package brings in `@pds/tokens` for React consumers.
+
+For Codex-based setup, open Codex in the app folder and ask it to install the
+latest `pds` package, import `pds/styles.css` once, use public imports from
+`pds`, and run the app checks.
+
+Before a registry release is available, use local workspace dependencies for
+in-repo apps. For external local app experiments, build and pack both
+publishable packages from this repo, then install both tarballs in the app.
+
+Use the same command to update a published install:
+
+```sh
+pnpm add pds@latest
+```
 
 ## Related Sources
 

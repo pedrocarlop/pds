@@ -8,6 +8,34 @@ React components for PDS agent-facing product surfaces.
 - The package stylesheet at `pds/styles.css`.
 - Component CSS that consumes `@pds/tokens` CSS variables.
 
+## Install
+
+From a React app folder:
+
+```sh
+pnpm add pds@latest
+```
+
+Then import the stylesheet once at the app root:
+
+```tsx
+import "pds/styles.css";
+```
+
+To update an app to the latest published PDS release, run the same install
+command again:
+
+```sh
+pnpm add pds@latest
+```
+
+Codex users can ask from the app folder:
+
+```text
+Install the latest PDS package in this React app, import pds/styles.css once,
+use public imports from pds, and run the app checks.
+```
+
 ## Current Surface
 
 - Button, Badge, Avatar, Surface, Cell, Details, Tooltip, Dialog, BottomSheet,

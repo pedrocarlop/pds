@@ -1,8 +1,12 @@
 # Agent Guide
 
-This is the Codex-compatible root adapter for PDS. The canonical agent
-documentation lives in [docs/agent](docs/agent/README.md) so humans can review
-agent behavior in one place.
+This file exists because Codex and similar tools look for a root `AGENTS.md`.
+It is only the compatibility adapter and short safety checklist for agents.
+
+The canonical agent documentation lives in [docs/agent](docs/agent/README.md)
+so humans can review agent behavior in one place. Product install instructions
+belong in [README.md](README.md), and human repo orientation belongs in
+[docs/start-here.md](docs/start-here.md).
 
 ## Start Here
 

@@ -1,40 +1,147 @@
 # PDS
 
-PDS is a small design system workspace for agent-facing product surfaces.
+PDS is a design system for agent-facing React product UI: conversations, tool
+runs, review flows, status surfaces, and inspectable work.
 
-This repo is intentionally structured as it grows: tokens, React components,
-human guidance, and agent-readable guidance live in separate places so package
-ownership stays clear.
+This README is the install and update guide for people consuming PDS. It does
+not own repo structure, design rules, or agent workflow.
 
-## Start Here
+Most app teams should install the `pds` React package. It includes the component
+styles and the token package it needs.
 
-- [DESIGN.md](DESIGN.md) is the portable visual contract and links to the detailed guidelines.
-- [AGENTS.md](AGENTS.md) is the Codex-compatible adapter for coding agents.
-- [CLAUDE.md](CLAUDE.md) is the Claude-compatible adapter that imports `AGENTS.md`.
-- [docs/README.md](docs/README.md) indexes human and agent documentation.
-- [docs/agent](docs/agent/README.md) centralizes canonical agent workflows,
-  component contracts, patterns, and skill workflows.
-- [docs/start-here.md](docs/start-here.md) explains the repo structure for humans.
-- [docs/foundations](docs/foundations) contains source guidance for tokens and visual decisions.
-- [docs/agent/patterns](docs/agent/patterns) contains repeatable product flow guidance.
-- [packages/README.md](packages/README.md) explains package boundaries.
-- [packages/tokens](packages/tokens) owns CSS custom properties.
-- [packages/react](packages/react) owns the first `pds` React components.
+## Install In An App
 
-## Install
+From the folder of the React app that will use PDS:
 
 ```sh
-pnpm install
+pnpm add pds@latest
 ```
 
-## Develop
+Other package managers work the same way:
+
+```sh
+npm install pds@latest
+yarn add pds@latest
+bun add pds@latest
+```
+
+Then import the stylesheet once in the app root, before app-owned CSS:
+
+```tsx
+import "pds/styles.css";
+import "./app.css";
+```
+
+Use public imports from `pds`:
+
+```tsx
+import { Button, Surface, SurfaceContent } from "pds";
+
+export function Example() {
+  return (
+    <Surface>
+      <SurfaceContent>
+        <Button type="button">Run check</Button>
+      </SurfaceContent>
+    </Surface>
+  );
+}
+```
+
+Do not deep-import from `packages/react/src` or copy token values into app CSS.
+
+## Install With Codex
+
+Open Codex in the React app folder and ask:
+
+```text
+Install the latest PDS package in this React app. Import pds/styles.css once at
+the app root, use public imports from pds, and run the app checks.
+```
+
+For an app inside this repository, ask Codex to use the workspace package:
+
+```text
+Add pds to this workspace app with pds@workspace:^, import pds/styles.css once,
+and run pnpm check.
+```
+
+## Update To Latest
+
+From the consuming app folder:
+
+```sh
+pnpm add pds@latest
+```
+
+Equivalent commands:
+
+```sh
+npm install pds@latest
+yarn add pds@latest
+bun add pds@latest
+```
+
+After updating, run the app's normal build or test command. For this repository,
+run:
 
 ```sh
 pnpm check
 ```
 
-`pnpm check` validates the publishable packages and builds the private React
-example consumer so public imports stay usable.
+If an app only consumes token CSS without React components, install or update
+the token package directly:
+
+```sh
+pnpm add @pds/tokens@latest
+```
+
+## Local Install Before A Registry Release
+
+If the packages are not available from a registry yet, install them from this
+repo.
+
+For an app inside this pnpm workspace:
+
+```sh
+pnpm --filter <app-package-name> add pds@workspace:^
+```
+
+For an app outside this repo:
+
+```sh
+cd /path/to/PDS
+pnpm install
+pnpm build
+mkdir -p /tmp/pds-packages
+pnpm --dir packages/tokens pack --pack-destination /tmp/pds-packages
+pnpm --dir packages/react pack --pack-destination /tmp/pds-packages
+
+cd /path/to/react-app
+pnpm add /tmp/pds-packages/pds-tokens-*.tgz /tmp/pds-packages/pds-[0-9]*.tgz
+```
+
+Install both tarballs for local external apps. The React package depends on
+`@pds/tokens`.
+
+## Package Choice
+
+- `pds`: React components and `pds/styles.css`. Use this for React apps.
+- `@pds/tokens`: CSS custom properties only. Use this for token-only consumers.
+
+## Work On This Repo
+
+Install workspace dependencies:
+
+```sh
+pnpm install
+```
+
+Run all checks before handing work back:
+
+```sh
+pnpm check
+```
 
 Clean ignored build/cache artifacts without deleting installed dependencies:
 
@@ -42,21 +149,9 @@ Clean ignored build/cache artifacts without deleting installed dependencies:
 pnpm clean:workspace
 ```
 
-## Package Boundaries
+## More Context
 
-- `@pds/tokens`: design tokens and CSS variables.
-- `pds`: React components for agent-facing product surfaces, including starter
-  feedback and overlay primitives.
-
-Import `pds/styles.css` once in a consuming app to load PDS tokens and component
-styles.
-
-No website, documentation app, Storybook, or visual regression suite is required
-for this phase.
-
-## Documentation Contract
-
-[DESIGN.md](DESIGN.md) should stay small and portable. Detailed rules live in
-[docs](docs), and implementation source lives in [packages](packages). When one
-changes, update the linked guidance instead of letting a standalone file drift
-away from the repo.
+- Repo orientation for maintainers: [docs/start-here.md](docs/start-here.md).
+- Design rules: [DESIGN.md](DESIGN.md).
+- Full docs index: [docs/README.md](docs/README.md).
+- Agent workflow: [AGENTS.md](AGENTS.md).

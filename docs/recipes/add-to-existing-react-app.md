@@ -6,12 +6,41 @@ components and styles.
 ## Before You Start
 
 - The app must use React `^18.3.0` or `^19.0.0`.
-- PDS package source lives in this repo at [packages/react](../../packages/react).
-- The React package depends on [@pds/tokens](../../packages/tokens), so external
-  local installs need both packages available.
+- Most React apps should install `pds`; it includes the token dependency.
 - Do not deep-import from `packages/react/src` or `packages/tokens/src`.
 
-## Install From This Repo
+## Install The Latest Package
+
+From the app folder:
+
+```sh
+pnpm add pds@latest
+```
+
+Equivalent commands:
+
+```sh
+npm install pds@latest
+yarn add pds@latest
+bun add pds@latest
+```
+
+To update an existing install, run the same command again from the app folder:
+
+```sh
+pnpm add pds@latest
+```
+
+## Install With Codex
+
+Open Codex in the app folder and ask:
+
+```text
+Install the latest PDS package in this React app. Import pds/styles.css once at
+the app root, use public imports from pds, and run the app checks.
+```
+
+## Install From This Repo Before A Registry Release
 
 For an app inside this pnpm workspace, add `pds` with the workspace protocol:
 
@@ -19,24 +48,19 @@ For an app inside this pnpm workspace, add `pds` with the workspace protocol:
 pnpm --filter <app-package-name> add pds@workspace:^
 ```
 
-For an app outside this repo before PDS is published, build and pack the local
-packages, then install both tarballs in the app:
+For an app outside this repo, build and pack the local packages, then install
+both tarballs in the app:
 
 ```sh
 cd /path/to/PDS
+pnpm install
 pnpm build
 mkdir -p /tmp/pds-packages
 pnpm --dir packages/tokens pack --pack-destination /tmp/pds-packages
 pnpm --dir packages/react pack --pack-destination /tmp/pds-packages
 
 cd /path/to/react-app
-pnpm add /tmp/pds-packages/pds-tokens-0.0.0.tgz /tmp/pds-packages/pds-0.0.0.tgz
-```
-
-When PDS is published, the app can use the registry package instead:
-
-```sh
-pnpm add pds
+pnpm add /tmp/pds-packages/pds-tokens-*.tgz /tmp/pds-packages/pds-[0-9]*.tgz
 ```
 
 ## Load Styles Once
@@ -100,13 +124,13 @@ motion values.
 | Symptom | Check |
 | --- | --- |
 | Components render unstyled | Confirm `pds/styles.css` is imported from the app root and the package build includes `dist/styles.css`. |
-| External local install cannot resolve `@pds/tokens` | Install both local tarballs, not only `pds-0.0.0.tgz`. |
+| External local install cannot resolve `@pds/tokens` | Install both local tarballs, not only the `pds` tarball. |
 | React peer dependency warning | Use React `^18.3.0` or `^19.0.0`. |
 | Local CSS overrides PDS unintentionally | Move broad selectors after review, scope app CSS to app-owned layout classes, and avoid overriding PDS component classes directly. |
 
 ## Acceptance Check
 
-- The app installs `pds` without deep imports.
+- The app installs or updates `pds` without deep imports.
 - The app imports `pds/styles.css` once.
 - A smoke-test surface renders with PDS styling.
 - Local app CSS does not duplicate token values.

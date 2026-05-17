@@ -1,8 +1,8 @@
 # Start A New React App With PDS
 
-Use this recipe when starting a new React app that consumes PDS from this repo.
-The app can live inside this workspace while it is a private consumer, or it can
-live outside the repo and install packed local packages until PDS is published.
+Use this recipe when starting a new React app that consumes PDS. The app can use
+the published `pds` package, live inside this workspace as a private consumer,
+or install packed local packages before a registry release is available.
 
 ## Choose The App Location
 
@@ -10,9 +10,9 @@ For a private in-repo consumer, create the app under an existing workspace glob
 such as `examples/*`. This gives the app a workspace dependency on `pds` and
 matches the existing [examples/react](../../examples/react) model.
 
-For a standalone app outside this repo, pack the local packages and install the
-tarballs. This is useful when validating PDS in a real product repo before a
-registry release exists.
+For a standalone app outside this repo, install `pds@latest` from the app
+folder. If a registry release is not available yet, pack the local packages and
+install the tarballs.
 
 Do not add a new app to the PDS repo unless the task explicitly asks for one.
 
@@ -30,7 +30,38 @@ If the app should live inside this workspace, create it under `examples/` or add
 its folder to [pnpm-workspace.yaml](../../pnpm-workspace.yaml) before installing
 workspace dependencies.
 
-## Install PDS
+## Install PDS From The Registry
+
+From the new app folder:
+
+```sh
+pnpm add pds@latest
+```
+
+Equivalent commands:
+
+```sh
+npm install pds@latest
+yarn add pds@latest
+bun add pds@latest
+```
+
+To update later, run the same command again:
+
+```sh
+pnpm add pds@latest
+```
+
+## Install With Codex
+
+Open Codex in the app folder and ask:
+
+```text
+Install the latest PDS package in this React app. Import pds/styles.css once at
+the app root, use public imports from pds, and run the app checks.
+```
+
+## Install PDS From This Repo Before A Registry Release
 
 For an in-repo app in this workspace:
 
@@ -38,28 +69,23 @@ For an in-repo app in this workspace:
 pnpm --filter <app-package-name> add pds@workspace:^
 ```
 
-For an external local app before PDS is published:
+For an external local app:
 
 ```sh
 cd /path/to/PDS
+pnpm install
 pnpm build
 mkdir -p /tmp/pds-packages
 pnpm --dir packages/tokens pack --pack-destination /tmp/pds-packages
 pnpm --dir packages/react pack --pack-destination /tmp/pds-packages
 
 cd /path/to/my-pds-app
-pnpm add /tmp/pds-packages/pds-tokens-0.0.0.tgz /tmp/pds-packages/pds-0.0.0.tgz
+pnpm add /tmp/pds-packages/pds-tokens-*.tgz /tmp/pds-packages/pds-[0-9]*.tgz
 ```
 
 Install both tarballs for external local apps. The packed `pds` package depends
 on `@pds/tokens`, and the local token package is not available from a registry
 until it is published.
-
-When PDS is published, use the registry install:
-
-```sh
-pnpm add pds
-```
 
 ## Wire The App Root
 
@@ -195,7 +221,8 @@ Keep the surrounding shell CSS layout-focused:
 
 ## Acceptance Check
 
-- The app installs PDS through a workspace dependency or both local tarballs.
+- The app installs PDS through the registry, a workspace dependency, or both
+  local tarballs.
 - `pds/styles.css` is imported once at the root.
 - Root CSS uses PDS tokens for base color, typography, spacing, and layout.
 - The first screen uses public imports from `pds`.
