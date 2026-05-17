@@ -11,7 +11,7 @@
 }
 
 body {
-  min-width: 320px;
+  min-width: var(--pds-layout-viewport-min);
   min-height: 100vh;
   margin: 0;
   color: var(--pds-color-foreground);
@@ -23,14 +23,14 @@ a {
 }
 
 .examples-page {
-  width: min(1120px, calc(100vw - var(--pds-space-sp-800)));
+  width: min(var(--pds-layout-content-max), calc(100vw - var(--pds-space-sp-800)));
   margin: 0 auto;
   padding: var(--pds-space-sp-1000) 0;
 }
 
 .examples-hero {
   display: grid;
-  max-width: 760px;
+  max-width: var(--pds-layout-hero-max);
   gap: var(--pds-space-sp-300);
   margin-bottom: var(--pds-space-sp-1000);
 }
@@ -79,7 +79,7 @@ a {
 
 .examples-section-heading {
   display: grid;
-  max-width: 720px;
+  max-width: var(--pds-layout-reading-max);
   gap: var(--pds-space-sp-200);
 }
 
@@ -126,7 +126,7 @@ a {
 
 .examples-narrow-frame {
   display: grid;
-  width: min(100%, 280px);
+  width: min(100%, var(--pds-layout-narrow-frame));
   min-width: 0;
   gap: var(--pds-space-sp-300);
   padding: var(--pds-space-sp-300);
@@ -215,18 +215,18 @@ a {
 
 .examples-product-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.6fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(var(--pds-layout-side-panel-min), 0.6fr);
   gap: var(--pds-space-sp-400);
   align-items: start;
   min-width: 0;
 }
 
 .examples-product-grid-agent {
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.46fr);
+  grid-template-columns: minmax(0, 1fr) minmax(var(--pds-layout-side-panel-min), 0.46fr);
 }
 
 .examples-product-grid-settings {
-  grid-template-columns: minmax(0, 0.8fr) minmax(360px, 0.7fr);
+  grid-template-columns: minmax(0, 0.8fr) minmax(var(--pds-layout-side-panel-wide-min), 0.7fr);
 }
 
 .examples-product-main [data-slot="surface-content"],
@@ -391,9 +391,10 @@ a {
   min-width: 0;
 }
 
+/* Keep in sync with --pds-layout-breakpoint-narrow. */
 @media (max-width: 760px) {
   .examples-page {
-    width: min(100% - var(--pds-space-sp-400), 1120px);
+    width: min(100% - var(--pds-space-sp-400), var(--pds-layout-content-max));
     padding: var(--pds-space-sp-600) 0;
   }
 

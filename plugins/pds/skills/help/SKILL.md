@@ -68,7 +68,8 @@ For an existing app, teach users to check:
 - Root entrypoints such as `src/main.tsx`, `app/layout.tsx`, or `pages/_app.tsx`:
   whether `pds/styles.css` is imported once.
 - Root styles such as `src/index.css`, `app/globals.css`, or imported CSS files:
-  whether UI chrome uses PDS tokens instead of hard-coded visual values.
+  whether UI chrome uses PDS tokens instead of hard-coded visual values,
+  including colors inside inline SVGs or data URI assets.
 - Screen/component files: whether UI uses public imports from `pds` instead of
   deep imports or local recreations.
 - Existing flows and routes: where a bounded first PDS migration should happen.
@@ -161,7 +162,7 @@ foundation or plugin workflow guidance when the root cause is shared.
 - Stylesheet: `pds/styles.css` should be imported once at the app root.
 - Imports: components should come from `pds`, not package source paths.
 - Tokens: app visual chrome should use `--pds-*` tokens for color, spacing,
-  radius, typography, shadow, and motion.
+  radius, shared layout dimensions, typography, shadow, and motion.
 - Components: avoid rebuilding primitives already covered by PDS unless the
   product needs a local composition.
 - Resilience: long text, translated strings, user-generated content, and 200%

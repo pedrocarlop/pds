@@ -26,7 +26,7 @@ agnostic. Docs and future packages consume it instead of duplicating values.
 
 Current source:
 
-- `src/colour.css`, `src/typography.css`, `src/spacing.css`, `src/elevation.css`, and `src/motion.css`: foundation CSS custom properties with the `--pds-` prefix.
+- `src/colour.css`, `src/typography.css`, `src/spacing.css`, `src/layout.css`, `src/elevation.css`, and `src/motion.css`: foundation CSS custom properties with the `--pds-` prefix.
 - `src/styles.css`: aggregate stylesheet that imports the foundation CSS files for the stable default package export.
 
 Future source can add DTCG JSON, token build scripts, and platform exports when

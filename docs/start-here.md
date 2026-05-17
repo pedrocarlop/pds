@@ -7,7 +7,7 @@ PDS is organized as a design system workspace, not a single package dump.
 - `DESIGN.md`: portable design contract for LLMs and design tooling; links to detailed guidelines.
 - `AGENTS.md`: working rules and read order for coding agents.
 - `docs/README.md`: documentation index.
-- `docs/foundations`: token guidance, visual rationale, motion, and content resilience rules.
+- `docs/foundations`: token guidance, visual rationale, layout types, motion, and content resilience rules.
 - `docs/recipes`: practical React app setup and PDS adoption recipes.
 - `docs/patterns`: repeatable product flow guidance that composes foundations and components.
 - `docs/architecture`: structure, ownership, and scaling guidance.

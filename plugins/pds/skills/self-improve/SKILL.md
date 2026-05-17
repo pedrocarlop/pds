@@ -27,6 +27,8 @@ patch the smallest durable guidance owner.
      and relevant tests
    - for foundation feedback, read `DESIGN.md`, the matching
      `docs/foundations/*` file, and `packages/tokens/src` if tokens are involved
+   - for breakpoint or reusable layout feedback, read
+     `docs/foundations/layout-types.md` and `packages/tokens/src/layout.css`
    - for plugin workflow feedback, read the relevant `plugins/pds/skills/*/SKILL.md`
 
 3. Diagnose the root cause:
@@ -39,6 +41,8 @@ patch the smallest durable guidance owner.
    - Implementation shortcut: code or CSS took a faster path that weakened the
      design.
    - Ownership gap: no source clearly owned the rule.
+   - Missing enforcement: guidance existed but no script, check, or review step
+     would catch the same miss.
 
 4. Choose the smallest durable owner:
    - Component behavior, styling hooks, slots, accessibility, data attributes,
@@ -48,6 +52,9 @@ patch the smallest durable guidance owner.
      `packages/react/src/components.css`, and focused tests.
    - Shared visual usage belongs in the matching foundation doc and token source
      when token values or token names change.
+   - Shared breakpoints, app shell widths, readable measures, and side-panel
+     minimums belong in `docs/foundations/layout-types.md` and
+     `packages/tokens/src/layout.css`.
    - Flow-level composition belongs in `docs/patterns`.
    - Agent workflow misses belong in `docs/ai/llm-guidelines.md`,
      `AGENTS.md`, `DESIGN.md` when the portable visual contract changes, or the
@@ -64,15 +71,21 @@ patch the smallest durable guidance owner.
    - write rules as short imperatives tied to the root cause
    - merge with existing guidance instead of duplicating it
    - avoid broad global rules for one-off subjective preferences
+   - when feedback says "never" or "always", make the rule checkable in docs and
+     scripts where practical
 
 6. Fix the artifact when the user expects a fix now:
    - make the smallest source change that satisfies the feedback
    - add or update tests when behavior, public API, state selectors, or component
      contracts change
    - keep app or example CSS layout-focused and token-first
+   - remove hard-coded colors from CSS, inline SVGs, data URI assets, examples,
+     and fixtures unless the file is the token implementation source
 
 7. Verify:
    - run `pnpm check` before handing work back
+   - after color feedback, search changed UI sources for raw hex, rgb, hsl, and
+     encoded `%23` color values
    - when visible UI changes, also verify the relevant viewport, long-content
      state, and 200% zoom where practical
    - for docs-only skill changes, validate front matter by reading the changed

@@ -7,11 +7,11 @@ Framework-agnostic design tokens for PDS.
 - CSS custom properties with the `--pds-` prefix.
 - The `.pds-tabular` numeric typography utility.
 - The default exported stylesheet at `@pds/tokens/styles.css`.
-- Scoped foundation stylesheets at `@pds/tokens/colour.css`, `@pds/tokens/typography.css`, `@pds/tokens/spacing.css`, `@pds/tokens/elevation.css`, and `@pds/tokens/motion.css`.
+- Scoped foundation stylesheets at `@pds/tokens/colour.css`, `@pds/tokens/typography.css`, `@pds/tokens/spacing.css`, `@pds/tokens/layout.css`, `@pds/tokens/elevation.css`, and `@pds/tokens/motion.css`.
 
 ## Source Files
 
-- `src/colour.css`, `src/typography.css`, `src/spacing.css`, `src/elevation.css`, and `src/motion.css`: implementation sources for foundation CSS variables.
+- `src/colour.css`, `src/typography.css`, `src/spacing.css`, `src/layout.css`, `src/elevation.css`, and `src/motion.css`: implementation sources for foundation CSS variables.
 - `src/styles.css`: aggregate stylesheet that imports the foundation CSS files.
 - `src/index.ts`: package metadata for token consumers.
 
@@ -22,4 +22,5 @@ Framework-agnostic design tokens for PDS.
 - [docs/foundations/colour.md](../../docs/foundations/colour.md) for color usage.
 - [docs/foundations/typography.md](../../docs/foundations/typography.md) for typography usage.
 - [docs/foundations/spacing.md](../../docs/foundations/spacing.md) for spacing and radius usage.
+- [docs/foundations/layout-types.md](../../docs/foundations/layout-types.md) for shared layout dimensions and breakpoints.
 - [docs/foundations/motion.md](../../docs/foundations/motion.md) for motion usage.

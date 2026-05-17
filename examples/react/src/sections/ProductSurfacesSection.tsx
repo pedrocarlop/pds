@@ -4,7 +4,6 @@ import {
   Avatar,
   AvatarBadge,
   AvatarFallback,
-  AvatarImage,
   Badge,
   Button,
   Checkbox,
@@ -97,9 +96,6 @@ interface Account {
   status: "success" | "warning" | "error";
   meta: string;
 }
-
-const agentAvatar =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%23242424'/%3E%3Ccircle cx='40' cy='40' r='24' fill='%234F55F1'/%3E%3Cpath d='M29 43h22M32 33h2M46 33h2' stroke='%23fff' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E";
 
 const toolRuns: ToolRun[] = [
   {
@@ -291,7 +287,6 @@ function AgentWorkspaceSurface() {
               <Message role="assistant">
                 <MessageAvatar>
                   <Avatar>
-                    <AvatarImage alt="Agent" src={agentAvatar} />
                     <AvatarFallback>AI</AvatarFallback>
                     <AvatarBadge aria-label="Running" />
                   </Avatar>

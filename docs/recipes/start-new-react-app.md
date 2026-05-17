@@ -97,7 +97,7 @@ Start app CSS from PDS tokens instead of introducing a parallel visual system:
 }
 
 body {
-  min-width: 320px;
+  min-width: var(--pds-layout-viewport-min);
   min-height: 100vh;
   margin: 0;
   color: var(--pds-color-foreground);
@@ -159,7 +159,7 @@ Keep the surrounding shell CSS layout-focused:
 ```css
 .app-shell {
   display: grid;
-  width: min(960px, calc(100vw - var(--pds-space-sp-800)));
+  width: min(var(--pds-layout-content-max), calc(100vw - var(--pds-space-sp-800)));
   min-height: 100vh;
   margin: 0 auto;
   align-content: center;
@@ -172,9 +172,10 @@ Keep the surrounding shell CSS layout-focused:
   gap: var(--pds-space-sp-200);
 }
 
+/* Keep in sync with --pds-layout-breakpoint-narrow. */
 @media (max-width: 760px) {
   .app-shell {
-    width: min(100% - var(--pds-space-sp-400), 960px);
+    width: min(100% - var(--pds-space-sp-400), var(--pds-layout-content-max));
     align-content: start;
     padding: var(--pds-space-sp-500) 0;
   }

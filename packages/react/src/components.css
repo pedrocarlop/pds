@@ -1999,6 +1999,7 @@
   transform: rotate(135deg);
 }
 
+/* Keep in sync with --pds-layout-breakpoint-compact. */
 @media (max-width: 480px) {
   .pds-surface-header {
     grid-template-columns: minmax(0, 1fr);

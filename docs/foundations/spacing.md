@@ -1,7 +1,9 @@
 # PDS Spacing And Radius Guidelines
 
 This file is for LLMs and contributors applying PDS spacing, layout rhythm, and radius.
-Choose spacing tokens by layout role, not by numeric preference.
+Choose spacing tokens by layout role, not by numeric preference. Use
+[layout-types.md](layout-types.md) for shared page widths, side-panel minimums,
+and breakpoint values.
 
 Related sources: start with [DESIGN.md](../../DESIGN.md) for the portable
 contract, then use [packages/tokens/src/spacing.css](../../packages/tokens/src/spacing.css)

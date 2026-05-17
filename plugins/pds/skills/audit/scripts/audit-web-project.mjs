@@ -26,6 +26,8 @@ const SOURCE_EXTENSIONS = new Set([
 
 const CSS_EXTENSIONS = new Set([".css", ".scss"]);
 const MAX_FILE_BYTES = 500_000;
+const RAW_COLOR_PATTERN = /%23[0-9a-f]{3,8}\b|#[0-9a-f]{3,8}\b|(?:rgb|hsl)a?\(/i;
+const RAW_BREAKPOINT_PATTERN = /@media[^{]*\b(?:min|max)-width\s*:\s*[1-9]\d*px/i;
 
 main();
 
@@ -74,9 +76,15 @@ function main() {
     12
   );
   const hardcodedColors = collectMatches(
-    cssFiles,
-    /#[0-9a-f]{3,8}\b|(?:rgb|hsl)a?\(/i,
+    sourceFiles,
+    RAW_COLOR_PATTERN,
     12
+  );
+  const hardcodedBreakpoints = collectMatches(
+    cssFiles,
+    RAW_BREAKPOINT_PATTERN,
+    12,
+    isDocumentedBreakpoint
   );
   const packageManager = detectPackageManager(targetDir, packageJson);
   const framework = detectFramework(dependencies, files, targetDir);
@@ -110,6 +118,7 @@ function main() {
     files,
     framework,
     hardcodedColors,
+    hardcodedBreakpoints,
     packageJson,
     packageManager,
     pdsImports,
@@ -219,7 +228,7 @@ function readJson(filePath) {
   }
 }
 
-function collectMatches(files, regex, limit) {
+function collectMatches(files, regex, limit, shouldSkip = () => false) {
   const matches = [];
   const seen = new Set();
 
@@ -235,7 +244,7 @@ function collectMatches(files, regex, limit) {
       const line = lines[index];
       regex.lastIndex = 0;
 
-      if (regex.test(line)) {
+      if (regex.test(line) && !shouldSkip(lines, index)) {
         matches.push({
           file,
           line: index + 1,
@@ -250,6 +259,12 @@ function collectMatches(files, regex, limit) {
   }
 
   return matches;
+}
+
+function isDocumentedBreakpoint(lines, index) {
+  return [lines[index - 2], lines[index - 1], lines[index]]
+    .filter(Boolean)
+    .some((line) => line.includes("--pds-layout-breakpoint-"));
 }
 
 function canReadText(file) {
@@ -424,7 +439,13 @@ function printReport(context) {
 
   if (context.hardcodedColors.length > 0) {
     console.log(
-      "- Review hard-coded colors in app CSS and replace visual-system values with PDS tokens where they define UI chrome."
+      "- Review hard-coded colors in app CSS, inline SVGs, and data URI assets; replace visual-system values with PDS tokens where they define UI chrome."
+    );
+  }
+
+  if (context.hardcodedBreakpoints.length > 0) {
+    console.log(
+      "- Review hard-coded breakpoint values and align them with PDS layout type tokens."
     );
   }
 
@@ -434,6 +455,7 @@ function printReport(context) {
   printMatches("PDS component imports", context.pdsImports, rel);
   printMatches("Deep import risks", context.deepPdsImports, rel);
   printMatches("Hard-coded color hints", context.hardcodedColors, rel);
+  printMatches("Hard-coded breakpoint hints", context.hardcodedBreakpoints, rel);
   console.log("");
   console.log("## Verification To Plan");
   console.log("- Run the app's typecheck/build command after integration.");

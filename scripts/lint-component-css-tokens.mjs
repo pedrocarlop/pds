@@ -1,18 +1,15 @@
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 
 const root = process.cwd();
-const target = path.join(root, "packages/react/src/components.css");
-const source = await readFile(target, "utf8");
-const relativeTarget = path.relative(root, target);
-const lines = source.split(/\r?\n/);
 const failures = [];
 
-const rawColorPattern = /#[0-9a-f]{3,8}\b|(?:rgb|rgba|hsl|hsla)\(/i;
+const rawColorPattern = /%23[0-9a-f]{3,8}\b|#[0-9a-f]{3,8}\b|(?:rgb|rgba|hsl|hsla)\(/i;
 const rawDurationPattern = /\b\d*\.?\d+(?:ms|s)\b/i;
 const rawEasingPattern = /\b(?:cubic-bezier|steps|ease(?:-in|-out|-in-out)?|linear)\s*(?:\(|$)/i;
 const rawPxPattern = /(?:^|[\s,(])-?\d*\.?\d+px\b/i;
 const declarationPattern = /^\s*([a-z-]+)\s*:\s*(.+?)\s*;?\s*$/i;
+const lintExtensions = new Set([".css", ".ts", ".tsx"]);
 const spacingProperties = new Set([
   "gap",
   "row-gap",
@@ -56,8 +53,28 @@ let selector = "";
 let pendingSelector = "";
 let reducedMotionDepth = 0;
 
-function report(lineNumber, message) {
+function report(relativeTarget, lineNumber, message) {
   failures.push(`${relativeTarget}:${lineNumber}: ${message}`);
+}
+
+async function collectTargets(directory) {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const targets = [];
+
+  for (const entry of entries) {
+    const absolutePath = path.join(directory, entry.name);
+
+    if (entry.isDirectory()) {
+      targets.push(...(await collectTargets(absolutePath)));
+      continue;
+    }
+
+    if (entry.isFile() && lintExtensions.has(path.extname(entry.name))) {
+      targets.push(absolutePath);
+    }
+  }
+
+  return targets;
 }
 
 function allowsRawSpacing(property, value) {
@@ -118,57 +135,72 @@ function updateReducedMotionDepth(line) {
   }
 }
 
-for (const [index, line] of lines.entries()) {
-  const lineNumber = index + 1;
-  const trimmed = line.trim();
+const targets = [
+  path.join(root, "packages/react/src/components.css"),
+  ...(await collectTargets(path.join(root, "examples/react/src")))
+];
 
-  updateSelector(line);
+for (const target of targets) {
+  const source = await readFile(target, "utf8");
+  const relativeTarget = path.relative(root, target);
+  const lines = source.split(/\r?\n/);
 
-  if (rawColorPattern.test(line)) {
-    report(lineNumber, "use PDS color tokens instead of raw color values");
-  }
+  selector = "";
+  pendingSelector = "";
+  reducedMotionDepth = 0;
 
-  const declaration = declarationPattern.exec(line);
+  for (const [index, line] of lines.entries()) {
+    const lineNumber = index + 1;
+    const trimmed = line.trim();
 
-  if (declaration) {
-    const [, property, value] = declaration;
+    updateSelector(line);
 
-    if (property === "border-radius" && rawPxPattern.test(value)) {
-      report(lineNumber, "use PDS radius tokens instead of raw radius values");
+    if (rawColorPattern.test(line)) {
+      report(relativeTarget, lineNumber, "use PDS color tokens instead of raw color values");
     }
 
-    if (spacingProperties.has(property) && !allowsRawSpacing(property, value)) {
-      report(lineNumber, "use PDS spacing tokens instead of raw spacing values");
-    }
+    const declaration = declarationPattern.exec(line);
 
-    if (
-      property.startsWith("transition") &&
-      (rawDurationPattern.test(value) || rawEasingPattern.test(value)) &&
-      reducedMotionDepth === 0
+    if (declaration) {
+      const [, property, value] = declaration;
+
+      if (property === "border-radius" && rawPxPattern.test(value)) {
+        report(relativeTarget, lineNumber, "use PDS radius tokens instead of raw radius values");
+      }
+
+      if (spacingProperties.has(property) && !allowsRawSpacing(property, value)) {
+        report(relativeTarget, lineNumber, "use PDS spacing tokens instead of raw spacing values");
+      }
+
+      if (
+        property.startsWith("transition") &&
+        (rawDurationPattern.test(value) || rawEasingPattern.test(value)) &&
+        reducedMotionDepth === 0
+      ) {
+        report(relativeTarget, lineNumber, "use PDS motion duration and easing tokens");
+      }
+
+      if (
+        property.startsWith("animation") &&
+        (rawDurationPattern.test(value) || rawEasingPattern.test(value)) &&
+        reducedMotionDepth === 0
+      ) {
+        report(relativeTarget, lineNumber, "use PDS motion duration and easing tokens");
+      }
+    } else if (
+      reducedMotionDepth === 0 &&
+      (rawDurationPattern.test(line) || rawEasingPattern.test(line)) &&
+      /transition|animation/i.test(selector)
     ) {
-      report(lineNumber, "use PDS motion duration and easing tokens");
+      report(relativeTarget, lineNumber, "use PDS motion duration and easing tokens");
     }
 
-    if (
-      property.startsWith("animation") &&
-      (rawDurationPattern.test(value) || rawEasingPattern.test(value)) &&
-      reducedMotionDepth === 0
-    ) {
-      report(lineNumber, "use PDS motion duration and easing tokens");
+    if (trimmed === "}") {
+      selector = "";
     }
-  } else if (
-    reducedMotionDepth === 0 &&
-    (rawDurationPattern.test(line) || rawEasingPattern.test(line)) &&
-    /transition|animation/i.test(selector)
-  ) {
-    report(lineNumber, "use PDS motion duration and easing tokens");
-  }
 
-  if (trimmed === "}") {
-    selector = "";
+    updateReducedMotionDepth(line);
   }
-
-  updateReducedMotionDepth(line);
 }
 
 if (failures.length > 0) {
@@ -178,5 +210,5 @@ if (failures.length > 0) {
   }
   process.exitCode = 1;
 } else {
-  console.log("Component CSS token lint passed.");
+  console.log("Component and example token lint passed.");
 }

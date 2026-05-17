@@ -16,6 +16,7 @@
     "./colour.css": "./dist/colour.css",
     "./typography.css": "./dist/typography.css",
     "./spacing.css": "./dist/spacing.css",
+    "./layout.css": "./dist/layout.css",
     "./elevation.css": "./dist/elevation.css",
     "./motion.css": "./dist/motion.css"
   },

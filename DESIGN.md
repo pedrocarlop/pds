@@ -25,6 +25,7 @@ rules for this repo.
 - Use [docs/foundations/colour.md](docs/foundations/colour.md) for detailed color decisions.
 - Use [docs/foundations/typography.md](docs/foundations/typography.md) for detailed typography decisions.
 - Use [docs/foundations/spacing.md](docs/foundations/spacing.md) for detailed spacing and radius decisions.
+- Use [docs/foundations/layout-types.md](docs/foundations/layout-types.md) for shared layout dimensions and breakpoints.
 - Use [docs/foundations/motion.md](docs/foundations/motion.md) for detailed motion decisions.
 - Use [docs/foundations/content-resilience.md](docs/foundations/content-resilience.md) for translation, zoom, and overflow behavior.
 - Use [docs/recipes](docs/recipes) for practical React app setup and PDS adoption paths.
@@ -50,9 +51,10 @@ contract; the full semantic palette lives in
 [docs/foundations/colour.md](docs/foundations/colour.md) and
 [packages/tokens/src/colour.css](packages/tokens/src/colour.css).
 
-Do not invent ad hoc colors in components. Existing CSS variables in
-the foundation CSS files in [packages/tokens/src](packages/tokens/src) are the
-implementation source for product code.
+Do not hard-code colors in product UI, examples, components, inline SVGs, data
+URI assets, or local CSS. Existing CSS variables in the foundation CSS files in
+[packages/tokens/src](packages/tokens/src) are the implementation source for
+product code.
 
 ## Typography
 
@@ -89,6 +91,11 @@ reserved for section-level separation.
 Prefer spatial separation, surface contrast, and radius relationships before
 adding borders or dividers.
 
+Use shared layout tokens for reusable page widths, readable measures,
+side-panel minimums, and breakpoints. The detailed rules live in
+[docs/foundations/layout-types.md](docs/foundations/layout-types.md), with
+implementation values in [packages/tokens/src/layout.css](packages/tokens/src/layout.css).
+
 ## Elevation & Depth
 
 Depth comes from layered surfaces and subtle shadows, not heavy outlines.
@@ -123,13 +130,14 @@ code using those components should import `pds/styles.css` once, which loads PDS
 tokens and component styles. Token-only consumers can still use
 `@pds/tokens/styles.css` or scoped token imports from `@pds/tokens/colour.css`,
 `@pds/tokens/typography.css`, `@pds/tokens/spacing.css`,
-`@pds/tokens/elevation.css`, and `@pds/tokens/motion.css`.
+`@pds/tokens/layout.css`, `@pds/tokens/elevation.css`, and
+`@pds/tokens/motion.css`.
 
 ## Do's and Don'ts
 
 - Do use [DESIGN.md](DESIGN.md) before making visual choices.
 - Do read [AGENTS.md](AGENTS.md) before changing code structure.
-- Do use [docs/foundations/colour.md](docs/foundations/colour.md), [docs/foundations/typography.md](docs/foundations/typography.md), [docs/foundations/spacing.md](docs/foundations/spacing.md), [docs/foundations/motion.md](docs/foundations/motion.md), and [docs/foundations/content-resilience.md](docs/foundations/content-resilience.md) for detailed usage rules.
+- Do use [docs/foundations/colour.md](docs/foundations/colour.md), [docs/foundations/typography.md](docs/foundations/typography.md), [docs/foundations/spacing.md](docs/foundations/spacing.md), [docs/foundations/layout-types.md](docs/foundations/layout-types.md), [docs/foundations/motion.md](docs/foundations/motion.md), and [docs/foundations/content-resilience.md](docs/foundations/content-resilience.md) for detailed usage rules.
 - Do use [docs/recipes](docs/recipes) when installing PDS into a React app or starting a React app with PDS.
 - Do use [docs/patterns](docs/patterns) when a request maps to a documented product flow.
 - Do use the repo-local PDS self-improvement skill when user design feedback
@@ -138,7 +146,7 @@ tokens and component styles. Token-only consumers can still use
 - Do keep `DESIGN.md`, `AGENTS.md`, and `docs/ai/llm-guidelines.md` in sync when agent workflow changes.
 - Do keep package boundaries clear: tokens first, React second.
 - Do not create a website, marketing page, or new UI component unless the task explicitly asks for it.
-- Do not add one-off hex, rgb, hsl, spacing, or radius values to product components.
+- Do not add one-off hex, rgb, hsl, named color, inline SVG color, data URI color, spacing, radius, layout breakpoint, or shared layout dimension values to product components or examples.
 - Do not add untokenized transition durations or easing curves for documented motion patterns.
 - Do not use brand palette colors for normal UI controls, text, surfaces, or states.
 - Do not truncate primary actions, required form labels, error messages, or state feedback.

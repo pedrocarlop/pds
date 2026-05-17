@@ -52,8 +52,9 @@ node <plugin-root>/skills/audit/scripts/audit-web-project.mjs --target <project-
 6. Implement the smallest coherent screen or flow. Preserve business logic,
    data loading, routing, analytics, and app-owned state boundaries.
 7. Use app CSS only for layout and composition. Use PDS tokens for colors,
-   spacing, radius, typography, shadows, and motion. Do not deep-import PDS
-   source files.
+   spacing, radius, shared layout dimensions, typography, shadows, and motion.
+   Do not hard-code colors in CSS, inline SVGs, data URI assets, or local
+   examples. Do not deep-import PDS source files.
 8. Verify with the app's normal typecheck/build/test command. For visible UI,
    check narrow viewport, long text, loading/empty/error/success states, and
    200% zoom where practical.

@@ -26,6 +26,8 @@ const REVIEW_EXTENSIONS = new Set([
 
 const MAX_FILE_BYTES = 500_000;
 const MAX_EXAMPLES = 12;
+const RAW_COLOR_PATTERN = /%23[0-9a-f]{3,8}\b|#[0-9a-f]{3,8}\b|(?:rgb|hsl)a?\(/i;
+const RAW_BREAKPOINT_PATTERN = /@media[^{]*\b(?:min|max)-width\s*:\s*[1-9]\d*px/i;
 
 main();
 
@@ -48,6 +50,7 @@ function main() {
   const findings = {
     deepImports: [],
     hardcodedColors: [],
+    hardcodedBreakpoints: [],
     inlineVisualStyles: [],
     rawControls: [],
     styleImports: [],
@@ -189,14 +192,22 @@ function scanFile(file, findings) {
       /from\s+["'][^"']*(?:pds\/src|@pds\/tokens\/src|packages\/(?:react|tokens)\/src)[^"']*["']/
     );
 
+    pushIfMatch(
+      findings.hardcodedColors,
+      file,
+      lineNumber,
+      line,
+      RAW_COLOR_PATTERN
+    );
+
     if (isCss) {
-      pushIfMatch(
-        findings.hardcodedColors,
-        file,
-        lineNumber,
-        line,
-        /#[0-9a-f]{3,8}\b|(?:rgb|hsl)a?\(/i
-      );
+      if (
+        findings.hardcodedBreakpoints.length < MAX_EXAMPLES &&
+        RAW_BREAKPOINT_PATTERN.test(line) &&
+        !isDocumentedBreakpoint(lines, index)
+      ) {
+        findings.hardcodedBreakpoints.push({ file, line: lineNumber, text: line.trim() });
+      }
       pushIfMatch(
         findings.untokenizedSpace,
         file,
@@ -244,6 +255,12 @@ function pushIfMatch(collection, file, line, text, regex) {
   }
 }
 
+function isDocumentedBreakpoint(lines, index) {
+  return [lines[index - 2], lines[index - 1], lines[index]]
+    .filter(Boolean)
+    .some((line) => line.includes("--pds-layout-breakpoint-"));
+}
+
 function printReport({ contextRoot, files, findings, targetPath }) {
   const rel = (file) => path.relative(contextRoot, file) || path.basename(file);
   const styleImportFiles = new Set(findings.styleImports.map((match) => match.file));
@@ -257,6 +274,7 @@ function printReport({ contextRoot, files, findings, targetPath }) {
   console.log(`- PDS stylesheet import locations: ${styleImportFiles.size}`);
   console.log(`- Deep PDS import hints: ${findings.deepImports.length}`);
   console.log(`- Hard-coded color hints: ${findings.hardcodedColors.length}`);
+  console.log(`- Hard-coded breakpoint hints: ${findings.hardcodedBreakpoints.length}`);
   console.log(`- Untokenized spacing/size hints: ${findings.untokenizedSpace.length}`);
   console.log(`- Untokenized motion hints: ${findings.untokenizedMotion.length}`);
   console.log(`- Inline visual style hints: ${findings.inlineVisualStyles.length}`);
@@ -279,7 +297,13 @@ function printReport({ contextRoot, files, findings, targetPath }) {
     "Hard-coded color hints",
     findings.hardcodedColors,
     rel,
-    "Use PDS color tokens for UI chrome and state."
+    "Use PDS color tokens for UI chrome, state, inline SVGs, and data URI assets."
+  );
+  printSection(
+    "Hard-coded breakpoint hints",
+    findings.hardcodedBreakpoints,
+    rel,
+    "Use PDS layout type guidance and mirror only documented breakpoint tokens."
   );
   printSection(
     "Untokenized spacing/size hints",

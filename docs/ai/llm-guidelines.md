@@ -13,11 +13,12 @@ Use these rules after the repository-level routing in
 5. [docs/foundations/colour.md](../foundations/colour.md)
 6. [docs/foundations/typography.md](../foundations/typography.md)
 7. [docs/foundations/spacing.md](../foundations/spacing.md)
-8. [docs/foundations/motion.md](../foundations/motion.md)
-9. [docs/foundations/content-resilience.md](../foundations/content-resilience.md)
-10. [docs/recipes](../recipes)
-11. [docs/patterns](../patterns)
-12. [docs/architecture/repository-structure.md](../architecture/repository-structure.md)
+8. [docs/foundations/layout-types.md](../foundations/layout-types.md)
+9. [docs/foundations/motion.md](../foundations/motion.md)
+10. [docs/foundations/content-resilience.md](../foundations/content-resilience.md)
+11. [docs/recipes](../recipes)
+12. [docs/patterns](../patterns)
+13. [docs/architecture/repository-structure.md](../architecture/repository-structure.md)
 
 ## Task Routing
 
@@ -51,7 +52,7 @@ linked docs and the token package source before making a visual decision.
 - Import tokens from `@pds/tokens`.
 - Import `pds/styles.css` when using React components from `pds`.
 - Import `@pds/tokens/styles.css` directly only for token-only consumers.
-- Use scoped imports such as `@pds/tokens/colour.css` or `@pds/tokens/motion.css` only when a consumer deliberately needs one foundation.
+- Use scoped imports such as `@pds/tokens/colour.css`, `@pds/tokens/layout.css`, or `@pds/tokens/motion.css` only when a consumer deliberately needs one foundation.
 - Import React components from `pds`; do not deep-import from package source directories.
 - Choose tokens by role, not by visual preference.
 - Keep generated UI operational, dense, and inspectable.
@@ -60,6 +61,8 @@ linked docs and the token package source before making a visual decision.
 
 - Use semantic token names as the first clue.
 - Prefer surfaces, spacing, and radius over borders.
+- Use layout tokens for shared app widths, readable measures, side-panel minimums, and breakpoints.
+- Never hard-code colors in UI CSS, component code, examples, inline SVGs, or data URI assets.
 - Use accent color sparingly for intent and active state.
 - Preserve readable contrast on dark surfaces.
 - Use tokenized motion for state, hierarchy, and spatial continuity; respect `prefers-reduced-motion`.

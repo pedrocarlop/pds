@@ -10,6 +10,7 @@ This folder contains the detailed guidance that `DESIGN.md` points to.
 - [foundations/colour.md](foundations/colour.md): color usage rules.
 - [foundations/typography.md](foundations/typography.md): typography role and recipe rules.
 - [foundations/spacing.md](foundations/spacing.md): spacing and radius usage rules.
+- [foundations/layout-types.md](foundations/layout-types.md): shared layout dimensions and breakpoints.
 - [foundations/motion.md](foundations/motion.md): motion duration, easing, and reduced-motion rules.
 - [foundations/content-resilience.md](foundations/content-resilience.md): translation, zoom, and overflow behavior.
 - [recipes](recipes): practical React app setup and PDS adoption recipes.

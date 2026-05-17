@@ -18,7 +18,9 @@ for implementation values.
 - Use `--pds-color-on-accent-neutral` only for text or icons placed directly on `--pds-color-accent-neutral`.
 - Use `--pds-color-action-background` for secondary action surfaces tied to the accent colour.
 - Use `--pds-color-action-background-neutral` for monochrome secondary actions and low-emphasis neutral actions.
-- Do not invent ad hoc hex, rgb, hsl, or named colours inside components.
+- Do not invent ad hoc hex, rgb, hsl, or named colours inside components,
+  examples, product UI, inline SVGs, data URI assets, or local CSS. Add or use a
+  PDS token instead.
 
 ## Surface Rules
 

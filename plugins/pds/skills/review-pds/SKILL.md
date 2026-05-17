@@ -51,7 +51,9 @@ from `plugins/pds/skills/review-pds`.
 - PDS is imported publicly from `pds`; no deep package or source imports.
 - `pds/styles.css` is imported once at the app root.
 - UI chrome uses PDS tokens instead of hard-coded color, spacing, radius,
-  typography, shadow, or motion values.
+  typography, shadow, motion, shared layout dimensions, or breakpoint values.
+- Inline SVGs, data URI assets, and example fixtures do not contain hard-coded
+  color values.
 - Local primitives are not recreating existing PDS components without a product
   reason.
 - Layout survives narrow viewports, translated or user-generated content, and

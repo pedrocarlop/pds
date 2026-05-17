@@ -334,7 +334,7 @@ select {
 
 .app-shell {
   display: grid;
-  width: min(960px, calc(100vw - var(--pds-space-sp-800)));
+  width: min(var(--pds-layout-content-max), calc(100vw - var(--pds-space-sp-800)));
   min-height: 100vh;
   margin: 0 auto;
   align-content: center;
@@ -364,9 +364,10 @@ select {
   margin-top: var(--pds-space-sp-500);
 }
 
+/* Keep in sync with --pds-layout-breakpoint-narrow. */
 @media (max-width: 760px) {
   .app-shell {
-    width: min(100% - var(--pds-space-sp-400), 960px);
+    width: min(100% - var(--pds-space-sp-400), var(--pds-layout-content-max));
     align-content: start;
     padding: var(--pds-space-sp-500) 0;
   }
