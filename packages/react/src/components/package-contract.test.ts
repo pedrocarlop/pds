@@ -14,7 +14,7 @@ const packageJson = JSON.parse(
 };
 
 describe("PDS package contract", () => {
-  it("exports the full starter component surface from pds", () => {
+  it("exports the full starter component surface from @pds/react", () => {
     expect(Object.keys(pds).sort()).toEqual([
       "ActionMenu",
       "ActionMenuContent",

@@ -1,4 +1,4 @@
-import { Badge } from "pds";
+import { Badge } from "@pds/react";
 
 export function BadgesSection() {
   return (

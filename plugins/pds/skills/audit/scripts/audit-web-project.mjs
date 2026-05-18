@@ -57,17 +57,17 @@ function main() {
 
   const pdsStyleImports = collectMatches(
     sourceFiles,
-    /(?:import\s+)?["']pds\/styles\.css["']/,
+    /(?:import\s+)?["']@pds\/react\/styles\.css["']/,
     12
   );
   const pdsImports = collectMatches(
     sourceFiles,
-    /from\s+["']pds["']|import\s+\{[^}]*\}\s+from\s+["']pds["']/,
+    /from\s+["']@pds\/react["']|import\s+\{[^}]*\}\s+from\s+["']@pds\/react["']/,
     12
   );
   const deepPdsImports = collectMatches(
     sourceFiles,
-    /from\s+["'][^"']*(?:pds\/src|@pds\/tokens\/src|packages\/(?:react|tokens)\/src)[^"']*["']/,
+    /from\s+["'][^"']*(?:@pds\/react\/src|pds\/src|@pds\/tokens\/src|packages\/(?:react|tokens)\/src)[^"']*["']/,
     12
   );
   const tokenReferences = collectMatches(
@@ -386,7 +386,7 @@ function uniqueFiles(files) {
 function printReport(context) {
   const rel = (file) => path.relative(context.targetDir, file) || ".";
   const hasReact = Boolean(context.dependencies.react);
-  const hasPdsPackage = Boolean(context.dependencies.pds);
+  const hasPdsPackage = Boolean(context.dependencies["@pds/react"]);
   const hasPdsTokens = Boolean(context.dependencies["@pds/tokens"]);
   const hasStyleImport = context.pdsStyleImports.length > 0;
 
@@ -402,10 +402,10 @@ function printReport(context) {
   console.log(`- Source files scanned: ${context.sourceFiles.length}`);
   console.log("");
   console.log("## PDS Integration Signals");
-  console.log(`- \`pds\` dependency: ${formatStatus(hasPdsPackage)}`);
+  console.log(`- \`@pds/react\` dependency: ${formatStatus(hasPdsPackage)}`);
   console.log(`- \`@pds/tokens\` dependency: ${formatStatus(hasPdsTokens)}`);
-  console.log(`- \`pds/styles.css\` imports: ${context.pdsStyleImports.length}`);
-  console.log(`- public \`pds\` component imports: ${context.pdsImports.length}`);
+  console.log(`- \`@pds/react/styles.css\` imports: ${context.pdsStyleImports.length}`);
+  console.log(`- public \`@pds/react\` component imports: ${context.pdsImports.length}`);
   console.log(`- PDS token references: ${context.tokenReferences.length}`);
   console.log(`- deep PDS import risks: ${context.deepPdsImports.length}`);
   console.log("");
@@ -421,7 +421,7 @@ function printReport(context) {
     );
   } else if (!hasPdsPackage) {
     console.log(
-      "- Install PDS first, then import `pds/styles.css` once in the app root before migrating screens."
+      "- Install PDS first, then import `@pds/react/styles.css` once in the app root before migrating screens."
     );
   } else if (!hasStyleImport) {
     console.log(
@@ -429,7 +429,7 @@ function printReport(context) {
     );
   } else {
     console.log(
-      "- PDS appears wired. Start with one bounded screen or flow and migrate local primitives to public `pds` imports."
+      "- PDS appears wired. Start with one bounded screen or flow and migrate local primitives to public `@pds/react` imports."
     );
   }
 

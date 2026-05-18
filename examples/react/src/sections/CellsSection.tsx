@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Cell, Checkbox, RunStatus } from "pds";
+import { Cell, Checkbox, RunStatus } from "@pds/react";
 
 export function CellsSection() {
   const [choice, setChoice] = React.useState<"auto" | "manual">("manual");

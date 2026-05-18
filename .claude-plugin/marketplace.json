@@ -1,0 +1,19 @@
+{
+  "name": "pds",
+  "owner": {
+    "name": "PDS",
+    "url": "https://github.com/pedrocarlop/pds"
+  },
+  "metadata": {
+    "description": "PDS agent plugin marketplace for React design-system workflows."
+  },
+  "plugins": [
+    {
+      "name": "pds",
+      "description": "Teach, audit, implement, review, self-improve from feedback, and bootstrap designer-ready React apps with PDS.",
+      "source": "./plugins/pds",
+      "category": "design",
+      "homepage": "https://github.com/pedrocarlop/pds"
+    }
+  ]
+}

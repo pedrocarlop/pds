@@ -7,6 +7,6 @@ allowed-tools: [Bash, Read, Grep, Glob, Edit, MultiEdit, Write]
 # Self-Improve From Design Feedback
 
 This is a plugin discovery adapter. Read the canonical workflow at
-`../../../../docs/agent/skills/self-improve.md` from this file's directory, then
+`../../context/docs/agent/skills/self-improve.md` from this file's directory, then
 follow it. Keep detailed PDS agent guidance in `docs/agent`, not in this
 adapter.

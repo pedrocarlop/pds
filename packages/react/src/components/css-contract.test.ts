@@ -22,7 +22,7 @@ describe("PDS CSS contract", () => {
     return selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   }
 
-  it("loads token CSS before component CSS through pds/styles.css", () => {
+  it("loads token CSS before component CSS through @pds/react/styles.css", () => {
     expect(packageStyles.trim().split(/\n+/)).toEqual([
       '@import "@pds/tokens/styles.css";',
       '@import "./components.css";'

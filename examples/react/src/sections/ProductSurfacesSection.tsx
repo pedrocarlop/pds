@@ -64,7 +64,7 @@ import {
   Textarea,
   Transcript,
   TranscriptList
-} from "pds";
+} from "@pds/react";
 
 type ToolStatus = "queued" | "running" | "success" | "warning" | "error";
 type ReviewMode = "pending" | "resolved" | "empty";

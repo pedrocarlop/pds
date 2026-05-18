@@ -31,32 +31,46 @@ function main() {
   }
 
   const targetDir = path.resolve(options.target ?? process.cwd());
-  const pdsRepo = resolvePdsRepo(options.pdsRepo);
+  const pdsRepo = options.pdsRepo ? resolvePdsRepo(options.pdsRepo) : null;
 
   ensureCommand("pnpm", ["--version"]);
   ensureTargetDirectory(targetDir);
 
   console.log(`Target app: ${targetDir}`);
-  console.log(`PDS repo: ${pdsRepo}`);
+  console.log(
+    pdsRepo
+      ? `PDS packages: local tarballs from ${pdsRepo}`
+      : "PDS packages: @pds/react@latest and @pds/tokens@latest from npm"
+  );
 
-  if (!existsSync(path.join(pdsRepo, "node_modules"))) {
+  if (pdsRepo && !existsSync(path.join(pdsRepo, "node_modules"))) {
     run("pnpm", ["install", "--frozen-lockfile"], { cwd: pdsRepo });
   }
 
-  run("pnpm", ["build"], { cwd: pdsRepo });
+  if (pdsRepo) {
+    run("pnpm", ["build"], { cwd: pdsRepo });
+  }
 
-  const packDir = mkdtempSync(path.join(tmpdir(), "pds-packages-"));
+  const packDir = pdsRepo ? mkdtempSync(path.join(tmpdir(), "pds-packages-")) : null;
   const viteDir = mkdtempSync(path.join(tmpdir(), "pds-vite-"));
 
   try {
-    packPdsPackages(pdsRepo, packDir);
+    if (pdsRepo) {
+      packPdsPackages(pdsRepo, packDir);
+    }
     createViteApp(viteDir);
     copyDirectoryContents(viteDir, targetDir);
     writeStarterFiles(targetDir);
-    installPdsPackages(targetDir, packDir);
+    if (pdsRepo) {
+      installLocalPdsPackages(targetDir, packDir);
+    } else {
+      installRegistryPdsPackages(targetDir);
+    }
     run("pnpm", ["build"], { cwd: targetDir });
   } finally {
-    rmSync(packDir, { force: true, recursive: true });
+    if (packDir) {
+      rmSync(packDir, { force: true, recursive: true });
+    }
     rmSync(viteDir, { force: true, recursive: true });
   }
 
@@ -88,11 +102,6 @@ function parseArgs(args) {
       continue;
     }
 
-    if (!options.pdsRepo) {
-      options.pdsRepo = arg;
-      continue;
-    }
-
     throw new Error(`Unknown argument: ${arg}`);
   }
 
@@ -111,20 +120,15 @@ function requireValue(args, index, flag) {
 
 function printHelp() {
   console.log(`Usage:
-  create-pds-vite-app.mjs [pds-repo-path]
+  create-pds-vite-app.mjs [--target <path>]
   create-pds-vite-app.mjs --pds-repo <path> [--target <path>]
 
 Creates a Vite React TypeScript app in the target folder and installs PDS from
-local package tarballs.`);
+npm by default. Pass --pds-repo for local package tarball development.`);
 }
 
 function resolvePdsRepo(explicitPath) {
-  const candidates = [
-    explicitPath,
-    process.env.PDS_REPO_PATH,
-    path.resolve(__dirname, "../../../../.."),
-    process.cwd()
-  ].filter(Boolean);
+  const candidates = [explicitPath].filter(Boolean);
 
   for (const candidate of candidates) {
     const resolved = path.resolve(candidate);
@@ -135,7 +139,7 @@ function resolvePdsRepo(explicitPath) {
   }
 
   throw new Error(
-    "Could not find the PDS repo. Pass --pds-repo <path> or set PDS_REPO_PATH."
+    "Could not find the PDS repo. Pass --pds-repo <path> with a valid PDS checkout."
   );
 }
 
@@ -160,7 +164,7 @@ function isPdsRepo(candidate) {
     return (
       packageJson.name === "@pds/workspace" &&
       tokenPackageJson.name === "@pds/tokens" &&
-      reactPackageJson.name === "pds"
+      reactPackageJson.name === "@pds/react"
     );
   } catch {
     return false;
@@ -230,7 +234,7 @@ function writeStarterFiles(targetDir) {
     `import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
-import "pds/styles.css";
+import "@pds/react/styles.css";
 import "./index.css";
 
 import { App } from "./App";
@@ -255,11 +259,11 @@ createRoot(document.getElementById("root")!).render(
   SurfaceDescription,
   SurfaceHeader,
   SurfaceTitle
-} from "pds";
+} from "@pds/react";
 
 const readinessItems = [
   "PDS styles load from the package root",
-  "Components import from the public pds API",
+  "Components import from the public @pds/react API",
   "Layout CSS uses PDS tokens"
 ];
 
@@ -394,12 +398,19 @@ function updatePackageJson(targetDir) {
   writeFileSync(`${packagePath}`, `${JSON.stringify(packageJson, null, 2)}\n`, "utf8");
 }
 
-function installPdsPackages(targetDir, packDir) {
+function installRegistryPdsPackages(targetDir) {
+  writePdsPackageDependencies(targetDir, {
+    "@pds/react": "latest",
+    "@pds/tokens": "latest"
+  });
+
+  run("pnpm", ["install"], { cwd: targetDir });
+}
+
+function installLocalPdsPackages(targetDir, packDir) {
   const packs = readdirSync(packDir).filter((entry) => entry.endsWith(".tgz"));
   const tokensPack = packs.find((entry) => entry.startsWith("pds-tokens-"));
-  const reactPack = packs.find(
-    (entry) => entry.startsWith("pds-") && !entry.startsWith("pds-tokens-")
-  );
+  const reactPack = packs.find((entry) => entry.startsWith("pds-react-"));
 
   if (!tokensPack || !reactPack) {
     throw new Error(`Missing packed PDS tarballs in ${packDir}`);
@@ -410,29 +421,41 @@ function installPdsPackages(targetDir, packDir) {
   mkdirSync(targetPackDir, { recursive: true });
   cpSync(path.join(packDir, tokensPack), path.join(targetPackDir, tokensPack));
   cpSync(path.join(packDir, reactPack), path.join(targetPackDir, reactPack));
-  writePdsPackageDependencies(targetDir, tokensPack, reactPack);
+  const tokensSpec = `file:${toPosix(path.join(".pds-packages", tokensPack))}`;
+  const reactSpec = `file:${toPosix(path.join(".pds-packages", reactPack))}`;
+
+  writePdsPackageDependencies(
+    targetDir,
+    {
+      "@pds/react": reactSpec,
+      "@pds/tokens": tokensSpec
+    },
+    {
+      "@pds/tokens": tokensSpec
+    }
+  );
 
   run("pnpm", ["install"], { cwd: targetDir });
 }
 
-function writePdsPackageDependencies(targetDir, tokensPack, reactPack) {
+function writePdsPackageDependencies(targetDir, dependencies, overrides = {}) {
   const packagePath = path.join(targetDir, "package.json");
   const packageJson = JSON.parse(readFileSync(packagePath, "utf8"));
-  const tokensSpec = `file:${toPosix(path.join(".pds-packages", tokensPack))}`;
-  const reactSpec = `file:${toPosix(path.join(".pds-packages", reactPack))}`;
 
   packageJson.dependencies = {
     ...(packageJson.dependencies ?? {}),
-    "@pds/tokens": tokensSpec,
-    pds: reactSpec
+    ...dependencies
   };
-  packageJson.pnpm = {
-    ...(packageJson.pnpm ?? {}),
-    overrides: {
-      ...(packageJson.pnpm?.overrides ?? {}),
-      "@pds/tokens": tokensSpec
-    }
-  };
+
+  if (Object.keys(overrides).length > 0) {
+    packageJson.pnpm = {
+      ...(packageJson.pnpm ?? {}),
+      overrides: {
+        ...(packageJson.pnpm?.overrides ?? {}),
+        ...overrides
+      }
+    };
+  }
 
   writeFileSync(packagePath, `${JSON.stringify(packageJson, null, 2)}\n`, "utf8");
 }

@@ -4,7 +4,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger
-} from "pds";
+} from "@pds/react";
 
 export function TooltipsSection() {
   return (

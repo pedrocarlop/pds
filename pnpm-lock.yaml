@@ -29,7 +29,7 @@ importers:
 
   examples/react:
     dependencies:
-      pds:
+      '@pds/react':
         specifier: workspace:^
         version: link:../../packages/react
       react:
@@ -51,6 +51,12 @@ importers:
       vite:
         specifier: ^8.0.12
         version: 8.0.12(yaml@2.8.4)
+
+  packages/cli:
+    devDependencies:
+      vitest:
+        specifier: ^4.1.6
+        version: 4.1.6(jsdom@29.1.1)(vite@8.0.12(yaml@2.8.4))
 
   packages/react:
     dependencies:

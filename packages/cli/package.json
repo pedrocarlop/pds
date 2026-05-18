@@ -1,0 +1,23 @@
+{
+  "name": "@pds/cli",
+  "version": "0.1.0",
+  "description": "PDS installer CLI for Codex and Claude agent plugins.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "pds": "./src/index.js"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "build": "node --check src/index.js",
+    "lint": "eslint src test --max-warnings=0",
+    "prepack": "pnpm build",
+    "test": "vitest run",
+    "typecheck": "node --check src/index.js"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.6"
+  }
+}

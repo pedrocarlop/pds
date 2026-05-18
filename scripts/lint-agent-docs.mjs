@@ -7,7 +7,8 @@ const ignoredDirectories = new Set([
   ".git",
   ".turbo",
   "dist",
-  "node_modules"
+  "node_modules",
+  "context"
 ]);
 const stalePathPatterns = [
   "docs/ai",
@@ -170,7 +171,7 @@ async function lintSkillAdapters() {
     const source = await readFile(skillPath, "utf8");
     const lineCount = source.split(/\r?\n/).length;
     const frontmatter = parseFrontmatter(source);
-    const relativeCanonicalReference = `../../../../docs/agent/skills/${skillName}.md`;
+    const relativeCanonicalReference = `../../context/docs/agent/skills/${skillName}.md`;
 
     if (lineCount > 500) {
       report(relativeSkillPath, "SKILL.md must stay under 500 lines");

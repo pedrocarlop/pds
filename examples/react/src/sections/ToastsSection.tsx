@@ -9,7 +9,7 @@ import {
   ToastProvider,
   ToastTitle,
   ToastViewport
-} from "pds";
+} from "@pds/react";
 
 export function ToastsSection() {
   const [successOpen, setSuccessOpen] = useState(false);

@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from "pds";
+} from "@pds/react";
 
 export function DialogsSection() {
   return (

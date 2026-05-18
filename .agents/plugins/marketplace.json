@@ -1,7 +1,7 @@
 {
-  "name": "pds-local",
+  "name": "pds",
   "interface": {
-    "displayName": "PDS Local"
+    "displayName": "PDS"
   },
   "plugins": [
     {

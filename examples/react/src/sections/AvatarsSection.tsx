@@ -4,7 +4,7 @@ import {
   AvatarFallback,
   AvatarGroup,
   AvatarGroupCount
-} from "pds";
+} from "@pds/react";
 
 export function AvatarsSection() {
   return (

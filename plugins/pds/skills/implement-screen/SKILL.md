@@ -7,6 +7,6 @@ allowed-tools: [Bash, Read, Grep, Glob, Edit, MultiEdit, Write]
 # Implement A PDS Screen
 
 This is a plugin discovery adapter. Read the canonical workflow at
-`../../../../docs/agent/skills/implement-screen.md` from this file's directory,
+`../../context/docs/agent/skills/implement-screen.md` from this file's directory,
 then follow it. Keep detailed PDS agent guidance in `docs/agent`, not in this
 adapter.

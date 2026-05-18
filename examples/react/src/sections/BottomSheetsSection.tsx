@@ -14,7 +14,7 @@ import {
   SurfaceDescription,
   SurfaceHeader,
   SurfaceTitle
-} from "pds";
+} from "@pds/react";
 
 export function BottomSheetsSection() {
   return (

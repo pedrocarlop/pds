@@ -182,14 +182,14 @@ function scanFile(file, findings) {
       file,
       lineNumber,
       line,
-      /(?:import\s+)?["']pds\/styles\.css["']/
+      /(?:import\s+)?["']@pds\/react\/styles\.css["']/
     );
     pushIfMatch(
       findings.deepImports,
       file,
       lineNumber,
       line,
-      /from\s+["'][^"']*(?:pds\/src|@pds\/tokens\/src|packages\/(?:react|tokens)\/src)[^"']*["']/
+      /from\s+["'][^"']*(?:@pds\/react\/src|pds\/src|@pds\/tokens\/src|packages\/(?:react|tokens)\/src)[^"']*["']/
     );
 
     pushIfMatch(
@@ -285,13 +285,13 @@ function printReport({ contextRoot, files, findings, targetPath }) {
     "PDS stylesheet imports",
     findings.styleImports,
     rel,
-    "Import `pds/styles.css` once from the app root."
+    "Import `@pds/react/styles.css` once from the app root."
   );
   printSection(
     "Deep PDS import hints",
     findings.deepImports,
     rel,
-    "Use public package imports from `pds`."
+    "Use public package imports from `@pds/react`."
   );
   printSection(
     "Hard-coded color hints",

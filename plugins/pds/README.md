@@ -8,8 +8,9 @@ design feedback, or bootstrap an empty folder into a Vite React TypeScript app.
 ## Skills
 
 Canonical skill workflows live in
-[docs/agent/skills](../../docs/agent/skills/README.md). The `SKILL.md` files in
-this plugin are discovery adapters for Codex and Claude.
+[docs/agent/skills](../../docs/agent/skills/README.md). The installed plugin
+ships a generated context copy under [context](context), and the `SKILL.md`
+files are discovery adapters for Codex and Claude.
 
 - `/pds:help`: onboarding guide for choosing the right PDS workflow, inspecting
   a project, understanding what the plugin checks, and troubleshooting common
@@ -32,24 +33,22 @@ this plugin are discovery adapters for Codex and Claude.
 ## What `/pds:start` Creates
 
 - Vite React TypeScript app files.
-- Local installs for packed `@pds/tokens` and `pds` tarballs.
-- A root import for `pds/styles.css`.
-- A first PDS screen built from public `pds` component imports.
+- Registry installs for `@pds/react@latest` and `@pds/tokens@latest`.
+- A root import for `@pds/react/styles.css`.
+- A first PDS screen built from public `@pds/react` component imports.
 - Token-based root CSS for background, foreground, typography, and layout.
 
 ## Requirements
 
 - Node compatible with the PDS workspace engines.
 - `pnpm >= 9`.
-- A local checkout of the PDS repo.
 - An empty target folder, or a folder that only contains `.git`,
   `.gitignore`, or `.DS_Store`.
 
-If the plugin cannot find the PDS repo automatically, set `PDS_REPO_PATH` or
-pass the repo path as the first argument:
+For local package tarball development before publishing, pass a PDS checkout:
 
 ```sh
-/pds:start /path/to/PDS
+/pds:start --pds-repo /path/to/PDS
 ```
 
 ## Install In Codex
@@ -57,31 +56,24 @@ pass the repo path as the first argument:
 Use this setup when you want `/pds:*` commands to work from Codex in any
 project.
 
-1. Keep the PDS repository folder somewhere permanent on your computer. The
-   plugin skills point back to docs in this repository, so do not copy only the
-   `plugins/pds` folder.
-2. Open Codex.
-3. Open the PDS repository folder in Codex.
-4. Ask Codex:
+Run the installer from any folder:
 
-```text
-Install the PDS plugin from this repository for my Codex app. Use
-.agents/plugins/marketplace.json, enable pds@pds-local, and tell me when I need
-to restart Codex.
+```sh
+npx @pds/cli@latest install --tool codex
 ```
 
-5. Restart Codex so it reloads local plugin marketplaces.
-6. Open any React project in Codex and type:
+Restart Codex so it reloads plugins, then open any React project and type:
 
 ```text
 /pds:help
 ```
 
-If Codex does not recognize `/pds:help`, open the PDS repository in Codex again
-and repeat step 4.
+Codex copy-paste prompt:
 
-The repo-local marketplace entry lives at `.agents/plugins/marketplace.json`.
-It points at `./plugins/pds`, relative to the PDS repository root.
+```text
+Run `npx @pds/cli@latest install --tool codex`, restart Codex, then use
+`/pds:help`.
+```
 
 ## Codex Usage
 
@@ -101,30 +93,17 @@ Examples:
 
 ## Install In Claude
 
-Use this setup when you want to run the plugin in Claude Code.
-
-1. Keep the PDS repository folder somewhere permanent on your computer.
-2. Open Terminal.
-3. Go to the PDS repository folder:
+Run the installer from any folder:
 
 ```sh
-cd /path/to/PDS
+npx @pds/cli@latest install --tool claude
 ```
 
-4. Start Claude with the local plugin:
-
-```sh
-claude --plugin-dir ./plugins/pds
-```
-
-5. Type:
+Restart Claude, then type:
 
 ```text
 /pds:help
 ```
-
-If Claude cannot find the plugin, check that the Terminal is inside the PDS
-repository folder and that `plugins/pds` exists.
 
 ## Claude Usage
 

@@ -8,7 +8,7 @@ import {
   SurfaceFooter,
   SurfaceHeader,
   SurfaceTitle
-} from "pds";
+} from "@pds/react";
 
 export function SurfacesSection() {
   return (

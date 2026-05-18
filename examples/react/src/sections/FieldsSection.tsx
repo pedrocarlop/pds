@@ -1,4 +1,4 @@
-import { Input, Textarea } from "pds";
+import { Input, Textarea } from "@pds/react";
 
 export function FieldsSection() {
   return (

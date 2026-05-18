@@ -1,4 +1,4 @@
-import { Button } from "pds";
+import { Button } from "@pds/react";
 
 function PlusIcon() {
   return (
