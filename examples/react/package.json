@@ -7,6 +7,9 @@
   "scripts": {
     "build": "pnpm typecheck && vite build",
     "dev": "vite",
+    "ladle:build": "ladle build",
+    "ladle:preview": "ladle preview",
+    "ladle:serve": "ladle serve",
     "lint": "eslint src --max-warnings=0",
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },
@@ -16,6 +19,7 @@
     "react-dom": "^19.2.6"
   },
   "devDependencies": {
+    "@ladle/react": "^5.1.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "typescript": "^6.0.3",
