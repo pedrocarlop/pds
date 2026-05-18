@@ -10,6 +10,22 @@ export {
   ActionMenuTrigger
 } from "./action-menu";
 export type { ActionMenuItemProps } from "./action-menu";
+export {
+  Amount,
+  AmountCurrency,
+  AmountInput,
+  AmountInputType,
+  CurrencyProvider,
+  IntlProvider
+} from "./amount";
+export type {
+  AmountCurrencyDefinition,
+  AmountCurrencyProps,
+  AmountInputProps,
+  AmountProps,
+  CurrencyProviderProps,
+  IntlProviderProps
+} from "./amount";
 export { Badge } from "./badge";
 export type { BadgeEmphasis, BadgeProps, BadgeTone } from "./badge";
 export {
@@ -105,6 +121,8 @@ export {
   InlineAlertTitle
 } from "./inline-alert";
 export type { InlineAlertProps, InlineAlertTone } from "./inline-alert";
+export { FilterChip, FilterChipValue } from "./filter-chip";
+export type { FilterChipProps } from "./filter-chip";
 export { Input } from "./input";
 export type { FieldDensity, InputProps } from "./input";
 export {

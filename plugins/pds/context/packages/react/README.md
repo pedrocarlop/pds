@@ -38,10 +38,10 @@ use public imports from @pds/react, and run the app checks.
 
 ## Current Surface
 
-- Button, Badge, Avatar, Surface, Cell, Details, Tooltip, Dialog, BottomSheet,
-  Toast, Input, Textarea, Select, Checkbox, RadioGroup, Switch, Tabs, Menu, Popover,
-  Skeleton, Progress, InlineAlert, Table, DataList, Breadcrumbs, Pagination, and
-  ActionMenu.
+- Button, Badge, FilterChip, Avatar, Surface, Cell, Details, Tooltip, Dialog,
+  BottomSheet, Toast, Input, Amount, Textarea, Select, Checkbox, RadioGroup,
+  Switch, Tabs, Menu, Popover, Skeleton, Progress, InlineAlert, Table, DataList,
+  Breadcrumbs, Pagination, and ActionMenu.
 - Product components: RunStatus, Message, Transcript, and Composer.
 - `@pds/react/styles.css` imports `@pds/tokens/styles.css` and component styles.
 - Components use PDS-specific props and stable `data-*` attributes rather than Tailwind classes.
@@ -105,6 +105,7 @@ Use those files before editing source, CSS, examples, tests, or public APIs.
 | Component | Context |
 | --- | --- |
 | ActionMenu | [action-menu.md](../../docs/agent/components/action-menu.md) |
+| Amount | [amount.md](../../docs/agent/components/amount.md) |
 | Avatar | [avatar.md](../../docs/agent/components/avatar.md) |
 | Badge | [badge.md](../../docs/agent/components/badge.md) |
 | Breadcrumbs | [breadcrumbs.md](../../docs/agent/components/breadcrumbs.md) |
@@ -116,6 +117,7 @@ Use those files before editing source, CSS, examples, tests, or public APIs.
 | DataList | [data-list.md](../../docs/agent/components/data-list.md) |
 | Details | [details.md](../../docs/agent/components/details.md) |
 | Dialog | [dialog.md](../../docs/agent/components/dialog.md) |
+| FilterChip | [filter-chip.md](../../docs/agent/components/filter-chip.md) |
 | InlineAlert | [inline-alert.md](../../docs/agent/components/inline-alert.md) |
 | Input | [input.md](../../docs/agent/components/input.md) |
 | Menu | [menu.md](../../docs/agent/components/menu.md) |

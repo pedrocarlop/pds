@@ -41,6 +41,9 @@ describe("PDS CSS contract", () => {
       ".pds-badge",
       '.pds-badge[data-tone="success"]',
       '.pds-badge[data-emphasis="outline"]',
+      ".pds-filter-chip",
+      '.pds-filter-chip[data-active="true"]',
+      ".pds-filter-chip-value",
       ".pds-breadcrumbs",
       ".pds-breadcrumbs-link",
       ".pds-cell",
@@ -55,6 +58,12 @@ describe("PDS CSS contract", () => {
       ".pds-avatar",
       '.pds-avatar[data-size="lg"]',
       ".pds-avatar-group-count",
+      ".pds-amount",
+      ".pds-amount-currency.pds-cell",
+      '.pds-amount-currency[aria-invalid="true"]',
+      ".pds-amount-input",
+      '.pds-amount-input[data-invalid="true"]',
+      ".pds-amount-input-control.pds-input",
       ".pds-checkbox",
       '.pds-checkbox[data-state="checked"]',
       '.pds-checkbox[aria-invalid="true"]',
@@ -199,12 +208,25 @@ describe("PDS CSS contract", () => {
     const resilientSelectors = [
       ".pds-button",
       ".pds-badge",
+      ".pds-filter-chip",
+      ".pds-filter-chip-label",
+      ".pds-filter-chip-values",
+      ".pds-filter-chip-value",
       ".pds-action-menu-content",
       ".pds-action-menu-item",
       ".pds-breadcrumbs",
       ".pds-breadcrumbs-link",
       ".pds-breadcrumbs-page",
       ".pds-cell",
+      ".pds-amount",
+      ".pds-amount-currency.pds-cell",
+      ".pds-amount-currency-body",
+      ".pds-amount-currency-value",
+      ".pds-amount-currency-description",
+      ".pds-amount-currency-error",
+      ".pds-amount-input",
+      ".pds-amount-input-description",
+      ".pds-amount-input-error",
       ".pds-data-list",
       ".pds-data-list-item",
       ".pds-data-list-term",
@@ -284,6 +306,8 @@ describe("PDS CSS contract", () => {
     expect(componentStyles).toContain(
       '.pds-button[data-intent="primary"]:not(:disabled, [aria-disabled="true"]):active'
     );
+    expect(componentStyles).toContain(".pds-filter-chip:not(:disabled):hover");
+    expect(componentStyles).toContain(".pds-filter-chip:not(:disabled):active");
     expect(componentStyles).toContain(
       '.pds-cell:is(button, a, label, [role="button"]):not(:disabled, [aria-disabled="true"]):hover'
     );
@@ -293,6 +317,12 @@ describe("PDS CSS contract", () => {
     expect(componentStyles).not.toContain("--pds-cell-background");
     expect(componentStyles).toContain(".pds-input:not(:disabled):hover");
     expect(componentStyles).toContain(".pds-textarea:not(:disabled):hover");
+    expect(componentStyles).toContain(
+      '.pds-amount-currency.pds-cell:is(button, a, label, [role="button"]):not(:disabled, [aria-disabled="true"]):hover'
+    );
+    expect(componentStyles).toContain(
+      '.pds-amount-input:not([data-disabled="true"]):hover'
+    );
     expect(componentStyles).toContain(".pds-select-trigger:not(:disabled):hover");
     expect(componentStyles).toContain(".pds-checkbox:not(:disabled):hover");
     expect(componentStyles).toContain(".pds-radio-group-item:not(:disabled):hover");

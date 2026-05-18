@@ -25,7 +25,7 @@ export default {
       defaultState: 0
     }
   },
-  defaultStory: "actions--matrix",
+  defaultStory: "components--gallery",
   expandStoryTree: true,
   outDir: "dist/ladle",
   stories: "src/stories/**/*.stories.{ts,tsx,mdx}"

@@ -10,6 +10,10 @@ import {
   ActionMenuItem,
   ActionMenuShortcut,
   ActionMenuTrigger,
+  Amount,
+  AmountCurrency,
+  AmountInput,
+  AmountInputType,
   Avatar,
   AvatarBadge,
   AvatarFallback,
@@ -43,6 +47,7 @@ import {
   ComposerActions,
   ComposerFooter,
   ComposerInput,
+  CurrencyProvider,
   DataList,
   DataListDescription,
   DataListItem,
@@ -67,11 +72,14 @@ import {
   DialogPortal,
   DialogTitle,
   DialogTrigger,
+  FilterChip,
+  FilterChipValue,
   InlineAlert,
   InlineAlertActions,
   InlineAlertDescription,
   InlineAlertTitle,
   Input,
+  IntlProvider,
   Menu,
   MenuCheckboxItem,
   MenuContent,
@@ -439,6 +447,49 @@ describe("PDS starter components", () => {
     expect(link).toHaveAttribute("data-tone", "accent");
   });
 
+  it("renders FilterChip with active values, className, and forwarded refs", () => {
+    const ref = React.createRef<HTMLButtonElement>();
+
+    render(
+      <FilterChip ref={ref} active className="custom-filter-chip" label="Filters">
+        <FilterChip.Value>Team members</FilterChip.Value>
+        <FilterChipValue>Statuses</FilterChipValue>
+      </FilterChip>
+    );
+
+    const chip = screen.getByRole("button", {
+      name: /Filters.*Team members.*Statuses/
+    });
+    expect(chip).toHaveAttribute("data-slot", "filter-chip");
+    expect(chip).toHaveAttribute("data-active", "true");
+    expect(chip).toHaveAttribute("aria-pressed", "true");
+    expect(chip).toHaveClass("pds-filter-chip", "custom-filter-chip");
+    expect(ref.current).toBe(chip);
+    expect(screen.getByText("Team members")).toHaveAttribute(
+      "data-slot",
+      "filter-chip-value"
+    );
+  });
+
+  it("renders disabled FilterChip with native button behavior", () => {
+    const handleClick = vi.fn();
+
+    render(
+      <FilterChip disabled label="Filters" onClick={handleClick}>
+        <FilterChip.Value>Recipients</FilterChip.Value>
+      </FilterChip>
+    );
+
+    const chip = screen.getByRole("button", { name: /Filters.*Recipients/ });
+    expect(chip).toHaveAttribute("data-disabled", "true");
+    expect(chip).toHaveAttribute("type", "button");
+    expect(chip).toBeDisabled();
+
+    fireEvent.click(chip);
+
+    expect(handleClick).not.toHaveBeenCalled();
+  });
+
   it("renders Avatar primitives with size, className, and forwarded refs", () => {
     const ref = React.createRef<HTMLSpanElement>();
 
@@ -759,6 +810,142 @@ describe("PDS starter components", () => {
       "aria-invalid",
       "grammar"
     );
+  });
+
+  it("renders Amount compound slots with primitive-backed currency and input sides", () => {
+    const amountRef = React.createRef<HTMLDivElement>();
+    const currencyRef = React.createRef<HTMLElement>();
+    const inputRef = React.createRef<HTMLInputElement>();
+    const handleCurrencyClick = vi.fn();
+
+    render(
+      <Amount ref={amountRef} aria-invalid className="custom-amount">
+        <Amount.Currency
+          ref={currencyRef}
+          aria-label="Currency"
+          description="Balance: £500"
+          image="https://example.com/currencies/gbp.svg"
+          invalid
+          errorMessage="Choose another currency"
+          onClick={handleCurrencyClick}
+          value="GBP"
+        />
+        <Amount.Input
+          ref={inputRef}
+          aria-label="Amount"
+          className="custom-amount-input"
+          description="No fee"
+          invalid
+          errorMessage="Amount is above the limit"
+          value={1200}
+        />
+      </Amount>
+    );
+
+    const amount = screen.getByLabelText("Amount").closest('[data-slot="amount"]');
+    expect(amount).toHaveAttribute("data-invalid", "true");
+    expect(amount).toHaveClass("pds-amount", "custom-amount");
+    expect(amountRef.current).toBe(amount);
+
+    const currency = screen.getByRole("button", { name: "Currency" });
+    expect(currency).toHaveAttribute("data-slot", "amount-currency");
+    expect(currency).toHaveAttribute("data-invalid", "true");
+    expect(currency).toHaveAttribute("aria-invalid", "true");
+    expect(currency).toHaveAccessibleDescription(
+      "Balance: £500 Choose another currency"
+    );
+    expect(currency).toHaveClass("pds-cell", "pds-amount-currency");
+    expect(currencyRef.current).toBe(currency);
+
+    fireEvent.click(currency);
+    expect(handleCurrencyClick).toHaveBeenCalledTimes(1);
+
+    expect(screen.getByText("GBP")).toHaveAttribute(
+      "data-slot",
+      "amount-currency-value"
+    );
+    expect(document.querySelector('[data-slot="amount-currency-image"]')).toHaveClass(
+      "pds-avatar",
+      "pds-amount-currency-image"
+    );
+
+    const input = screen.getByLabelText("Amount");
+    expect(input).toHaveAttribute("data-slot", "amount-input-control");
+    expect(input).toHaveAttribute("aria-invalid", "true");
+    expect(input).toHaveAccessibleDescription("No fee Amount is above the limit");
+    expect(input).toHaveClass("pds-input", "pds-amount-input-control", "custom-amount-input");
+    expect(input).toHaveValue("1200");
+    expect(inputRef.current).toBe(input);
+  });
+
+  it("formats AmountInput money values with locale and custom currency metadata", () => {
+    const formattedGbp = new Intl.NumberFormat("en-GB", {
+      currency: "GBP",
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 2,
+      style: "currency"
+    }).format(100000.01);
+    const formattedPlnLocale = new Intl.NumberFormat("pl-PL", {
+      currency: "GBP",
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 2,
+      style: "currency"
+    }).format(100000.01);
+
+    render(
+      <CurrencyProvider
+        currencies={[{ code: "BTC", fractionalPart: 8, symbol: "B" }]}
+      >
+        <Amount>
+          <AmountCurrency aria-label="Currency" value="GBP" />
+          <AmountInput
+            aria-label="GBP amount"
+            currency="GBP"
+            type={AmountInputType.MONEY}
+            value={100000.01}
+          />
+        </Amount>
+        <IntlProvider locale="pl-PL">
+          <Amount>
+            <AmountCurrency aria-label="Currency" value="GBP" />
+            <AmountInput
+              aria-label="Localized amount"
+              currency="GBP"
+              type={AmountInputType.MONEY}
+              value={100000.01}
+            />
+          </Amount>
+        </IntlProvider>
+        <Amount>
+          <AmountCurrency aria-label="Asset" value="BTC" />
+          <AmountInput
+            aria-label="BTC amount"
+            currency="BTC"
+            type={AmountInputType.MONEY_FRACTIONAL}
+            value={212345678}
+          />
+        </Amount>
+        <Amount>
+          <AmountCurrency aria-label="Currency" value="GBP" />
+          <AmountInput
+            aria-label="Signed amount"
+            currency="GBP"
+            negative
+            showCurrency={false}
+            showSign
+            type={AmountInputType.MONEY}
+            value={5}
+          />
+        </Amount>
+      </CurrencyProvider>
+    );
+
+    expect(screen.getByLabelText("GBP amount")).toHaveValue(formattedGbp);
+    expect(screen.getByLabelText("Localized amount")).toHaveValue(
+      formattedPlnLocale
+    );
+    expect(screen.getByLabelText("BTC amount")).toHaveValue("B2.12345678");
+    expect(screen.getByLabelText("Signed amount")).toHaveValue("-5.00");
   });
 
   it("maps Textarea invalid state, className, and refs", () => {

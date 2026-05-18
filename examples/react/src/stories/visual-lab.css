@@ -58,6 +58,8 @@ body {
 }
 
 .visual-lab-header,
+.visual-lab-preview-group,
+.visual-lab-preview-group-header,
 .visual-lab-panel-header,
 .visual-lab-stack,
 .visual-lab-panel-body,
@@ -71,6 +73,17 @@ body {
 .visual-lab-header {
   max-width: var(--pds-layout-reading-max);
   gap: var(--pds-space-sp-200);
+}
+
+.visual-lab-preview-group {
+  gap: var(--pds-space-sp-300);
+}
+
+.visual-lab-preview-group-header h2 {
+  margin: 0;
+  font-size: var(--pds-heading2);
+  font-weight: var(--pds-fw-heading);
+  line-height: var(--pds-lh-heading2);
 }
 
 .visual-lab-header h1,
