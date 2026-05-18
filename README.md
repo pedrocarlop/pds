@@ -9,6 +9,59 @@ not own repo structure, design rules, or agent workflow.
 Most app teams should install the `pds` React package. It includes the component
 styles and the token package it needs.
 
+If you want Codex or Claude to get `/pds:*` commands, install the PDS plugin
+first. The plugin is separate from the React package: the plugin teaches the
+agent how to audit, build, review, or start PDS-backed React apps.
+
+## Install The PDS Plugin
+
+Use this when you want to use PDS from Codex or Claude in any project.
+
+### Codex
+
+1. Keep this PDS folder somewhere permanent on your computer. Do not move or
+   delete it after installing the plugin.
+2. Open Codex.
+3. Open this PDS folder in Codex.
+4. Ask Codex:
+
+```text
+Install the PDS plugin from this repository for my Codex app. Use
+.agents/plugins/marketplace.json, enable pds@pds-local, and tell me when I need
+to restart Codex.
+```
+
+5. Restart Codex.
+6. Open any React project in Codex and ask:
+
+```text
+/pds:help
+```
+
+If Codex does not recognize `/pds:help`, open this PDS folder again and repeat
+step 4.
+
+### Claude
+
+For Claude Code, open Terminal, go to this PDS folder, and start Claude with the
+local plugin:
+
+```sh
+cd /path/to/PDS
+claude --plugin-dir ./plugins/pds
+```
+
+Then type:
+
+```text
+/pds:help
+```
+
+If Claude cannot find the plugin, make sure the `cd` path points at this PDS
+folder and that `plugins/pds` exists inside it.
+
+The full plugin guide is in [plugins/pds/README.md](plugins/pds/README.md).
+
 ## Install In An App
 
 From the folder of the React app that will use PDS:

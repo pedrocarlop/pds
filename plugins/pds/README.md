@@ -52,11 +52,41 @@ pass the repo path as the first argument:
 /pds:start /path/to/PDS
 ```
 
+## Install In Codex
+
+Use this setup when you want `/pds:*` commands to work from Codex in any
+project.
+
+1. Keep the PDS repository folder somewhere permanent on your computer. The
+   plugin skills point back to docs in this repository, so do not copy only the
+   `plugins/pds` folder.
+2. Open Codex.
+3. Open the PDS repository folder in Codex.
+4. Ask Codex:
+
+```text
+Install the PDS plugin from this repository for my Codex app. Use
+.agents/plugins/marketplace.json, enable pds@pds-local, and tell me when I need
+to restart Codex.
+```
+
+5. Restart Codex so it reloads local plugin marketplaces.
+6. Open any React project in Codex and type:
+
+```text
+/pds:help
+```
+
+If Codex does not recognize `/pds:help`, open the PDS repository in Codex again
+and repeat step 4.
+
+The repo-local marketplace entry lives at `.agents/plugins/marketplace.json`.
+It points at `./plugins/pds`, relative to the PDS repository root.
+
 ## Codex Usage
 
-The repo-local marketplace entry lives at `.agents/plugins/marketplace.json` and
-points at `./plugins/pds`. After enabling the plugin in Codex, use `@pds` and
-invoke the relevant skill from the target project or empty folder.
+After enabling the plugin in Codex, use `@pds` or invoke the relevant skill from
+the target project or empty folder.
 
 Examples:
 
@@ -69,15 +99,36 @@ Examples:
 /pds:start
 ```
 
-## Claude Usage
+## Install In Claude
 
-For local testing from this repo:
+Use this setup when you want to run the plugin in Claude Code.
+
+1. Keep the PDS repository folder somewhere permanent on your computer.
+2. Open Terminal.
+3. Go to the PDS repository folder:
+
+```sh
+cd /path/to/PDS
+```
+
+4. Start Claude with the local plugin:
 
 ```sh
 claude --plugin-dir ./plugins/pds
 ```
 
-Then run a namespaced skill from the target project:
+5. Type:
+
+```text
+/pds:help
+```
+
+If Claude cannot find the plugin, check that the Terminal is inside the PDS
+repository folder and that `plugins/pds` exists.
+
+## Claude Usage
+
+Run a namespaced skill from the target project:
 
 ```sh
 /pds:help
