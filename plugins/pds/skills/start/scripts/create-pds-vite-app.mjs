@@ -13,14 +13,16 @@ import {
 } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const SAFE_EXISTING_ENTRIES = new Set([".git", ".gitignore", ".DS_Store"]);
 
-main();
+try {
+  main();
+} catch (error) {
+  console.error("");
+  console.error(error instanceof Error ? error.message : String(error));
+  process.exitCode = 1;
+}
 
 function main() {
   const options = parseArgs(process.argv.slice(2));
@@ -31,17 +33,26 @@ function main() {
   }
 
   const targetDir = path.resolve(options.target ?? process.cwd());
-  const pdsRepo = options.pdsRepo ? resolvePdsRepo(options.pdsRepo) : null;
 
   ensureCommand("pnpm", ["--version"]);
   ensureTargetDirectory(targetDir);
 
+  const packageSource = resolvePackageSource(options, targetDir);
+
   console.log(`Target app: ${targetDir}`);
   console.log(
-    pdsRepo
-      ? `PDS packages: local tarballs from ${pdsRepo}`
-      : "PDS packages: @pds/react@latest and @pds/tokens@latest from npm"
+    packageSource.type === "local"
+      ? `PDS packages: local tarballs from ${packageSource.repo}${
+          packageSource.explicit ? "" : " (auto-detected)"
+        }`
+      : "PDS packages: @pds/react@latest from npm"
   );
+
+  const pdsRepo = packageSource.type === "local" ? packageSource.repo : null;
+
+  if (!pdsRepo) {
+    ensureRegistryPdsPackages();
+  }
 
   if (pdsRepo && !existsSync(path.join(pdsRepo, "node_modules"))) {
     run("pnpm", ["install", "--frozen-lockfile"], { cwd: pdsRepo });
@@ -52,26 +63,26 @@ function main() {
   }
 
   const packDir = pdsRepo ? mkdtempSync(path.join(tmpdir(), "pds-packages-")) : null;
-  const viteDir = mkdtempSync(path.join(tmpdir(), "pds-vite-"));
+  const appDir = mkdtempSync(path.join(tmpdir(), "pds-vite-"));
 
   try {
     if (pdsRepo) {
       packPdsPackages(pdsRepo, packDir);
     }
-    createViteApp(viteDir);
-    copyDirectoryContents(viteDir, targetDir);
-    writeStarterFiles(targetDir);
+    createViteApp(appDir);
+    writeStarterFiles(appDir, targetDir);
     if (pdsRepo) {
-      installLocalPdsPackages(targetDir, packDir);
+      installLocalPdsPackages(appDir, packDir);
     } else {
-      installRegistryPdsPackages(targetDir);
+      installRegistryPdsPackages(appDir);
     }
-    run("pnpm", ["build"], { cwd: targetDir });
+    run("pnpm", ["build"], { cwd: appDir });
+    copyDirectoryContents(appDir, targetDir);
   } finally {
     if (packDir) {
       rmSync(packDir, { force: true, recursive: true });
     }
-    rmSync(viteDir, { force: true, recursive: true });
+    rmSync(appDir, { force: true, recursive: true });
   }
 
   console.log("");
@@ -143,6 +154,57 @@ function resolvePdsRepo(explicitPath) {
   );
 }
 
+function resolvePackageSource(options, targetDir) {
+  if (options.pdsRepo) {
+    return {
+      explicit: true,
+      repo: resolvePdsRepo(options.pdsRepo),
+      type: "local"
+    };
+  }
+
+  const envRepo = process.env.PDS_REPO;
+
+  if (envRepo && isPdsRepo(path.resolve(envRepo))) {
+    return {
+      explicit: false,
+      repo: path.resolve(envRepo),
+      type: "local"
+    };
+  }
+
+  const detectedRepo =
+    findNearestPdsRepo(process.cwd()) ?? findNearestPdsRepo(targetDir);
+
+  if (detectedRepo) {
+    return {
+      explicit: false,
+      repo: detectedRepo,
+      type: "local"
+    };
+  }
+
+  return { type: "registry" };
+}
+
+function findNearestPdsRepo(startDir) {
+  let current = path.resolve(startDir);
+
+  while (true) {
+    if (isPdsRepo(current)) {
+      return current;
+    }
+
+    const parent = path.dirname(current);
+
+    if (parent === current) {
+      return null;
+    }
+
+    current = parent;
+  }
+}
+
 function isPdsRepo(candidate) {
   const packagePath = path.join(candidate, "package.json");
   const tokenPackagePath = path.join(candidate, "packages/tokens/package.json");
@@ -177,6 +239,23 @@ function ensureCommand(command, args) {
   if (result.status !== 0) {
     throw new Error(`Required command not available: ${command}`);
   }
+}
+
+function ensureRegistryPdsPackages() {
+  const result = spawnSync("pnpm", ["view", "@pds/react@latest", "version"], {
+    encoding: "utf8",
+    stdio: "pipe"
+  });
+
+  if (result.status === 0) {
+    return;
+  }
+
+  const details = `${result.stdout ?? ""}\n${result.stderr ?? ""}`.trim();
+
+  throw new Error(`@pds/react@latest is not available from the configured npm registry.
+Pass --pds-repo <path> with a local PDS checkout, or set PDS_REPO to that path.
+No app files were written to the target folder.${details ? `\n\nRegistry output:\n${details}` : ""}`);
 }
 
 function ensureTargetDirectory(targetDir) {
@@ -225,9 +304,9 @@ function copyDirectoryContents(sourceDir, targetDir) {
   }
 }
 
-function writeStarterFiles(targetDir) {
-  const srcDir = path.join(targetDir, "src");
-  const publicDir = path.join(targetDir, "public");
+function writeStarterFiles(appDir, targetDir) {
+  const srcDir = path.join(appDir, "src");
+  const publicDir = path.join(appDir, "public");
 
   writeFileSync(
     path.join(srcDir, "main.tsx"),
@@ -380,14 +459,14 @@ select {
     "utf8"
   );
 
-  updatePackageJson(targetDir);
+  updatePackageJson(appDir, targetDir);
   rmSync(path.join(srcDir, "App.css"), { force: true });
   rmSync(path.join(srcDir, "assets"), { force: true, recursive: true });
   rmSync(path.join(publicDir, "vite.svg"), { force: true });
 }
 
-function updatePackageJson(targetDir) {
-  const packagePath = path.join(targetDir, "package.json");
+function updatePackageJson(appDir, targetDir) {
+  const packagePath = path.join(appDir, "package.json");
   const packageJson = JSON.parse(readFileSync(packagePath, "utf8"));
   const generatedName = path.basename(targetDir).toLowerCase();
   const safeName = generatedName
@@ -400,8 +479,7 @@ function updatePackageJson(targetDir) {
 
 function installRegistryPdsPackages(targetDir) {
   writePdsPackageDependencies(targetDir, {
-    "@pds/react": "latest",
-    "@pds/tokens": "latest"
+    "@pds/react": "latest"
   });
 
   run("pnpm", ["install"], { cwd: targetDir });

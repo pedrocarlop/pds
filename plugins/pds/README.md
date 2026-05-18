@@ -33,7 +33,7 @@ files are discovery adapters for Codex and Claude.
 ## What `/pds:start` Creates
 
 - Vite React TypeScript app files.
-- Registry installs for `@pds/react@latest` and `@pds/tokens@latest`.
+- Registry install for `@pds/react@latest`.
 - A root import for `@pds/react/styles.css`.
 - A first PDS screen built from public `@pds/react` component imports.
 - Token-based root CSS for background, foreground, typography, and layout.
@@ -45,7 +45,9 @@ files are discovery adapters for Codex and Claude.
 - An empty target folder, or a folder that only contains `.git`,
   `.gitignore`, or `.DS_Store`.
 
-For local package tarball development before publishing, pass a PDS checkout:
+If `@pds/react@latest` is not available from the configured registry, the
+starter stops before writing app files. For local package tarball development
+before publishing, pass a PDS checkout:
 
 ```sh
 /pds:start --pds-repo /path/to/PDS

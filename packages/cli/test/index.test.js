@@ -163,4 +163,28 @@ enabled = true
       '+ [plugins."pds@pds"] enabled = true'
     );
   });
+
+  it("does not pass --ref when installing Codex from a local marketplace path", () => {
+    const { io, messages } = captureIo();
+    const exitCode = runInstall(
+      parseArgs([
+        "install",
+        "--dry-run",
+        "--tool",
+        "codex",
+        "--repo",
+        "/tmp/pds"
+      ]),
+      {
+        env: { HOME: "/tmp/pds-cli-home", PATH: "/tmp/pds-cli-empty" },
+        io
+      }
+    );
+
+    expect(exitCode).toBe(0);
+    expect(messages.join("\n")).toContain(
+      "$ codex plugin marketplace add /tmp/pds"
+    );
+    expect(messages.join("\n")).not.toContain("--ref");
+  });
 });

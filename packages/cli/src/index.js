@@ -177,7 +177,13 @@ function installCodex(options, { env, io, now, spawn }) {
   io.write("Codex");
   runCommand(
     "codex",
-    ["plugin", "marketplace", "add", options.repo, "--ref", options.ref],
+    [
+      "plugin",
+      "marketplace",
+      "add",
+      options.repo,
+      ...(isLocalMarketplaceSource(options.repo) ? [] : ["--ref", options.ref])
+    ],
     { dryRun: options.dryRun, env, io, spawn }
   );
   updateCodexConfig({
@@ -248,6 +254,17 @@ function isCommandAvailable(command, spawn, env) {
   });
 
   return result.status === 0;
+}
+
+function isLocalMarketplaceSource(source) {
+  return (
+    source.startsWith("/") ||
+    source.startsWith("./") ||
+    source.startsWith("../") ||
+    source === "." ||
+    source === ".." ||
+    /^[A-Za-z]:[\\/]/.test(source)
+  );
 }
 
 export function resolveCodexConfigPath(env = process.env) {

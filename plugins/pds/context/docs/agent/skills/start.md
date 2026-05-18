@@ -11,10 +11,16 @@ the folder contains application files, stop and tell the user to choose an empty
 folder.
 
 The script creates a Vite React TypeScript app, installs `@pds/react@latest`
-and `@pds/tokens@latest` from npm, imports `@pds/react/styles.css` once,
-replaces the default Vite UI with a PDS starter surface, and runs the generated
-app build. Local tarball installation is available only when `--pds-repo` is
-passed explicitly for development.
+from npm, imports `@pds/react/styles.css` once, replaces the default Vite UI
+with a PDS starter surface, and runs the generated app build. It stages the app
+in a temporary directory first, then copies the result into the target only
+after install and build succeed.
+
+If `@pds/react@latest` is not available from the configured registry, the
+script stops before writing app files and asks for a local PDS checkout. Local
+tarball installation is available when `--pds-repo` is passed explicitly, when
+`PDS_REPO` points to a checkout, or when the starter is run from inside this PDS
+repo.
 
 ## Invocation
 
@@ -33,5 +39,7 @@ resource root.
 ## Completion Message
 
 Report the generated app path, whether PDS was installed from npm or local
-tarballs, and the generated app commands `pnpm dev` and `pnpm build`. Do not
-start the development server unless the user asks for it.
+tarballs, and the generated app commands `pnpm dev` and `pnpm build`. If the
+registry package is unavailable, report that no app files were written and ask
+for `--pds-repo <path>` or `PDS_REPO`. Do not start the development server
+unless the user asks for it.
