@@ -141,6 +141,39 @@ export type { IconProps } from "./icon";
 export { Input } from "./input";
 export type { FieldDensity, InputProps } from "./input";
 export {
+  Item,
+  ItemActions,
+  ItemAvatar,
+  ItemContent,
+  ItemDescription,
+  ItemInput,
+  ItemPrefix,
+  ItemSide,
+  ItemSkeleton,
+  ItemSkeletonActions,
+  ItemSkeletonAvatar,
+  ItemSkeletonContent,
+  ItemSkeletonDescription,
+  ItemSkeletonPrefix,
+  ItemSkeletonSide,
+  ItemSkeletonTitle,
+  ItemSkeletonValue,
+  ItemTitle,
+  ItemValue
+} from "./item";
+export type {
+  ItemIconSource,
+  ItemIconTone,
+  ItemInputProps,
+  ItemInputType,
+  ItemProps,
+  ItemSkeletonProps,
+  ItemValueProps,
+  ItemValueTone,
+  ItemValueVariant,
+  ItemVariant
+} from "./item";
+export {
   Menu,
   MenuCheckboxItem,
   MenuContent,

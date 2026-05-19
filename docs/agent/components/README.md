@@ -43,6 +43,7 @@ limitations.
 - [Icon](icon.md)
 - [InlineAlert](inline-alert.md)
 - [Input](input.md)
+- [Item](item.md)
 - [Menu](menu.md)
 - [Pagination](pagination.md)
 - [Popover](popover.md)

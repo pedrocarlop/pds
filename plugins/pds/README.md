@@ -2,8 +2,9 @@
 
 This plugin helps designers and AI coding agents use PDS in React web projects.
 It can teach the workflow, audit an existing app, implement a product screen
-from a brief or Figma handoff, review generated UI against PDS, learn from
-design feedback, or bootstrap an empty folder into a Vite React TypeScript app.
+from a brief or Figma handoff, create reusable PDS React components, review
+generated UI against PDS, learn from design feedback, or bootstrap an empty
+folder into a Vite React TypeScript app.
 
 ## Skills
 
@@ -21,6 +22,9 @@ files are discovery adapters for Codex and Claude.
 - `/pds:implement-screen`: creates or modifies a React web screen from a
   product brief, screenshot, or Figma handoff using PDS recipes, patterns,
   tokens, and public React components.
+- `/pds:create-component`: creates a reusable PDS React component from a brief
+  or pasted unstyled React code, then adds the component contract, source,
+  token-based CSS, tests, public exports, and Ladle preview.
 - `/pds:review-pds`: review pass for generated or changed UI. Checks PDS
   imports, stylesheet wiring, token usage, component fit, accessibility, content
   resilience, and state coverage.
@@ -88,6 +92,7 @@ Examples:
 /pds:help
 /pds:audit
 /pds:implement-screen Build the approval review screen from this brief
+/pds:create-component Create a banner component
 /pds:review-pds src/App.tsx
 /pds:self-improve The component feedback is that this Button treatment hides the primary action
 /pds:start
@@ -115,6 +120,7 @@ Run a namespaced skill from the target project:
 /pds:help
 /pds:audit
 /pds:implement-screen Build the approval review screen from this brief
+/pds:create-component Create a banner component
 /pds:review-pds src/App.tsx
 /pds:self-improve The component feedback is that this Button treatment hides the primary action
 /pds:start

@@ -38,7 +38,7 @@ use public imports from @pds/react, and run the app checks.
 
 ## Current Surface
 
-- Icon, Button, Badge, FilterChip, Avatar, Surface, ActionWidget, Cell, Details, Tooltip, Dialog,
+- Icon, Button, Badge, FilterChip, Avatar, Surface, ActionWidget, Cell, Item, Details, Tooltip, Dialog,
   BottomSheet, Toast, Input, Amount, Textarea, Select, Checkbox, RadioGroup,
   Switch, Tabs, Menu, Popover, Skeleton, Progress, InlineAlert, Table, DataList,
   Breadcrumbs, Pagination, and ActionMenu.
@@ -129,6 +129,7 @@ Use those files before editing source, CSS, examples, tests, or public APIs.
 | Icon | [icon.md](../../docs/agent/components/icon.md) |
 | InlineAlert | [inline-alert.md](../../docs/agent/components/inline-alert.md) |
 | Input | [input.md](../../docs/agent/components/input.md) |
+| Item | [item.md](../../docs/agent/components/item.md) |
 | Menu | [menu.md](../../docs/agent/components/menu.md) |
 | Message | [message.md](../../docs/agent/components/message.md) |
 | Pagination | [pagination.md](../../docs/agent/components/pagination.md) |

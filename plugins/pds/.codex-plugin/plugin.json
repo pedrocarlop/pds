@@ -1,7 +1,7 @@
 {
   "name": "pds",
   "version": "0.1.0",
-  "description": "Teach, audit, implement, review, self-improve from feedback, and bootstrap designer-ready React apps with the PDS design system.",
+  "description": "Teach, audit, implement, create components, review, self-improve from feedback, and bootstrap designer-ready React apps with the PDS design system.",
   "author": {
     "name": "PDS"
   },
@@ -19,13 +19,14 @@
     "feedback",
     "self-improve",
     "figma",
-    "handoff"
+    "handoff",
+    "components"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "PDS",
-    "shortDescription": "Use PDS to learn, audit, build, review, or start React web apps.",
-    "longDescription": "Helps product designers and AI coding agents adopt PDS in React web projects: learn the plugin workflow, audit existing apps, implement product screens from briefs or Figma handoff, review generated UI against PDS, turn design feedback into durable PDS guidance improvements, and bootstrap new Vite React apps.",
+    "shortDescription": "Use PDS to learn, audit, build, create components, review, or start React web apps.",
+    "longDescription": "Helps product designers and AI coding agents adopt PDS in React web projects: learn the plugin workflow, audit existing apps, implement product screens from briefs or Figma handoff, create reusable PDS React components, review generated UI against PDS, turn design feedback into durable PDS guidance improvements, and bootstrap new Vite React apps.",
     "developerName": "PDS",
     "category": "Design",
     "capabilities": [
@@ -36,6 +37,7 @@
       "Teach me how to use the PDS plugin",
       "Audit this app for PDS adoption",
       "Implement this screen using PDS",
+      "Create a new PDS React component",
       "Review this UI against PDS",
       "Learn from this design feedback and update PDS guidance",
       "Start a new PDS React app here"
