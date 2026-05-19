@@ -85,6 +85,8 @@ import {
   InlineAlertTitle,
   Input,
   IntlProvider,
+  Item,
+  ItemSkeleton,
   Menu,
   MenuCheckboxItem,
   MenuContent,
@@ -291,6 +293,153 @@ describe("PDS starter components", () => {
     const cell = screen.getByText("Label row");
     expect(cell).toHaveAttribute("aria-disabled", "true");
     expect(cell).toHaveAttribute("data-disabled", "true");
+  });
+
+  it("renders Item with rich row slots, icon tone, and forwarded refs", () => {
+    const ref = React.createRef<HTMLElement>();
+
+    render(
+      <Item
+        ref={ref}
+        className="custom-item"
+        iconTone="accent"
+        useIcon="bolt"
+        variant="disclosure"
+      >
+        <Item.Avatar>
+          <Avatar>
+            <AvatarFallback>GB</AvatarFallback>
+          </Avatar>
+        </Item.Avatar>
+        <Item.Content>
+          <Item.Title>Instant transfer</Item.Title>
+          <Item.Description>Send money in seconds</Item.Description>
+        </Item.Content>
+        <Item.Side>
+          <Item.Value tone="success">Verified</Item.Value>
+          <Item.Value variant="secondary">Today</Item.Value>
+        </Item.Side>
+      </Item>
+    );
+
+    const item = screen
+      .getByText("Instant transfer")
+      .closest('[data-slot="item"]');
+    expect(item).toHaveAttribute("data-variant", "disclosure");
+    expect(item).toHaveClass("pds-cell", "pds-item", "custom-item");
+    expect(item?.querySelector('[data-slot="item-icon"]')).toHaveAttribute(
+      "data-tone",
+      "accent"
+    );
+    expect(screen.getByText("Send money in seconds")).toHaveAttribute(
+      "data-slot",
+      "item-description"
+    );
+    expect(screen.getByText("Verified")).toHaveAttribute("data-tone", "success");
+    expect(screen.getByText("Today")).toHaveAttribute(
+      "data-variant",
+      "secondary"
+    );
+    expect(ref.current).toBe(item);
+  });
+
+  it("renders pending Item rows with disabled button behavior", () => {
+    const handleClick = vi.fn();
+
+    render(
+      <Item pending onClick={handleClick} use="button">
+        <Item.Content>
+          <Item.Title>Sync account</Item.Title>
+        </Item.Content>
+      </Item>
+    );
+
+    const item = screen.getByRole("button", { name: "Sync account" });
+    expect(item).toHaveAttribute("aria-busy", "true");
+    expect(item).toHaveAttribute("data-pending", "true");
+    expect(item).toHaveAttribute("data-disabled", "true");
+    expect(item).toBeDisabled();
+
+    fireEvent.click(item);
+
+    expect(handleClick).not.toHaveBeenCalled();
+  });
+
+  it("renders Item prefix controls and compact money inputs", () => {
+    render(
+      <Item use="label">
+        <Item.Prefix>
+          <Checkbox aria-label="Enable round ups" defaultChecked />
+        </Item.Prefix>
+        <Item.Content>
+          <Item.Title>Round up payments</Item.Title>
+          <Item.Description>Send spare change to savings</Item.Description>
+        </Item.Content>
+        <Item.Side>
+          <Item.Input
+            aria-label="Monthly budget"
+            currency="GBP"
+            defaultValue={1200}
+            type="money"
+          />
+        </Item.Side>
+      </Item>
+    );
+
+    expect(screen.getByLabelText("Enable round ups")).toHaveAttribute(
+      "data-slot",
+      "checkbox"
+    );
+    const input = screen.getByLabelText("Monthly budget");
+    expect(input.closest('[data-slot="item-input"]')).toHaveClass(
+      "pds-item-input"
+    );
+    expect(input).toHaveValue("£1,200.00");
+  });
+
+  it("renders ItemSkeleton defaults and explicit skeleton slots", () => {
+    render(
+      <>
+        <ItemSkeleton className="custom-item-skeleton" />
+        <ItemSkeleton useIcon="account_balance">
+          <ItemSkeleton.Content>
+            <ItemSkeleton.Title className="custom-item-skeleton-title" />
+            <ItemSkeleton.Actions />
+          </ItemSkeleton.Content>
+        </ItemSkeleton>
+      </>
+    );
+
+    const skeleton = document.querySelector('[data-slot="item-skeleton"]');
+    expect(skeleton).toHaveAttribute("aria-hidden", "true");
+    expect(skeleton).toHaveClass(
+      "pds-cell",
+      "pds-item",
+      "pds-item-skeleton",
+      "custom-item-skeleton"
+    );
+    expect(skeleton?.querySelector('[data-slot="item-skeleton-avatar"]')).toHaveClass(
+      "pds-skeleton",
+      "pds-item-skeleton-avatar"
+    );
+    expect(skeleton?.querySelector('[data-slot="item-skeleton-title"]')).toHaveClass(
+      "pds-skeleton",
+      "pds-item-skeleton-title"
+    );
+    expect(skeleton?.querySelector('[data-slot="item-skeleton-value"]')).toHaveClass(
+      "pds-skeleton",
+      "pds-item-skeleton-value"
+    );
+    expect(document.querySelector(".custom-item-skeleton-title")).toHaveAttribute(
+      "data-slot",
+      "item-skeleton-title"
+    );
+    expect(document.querySelectorAll('[data-slot="item-skeleton-action"]')).toHaveLength(
+      2
+    );
+    expect(document.querySelectorAll('[data-slot="item-icon"]')[0]).toHaveTextContent(
+      "account_balance"
+    );
   });
 
   it("renders Details with named slots, variants, indent, and forwarded refs", () => {

@@ -18,6 +18,7 @@ import filterChipPreview from "../component-previews/filter-chip.preview";
 import iconPreview from "../component-previews/icon.preview";
 import inlineAlertPreview from "../component-previews/inline-alert.preview";
 import inputPreview from "../component-previews/input.preview";
+import itemPreview from "../component-previews/item.preview";
 import menuPreview from "../component-previews/menu.preview";
 import messagePreview from "../component-previews/message.preview";
 import paginationPreview from "../component-previews/pagination.preview";
@@ -153,6 +154,12 @@ export const Input: Story<ComponentPreviewStoryProps> = ({ surface }) => (
 );
 Input.args = componentPreviewStoryArgs;
 Input.argTypes = componentPreviewStoryArgTypes;
+
+export const Item: Story<ComponentPreviewStoryProps> = ({ surface }) => (
+  <ComponentPreviewStory preview={itemPreview} surface={surface} />
+);
+Item.args = componentPreviewStoryArgs;
+Item.argTypes = componentPreviewStoryArgTypes;
 
 export const Menu: Story<ComponentPreviewStoryProps> = ({ surface }) => (
   <ComponentPreviewStory preview={menuPreview} surface={surface} />

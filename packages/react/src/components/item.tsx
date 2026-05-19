@@ -15,8 +15,6 @@ export type ItemIconTone =
   | "default"
   | "inactive"
   | "muted"
-  | "negative"
-  | "positive"
   | "success"
   | "warning";
 export type ItemValueVariant = "primary" | "secondary";
@@ -25,8 +23,6 @@ export type ItemValueTone =
   | "danger"
   | "default"
   | "muted"
-  | "negative"
-  | "positive"
   | "success"
   | "warning";
 export type ItemInputType = "money" | "money-fractional" | "text";
