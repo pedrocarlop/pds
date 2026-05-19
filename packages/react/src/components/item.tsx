@@ -314,14 +314,21 @@ export const ItemSkeletonAvatar = React.forwardRef<
 export const ItemSkeletonContent = React.forwardRef<
   HTMLDivElement,
   ItemSkeletonContainerProps
->(function ItemSkeletonContent({ className, ...props }, ref) {
+>(function ItemSkeletonContent({ children, className, ...props }, ref) {
   return (
     <div
       ref={ref}
       className={cn("pds-item-content", "pds-item-skeleton-content", className)}
       data-slot="item-skeleton-content"
       {...props}
-    />
+    >
+      {children ?? (
+        <>
+          <ItemSkeletonTitle />
+          <ItemSkeletonDescription />
+        </>
+      )}
+    </div>
   );
 });
 
@@ -390,14 +397,16 @@ export const ItemSkeletonActions = React.forwardRef<
 export const ItemSkeletonSide = React.forwardRef<
   HTMLDivElement,
   ItemSkeletonContainerProps
->(function ItemSkeletonSide({ className, ...props }, ref) {
+>(function ItemSkeletonSide({ children, className, ...props }, ref) {
   return (
     <div
       ref={ref}
       className={cn("pds-item-side", "pds-item-skeleton-side", className)}
       data-slot="item-skeleton-side"
       {...props}
-    />
+    >
+      {children ?? <ItemSkeletonValue />}
+    </div>
   );
 });
 

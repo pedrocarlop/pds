@@ -56,7 +56,10 @@ ItemSkeleton mirrors the Item slot structure with `ItemSkeleton.Prefix`,
 `ItemSkeleton.Avatar`, `ItemSkeleton.Content`, `ItemSkeleton.Title`,
 `ItemSkeleton.Description`, `ItemSkeleton.Actions`, `ItemSkeleton.Side`, and
 `ItemSkeleton.Value`. Skeleton children are optional and default to avatar,
-content, and side-value placeholders.
+content, and side-value placeholders. Self-closed `ItemSkeleton.Content`
+renders title and description placeholders; self-closed `ItemSkeleton.Side`
+renders a value placeholder. Pass explicit children to omit or reshape those
+defaults.
 
 ## Public API
 
@@ -162,7 +165,7 @@ color roles, or local component-specific token names.
 ## Composition Examples
 
 ```tsx
-import { Avatar, AvatarFallback, Button, Item } from "@pds/react";
+import { Avatar, AvatarFallback, Button, Item, ItemSkeleton } from "@pds/react";
 
 <Item>
   <Item.Avatar>
@@ -207,6 +210,11 @@ import { Avatar, AvatarFallback, Button, Item } from "@pds/react";
     </Item.Actions>
   </Item.Content>
 </Item>;
+
+<ItemSkeleton>
+  <ItemSkeleton.Content />
+  <ItemSkeleton.Side />
+</ItemSkeleton>;
 ```
 
 ## Known Limitations

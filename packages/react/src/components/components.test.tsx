@@ -407,6 +407,10 @@ describe("PDS starter components", () => {
             <ItemSkeleton.Actions />
           </ItemSkeleton.Content>
         </ItemSkeleton>
+        <ItemSkeleton data-testid="explicit-item-skeleton">
+          <ItemSkeleton.Content />
+          <ItemSkeleton.Side />
+        </ItemSkeleton>
       </>
     );
 
@@ -440,6 +444,16 @@ describe("PDS starter components", () => {
     expect(document.querySelectorAll('[data-slot="item-icon"]')[0]).toHaveTextContent(
       "account_balance"
     );
+    const explicitSkeleton = screen.getByTestId("explicit-item-skeleton");
+    expect(
+      explicitSkeleton.querySelectorAll('[data-slot="item-skeleton-title"]')
+    ).toHaveLength(1);
+    expect(
+      explicitSkeleton.querySelectorAll('[data-slot="item-skeleton-description"]')
+    ).toHaveLength(1);
+    expect(
+      explicitSkeleton.querySelectorAll('[data-slot="item-skeleton-value"]')
+    ).toHaveLength(1);
   });
 
   it("renders Details with named slots, variants, indent, and forwarded refs", () => {

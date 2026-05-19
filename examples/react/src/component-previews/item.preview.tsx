@@ -44,6 +44,13 @@ const preview = {
           </Item.Content>
         </Item>
 
+        <Item aria-pressed use="button" useIcon="search">
+          <Item.Content>
+            <Item.Title>Search transactions</Item.Title>
+            <Item.Description>Selected row action</Item.Description>
+          </Item.Content>
+        </Item>
+
         <Item variant="accent">
           <Item.Avatar>
             <Avatar>
@@ -63,6 +70,24 @@ const preview = {
           </Item.Content>
           <Item.Side>
             <Badge tone="accent">New</Badge>
+          </Item.Side>
+        </Item>
+
+        <Item>
+          <Item.Avatar>
+            <Avatar>
+              <AvatarFallback>FR</AvatarFallback>
+            </Avatar>
+          </Item.Avatar>
+          <Item.Content>
+            <Item.Title>Fraud review completed for your card ending 4021</Item.Title>
+            <Item.Description>
+              We checked the delayed transaction and kept the card active. Review the
+              merchant details before filing a dispute or replacing the card.
+            </Item.Description>
+          </Item.Content>
+          <Item.Side>
+            <Item.Value variant="secondary">Today</Item.Value>
           </Item.Side>
         </Item>
 
@@ -103,6 +128,11 @@ const preview = {
             </Item>
 
             <ItemSkeleton />
+
+            <ItemSkeleton>
+              <ItemSkeleton.Content />
+              <ItemSkeleton.Side />
+            </ItemSkeleton>
           </Stack>
         </NarrowFrame>
       </Stack>
