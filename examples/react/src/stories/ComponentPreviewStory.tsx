@@ -1,10 +1,5 @@
 import type { ComponentPreview } from "../component-previews/types";
-import {
-  MatrixItem,
-  StateMatrix,
-  StoryFrame,
-  surfaceArgTypes
-} from "./StoryFrame";
+import { StoryFrame, surfaceArgTypes } from "./StoryFrame";
 import type { StorySurface } from "./StoryFrame";
 
 export interface ComponentPreviewStoryProps {
@@ -30,11 +25,7 @@ export function ComponentPreviewStory({
       surface={surface}
       title={preview.name}
     >
-      <StateMatrix>
-        <MatrixItem label={preview.name}>
-          <preview.Preview />
-        </MatrixItem>
-      </StateMatrix>
+      <preview.Preview />
     </StoryFrame>
   );
 }

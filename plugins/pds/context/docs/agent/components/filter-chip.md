@@ -2,9 +2,9 @@
 
 ## Purpose
 
-FilterChip is the compact filter summary control for PDS product surfaces. It
-opens or targets filter UI while keeping selected filter values visible inside
-the control.
+FilterChip is the compact, single-pill filter control for PDS product surfaces.
+Each FilterChip opens, targets, or summarizes one filter dimension. A row of
+filters is made from sibling FilterChip instances.
 
 ## Landing Requirement
 
@@ -15,119 +15,147 @@ attributes, content-resilience notes, and focus behavior in sync.
 ## When To Use
 
 - Use for toolbar, header, or list controls that open filter choices.
-- Use `active` when the filter has applied values or represents the current
-  filtering state.
-- Use `FilterChipValue` for visible applied values inside the chip.
+- Use one FilterChip per visible pill such as `Filters · 3`,
+  `Team members · 10`, `Recipients`, or an overflow affordance.
+- Use `active` when that chip is selected or represents applied filter state.
+- Use `count` for the visible numeric summary after the chip label.
 
 ## When Not To Use
 
+- Do not use FilterChip as a container for other chips.
+- Do not put value pills inside FilterChip; render sibling FilterChip instances
+  instead.
 - Do not use FilterChip for status metadata; use Badge.
 - Do not use FilterChip for primary actions; use Button.
-- Do not hide applied filter state in color alone when values can be shown.
+- Do not hide applied filter state in color alone when a count can be shown.
 
 ## Anatomy / Slots
 
 ```tsx
-<FilterChip label="Filters">
-  <FilterChip.Value>Team members</FilterChip.Value>
-  <FilterChip.Value>Statuses</FilterChip.Value>
-</FilterChip>
+<FilterChip count={3} icon="filter_list" label="Filters" />
+<FilterChip count={10} label="Team members" />
+<FilterChip label="Recipients" />
+<FilterChip aria-label="More filters" icon="more_horiz" iconOnly />
 ```
+
+FilterChip is one pill. The primary action and optional remove action are
+sibling buttons inside the root so remove controls never create nested buttons.
 
 ## Public API
 
 | Prop | Values | Default | Notes |
 | --- | --- | --- | --- |
-| `label` | `ReactNode` | required | Primary filter control label. |
+| `label` | `ReactNode` | `undefined` | Visible chip label unless `iconOnly` is true. String labels can also name icon-only chips. |
+| `icon` | Material Symbols name | `undefined` | Optional leading icon rendered through Icon. |
+| `count` | `ReactNode` | `undefined` | Optional visible summary rendered after a separator. |
 | `active` | `boolean` | `false` | Maps to `data-active` and default `aria-pressed` when no `aria-pressed` prop is provided. |
-| `disabled` | native button disabled | `false` | Uses native button disabled behavior and `data-disabled`. |
+| `disabled` | native button disabled | `false` | Disables the primary action and remove action. |
+| `iconOnly` | `boolean` | `false` | Renders the compact circular form. Provide `aria-label`, `aria-labelledby`, or a string `label`. |
+| `notification` | `boolean` | `false` | Adds a small status-danger notification dot for icon-only filter alerts. |
+| `onRemove` | button click handler | `undefined` | Adds a sibling remove button. |
+| `removeLabel` | `string` | generated from `label` | Accessible name for the remove button. |
 
-FilterChip extends native `button` attributes, forwards refs, preserves
-`className`, and defaults `type` to `button`.
-
-FilterChipValue extends native `span` attributes, forwards refs, and preserves
-`className`. It is available as both `FilterChip.Value` and
-`FilterChipValue`.
+FilterChip extends native `button` attributes for the primary action, forwards a
+ref to the root `span`, preserves `className`, and defaults action `type` to
+`button`.
 
 ## Data Attributes
 
 | Attribute | Values | Owner |
 | --- | --- | --- |
-| `data-slot` | `filter-chip` | FilterChip |
-| `data-slot` | `filter-chip-label` | FilterChip |
-| `data-slot` | `filter-chip-values` | FilterChip |
-| `data-slot` | `filter-chip-value` | FilterChipValue |
-| `data-active` | `true` | FilterChip |
-| `data-disabled` | `true` | FilterChip |
+| `data-slot` | `filter-chip` | Root |
+| `data-slot` | `filter-chip-action` | Primary action |
+| `data-slot` | `filter-chip-icon` | Icon |
+| `data-slot` | `filter-chip-label` | Label |
+| `data-slot` | `filter-chip-separator` | Separator |
+| `data-slot` | `filter-chip-count` | Count |
+| `data-slot` | `filter-chip-remove` | Remove button |
+| `data-slot` | `filter-chip-notification` | Notification dot |
+| `data-active` | `true` | Root |
+| `data-disabled` | `true` | Root |
+| `data-icon-only` | `true` | Root |
+| `data-removable` | `true` | Root |
 
 ## Accessibility Contract
 
-FilterChip renders a native `button`. Consumers should provide an accessible
-label when the visible content is not enough, and should wire `aria-expanded`,
-`aria-controls`, or popover/menu behavior when the chip opens another surface.
+FilterChip renders native buttons for actions. Consumers should wire
+`aria-expanded`, `aria-controls`, or popover/menu behavior when the chip opens
+another surface.
 
-When `active` is true, FilterChip sets `aria-pressed="true"` unless the consumer
-provides `aria-pressed`. Applied values remain visible text, so screen readers
-can announce them as part of the button name.
+When `active` is true, the primary action sets `aria-pressed="true"` unless the
+consumer provides `aria-pressed`. Icon-only chips must have an accessible name
+through `aria-label`, `aria-labelledby`, or a string `label`.
+
+Remove buttons are sibling controls with their own accessible name and native
+disabled behavior.
 
 ## Content Resilience Rules
 
-FilterChip labels and values wrap by default. Applied values should stay visible
-in narrow toolbars, translated strings, zoomed layouts, and compact side panels.
+FilterChip labels wrap by default. Keep counts visible next to their labels in
+narrow toolbars, translated strings, zoomed layouts, and compact side panels.
 Do not truncate required filter state inside this component.
+
+`iconOnly` is the fixed-size exception. It should contain a compact icon such as
+`filter_list` or `more_horiz`, not visible prose.
 
 ## Styling Contract
 
-The root class is `pds-filter-chip`; value styling uses
-`pds-filter-chip-value`. Styling lives in
-`packages/react/src/components.css`.
+The root class is `pds-filter-chip`. Action, icon, label, separator, count,
+remove, and notification styling uses the matching `pds-filter-chip-*` classes.
+Styling lives in `packages/react/src/components.css`.
 
-CSS depends on `data-active`, `data-disabled`, `:disabled`, `:hover`,
-`:active`, and `:focus-visible`. Preserve those selectors when changing
-implementation details.
+CSS depends on `data-active`, `data-disabled`, `data-icon-only`,
+`data-removable`, native `:disabled`, `:hover`, `:active`, and
+`:focus-visible`. Preserve those selectors when changing implementation
+details.
 
 ## Token Usage
 
-FilterChip uses PDS color, typography, spacing, radius, focus, and motion
-tokens. Active and interaction states use shared state-layer tokens instead of
-one-off colors.
+FilterChip uses PDS color, typography, spacing, radius, focus, status, and
+motion tokens. The active reference state uses the neutral accent tokens for a
+white selected pill, while hover and pressed treatments use shared state-layer
+tokens.
 
 ## State Behavior
 
 `active` changes visual treatment and default pressed semantics. Native
-`disabled` prevents activation and removes hover/pressed treatments through CSS.
-FilterChip does not own popover state or filter values.
+`disabled` prevents activation on both action buttons and removes hover/pressed
+treatments through root `data-disabled`. FilterChip does not own popover state
+or filter values.
 
 ## Composition Examples
 
 ```tsx
 import { FilterChip } from "@pds/react";
 
-<FilterChip label="Filters" />
-
-<FilterChip active label="Filters">
-  <FilterChip.Value>Team members</FilterChip.Value>
-  <FilterChip.Value>Statuses</FilterChip.Value>
-</FilterChip>
+<FilterChip count={3} icon="filter_list" label="Filters" />
+<FilterChip active count={10} label="Team members" />
+<FilterChip disabled label="Recipients" />
+<FilterChip aria-label="More filters" icon="more_horiz" iconOnly />
+<FilterChip label="Statuses" onRemove={handleRemoveStatus} />
 ```
 
 ## Known Limitations
 
 - FilterChip does not open a popover or menu by itself.
-- FilterChipValue is display-only and does not provide remove buttons.
 - FilterChip does not manage filter selection state.
+- FilterChip does not validate Material Symbols names at runtime.
 
 ## Do / Don't For Agents
 
 Do:
 
+- Preserve the single-pill anatomy: one FilterChip equals one visible chip.
+- Render repeated filter options as sibling FilterChip instances.
 - Preserve native button semantics and default `type="button"`.
-- Keep applied values visible and wrapping.
+- Keep labels and counts visible and wrapping.
+- Use `Icon` with Material Symbols names for leading and overflow icons.
 - Use `active` only for applied or selected filter state.
 
 Don't:
 
-- Do not use FilterChip as a badge or status-only label.
+- Do not add chips, badges, or value pills inside a FilterChip.
+- Do not recreate `FilterChip.Value` or any child-slot value API.
 - Do not add icon-only filter chips without an accessible label.
 - Do not hard-code colors, spacing, radius, or motion values.
 
@@ -135,6 +163,7 @@ Don't:
 
 - [Button](button.md)
 - [Badge](badge.md)
+- [Icon](icon.md)
 - [Popover](popover.md)
 
 ## Related Sources

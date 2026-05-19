@@ -1,10 +1,9 @@
-import type { ReactNode } from "react";
 import { FilterChip } from "@pds/react";
 
 import { Row, Stack } from "../stories/StoryFrame";
 import type { ComponentPreview } from "./types";
 
-function AppliedFilters({
+function FilterChipSet({
   active,
   disabled
 }: {
@@ -12,62 +11,70 @@ function AppliedFilters({
   disabled?: boolean;
 }) {
   return (
-    <FilterChip active={active} disabled={disabled} label="Filters">
-      <FilterChip.Value>Team members</FilterChip.Value>
-      <FilterChip.Value>Recipients</FilterChip.Value>
-      <FilterChip.Value>Statuses</FilterChip.Value>
-    </FilterChip>
-  );
-}
-
-function WidthFrame({
-  children,
-  width
-}: {
-  children: ReactNode;
-  width: string;
-}) {
-  return (
-    <div style={{ maxWidth: "100%", width }}>
-      {children}
-    </div>
+    <Row>
+      <FilterChip
+        active={active}
+        count={3}
+        disabled={disabled}
+        icon="filter_list"
+        label="Filters"
+      />
+      <FilterChip
+        active={active}
+        count={10}
+        disabled={disabled}
+        label="Team members"
+      />
+      <FilterChip active={active} disabled={disabled} label="Recipients" />
+      <FilterChip active={active} disabled={disabled} label="Statuses" />
+    </Row>
   );
 }
 
 const preview = {
   description:
-    "Filter summary control with applied values, active state, disabled state, and narrow wrapping.",
+    "Sibling filter controls with icon, count, active state, disabled state, overflow, and removable forms.",
   group: "Forms",
   id: "filter-chip",
   name: "FilterChip",
   Preview() {
     return (
       <Stack>
+        <FilterChipSet />
+        <FilterChipSet active />
+        <FilterChipSet disabled />
+        <FilterChipSet active disabled />
         <Row>
-          <AppliedFilters />
-          <AppliedFilters active />
-          <AppliedFilters disabled />
-          <AppliedFilters active disabled />
+          <FilterChip count={3} icon="filter_list" label="Filters" />
+          <FilterChip count={10} label="Team members" />
+          <FilterChip aria-label="More filters" icon="more_horiz" iconOnly />
         </Row>
         <Row>
-          <FilterChip label="Filters" />
-          <FilterChip active label="Filters">
-            <FilterChip.Value>
-              Translated approval responsibility
-            </FilterChip.Value>
-          </FilterChip>
+          <FilterChip count={3} icon="filter_list" label="Filters" />
+          <FilterChip aria-label="More filters" icon="more_horiz" iconOnly />
         </Row>
-        <Stack>
-          <WidthFrame width="400px">
-            <AppliedFilters active />
-          </WidthFrame>
-          <WidthFrame width="200px">
-            <AppliedFilters active />
-          </WidthFrame>
-          <WidthFrame width="40px">
-            <AppliedFilters active />
-          </WidthFrame>
-        </Stack>
+        <Row>
+          <FilterChip
+            aria-label="Filters with new activity"
+            icon="filter_list"
+            iconOnly
+            notification
+          />
+        </Row>
+        <Row>
+          <FilterChip count={3} icon="filter_list" label="Filters" />
+        </Row>
+        <Row>
+          <FilterChip aria-label="Open filters" icon="filter_list" iconOnly />
+        </Row>
+        <Row>
+          <FilterChip
+            count={10}
+            icon="filter_list"
+            label="Team members"
+            onRemove={() => undefined}
+          />
+        </Row>
       </Stack>
     );
   }

@@ -24,6 +24,7 @@ limitations.
 ## Current Context Files
 
 - [ActionMenu](action-menu.md)
+- [ActionWidget](action-widget.md)
 - [Amount](amount.md)
 - [Avatar](avatar.md)
 - [Badge](badge.md)
@@ -39,6 +40,7 @@ limitations.
 - [Composer](composer.md)
 - [Dialog](dialog.md)
 - [FilterChip](filter-chip.md)
+- [Icon](icon.md)
 - [InlineAlert](inline-alert.md)
 - [Input](input.md)
 - [Menu](menu.md)

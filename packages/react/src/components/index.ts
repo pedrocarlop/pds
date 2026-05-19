@@ -11,6 +11,19 @@ export {
 } from "./action-menu";
 export type { ActionMenuItemProps } from "./action-menu";
 export {
+  ActionWidget,
+  ActionWidgetActions,
+  ActionWidgetAvatar,
+  ActionWidgetContent,
+  ActionWidgetTitle
+} from "./action-widget";
+export type {
+  ActionWidgetActionsJustify,
+  ActionWidgetActionsProps,
+  ActionWidgetLevel,
+  ActionWidgetProps
+} from "./action-widget";
+export {
   Amount,
   AmountCurrency,
   AmountInput,
@@ -121,8 +134,10 @@ export {
   InlineAlertTitle
 } from "./inline-alert";
 export type { InlineAlertProps, InlineAlertTone } from "./inline-alert";
-export { FilterChip, FilterChipValue } from "./filter-chip";
+export { FilterChip } from "./filter-chip";
 export type { FilterChipProps } from "./filter-chip";
+export { Icon } from "./icon";
+export type { IconProps } from "./icon";
 export { Input } from "./input";
 export type { FieldDensity, InputProps } from "./input";
 export {

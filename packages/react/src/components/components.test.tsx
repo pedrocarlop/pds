@@ -10,6 +10,11 @@ import {
   ActionMenuItem,
   ActionMenuShortcut,
   ActionMenuTrigger,
+  ActionWidget,
+  ActionWidgetActions,
+  ActionWidgetAvatar,
+  ActionWidgetContent,
+  ActionWidgetTitle,
   Amount,
   AmountCurrency,
   AmountInput,
@@ -73,7 +78,7 @@ import {
   DialogTitle,
   DialogTrigger,
   FilterChip,
-  FilterChipValue,
+  Icon,
   InlineAlert,
   InlineAlertActions,
   InlineAlertDescription,
@@ -199,13 +204,34 @@ describe("PDS starter components", () => {
     );
   });
 
-  it("keeps Button long labels accessible to assistive technology", () => {
+  it("keeps full Button labels accessible to assistive technology", () => {
     const label =
-      "Run the extremely long agent handoff workflow without truncating the action label";
+      "Run the extremely long agent handoff workflow with full accessible context";
 
     render(<Button>{label}</Button>);
 
     expect(screen.getByRole("button", { name: label })).toHaveTextContent(label);
+  });
+
+  it("renders Icon with Material Symbols Rounded hooks", () => {
+    const ref = React.createRef<HTMLSpanElement>();
+
+    render(<Icon ref={ref} label="Create run" name="add" />);
+
+    const icon = screen.getByRole("img", { name: "Create run" });
+    expect(icon).toHaveAttribute("data-slot", "icon");
+    expect(icon).toHaveAttribute("data-icon", "");
+    expect(icon).toHaveClass("pds-icon", "material-symbols-rounded");
+    expect(icon).toHaveTextContent("add");
+    expect(ref.current).toBe(icon);
+  });
+
+  it("renders decorative Icon as hidden from assistive technology by default", () => {
+    const { container } = render(<Icon name="add" />);
+
+    const icon = container.querySelector("[data-slot='icon']");
+    expect(icon).toHaveAttribute("aria-hidden", "true");
+    expect(icon).not.toHaveAttribute("role");
   });
 
   it("renders Cell with row attributes, variants, and forwarded refs", () => {
@@ -447,27 +473,46 @@ describe("PDS starter components", () => {
     expect(link).toHaveAttribute("data-tone", "accent");
   });
 
-  it("renders FilterChip with active values, className, and forwarded refs", () => {
-    const ref = React.createRef<HTMLButtonElement>();
+  it("renders FilterChip with icon, label, separator, count, and active state", () => {
+    const ref = React.createRef<HTMLSpanElement>();
 
     render(
-      <FilterChip ref={ref} active className="custom-filter-chip" label="Filters">
-        <FilterChip.Value>Team members</FilterChip.Value>
-        <FilterChipValue>Statuses</FilterChipValue>
-      </FilterChip>
+      <FilterChip
+        ref={ref}
+        active
+        className="custom-filter-chip"
+        count={3}
+        icon="filter_list"
+        label="Filters"
+      />
     );
 
-    const chip = screen.getByRole("button", {
-      name: /Filters.*Team members.*Statuses/
+    const action = screen.getByRole("button", {
+      name: /Filters.*3/
     });
-    expect(chip).toHaveAttribute("data-slot", "filter-chip");
+    const chip = action.closest('[data-slot="filter-chip"]');
+
     expect(chip).toHaveAttribute("data-active", "true");
-    expect(chip).toHaveAttribute("aria-pressed", "true");
     expect(chip).toHaveClass("pds-filter-chip", "custom-filter-chip");
     expect(ref.current).toBe(chip);
-    expect(screen.getByText("Team members")).toHaveAttribute(
+    expect(action).toHaveAttribute("data-slot", "filter-chip-action");
+    expect(action).toHaveAttribute("aria-pressed", "true");
+    expect(action).toHaveAttribute("type", "button");
+    expect(screen.getByText("filter_list")).toHaveAttribute(
       "data-slot",
-      "filter-chip-value"
+      "filter-chip-icon"
+    );
+    expect(screen.getByText("Filters")).toHaveAttribute(
+      "data-slot",
+      "filter-chip-label"
+    );
+    expect(screen.getByText("·")).toHaveAttribute(
+      "data-slot",
+      "filter-chip-separator"
+    );
+    expect(screen.getByText("3")).toHaveAttribute(
+      "data-slot",
+      "filter-chip-count"
     );
   });
 
@@ -475,19 +520,60 @@ describe("PDS starter components", () => {
     const handleClick = vi.fn();
 
     render(
-      <FilterChip disabled label="Filters" onClick={handleClick}>
-        <FilterChip.Value>Recipients</FilterChip.Value>
-      </FilterChip>
+      <FilterChip disabled label="Recipients" onClick={handleClick} />
     );
 
-    const chip = screen.getByRole("button", { name: /Filters.*Recipients/ });
-    expect(chip).toHaveAttribute("data-disabled", "true");
-    expect(chip).toHaveAttribute("type", "button");
-    expect(chip).toBeDisabled();
+    const action = screen.getByRole("button", { name: "Recipients" });
+    const chip = action.closest('[data-slot="filter-chip"]');
 
-    fireEvent.click(chip);
+    expect(chip).toHaveAttribute("data-disabled", "true");
+    expect(action).toHaveAttribute("type", "button");
+    expect(action).toBeDisabled();
+
+    fireEvent.click(action);
 
     expect(handleClick).not.toHaveBeenCalled();
+  });
+
+  it("renders icon-only FilterChip with an accessible name and notification", () => {
+    render(
+      <FilterChip
+        aria-label="Filters with new activity"
+        icon="filter_list"
+        iconOnly
+        notification
+      />
+    );
+
+    const action = screen.getByRole("button", {
+      name: "Filters with new activity"
+    });
+    const chip = action.closest('[data-slot="filter-chip"]');
+
+    expect(chip).toHaveAttribute("data-icon-only", "true");
+    expect(
+      chip?.querySelector('[data-slot="filter-chip-notification"]')
+    ).not.toBeNull();
+    expect(action).not.toHaveTextContent("Filters with new activity");
+  });
+
+  it("renders removable FilterChip actions as sibling buttons", () => {
+    const handleRemove = vi.fn();
+
+    render(<FilterChip count={10} label="Team members" onRemove={handleRemove} />);
+
+    const action = screen.getByRole("button", { name: /Team members.*10/ });
+    const remove = screen.getByRole("button", { name: "Remove Team members" });
+    const chip = action.closest('[data-slot="filter-chip"]');
+
+    expect(chip).toHaveAttribute("data-removable", "true");
+    expect(remove).toHaveAttribute("data-slot", "filter-chip-remove");
+    expect(chip?.querySelectorAll("button")).toHaveLength(2);
+    expect(action.querySelector("button")).toBeNull();
+
+    fireEvent.click(remove);
+
+    expect(handleRemove).toHaveBeenCalledTimes(1);
   });
 
   it("renders Avatar primitives with size, className, and forwarded refs", () => {
@@ -572,6 +658,52 @@ describe("PDS starter components", () => {
       "data-slot",
       "surface-footer"
     );
+  });
+
+  it("renders ActionWidget with PDS primitive slots and compound members", () => {
+    const ref = React.createRef<HTMLDivElement>();
+
+    render(
+      <ActionWidget ref={ref} className="custom-widget" level="nested">
+        <ActionWidgetAvatar>
+          <Icon name="bolt" />
+        </ActionWidgetAvatar>
+        <ActionWidgetTitle>Review generated output</ActionWidgetTitle>
+        <ActionWidgetContent>Inspect the changes before approval.</ActionWidgetContent>
+        <ActionWidgetActions justify="center">
+          <Button intent="secondary" size="sm">
+            Inspect
+          </Button>
+          <Button size="sm">Approve</Button>
+        </ActionWidgetActions>
+      </ActionWidget>
+    );
+
+    const widget = screen
+      .getByText("Review generated output")
+      .closest('[data-slot="action-widget"]');
+    expect(widget).toHaveAttribute("data-level", "nested");
+    expect(widget).toHaveClass("pds-surface", "pds-action-widget", "custom-widget");
+    expect(ref.current).toBe(widget);
+    expect(screen.getByText("Review generated output")).toHaveAttribute(
+      "data-slot",
+      "action-widget-title"
+    );
+    expect(screen.getByText("Inspect the changes before approval.")).toHaveAttribute(
+      "data-slot",
+      "action-widget-content"
+    );
+    expect(screen.getByText("bolt").closest(
+      '[data-slot="action-widget-avatar"]'
+    )).toHaveClass("pds-action-widget-avatar");
+    expect(screen.getByRole("button", { name: "Inspect" }).closest(
+      '[data-slot="action-widget-actions"]'
+    )).toHaveAttribute("data-justify", "center");
+
+    expect(ActionWidget.Title).toBe(ActionWidgetTitle);
+    expect(ActionWidget.Avatar).toBe(ActionWidgetAvatar);
+    expect(ActionWidget.Content).toBe(ActionWidgetContent);
+    expect(ActionWidget.Actions).toBe(ActionWidgetActions);
   });
 
   it("renders RunStatus statuses with badge-compatible attributes", () => {

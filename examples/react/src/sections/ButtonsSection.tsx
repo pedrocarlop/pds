@@ -1,23 +1,4 @@
-import { Button } from "@pds/react";
-
-function PlusIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      data-icon=""
-      fill="none"
-      viewBox="0 0 16 16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M8 3.5v9M3.5 8h9"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="1.7"
-      />
-    </svg>
-  );
-}
+import { Button, Icon } from "@pds/react";
 
 export function ButtonsSection() {
   return (
@@ -25,7 +6,7 @@ export function ButtonsSection() {
       <div className="examples-section-heading">
         <h2 id="buttons-title">Button</h2>
         <p>
-          Intent, size, disabled, wrapping, and narrow-row behavior using the
+          Intent, fixed size, disabled, icon, and narrow-row behavior using the
           public Button API.
         </p>
       </div>
@@ -51,7 +32,7 @@ export function ButtonsSection() {
             <Button size="md">Medium</Button>
             <Button size="lg">Large</Button>
             <Button aria-label="Create run" size="icon">
-              <PlusIcon />
+              <Icon name="add" />
             </Button>
           </div>
         </div>
@@ -70,15 +51,10 @@ export function ButtonsSection() {
         </div>
 
         <div className="examples-panel">
-          <h3>Long content</h3>
+          <h3>Copy</h3>
           <div className="examples-row">
-            <Button>
-              Run the agent with a translated label that may wrap across more
-              than one line
-            </Button>
-            <Button intent="secondary">
-              Review unusually long generated output before publishing
-            </Button>
+            <Button>Generate summary</Button>
+            <Button intent="secondary">Review output</Button>
           </div>
         </div>
 

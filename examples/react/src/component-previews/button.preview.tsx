@@ -1,10 +1,10 @@
-import { Button } from "@pds/react";
+import { Button, Icon } from "@pds/react";
 
-import { longLabel, NarrowFrame, Row, Stack } from "../stories/StoryFrame";
+import { NarrowFrame, Row, Stack } from "../stories/StoryFrame";
 import type { ComponentPreview } from "./types";
 
 const preview = {
-  description: "Action intent, sizing, disabled state, icon size, and long labels.",
+  description: "Action intent, fixed sizing, disabled state, icon size, and compact labels.",
   group: "Actions",
   id: "button",
   name: "Button",
@@ -23,11 +23,14 @@ const preview = {
           <Button size="md">Medium</Button>
           <Button size="lg">Large</Button>
           <Button aria-label="Pin run" size="icon">
-            ^
+            <Icon name="keep" />
           </Button>
         </Row>
         <NarrowFrame>
-          <Button>{longLabel}</Button>
+          <Row>
+            <Button>Approve</Button>
+            <Button intent="secondary">Review</Button>
+          </Row>
           <Button disabled intent="secondary">
             Disabled
           </Button>

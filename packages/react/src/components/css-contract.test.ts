@@ -32,18 +32,32 @@ describe("PDS CSS contract", () => {
   it("contains required starter component selectors and data-state hooks", () => {
     const requiredSelectors = [
       ".pds-button",
+      ".pds-icon",
+      ".material-symbols-rounded",
       '.pds-button[data-size="sm"]',
       '.pds-button[data-intent="primary"]',
       '.pds-button[data-intent="danger"]',
       ".pds-action-menu-content",
       ".pds-action-menu-item",
       '.pds-action-menu-item[data-intent="danger"]',
+      ".pds-action-widget",
+      ".pds-action-widget-title",
+      ".pds-action-widget-avatar",
+      ".pds-action-widget-content",
+      ".pds-action-widget-actions",
+      '.pds-action-widget-actions[data-justify="center"]',
       ".pds-badge",
       '.pds-badge[data-tone="success"]',
       '.pds-badge[data-emphasis="outline"]',
       ".pds-filter-chip",
       '.pds-filter-chip[data-active="true"]',
-      ".pds-filter-chip-value",
+      ".pds-filter-chip-action",
+      ".pds-filter-chip-icon",
+      ".pds-filter-chip-label",
+      ".pds-filter-chip-separator",
+      ".pds-filter-chip-count",
+      ".pds-filter-chip-remove",
+      ".pds-filter-chip-notification",
       ".pds-breadcrumbs",
       ".pds-breadcrumbs-link",
       ".pds-cell",
@@ -204,16 +218,55 @@ describe("PDS CSS contract", () => {
     expect(componentStyles).not.toMatch(/\bshadcn\b/i);
   });
 
+  it("uses Google Material Symbols Rounded for PDS icons", () => {
+    expect(componentStyles).toContain("Material+Symbols+Rounded");
+    expect(componentStyles).toContain(".material-symbols-rounded");
+    expect(componentStyles).toContain(".pds-icon");
+    expect(componentStyles).toContain('"FILL" 0');
+    expect(componentStyles).toContain('"wght" 400');
+    expect(componentStyles).toContain('"GRAD" 0');
+    expect(componentStyles).toContain('"opsz" 24');
+  });
+
+  it("keeps Button fixed-height and single-line", () => {
+    const buttonBlock = componentStyles.match(/\.pds-button\s*{[^}]*}/)?.[0];
+    const smallBlock = componentStyles.match(
+      /\.pds-button\[data-size="sm"\]\s*{[^}]*}/
+    )?.[0];
+    const mediumBlock = componentStyles.match(
+      /\.pds-button\[data-size="md"\]\s*{[^}]*}/
+    )?.[0];
+    const largeBlock = componentStyles.match(
+      /\.pds-button\[data-size="lg"\]\s*{[^}]*}/
+    )?.[0];
+
+    expect(buttonBlock).toBeDefined();
+    expect(buttonBlock).toContain("box-sizing: border-box;");
+    expect(buttonBlock).toContain("white-space: nowrap;");
+    expect(buttonBlock).toContain("text-overflow: ellipsis;");
+    expect(buttonBlock).not.toContain("white-space: normal;");
+
+    expect(smallBlock).toContain("height: 32px;");
+    expect(mediumBlock).toContain("height: 36px;");
+    expect(largeBlock).toContain("height: 44px;");
+    expect(smallBlock).not.toContain("min-height:");
+    expect(mediumBlock).not.toContain("min-height:");
+    expect(largeBlock).not.toContain("min-height:");
+  });
+
   it("keeps text-bearing components resilient in narrow containers", () => {
     const resilientSelectors = [
-      ".pds-button",
       ".pds-badge",
       ".pds-filter-chip",
+      ".pds-filter-chip-action",
       ".pds-filter-chip-label",
-      ".pds-filter-chip-values",
-      ".pds-filter-chip-value",
       ".pds-action-menu-content",
       ".pds-action-menu-item",
+      ".pds-action-widget",
+      ".pds-action-widget-title",
+      ".pds-action-widget-avatar",
+      ".pds-action-widget-content",
+      ".pds-action-widget-actions",
       ".pds-breadcrumbs",
       ".pds-breadcrumbs-link",
       ".pds-breadcrumbs-page",
@@ -299,6 +352,15 @@ describe("PDS CSS contract", () => {
     expect(transcriptBlock).not.toMatch(/max-height:/);
   });
 
+  it("keeps structural widgets filling their available container width", () => {
+    const actionWidgetBlock = componentStyles.match(
+      /\.pds-action-widget\s*{[^}]*}/
+    )?.[0];
+
+    expect(actionWidgetBlock).toBeDefined();
+    expect(actionWidgetBlock).toContain("width: 100%;");
+  });
+
   it("does not apply hover treatments to disabled controls", () => {
     expect(componentStyles).toContain(
       '.pds-button[data-intent="primary"]:not(:disabled, [aria-disabled="true"]):hover'
@@ -306,8 +368,12 @@ describe("PDS CSS contract", () => {
     expect(componentStyles).toContain(
       '.pds-button[data-intent="primary"]:not(:disabled, [aria-disabled="true"]):active'
     );
-    expect(componentStyles).toContain(".pds-filter-chip:not(:disabled):hover");
-    expect(componentStyles).toContain(".pds-filter-chip:not(:disabled):active");
+    expect(componentStyles).toContain(
+      '.pds-filter-chip:not([data-disabled="true"]):hover'
+    );
+    expect(componentStyles).toContain(
+      '.pds-filter-chip:not([data-disabled="true"]):active'
+    );
     expect(componentStyles).toContain(
       '.pds-cell:is(button, a, label, [role="button"]):not(:disabled, [aria-disabled="true"]):hover'
     );

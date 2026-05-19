@@ -38,7 +38,7 @@ the package stylesheet can size them consistently.
 
 ```tsx
 <Button>
-  <Icon aria-hidden="true" data-icon="" />
+  <Icon name="add" />
   Run agent
 </Button>
 ```
@@ -79,11 +79,17 @@ use a real anchor with `href`.
 
 ## Content Resilience Rules
 
-Button labels wrap by default and should remain readable in narrow containers,
-translated strings, and 200% zoom. Do not truncate primary actions.
+Button sizes are fixed-height and labels render as a single line. Keep action
+copy concise; do not put explanatory, sentence-length, or multi-line content in
+Button. Put supporting context beside the button or in the surrounding surface
+when the action needs more explanation.
 
-`size="icon"` is the fixed-size exception. It should contain an icon or compact
-accessible affordance, not long text.
+The full label must stay in the DOM for assistive technology, but the visual
+button must not grow taller to absorb long copy. Do not rely on Button wrapping
+for translation, narrow containers, or 200% zoom.
+
+`size="icon"` is the square fixed-size variant. It should contain an icon or
+compact accessible affordance, not long text.
 
 ## Styling Contract
 
@@ -113,13 +119,13 @@ instead of adding one-off colors, spacing, radii, transitions, or shadows.
 ## Composition Examples
 
 ```tsx
-import { Button } from "@pds/react";
+import { Button, Icon } from "@pds/react";
 
 <Button>Run agent</Button>
 <Button intent="secondary">View details</Button>
 <Button intent="danger">Delete run</Button>
 <Button aria-label="Create run" size="icon">
-  <PlusIcon aria-hidden="true" data-icon="" />
+  <Icon name="add" />
 </Button>
 <Button asChild intent="link">
   <a href="/runs">View runs</a>
@@ -137,7 +143,8 @@ import { Button } from "@pds/react";
 Do:
 
 - Preserve `data-slot`, `data-intent`, and `data-size`.
-- Keep labels available and wrapping by default.
+- Keep labels concise and single-line.
+- Preserve the fixed-height sizing contract.
 - Use `intent="danger"` only for destructive actions.
 - Add tests when changing public props, default behavior, or state selectors.
 
@@ -146,7 +153,7 @@ Don't:
 - Do not add Tailwind, CVA, shadcn variants, or hard-coded visual values.
 - Do not change the default native `type="button"` without updating tests and
   docs.
-- Do not truncate primary action labels.
+- Do not put explanatory or sentence-length copy inside Button.
 - Do not add component-specific hover color tokens unless the shared state layer
   model cannot express the behavior.
 

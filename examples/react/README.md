@@ -14,6 +14,9 @@ Ladle previews are registry-driven from `src/component-previews`.
   components only from `@pds/react`.
 - The registry in `src/component-previews/index.ts` auto-loads matching preview
   modules, so a new preview appears in Ladle without editing the story file.
+- Single-component Ladle pages render the preview directly under the page
+  header. Do not wrap those pages in per-component panels or repeat the page
+  title and description as subheaders; reserve labeled panels for the gallery.
 - Run `pnpm examples:previews:sync` after adding or removing a preview module so
   the static Ladle sidebar stories are regenerated.
 - `pnpm examples:previews:check` fails when a root component source file and

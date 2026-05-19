@@ -15,6 +15,9 @@ patch the smallest durable guidance owner.
    generated UI, screenshot, or Figma handoff. If feedback mentions an original
    component or upstream primitive, inspect that source when available and
    separate original construction laws from the PDS mapping.
+   For component anatomy mismatches, explicitly compare root elements,
+   sibling/child structure, visible affordances, states, and displayed data
+   before changing docs or code.
 3. Diagnose the root cause as missing, failed, ambiguous, conflicting, or
    unowned guidance; missing evidence; implementation shortcut; missing
    enforcement; or premature systemization.

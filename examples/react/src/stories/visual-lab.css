@@ -36,6 +36,8 @@ body {
 
 .visual-lab-shell {
   display: grid;
+  align-content: start;
+  grid-auto-rows: max-content;
   width: min(100%, var(--pds-layout-content-max));
   min-height: 100vh;
   gap: var(--pds-space-sp-600);
@@ -67,6 +69,7 @@ body {
 .visual-lab-form-grid,
 .visual-lab-product-frame {
   display: grid;
+  align-content: start;
   min-width: 0;
 }
 

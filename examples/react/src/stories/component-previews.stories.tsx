@@ -1,6 +1,7 @@
 import type { Story, StoryDefault } from "@ladle/react";
 
 import actionMenuPreview from "../component-previews/action-menu.preview";
+import actionWidgetPreview from "../component-previews/action-widget.preview";
 import amountPreview from "../component-previews/amount.preview";
 import avatarPreview from "../component-previews/avatar.preview";
 import badgePreview from "../component-previews/badge.preview";
@@ -14,6 +15,7 @@ import dataListPreview from "../component-previews/data-list.preview";
 import detailsPreview from "../component-previews/details.preview";
 import dialogPreview from "../component-previews/dialog.preview";
 import filterChipPreview from "../component-previews/filter-chip.preview";
+import iconPreview from "../component-previews/icon.preview";
 import inlineAlertPreview from "../component-previews/inline-alert.preview";
 import inputPreview from "../component-previews/input.preview";
 import menuPreview from "../component-previews/menu.preview";
@@ -49,6 +51,12 @@ export const ActionMenu: Story<ComponentPreviewStoryProps> = ({ surface }) => (
 );
 ActionMenu.args = componentPreviewStoryArgs;
 ActionMenu.argTypes = componentPreviewStoryArgTypes;
+
+export const ActionWidget: Story<ComponentPreviewStoryProps> = ({ surface }) => (
+  <ComponentPreviewStory preview={actionWidgetPreview} surface={surface} />
+);
+ActionWidget.args = componentPreviewStoryArgs;
+ActionWidget.argTypes = componentPreviewStoryArgTypes;
 
 export const Amount: Story<ComponentPreviewStoryProps> = ({ surface }) => (
   <ComponentPreviewStory preview={amountPreview} surface={surface} />
@@ -127,6 +135,12 @@ export const FilterChip: Story<ComponentPreviewStoryProps> = ({ surface }) => (
 );
 FilterChip.args = componentPreviewStoryArgs;
 FilterChip.argTypes = componentPreviewStoryArgTypes;
+
+export const Icon: Story<ComponentPreviewStoryProps> = ({ surface }) => (
+  <ComponentPreviewStory preview={iconPreview} surface={surface} />
+);
+Icon.args = componentPreviewStoryArgs;
+Icon.argTypes = componentPreviewStoryArgTypes;
 
 export const InlineAlert: Story<ComponentPreviewStoryProps> = ({ surface }) => (
   <ComponentPreviewStory preview={inlineAlertPreview} surface={surface} />

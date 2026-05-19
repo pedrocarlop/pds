@@ -66,6 +66,11 @@ linked docs and the token package source before making a visual decision.
 - When a request references an original component, raw code, or an upstream
   design-system primitive, extract the original fill, radius, spacing,
   typography, state, and accessibility laws before mapping them to PDS.
+- When a request includes a visual reference for a component, map the component
+  anatomy before implementation: root elements, sibling groups, child slots,
+  icons, counters, remove controls, selected/disabled states, and overflow
+  forms. Do not convert repeated sibling controls into child slots unless the
+  reference or upstream source explicitly shows containment.
 - If the original source is missing, ask for it or document assumptions; do not
   present inferred PDS defaults as the original component contract.
 - Never hard-code colors in UI CSS, component code, examples, inline SVGs, or data URI assets.

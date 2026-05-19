@@ -38,7 +38,7 @@ use public imports from @pds/react, and run the app checks.
 
 ## Current Surface
 
-- Button, Badge, FilterChip, Avatar, Surface, Cell, Details, Tooltip, Dialog,
+- Icon, Button, Badge, FilterChip, Avatar, Surface, ActionWidget, Cell, Details, Tooltip, Dialog,
   BottomSheet, Toast, Input, Amount, Textarea, Select, Checkbox, RadioGroup,
   Switch, Tabs, Menu, Popover, Skeleton, Progress, InlineAlert, Table, DataList,
   Breadcrumbs, Pagination, and ActionMenu.
@@ -77,12 +77,19 @@ semantic PDS tokens over one-off values. Component DOM includes stable
 `data-tone`, `data-emphasis`, `data-level`, `data-density`, `data-status`,
 `data-role`, `data-variant`, `data-busy`, `data-disabled`, and `data-invalid`.
 
-Text-bearing components are designed to keep content available in narrow
-containers: Button, Badge, Cell, Surface, Dialog, BottomSheet, Toast, and Tooltip
-allow long labels or user content to wrap instead of relying on truncation by
-default.
-Fixed dimensions are limited to intentionally fixed affordances such as icon
+Button labels are fixed-height and single-line, so action copy should stay
+concise and supporting context should live in the surrounding surface. Other
+text-bearing components are designed to keep content available in narrow
+containers: Badge, Cell, Surface, ActionWidget, Dialog, BottomSheet, Toast, and
+Tooltip allow long labels or user content to wrap instead of relying on
+truncation by default.
+Fixed dimensions are limited to intentional affordances such as buttons, icon
 buttons, avatars, avatar badges, and close controls.
+
+Icons use Google Material Symbols Rounded through the exported `Icon` component
+and the shared `.material-symbols-rounded` class. Use Material Symbols snake-case
+names such as `add`, `close`, or `chevron_right`; the package stylesheet fixes
+the icon axes to unfilled, weight 400, grade 0, optical size 24.
 
 ## Component Context
 
@@ -105,6 +112,7 @@ Use those files before editing source, CSS, examples, tests, or public APIs.
 | Component | Context |
 | --- | --- |
 | ActionMenu | [action-menu.md](../../docs/agent/components/action-menu.md) |
+| ActionWidget | [action-widget.md](../../docs/agent/components/action-widget.md) |
 | Amount | [amount.md](../../docs/agent/components/amount.md) |
 | Avatar | [avatar.md](../../docs/agent/components/avatar.md) |
 | Badge | [badge.md](../../docs/agent/components/badge.md) |
@@ -118,6 +126,7 @@ Use those files before editing source, CSS, examples, tests, or public APIs.
 | Details | [details.md](../../docs/agent/components/details.md) |
 | Dialog | [dialog.md](../../docs/agent/components/dialog.md) |
 | FilterChip | [filter-chip.md](../../docs/agent/components/filter-chip.md) |
+| Icon | [icon.md](../../docs/agent/components/icon.md) |
 | InlineAlert | [inline-alert.md](../../docs/agent/components/inline-alert.md) |
 | Input | [input.md](../../docs/agent/components/input.md) |
 | Menu | [menu.md](../../docs/agent/components/menu.md) |

@@ -62,11 +62,7 @@ export const Focused: Story<{
       surface={surface}
       title={preview.name}
     >
-      <StateMatrix>
-        <MatrixItem label={preview.name}>
-          <preview.Preview />
-        </MatrixItem>
-      </StateMatrix>
+      <preview.Preview />
     </StoryFrame>
   );
 };
