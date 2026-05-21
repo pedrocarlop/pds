@@ -289,6 +289,28 @@ export {
 } from "./tooltip";
 export type { TooltipContentProps } from "./tooltip";
 export {
+  TravelWidget,
+  TravelWidgetAction,
+  TravelWidgetContent,
+  TravelWidgetDescription,
+  TravelWidgetDetails,
+  TravelWidgetSkeleton,
+  TravelWidgetSkeletonContent,
+  TravelWidgetSkeletonDescription,
+  TravelWidgetSkeletonDetails,
+  TravelWidgetSkeletonTitle,
+  TravelWidgetTitle
+} from "./travel-widget";
+export type {
+  TravelWidgetImage,
+  TravelWidgetProps,
+  TravelWidgetSkeletonContentProps,
+  TravelWidgetSkeletonProps,
+  TravelWidgetSkeletonSlotProps,
+  TravelWidgetSlotProps,
+  TravelWidgetVariant
+} from "./travel-widget";
+export {
   Toast,
   ToastAction,
   ToastClose,

@@ -165,7 +165,18 @@ import {
   TooltipTrigger,
   Transcript,
   TranscriptEmpty,
-  TranscriptList
+  TranscriptList,
+  TravelWidget,
+  TravelWidgetAction,
+  TravelWidgetContent,
+  TravelWidgetDescription,
+  TravelWidgetDetails,
+  TravelWidgetSkeleton,
+  TravelWidgetSkeletonContent,
+  TravelWidgetSkeletonDescription,
+  TravelWidgetSkeletonDetails,
+  TravelWidgetSkeletonTitle,
+  TravelWidgetTitle
 } from "../index";
 
 describe("PDS starter components", () => {
@@ -867,6 +878,145 @@ describe("PDS starter components", () => {
     expect(ActionWidget.Avatar).toBe(ActionWidgetAvatar);
     expect(ActionWidget.Content).toBe(ActionWidgetContent);
     expect(ActionWidget.Actions).toBe(ActionWidgetActions);
+  });
+
+  it("renders TravelWidget with media, carousel controls, action overlay, and slots", () => {
+    const ref = React.createRef<HTMLDivElement>();
+
+    render(
+      <TravelWidget
+        ref={ref}
+        className="custom-travel-widget"
+        image={["/hotel-1.jpg", "/hotel-2.jpg"]}
+        onClick={vi.fn()}
+      >
+        <TravelWidgetAction>
+          <Button aria-label="Save hotel" intent="secondary" size="icon">
+            <Icon name="favorite" />
+          </Button>
+        </TravelWidgetAction>
+        <TravelWidgetTitle>Omni Hilton Hotel</TravelWidgetTitle>
+        <TravelWidgetDetails>Hotel rental - Rating 4.5</TravelWidgetDetails>
+        <TravelWidgetDescription>
+          Reserve now, pay later with free cancellation.
+        </TravelWidgetDescription>
+        <TravelWidgetContent>GBP 1,480 - GBP 200 cashback</TravelWidgetContent>
+      </TravelWidget>
+    );
+
+    const widget = screen
+      .getByText("Omni Hilton Hotel")
+      .closest('[data-slot="travel-widget"]');
+    const control = screen.getByRole("button", { name: "Omni Hilton Hotel" });
+    const title = screen.getByText("Omni Hilton Hotel");
+
+    expect(widget).toHaveAttribute("data-variant", "large");
+    expect(widget).toHaveAttribute("data-image", "true");
+    expect(widget).toHaveClass("pds-travel-widget", "custom-travel-widget");
+    expect(ref.current).toBe(widget);
+    expect(control).toHaveAttribute("data-slot", "travel-widget-control");
+    expect(control).toHaveAttribute("aria-labelledby", title.id);
+    expect(title).toHaveAttribute("data-slot", "travel-widget-title");
+    expect(screen.getByText("Hotel rental - Rating 4.5")).toHaveAttribute(
+      "data-slot",
+      "travel-widget-details"
+    );
+    expect(
+      screen.getByText("Reserve now, pay later with free cancellation.")
+    ).toHaveAttribute("data-slot", "travel-widget-description");
+    expect(screen.getByText("GBP 1,480 - GBP 200 cashback")).toHaveAttribute(
+      "data-slot",
+      "travel-widget-content"
+    );
+    expect(widget?.querySelector('[data-slot="travel-widget-media"]')).toHaveAttribute(
+      "data-carousel",
+      "true"
+    );
+    expect(control.querySelector('[data-slot="travel-widget-action"]')).toBeNull();
+    expect(screen.getByRole("button", { name: "Save hotel" }).closest(
+      '[data-slot="travel-widget-action"]'
+    )).toHaveClass("pds-travel-widget-action");
+    expect(screen.getByLabelText("Image 1 of 2")).toHaveAttribute(
+      "data-slot",
+      "travel-widget-carousel-status"
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Show next image" }));
+
+    expect(screen.getByLabelText("Image 2 of 2")).toHaveAttribute(
+      "data-slot",
+      "travel-widget-carousel-status"
+    );
+
+    expect(TravelWidget.Title).toBe(TravelWidgetTitle);
+    expect(TravelWidget.Details).toBe(TravelWidgetDetails);
+    expect(TravelWidget.Description).toBe(TravelWidgetDescription);
+    expect(TravelWidget.Content).toBe(TravelWidgetContent);
+    expect(TravelWidget.Action).toBe(TravelWidgetAction);
+  });
+
+  it("maps disabled non-button TravelWidget controls to aria-disabled", () => {
+    render(
+      <TravelWidget aria-label="Retail offer" disabled use="div" variant="small">
+        <TravelWidget.Title>iPad Pro</TravelWidget.Title>
+        <TravelWidget.Content>5% cashback</TravelWidget.Content>
+      </TravelWidget>
+    );
+
+    const widget = screen.getByText("iPad Pro").closest('[data-slot="travel-widget"]');
+    const control = widget?.querySelector('[data-slot="travel-widget-control"]');
+
+    expect(widget).toHaveAttribute("data-disabled", "true");
+    expect(widget).toHaveAttribute("data-variant", "small");
+    expect(control).toHaveAttribute("aria-disabled", "true");
+    expect(control).not.toHaveAttribute("disabled");
+    expect(control).toHaveAttribute("aria-label", "Retail offer");
+  });
+
+  it("renders TravelWidgetSkeleton defaults and explicit skeleton slots", () => {
+    render(
+      <>
+        <TravelWidgetSkeleton className="custom-travel-skeleton" />
+        <TravelWidgetSkeleton variant="small">
+          <TravelWidgetSkeletonTitle className="custom-travel-skeleton-title" />
+          <TravelWidgetSkeletonDetails />
+          <TravelWidgetSkeletonDescription />
+          <TravelWidgetSkeletonContent />
+        </TravelWidgetSkeleton>
+      </>
+    );
+
+    const skeletons = document.querySelectorAll(
+      '[data-slot="travel-widget-skeleton"]'
+    );
+
+    expect(skeletons[0]).toHaveAttribute("aria-hidden", "true");
+    expect(skeletons[0]).toHaveClass(
+      "pds-travel-widget",
+      "pds-travel-widget-skeleton",
+      "custom-travel-skeleton"
+    );
+    expect(skeletons[0].querySelector('[data-slot="travel-widget-skeleton-media"]')).toHaveClass(
+      "pds-skeleton",
+      "pds-travel-widget-media"
+    );
+    expect(skeletons[0].querySelectorAll('[data-slot^="travel-widget-skeleton-"]')).toHaveLength(
+      8
+    );
+    expect(document.querySelector(".custom-travel-skeleton-title")).toHaveAttribute(
+      "data-slot",
+      "travel-widget-skeleton-title"
+    );
+    expect(skeletons[1]).toHaveAttribute("data-variant", "small");
+    expect(skeletons[1].querySelector('[data-slot="travel-widget-skeleton-content"]')).toHaveClass(
+      "pds-travel-widget-content",
+      "pds-travel-widget-skeleton-content"
+    );
+
+    expect(TravelWidgetSkeleton.Title).toBe(TravelWidgetSkeletonTitle);
+    expect(TravelWidgetSkeleton.Details).toBe(TravelWidgetSkeletonDetails);
+    expect(TravelWidgetSkeleton.Description).toBe(TravelWidgetSkeletonDescription);
+    expect(TravelWidgetSkeleton.Content).toBe(TravelWidgetSkeletonContent);
   });
 
   it("renders RunStatus statuses with badge-compatible attributes", () => {

@@ -46,6 +46,22 @@ describe("PDS CSS contract", () => {
       ".pds-action-widget-content",
       ".pds-action-widget-actions",
       '.pds-action-widget-actions[data-justify="center"]',
+      ".pds-travel-widget",
+      '.pds-travel-widget[data-variant="small"]',
+      ".pds-travel-widget-control",
+      ".pds-travel-widget-media",
+      ".pds-travel-widget-body",
+      ".pds-travel-widget-title",
+      ".pds-travel-widget-details",
+      ".pds-travel-widget-description",
+      ".pds-travel-widget-content",
+      ".pds-travel-widget-action",
+      ".pds-travel-widget-carousel",
+      ".pds-travel-widget-carousel-button",
+      ".pds-travel-widget-carousel-status",
+      ".pds-travel-widget-skeleton-media",
+      ".pds-travel-widget-skeleton-title",
+      ".pds-travel-widget-skeleton-content",
       ".pds-badge",
       '.pds-badge[data-tone="success"]',
       '.pds-badge[data-emphasis="outline"]',
@@ -283,6 +299,18 @@ describe("PDS CSS contract", () => {
       ".pds-action-widget-avatar",
       ".pds-action-widget-content",
       ".pds-action-widget-actions",
+      ".pds-travel-widget",
+      ".pds-travel-widget-control",
+      ".pds-travel-widget-media",
+      ".pds-travel-widget-body",
+      ".pds-travel-widget-title",
+      ".pds-travel-widget-details",
+      ".pds-travel-widget-description",
+      ".pds-travel-widget-content",
+      ".pds-travel-widget-action",
+      ".pds-travel-widget-carousel",
+      ".pds-travel-widget-carousel-status",
+      ".pds-travel-widget-skeleton-content",
       ".pds-breadcrumbs",
       ".pds-breadcrumbs-link",
       ".pds-breadcrumbs-page",
@@ -386,9 +414,14 @@ describe("PDS CSS contract", () => {
     const actionWidgetBlock = componentStyles.match(
       /\.pds-action-widget\s*{[^}]*}/
     )?.[0];
+    const travelWidgetBlock = componentStyles.match(
+      /\.pds-travel-widget\s*{[^}]*}/
+    )?.[0];
 
     expect(actionWidgetBlock).toBeDefined();
     expect(actionWidgetBlock).toContain("width: 100%;");
+    expect(travelWidgetBlock).toBeDefined();
+    expect(travelWidgetBlock).toContain("width: 100%;");
   });
 
   it("does not apply hover treatments to disabled controls", () => {
@@ -418,6 +451,9 @@ describe("PDS CSS contract", () => {
     );
     expect(componentStyles).toContain(
       '.pds-amount-input:not([data-disabled="true"]):hover'
+    );
+    expect(componentStyles).toContain(
+      '.pds-travel-widget:has(.pds-travel-widget-control:is(button, a, [role="button"]):not(:disabled, [aria-disabled="true"]):hover)'
     );
     expect(componentStyles).toContain(".pds-select-trigger:not(:disabled):hover");
     expect(componentStyles).toContain(".pds-checkbox:not(:disabled):hover");

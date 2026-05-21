@@ -206,7 +206,18 @@ describe("PDS package contract", () => {
       "TooltipTrigger",
       "Transcript",
       "TranscriptEmpty",
-      "TranscriptList"
+      "TranscriptList",
+      "TravelWidget",
+      "TravelWidgetAction",
+      "TravelWidgetContent",
+      "TravelWidgetDescription",
+      "TravelWidgetDetails",
+      "TravelWidgetSkeleton",
+      "TravelWidgetSkeletonContent",
+      "TravelWidgetSkeletonDescription",
+      "TravelWidgetSkeletonDetails",
+      "TravelWidgetSkeletonTitle",
+      "TravelWidgetTitle"
     ]);
   });
 

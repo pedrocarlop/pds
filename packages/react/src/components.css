@@ -58,6 +58,10 @@
 .pds-menu-content,
 .pds-menu-item,
 .pds-action-widget,
+.pds-travel-widget,
+.pds-travel-widget-control,
+.pds-travel-widget-carousel-button,
+.pds-travel-widget-carousel-status,
 .pds-action-menu-content,
 .pds-action-menu-item,
 .pds-popover-content,
@@ -110,6 +114,8 @@
 .pds-filter-chip-action:focus-visible,
 .pds-filter-chip-remove:focus-visible,
 .pds-cell:focus-visible,
+.pds-travel-widget-control:focus-visible,
+.pds-travel-widget-carousel-button:focus-visible,
 .pds-input:focus-visible,
 .pds-textarea:focus-visible,
 .pds-amount-input:focus-within,
@@ -134,6 +140,7 @@
 .pds-filter-chip[data-disabled="true"],
 .pds-cell:disabled,
 .pds-cell[aria-disabled="true"],
+.pds-travel-widget[data-disabled="true"] .pds-travel-widget-control,
 .pds-input:disabled,
 .pds-textarea:disabled,
 .pds-amount[aria-disabled="true"],
@@ -1107,6 +1114,276 @@
 .pds-action-widget:not(:has(.pds-action-widget-avatar)) .pds-action-widget-content,
 .pds-action-widget:not(:has(.pds-action-widget-avatar)) .pds-action-widget-actions {
   grid-column: 1;
+}
+
+.pds-travel-widget {
+  position: relative;
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--pds-radius-primary);
+  color: var(--pds-color-foreground);
+  background: var(--pds-color-base-widget-background);
+  box-shadow: var(--pds-shadow-surface);
+  overflow-wrap: anywhere;
+  transition:
+    background-color var(--pds-motion-duration-fast) var(--pds-ease-smooth-swoop),
+    box-shadow var(--pds-motion-duration-fast) var(--pds-ease-smooth-swoop),
+    opacity var(--pds-motion-duration-fast) var(--pds-ease-smooth-swoop);
+}
+
+.pds-travel-widget:has(.pds-travel-widget-control:is(button, a, [role="button"]):not(:disabled, [aria-disabled="true"]):hover) {
+  background:
+    linear-gradient(
+      var(--pds-color-state-layer-hover),
+      var(--pds-color-state-layer-hover)
+    ),
+    var(--pds-color-base-widget-background);
+}
+
+.pds-travel-widget:has(.pds-travel-widget-control:is(button, a, [role="button"]):not(:disabled, [aria-disabled="true"]):active) {
+  background:
+    linear-gradient(
+      var(--pds-color-state-layer-pressed),
+      var(--pds-color-state-layer-pressed)
+    ),
+    var(--pds-color-base-widget-background);
+}
+
+.pds-travel-widget:has(.pds-travel-widget-control:focus-visible) {
+  box-shadow: var(--pds-shadow-focus);
+}
+
+.pds-travel-widget[data-disabled="true"] {
+  opacity: var(--pds-state-disabled-opacity);
+}
+
+.pds-travel-widget[data-variant="large"] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.pds-travel-widget[data-variant="small"] {
+  grid-template-columns: minmax(112px, 36%) minmax(0, 1fr);
+}
+
+.pds-travel-widget:not(:has(.pds-travel-widget-media)) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.pds-travel-widget-media {
+  position: relative;
+  min-width: 0;
+  min-height: 160px;
+  overflow: hidden;
+  background-color: var(--pds-color-grey-tone-8);
+  background-image: var(--pds-travel-widget-image);
+  background-position: center;
+  background-size: cover;
+  overflow-wrap: anywhere;
+}
+
+.pds-travel-widget[data-variant="large"] .pds-travel-widget-media {
+  grid-column: 1;
+  aspect-ratio: 16 / 10;
+}
+
+.pds-travel-widget[data-variant="small"] .pds-travel-widget-media {
+  grid-column: 1;
+  min-height: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.pds-travel-widget-control {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  outline: none;
+  overflow-wrap: anywhere;
+}
+
+.pds-travel-widget-control:is(button, a, [role="button"]) {
+  cursor: pointer;
+}
+
+.pds-travel-widget-control:disabled,
+.pds-travel-widget-control[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+.pds-travel-widget[data-variant="large"] .pds-travel-widget-control {
+  grid-column: 1;
+}
+
+.pds-travel-widget[data-variant="small"] .pds-travel-widget-control {
+  grid-column: 2;
+}
+
+.pds-travel-widget:not(:has(.pds-travel-widget-media)) .pds-travel-widget-control {
+  grid-column: 1;
+}
+
+.pds-travel-widget-body {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--pds-space-sp-300);
+  padding: var(--pds-space-sp-400);
+  overflow-wrap: anywhere;
+}
+
+.pds-travel-widget[data-variant="small"] .pds-travel-widget-body {
+  gap: var(--pds-space-sp-200);
+}
+
+.pds-travel-widget-title {
+  min-width: 0;
+  color: var(--pds-color-foreground);
+  font-family: var(--pds-font-sans);
+  font-size: var(--pds-heading3);
+  font-weight: var(--pds-fw-heading);
+  line-height: var(--pds-lh-heading3);
+  overflow-wrap: anywhere;
+}
+
+.pds-travel-widget[data-variant="small"] .pds-travel-widget-title {
+  font-size: var(--pds-emphasis1);
+  font-weight: var(--pds-fw-emphasis-strong);
+  line-height: var(--pds-lh-emphasis1);
+}
+
+.pds-travel-widget-details,
+.pds-travel-widget-description {
+  min-width: 0;
+  color: var(--pds-color-grey-tone-50);
+  font-family: var(--pds-font-sans);
+  font-size: var(--pds-body2);
+  font-weight: var(--pds-fw-body);
+  line-height: var(--pds-lh-body2);
+  overflow-wrap: anywhere;
+}
+
+.pds-travel-widget-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--pds-space-sp-200);
+  align-items: center;
+  overflow-wrap: anywhere;
+}
+
+.pds-travel-widget-description {
+  overflow-wrap: anywhere;
+}
+
+.pds-travel-widget-content {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--pds-space-sp-200);
+  overflow-wrap: anywhere;
+}
+
+.pds-travel-widget-action {
+  position: absolute;
+  z-index: 2;
+  top: var(--pds-space-sp-300);
+  right: var(--pds-space-sp-300);
+  display: inline-flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: var(--pds-space-sp-200);
+  overflow-wrap: anywhere;
+}
+
+.pds-travel-widget-carousel {
+  position: absolute;
+  inset: var(--pds-space-sp-300);
+  z-index: 1;
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+  overflow-wrap: anywhere;
+}
+
+.pds-travel-widget-carousel-button {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: var(--pds-radius-full);
+  color: var(--pds-color-foreground);
+  background: var(--pds-color-base-grouped-background-60pct);
+  outline: none;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.pds-travel-widget-carousel-button:not(:disabled):hover {
+  background: var(--pds-color-base-grouped-background-80pct);
+}
+
+.pds-travel-widget-carousel-status {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  min-width: 0;
+  border-radius: var(--pds-radius-full);
+  padding: var(--pds-space-sp-50) var(--pds-space-sp-200);
+  color: var(--pds-color-foreground);
+  background: var(--pds-color-base-grouped-background-60pct);
+  font-size: var(--pds-body3);
+  font-weight: var(--pds-fw-body);
+  line-height: var(--pds-lh-body3);
+  overflow-wrap: anywhere;
+  transform: translateX(-50%);
+}
+
+.pds-travel-widget-skeleton {
+  pointer-events: none;
+}
+
+.pds-travel-widget-skeleton-media {
+  min-height: 160px;
+}
+
+.pds-travel-widget-skeleton-title {
+  width: 72%;
+}
+
+.pds-travel-widget-skeleton-details {
+  width: 58%;
+}
+
+.pds-travel-widget-skeleton-description {
+  width: 86%;
+}
+
+.pds-travel-widget-skeleton-content {
+  gap: var(--pds-space-sp-200);
+  overflow-wrap: anywhere;
+}
+
+.pds-travel-widget-skeleton-content-line {
+  width: 48%;
+}
+
+.pds-travel-widget-skeleton-content-value {
+  width: 32%;
 }
 
 .pds-run-status {
@@ -2923,6 +3200,15 @@
     justify-content: flex-end;
   }
 
+  .pds-travel-widget[data-variant="small"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pds-travel-widget[data-variant="small"] .pds-travel-widget-media,
+  .pds-travel-widget[data-variant="small"] .pds-travel-widget-control {
+    grid-column: 1;
+  }
+
   .pds-message-avatar,
   .pds-message-header,
   .pds-message-content,
@@ -3056,6 +3342,7 @@
   .pds-cell[data-variant="choice"]::after,
   .pds-progress-indicator,
   .pds-composer,
+  .pds-travel-widget,
   .pds-dialog-close,
   .pds-toast-action,
   .pds-toast-close,

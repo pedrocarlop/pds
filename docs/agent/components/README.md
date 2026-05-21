@@ -59,6 +59,7 @@ limitations.
 - [Toast](toast.md)
 - [Tooltip](tooltip.md)
 - [Transcript](transcript.md)
+- [TravelWidget](travel-widget.md)
 
 ## Validation Expectations
 

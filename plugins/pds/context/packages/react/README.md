@@ -41,7 +41,7 @@ use public imports from @pds/react, and run the app checks.
 - Icon, Button, Badge, FilterChip, Avatar, Surface, ActionWidget, Cell, Item, Details, Tooltip, Dialog,
   BottomSheet, Toast, Input, Amount, Textarea, Select, Checkbox, RadioGroup,
   Switch, Tabs, Menu, Popover, Skeleton, Progress, InlineAlert, Table, DataList,
-  Breadcrumbs, Pagination, and ActionMenu.
+  Breadcrumbs, Pagination, ActionMenu, and TravelWidget.
 - Product components: RunStatus, Message, Transcript, and Composer.
 - `@pds/react/styles.css` imports `@pds/tokens/styles.css` and component styles.
 - Components use PDS-specific props and stable `data-*` attributes rather than Tailwind classes.
@@ -147,6 +147,7 @@ Use those files before editing source, CSS, examples, tests, or public APIs.
 | Toast | [toast.md](../../docs/agent/components/toast.md) |
 | Tooltip | [tooltip.md](../../docs/agent/components/tooltip.md) |
 | Transcript | [transcript.md](../../docs/agent/components/transcript.md) |
+| TravelWidget | [travel-widget.md](../../docs/agent/components/travel-widget.md) |
 
 ## Current Limitations
 

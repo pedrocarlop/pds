@@ -36,6 +36,7 @@ import textareaPreview from "../component-previews/textarea.preview";
 import toastPreview from "../component-previews/toast.preview";
 import tooltipPreview from "../component-previews/tooltip.preview";
 import transcriptPreview from "../component-previews/transcript.preview";
+import travelWidgetPreview from "../component-previews/travel-widget.preview";
 import {
   ComponentPreviewStory,
   componentPreviewStoryArgTypes,
@@ -262,3 +263,9 @@ export const Transcript: Story<ComponentPreviewStoryProps> = ({ surface }) => (
 );
 Transcript.args = componentPreviewStoryArgs;
 Transcript.argTypes = componentPreviewStoryArgTypes;
+
+export const TravelWidget: Story<ComponentPreviewStoryProps> = ({ surface }) => (
+  <ComponentPreviewStory preview={travelWidgetPreview} surface={surface} />
+);
+TravelWidget.args = componentPreviewStoryArgs;
+TravelWidget.argTypes = componentPreviewStoryArgTypes;
