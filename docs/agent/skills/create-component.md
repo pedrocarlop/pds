@@ -27,6 +27,20 @@ Before editing, read:
 6. [examples/react/README.md](../../../examples/react/README.md) for Ladle
    preview rules.
 
+## Pre-build Preview
+
+Before editing files, output:
+
+- Component: name and product job.
+- Reusability: why this belongs in PDS rather than app code.
+- Anatomy: root, slots, actions, icons, metadata.
+- Public API: planned props and exported types.
+- States: default, hover, focus-visible, active, disabled, loading, error,
+  success.
+- Token categories: colour, spacing, radius, typography, motion.
+- Preview coverage: normal, long text, narrow container, all states.
+- Verification: tests, CSS contract, Ladle preview, `pnpm check`.
+
 ## Workflow
 
 1. Decide whether this is truly a reusable PDS component. If it is only a screen
