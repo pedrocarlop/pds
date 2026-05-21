@@ -39,7 +39,12 @@ Focus layout
 
 - Main nav is hidden or suppressed.
 - Content is a single column.
-- Desktop max width uses `--pds-layout-focus-max` (`628px`).
+- The single-column content area maxes out at `--pds-layout-focus-max`
+  (`628px`).
+- `--pds-layout-focus-max` is not a page breakpoint; the page breakpoint can be
+  chosen by the product surface.
+- When the page is narrower than the focus column, keep standard page side
+  padding of `--pds-space-sp-400`.
 - Supporting guidance is inline, not in side widgets.
 - Primary action is obvious.
 - Mobile keeps the same order and task hierarchy.

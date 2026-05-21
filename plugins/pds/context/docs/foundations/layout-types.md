@@ -16,7 +16,7 @@ for implementation values.
 - `--pds-layout-content-max`: default maximum app shell width.
 - `--pds-layout-reading-max`: readable heading and prose measure.
 - `--pds-layout-hero-max`: compact hero/header copy measure.
-- `--pds-layout-focus-max`: focused task-completion screen maximum width.
+- `--pds-layout-focus-max`: focused task-completion single-column maximum width.
 - `--pds-layout-narrow-frame`: narrow demonstration or constrained-control frame.
 - `--pds-layout-side-panel-min`: default side-panel minimum column width.
 - `--pds-layout-side-panel-wide-min`: wider side-panel minimum column width.
@@ -33,11 +33,16 @@ for implementation values.
   media query cannot be avoided, mirror the numeric value from
   `packages/tokens/src/layout.css` exactly and keep the token name documented in
   the owning CSS, test, or review finding.
+- Layout width tokens do not imply breakpoints. For example,
+  `--pds-layout-focus-max` sets the maximum width of a focus column, while the
+  product surface owns when the surrounding page changes layout.
 
 ## Layout Dimension Rules
 
 - Use layout variables for shared app shell widths, readable measures, focused
   task-completion widths, side-panel minimums, and narrow frames.
+- Use `--pds-space-sp-400` as the standard page side padding when a page becomes
+  narrower than its target content width.
 - Keep one-off embed sizes, asset dimensions, icon geometry, and component
   internals local unless they become shared layout rules.
 - Do not put spacing rhythm, radius, typography, or color values in layout
