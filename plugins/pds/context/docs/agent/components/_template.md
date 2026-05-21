@@ -70,6 +70,19 @@ Call out behavior agents must preserve before changing selectors.
 Reference token categories instead of duplicating values. Use names such as
 color, spacing, radius, elevation, typography, and motion.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render |  |  |  |
+| Hover | Pointer hover |  |  |  |
+| Focus-visible | Keyboard focus |  |  |  |
+| Active | Pressed |  |  |  |
+| Disabled | `disabled` / `aria-disabled` |  |  |  |
+| Loading | `loading` prop / `data-busy` |  |  |  |
+| Error | `data-invalid` / error prop |  |  |  |
+| Success | status / success prop |  |  |  |
+
 ## State Behavior
 
 Describe props, native states, `aria-*` states, Radix states, and CSS state

@@ -56,8 +56,8 @@ Before editing files, output:
    replace unstyled or app-specific patterns with PDS package conventions.
 4. Create the component contract from `docs/agent/components/_template.md`.
    Document purpose, when to use, API, slots, data attributes, accessibility,
-   content resilience, styling contract, token categories, states, examples,
-   limitations, and related sources.
+   content resilience, styling contract, token categories, State Matrix, state
+   behavior, examples, limitations, and related sources.
 5. Implement source in `packages/react/src/components/<component-id>.tsx`. Use
    public React patterns already present in nearby components: forwarded refs
    where appropriate, explicit TypeScript props, stable `data-slot` and state
@@ -92,6 +92,8 @@ Before editing files, output:
 - Use semantic PDS tokens by role, not visual preference.
 - Keep components resilient to translation, user content, narrow containers, and
   200% zoom.
+- Every new interactive component must complete the State Matrix in its
+  component contract. If a state is not applicable, state why.
 - Avoid fixed dimensions except for intentional affordances.
 - Use Material Symbols through the exported `Icon` component when an icon is
   needed.
