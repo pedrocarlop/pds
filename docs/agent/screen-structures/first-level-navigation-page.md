@@ -49,6 +49,20 @@ Product shell
 - Mobile keeps the same content priority, but stacks sections.
 - Mobile does not become a different IA.
 
+## Quality Gates
+
+- Product navigation is visible on desktop when the app shell supports it.
+- Page title, subtitle, and actions are grouped in the header.
+- Menu tabs are visually separate from global navigation.
+- The primary content area is dominant.
+- Secondary modules support, not compete with, the main task.
+- Mobile preserves the same content priority as desktop.
+- Tabs can scroll horizontally without causing page-level overflow.
+- Primary action remains visible or easy to reach on mobile.
+- Loading, empty, error, and success states exist for the primary content
+  region.
+- Long titles, translated tab labels, and 200% zoom do not break the header.
+
 ## Related Sources
 
 - [DESIGN.md](../../../DESIGN.md)

@@ -49,6 +49,19 @@ Focus layout
 - Primary action is obvious.
 - Mobile keeps the same order and task hierarchy.
 
+## Quality Gates
+
+- Main product navigation is hidden or suppressed.
+- The task is contained in a single column.
+- Desktop content width does not exceed `--pds-layout-focus-max` (`628px`).
+- The page title clearly states the task.
+- Primary action is obvious and easy to reach.
+- Supporting content is inline, not in side columns.
+- Long labels, translated text, and validation messages do not break the layout.
+- Loading, error, success, saving, and disabled states exist where needed.
+- The layout remains usable at 200% zoom.
+- Mobile preserves the same task order and action hierarchy.
+
 ## Related Sources
 
 - [DESIGN.md](../../../DESIGN.md)

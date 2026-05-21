@@ -23,6 +23,7 @@ Future screen structures should include:
 - Do not use when: flows or page types that need a different structure.
 - Structure: stable regions in an ASCII anatomy tree.
 - Rules: checkable layout, navigation, hierarchy, and responsive behavior.
+- Quality gates: structure-specific checks agents must satisfy before handoff.
 - Related sources: foundation, pattern, and component docs needed to implement
   the structure.
 

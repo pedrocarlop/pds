@@ -17,3 +17,4 @@ A screen should not be handed back until these pass:
 13. Primary actions, required labels, errors, and state feedback do not truncate.
 14. Navigation, tabs, and page actions keep separate roles.
 15. The layout matches the selected screen structure.
+16. The selected screen structure's Quality Gates pass.
