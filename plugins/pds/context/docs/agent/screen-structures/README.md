@@ -23,6 +23,11 @@ Future screen structures should include:
 - Do not use when: flows or page types that need a different structure.
 - Structure: stable regions in an ASCII anatomy tree.
 - Rules: checkable layout, navigation, hierarchy, and responsive behavior.
+- PDS Component Mapping: components that commonly implement the structure.
+- App CSS Responsibilities: layout-only ownership boundaries for local CSS.
+- State Placement: where loading, empty, error, success, and saving feedback
+  belongs.
+- Example: one concrete mapped screen.
 - Quality gates: structure-specific checks agents must satisfy before handoff.
 - Related sources: foundation, pattern, and component docs needed to implement
   the structure.

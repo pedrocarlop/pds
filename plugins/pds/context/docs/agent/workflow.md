@@ -17,7 +17,7 @@ or [CLAUDE.md](../../CLAUDE.md).
 9. [docs/foundations/motion.md](../foundations/motion.md)
 10. [docs/foundations/content-resilience.md](../foundations/content-resilience.md)
 11. [docs/recipes](../recipes)
-12. [docs/agent/screen-structures](screen-structures/README.md)
+12. [screen structures](screen-structures/README.md)
 13. [docs/agent/patterns](patterns/README.md)
 14. [docs/architecture/repository-structure.md](../architecture/repository-structure.md)
 

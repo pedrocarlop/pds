@@ -49,6 +49,55 @@ Focus layout
 - Primary action is obvious.
 - Mobile keeps the same order and task hierarchy.
 
+## PDS Component Mapping
+
+- Use `Surface` for form, review, or setup sections.
+- Use `Input`, `Select`, `Textarea`, `Checkbox`, `RadioGroup`, or `Switch` for
+  data entry.
+- Use `InlineAlert` for guidance, warnings, and validation summaries.
+- Use `Progress` only when progress is meaningful to task completion.
+- Use `Button` for primary and secondary actions.
+- Use app CSS only for the centered focus shell, vertical rhythm, and action
+  placement.
+
+## App CSS Responsibilities
+
+App CSS may own:
+
+- Focus shell centering.
+- `--pds-layout-focus-max` application.
+- Page padding.
+- Vertical spacing between sections.
+- Sticky or bottom action placement when required.
+
+App CSS must not own:
+
+- Component colors.
+- Component radius.
+- Component typography.
+- Component state styling.
+- Replacement versions of existing PDS components.
+
+## State Placement
+
+- Validation errors appear inline with fields and in a summary when needed.
+- Saving state belongs to the primary action and affected section.
+- Blocking errors appear inside the focus column.
+- Success can be inline confirmation, completion screen, or redirect depending
+  on the task.
+
+## Example
+
+Task: Connect Invopop account.
+
+- Structure: Focus Layout.
+- Header: back action, "Connect Invopop".
+- Content: one `Surface` with setup explanation, business info review, and
+  consent checkbox.
+- Actions: primary "Continue to Invopop", secondary "Cancel".
+- States: loading connection status, expired connection error, reconnect
+  success.
+
 ## Quality Gates
 
 - Main product navigation is hidden or suppressed.

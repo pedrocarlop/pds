@@ -18,16 +18,24 @@ node ./scripts/review-pds.mjs --target <path-or-directory>
 3. Inspect the relevant source manually. Treat script output as hints, not final
    findings.
 4. Use [DESIGN.md](../../../DESIGN.md), foundation docs,
-   [PDS Screen Quality Gates](../pds-screen-quality-gates.md), pattern docs, and
+   [PDS Screen Quality Gates](../pds-screen-quality-gates.md),
+   [screen structures](../screen-structures/README.md), pattern docs, and
    component contracts as the review source of truth.
-5. Return findings first, ordered by severity, with file and line references.
-6. If the user pushes back on a design finding or gives component-level feedback,
+5. Before component-level findings, check that the selected screen structure
+   fits the actual product job, navigation model, content priority, state
+   placement, and responsive stacking.
+6. Return findings first, ordered by severity, with file and line references.
+7. If the user pushes back on a design finding or gives component-level feedback,
    switch to [self-improve.md](self-improve.md).
 
 ## Review Checklist
 
 - Screen-level findings map to
   [PDS Screen Quality Gates](../pds-screen-quality-gates.md).
+- The selected [screen structure](../screen-structures/README.md) fits the
+  screen's product job before component-level guidance is applied.
+- The selected structure's component mapping, app CSS responsibilities, state
+  placement, and quality gates are followed.
 - PDS is imported publicly from `@pds/react`; no deep package or source imports.
 - `@pds/react/styles.css` is imported once at the app root.
 - UI chrome uses PDS tokens instead of hard-coded visual values.

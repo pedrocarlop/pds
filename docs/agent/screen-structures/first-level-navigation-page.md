@@ -49,6 +49,53 @@ Product shell
 - Mobile keeps the same content priority, but stacks sections.
 - Mobile does not become a different IA.
 
+## PDS Component Mapping
+
+- Use `Surface` for secondary modules and contained content groups.
+- Use `Tabs` when menu tabs control local page content.
+- Use `Table`, `DataList`, `Cell`, or `Item` for the primary region.
+- Use `Button`, `ActionMenu`, or `Popover` for page actions.
+- Use `Badge`, `InlineAlert`, `Progress`, or `RunStatus` for status.
+- Use app CSS only for shell, columns, header placement, and responsive
+  stacking.
+
+## App CSS Responsibilities
+
+App CSS may own:
+
+- Product shell layout.
+- Header, tab, primary, and secondary region placement.
+- Column widths and responsive stacking.
+- Page padding and section spacing.
+- Sticky or reachable page action placement when required.
+
+App CSS must not own:
+
+- Component colors.
+- Component radius.
+- Component typography.
+- Component state styling.
+- Replacement versions of existing PDS components.
+
+## State Placement
+
+- Loading state belongs to the primary content region first.
+- Empty state should explain what is missing and provide the next action.
+- Error state should appear near the affected region, not only as a global
+  toast.
+- Success state should preserve page context and update the relevant region.
+
+## Example
+
+Task: People section overview.
+
+- Structure: First Level Navigation Page.
+- Header: "People", invite action, filters action.
+- Tabs: Team, Roles, Invites.
+- Primary region: people table.
+- Secondary region: role summary, pending invites, recent changes.
+- Mobile: table or list first, summary modules below.
+
 ## Quality Gates
 
 - Product navigation is visible on desktop when the app shell supports it.
