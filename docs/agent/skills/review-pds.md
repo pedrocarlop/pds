@@ -4,6 +4,35 @@ Use this workflow when the user wants a PDS-focused review of a web UI change.
 The default output is review findings, not code edits, unless the user explicitly
 asks to fix the issues.
 
+## Minimum Read Path
+
+Always read:
+
+- [router.md](../router.md)
+- This workflow
+- The changed or selected UI files, nearby source, and relevant tests
+
+Choose one:
+
+- Matching [screen structure](../screen-structures/README.md) when the review is
+  page-level
+- Component contracts for components being reviewed
+
+Read only if relevant:
+
+- Foundation docs for visual findings
+- Pattern docs when the reviewed flow matches a documented repeated product flow
+- [PDS Screen Quality Gates](../pds-screen-quality-gates.md) for screen-level
+  findings
+- [PDS Component Quality Gates](../pds-quality-gates.md) for component-level
+  findings
+
+Do not read:
+
+- Every foundation doc
+- Every component contract
+- Architecture docs unless the finding is about ownership or package boundaries
+
 ## Workflow
 
 1. Resolve the review scope from the skill argument, current diff, or current
@@ -17,10 +46,9 @@ node ./scripts/review-pds.mjs --target <path-or-directory>
 
 3. Inspect the relevant source manually. Treat script output as hints, not final
    findings.
-4. Use [DESIGN.md](../../../DESIGN.md), foundation docs,
-   [PDS Screen Quality Gates](../pds-screen-quality-gates.md),
-   [screen structures](../screen-structures/README.md), pattern docs, and
-   component contracts as the review source of truth.
+4. Use the [Minimum Read Path](#minimum-read-path) as the review source of
+   truth. Select only the matching structure, pattern, foundation, and component
+   docs.
 5. Before component-level findings, check that the selected screen structure
    fits the actual product job, navigation model, content priority, state
    placement, and responsive stacking.

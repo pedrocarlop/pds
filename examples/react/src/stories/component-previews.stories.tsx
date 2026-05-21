@@ -21,6 +21,7 @@ import inputPreview from "../component-previews/input.preview";
 import itemPreview from "../component-previews/item.preview";
 import menuPreview from "../component-previews/menu.preview";
 import messagePreview from "../component-previews/message.preview";
+import pageHeaderPreview from "../component-previews/page-header.preview";
 import paginationPreview from "../component-previews/pagination.preview";
 import popoverPreview from "../component-previews/popover.preview";
 import progressPreview from "../component-previews/progress.preview";
@@ -173,6 +174,12 @@ export const Message: Story<ComponentPreviewStoryProps> = ({ surface }) => (
 );
 Message.args = componentPreviewStoryArgs;
 Message.argTypes = componentPreviewStoryArgTypes;
+
+export const PageHeader: Story<ComponentPreviewStoryProps> = ({ surface }) => (
+  <ComponentPreviewStory preview={pageHeaderPreview} surface={surface} />
+);
+PageHeader.args = componentPreviewStoryArgs;
+PageHeader.argTypes = componentPreviewStoryArgTypes;
 
 export const Pagination: Story<ComponentPreviewStoryProps> = ({ surface }) => (
   <ComponentPreviewStory preview={paginationPreview} surface={surface} />

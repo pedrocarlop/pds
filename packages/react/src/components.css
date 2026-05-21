@@ -71,6 +71,7 @@
 .pds-data-list,
 .pds-breadcrumbs,
 .pds-pagination,
+.pds-page-header,
 .pds-dialog-close,
 .pds-toast,
 .pds-toast-action,
@@ -944,6 +945,88 @@
 
 .pds-avatar-group > * + * {
   margin-left: calc(var(--pds-space-sp-200) * -1);
+}
+
+.pds-page-header {
+  display: grid;
+  min-width: 0;
+  gap: var(--pds-space-sp-300);
+  color: var(--pds-color-foreground);
+  overflow-wrap: anywhere;
+}
+
+.pds-page-header-breadcrumbs {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: var(--pds-space-sp-200);
+  align-items: center;
+  color: var(--pds-color-grey-tone-50);
+  font-size: var(--pds-body2);
+  font-weight: var(--pds-fw-body);
+  line-height: var(--pds-lh-body2);
+  overflow-wrap: anywhere;
+}
+
+.pds-page-header-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  min-width: 0;
+  gap: var(--pds-space-sp-400);
+  align-items: start;
+}
+
+.pds-page-header-text {
+  display: grid;
+  max-width: var(--pds-layout-reading-max);
+  min-width: 0;
+  gap: var(--pds-space-sp-100);
+  overflow-wrap: anywhere;
+}
+
+.pds-page-header-title {
+  min-width: 0;
+  margin: 0;
+  color: var(--pds-color-foreground);
+  font-family: var(--pds-font-sans);
+  font-size: var(--pds-heading2);
+  font-weight: var(--pds-fw-heading);
+  line-height: var(--pds-lh-heading2);
+  overflow-wrap: anywhere;
+}
+
+.pds-page-header-description {
+  min-width: 0;
+  margin: 0;
+  color: var(--pds-color-grey-tone-50);
+  font-family: var(--pds-font-sans);
+  font-size: var(--pds-body1);
+  font-weight: var(--pds-fw-body);
+  line-height: var(--pds-lh-body1);
+  overflow-wrap: anywhere;
+}
+
+.pds-page-header-meta,
+.pds-page-header-actions {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: var(--pds-space-sp-200);
+  align-items: center;
+  overflow-wrap: anywhere;
+}
+
+.pds-page-header-meta {
+  margin-top: var(--pds-space-sp-100);
+  color: var(--pds-color-grey-tone-50);
+  font-size: var(--pds-body2);
+  font-weight: var(--pds-fw-body);
+  line-height: var(--pds-lh-body2);
+}
+
+.pds-page-header-actions {
+  justify-content: flex-end;
+  justify-self: end;
 }
 
 .pds-surface {
@@ -3119,6 +3202,15 @@
 
 /* Keep in sync with --pds-layout-breakpoint-compact. */
 @media (max-width: 480px) {
+  .pds-page-header-content {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pds-page-header-actions {
+    justify-content: flex-start;
+    justify-self: start;
+  }
+
   .pds-surface-header {
     grid-template-columns: minmax(0, 1fr);
   }

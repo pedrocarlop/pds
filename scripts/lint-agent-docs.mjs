@@ -146,8 +146,12 @@ async function lintRootAdapters() {
   const agentsSource = await readFile(agentsPath, "utf8");
   const claudeSource = await readFile(claudePath, "utf8");
 
+  if (!agentsSource.includes("docs/agent/router.md")) {
+    report("AGENTS.md", "must link to docs/agent/router.md");
+  }
+
   if (!agentsSource.includes("docs/agent/README.md")) {
-    report("AGENTS.md", "must link to docs/agent/README.md");
+    report("AGENTS.md", "must link to docs/agent/README.md as the folder index");
   }
 
   if (!claudeSource.includes("@AGENTS.md")) {
@@ -204,6 +208,7 @@ async function lintSkillAdapters() {
 
 async function lintCanonicalAgentDirs() {
   const requiredPaths = [
+    "docs/agent/router.md",
     "docs/agent/README.md",
     "docs/agent/workflow.md",
     "docs/agent/components/README.md",

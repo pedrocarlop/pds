@@ -1,47 +1,28 @@
 # Agent Workflow
 
-PDS is designed to be usable by coding agents through markdown source files.
-Use these rules after the repository-level adapters in [AGENTS.md](../../AGENTS.md)
-or [CLAUDE.md](../../CLAUDE.md).
+PDS is designed to be usable by coding agents through markdown source files. Use
+these rules after reading [AGENTS.md](../../AGENTS.md) and using
+[router.md](router.md) to choose the task route.
 
-## Read Order
+## Context Loading
 
-1. [AGENTS.md](../../AGENTS.md)
-2. [DESIGN.md](../../DESIGN.md)
-3. [docs/start-here.md](../start-here.md)
-4. [docs/foundations/tokens.md](../foundations/tokens.md)
-5. [docs/foundations/colour.md](../foundations/colour.md)
-6. [docs/foundations/typography.md](../foundations/typography.md)
-7. [docs/foundations/spacing.md](../foundations/spacing.md)
-8. [docs/foundations/layout-types.md](../foundations/layout-types.md)
-9. [docs/foundations/motion.md](../foundations/motion.md)
-10. [docs/foundations/content-resilience.md](../foundations/content-resilience.md)
-11. [docs/recipes](../recipes)
-12. [screen structures](screen-structures/README.md)
-13. [docs/agent/patterns](patterns/README.md)
-14. [docs/architecture/repository-structure.md](../architecture/repository-structure.md)
-
-## Task Routing
-
-- For visual decisions, use `DESIGN.md` first, then the matching foundation doc,
-  then token source in `packages/tokens/src`.
-- For React component edits, use `packages/react/README.md` for package scope and
-  the matching file in [components](components/README.md) for component
-  contracts.
-- For user design feedback after a PDS output or review, use
-  [skills/self-improve.md](skills/self-improve.md). Component feedback should
-  update the matching component contract unless the existing doc already
-  contained the exact rule and the miss was only failure to follow it.
-- For React app setup or PDS adoption, use the matching file in `docs/recipes`.
-- For page-level IA, navigation, or task-focus decisions, use the matching file
-  in [screen structures](screen-structures/README.md) before pattern and
-  component guidance.
-- For documented product flows, use the matching file in [patterns](patterns/README.md), then
-  the involved component context docs.
-- For verification, use `pnpm check`; it covers publishable packages, the private
-  React example consumer, and `DESIGN.md` lint.
-- For package or file moves, use `docs/architecture/repository-structure.md`
-  before changing the tree.
+- Do not read every markdown file before starting. Use [router.md](router.md)
+  and indexes to choose the smallest path that can support the task.
+- If the target is known, read the specific workflow or contract, source files,
+  nearby tests, and relevant quality gates.
+- Foundation docs are only required for the visual areas being changed.
+- Architecture docs are only required when moving files, changing ownership, or
+  adding packages.
+- Patterns are only required when the flow matches a documented repeated product
+  flow.
+- Screen structures are only required for page-level layout, navigation,
+  hierarchy, or task-focus decisions.
+- Component contracts are only required for components being used, edited,
+  reviewed, or created.
+- Source files and tests must still be inspected before editing existing code.
+  Do not rely only on docs when implementation exists.
+- For verification, use `pnpm check`; it covers publishable packages, the
+  private React example consumer, plugin context sync, and `DESIGN.md` lint.
 - For cleanup, use `pnpm clean:workspace`; it removes ignored build/cache files
   and `.DS_Store` files while preserving installed dependencies.
 

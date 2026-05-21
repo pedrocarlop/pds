@@ -111,6 +111,14 @@ import {
   PaginationList,
   PaginationNext,
   PaginationPrevious,
+  PageHeader,
+  PageHeaderActions,
+  PageHeaderBreadcrumbs,
+  PageHeaderContent,
+  PageHeaderDescription,
+  PageHeaderMeta,
+  PageHeaderText,
+  PageHeaderTitle,
   Popover,
   PopoverClose,
   PopoverContent,
@@ -831,6 +839,64 @@ describe("PDS starter components", () => {
     expect(screen.getByText("Footer actions")).toHaveAttribute(
       "data-slot",
       "surface-footer"
+    );
+  });
+
+  it("renders PageHeader composition with semantic slots and forwarded refs", () => {
+    const ref = React.createRef<HTMLElement>();
+
+    render(
+      <PageHeader ref={ref} className="custom-page-header">
+        <PageHeaderBreadcrumbs className="custom-breadcrumbs">
+          <Breadcrumbs>
+            <BreadcrumbsList>
+              <BreadcrumbsItem>
+                <BreadcrumbsLink href="/settings">Settings</BreadcrumbsLink>
+              </BreadcrumbsItem>
+            </BreadcrumbsList>
+          </Breadcrumbs>
+        </PageHeaderBreadcrumbs>
+        <PageHeaderContent>
+          <PageHeaderText>
+            <PageHeaderTitle>Workspace settings</PageHeaderTitle>
+            <PageHeaderDescription>
+              Manage account access and runtime defaults.
+            </PageHeaderDescription>
+            <PageHeaderMeta>Updated 2 minutes ago</PageHeaderMeta>
+          </PageHeaderText>
+          <PageHeaderActions>
+            <Button>Save changes</Button>
+          </PageHeaderActions>
+        </PageHeaderContent>
+      </PageHeader>
+    );
+
+    const header = screen
+      .getByRole("heading", { level: 1, name: "Workspace settings" })
+      .closest('[data-slot="page-header"]');
+    expect(header).toHaveClass("pds-page-header", "custom-page-header");
+    expect(ref.current).toBe(header);
+    expect(screen.getByText("Settings").closest("div")).toHaveAttribute(
+      "data-slot",
+      "page-header-breadcrumbs"
+    );
+    expect(screen.getByText("Settings").closest("div")).toHaveClass(
+      "custom-breadcrumbs"
+    );
+    expect(screen.getByText("Workspace settings")).toHaveAttribute(
+      "data-slot",
+      "page-header-title"
+    );
+    expect(
+      screen.getByText("Manage account access and runtime defaults.")
+    ).toHaveAttribute("data-slot", "page-header-description");
+    expect(screen.getByText("Updated 2 minutes ago")).toHaveAttribute(
+      "data-slot",
+      "page-header-meta"
+    );
+    expect(screen.getByRole("button", { name: "Save changes" }).parentElement).toHaveAttribute(
+      "data-slot",
+      "page-header-actions"
     );
   });
 

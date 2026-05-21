@@ -10,6 +10,34 @@ data/states/actions, and source design intent. If a Figma connector is available
 and the user provided a Figma URL, fetch design context first. Ask one concise
 question only when the target screen or primary workflow cannot be inferred.
 
+## Minimum Read Path
+
+Always read:
+
+- [router.md](../router.md)
+- [workflow.md](../workflow.md)
+- This workflow
+- Target app source, routing/layout files, root styles, and nearby screens
+
+Choose one:
+
+- One [screen structure](../screen-structures/README.md)
+- One [pattern](../patterns/README.md) only when the flow matches a documented
+  repeated product flow
+
+Read only if relevant:
+
+- [docs/recipes](../../recipes) when PDS is not already wired into the app
+- Component contracts for components being composed or modified
+- Foundation docs for visual areas being changed
+- [PDS Screen Quality Gates](../pds-screen-quality-gates.md) before handoff
+
+Do not read:
+
+- Every component contract
+- Every pattern
+- Architecture docs unless moving files, changing ownership, or adding packages
+
 ## Structure Selection
 
 Before editing, choose one screen structure from
@@ -76,12 +104,8 @@ shape.
 node <plugin-root>/skills/audit/scripts/audit-web-project.mjs --target <project-path>
 ```
 
-3. Load PDS guidance: [DESIGN.md](../../../DESIGN.md),
-   [workflow.md](../workflow.md), the relevant [recipe](../../recipes/README.md),
-   relevant [screen structure](../screen-structures/README.md), relevant
-   [patterns](../patterns/README.md), the
-   [PDS Screen Quality Gates](../pds-screen-quality-gates.md), and relevant
-   [component contracts](../components/README.md).
+3. Load PDS guidance through the [Minimum Read Path](#minimum-read-path). Use
+   indexes to choose matching structure, pattern, and component docs, then stop.
 4. Complete [Structure Selection](#structure-selection) and output the
    [Pre-build Preview](#pre-build-preview) before making code changes.
 5. If PDS is not wired in an existing React app, follow the existing-app recipe:

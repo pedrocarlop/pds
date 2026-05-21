@@ -218,6 +218,16 @@ export {
 } from "./pagination";
 export type { PaginationLinkProps } from "./pagination";
 export {
+  PageHeader,
+  PageHeaderActions,
+  PageHeaderBreadcrumbs,
+  PageHeaderContent,
+  PageHeaderDescription,
+  PageHeaderMeta,
+  PageHeaderText,
+  PageHeaderTitle
+} from "./page-header";
+export {
   Popover,
   PopoverAnchor,
   PopoverClose,

@@ -229,6 +229,13 @@ a {
   grid-template-columns: minmax(0, 0.8fr) minmax(var(--pds-layout-side-panel-wide-min), 0.7fr);
 }
 
+.examples-settings-page {
+  display: grid;
+  width: min(100%, var(--pds-layout-reading-max));
+  min-width: 0;
+  gap: var(--pds-space-sp-600);
+}
+
 .examples-product-main [data-slot="surface-content"],
 .examples-queue-list [data-slot="surface-content"],
 .examples-settings-side {
@@ -255,6 +262,49 @@ a {
 
 .examples-cell-copy {
   min-width: 0;
+}
+
+.examples-settings-cell-list {
+  display: grid;
+  min-width: 0;
+  gap: var(--pds-space-sp-200);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.examples-settings-cell-list li {
+  min-width: 0;
+}
+
+.examples-settings-cell-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--pds-radius-full);
+  color: var(--pds-color-accent);
+  background: var(--pds-color-action-background);
+  font-size: var(--pds-heading3);
+}
+
+.examples-settings-cell-copy {
+  display: grid;
+  min-width: 0;
+  flex: 1 1 auto;
+  gap: var(--pds-space-sp-50);
+}
+
+.examples-settings-cell-copy strong {
+  color: var(--pds-color-foreground);
+  font-size: var(--pds-emphasis1);
+  font-weight: var(--pds-fw-emphasis);
+  line-height: var(--pds-lh-emphasis1);
+}
+
+.examples-settings-cell-copy span {
+  color: var(--pds-color-grey-tone-50);
+  font-size: var(--pds-body2);
+  line-height: var(--pds-lh-body2);
+  overflow-wrap: anywhere;
 }
 
 .examples-cell-native-control {

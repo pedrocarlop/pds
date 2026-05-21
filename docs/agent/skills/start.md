@@ -3,6 +3,31 @@
 Use this workflow only when the user explicitly invokes the PDS starter and
 wants the current empty folder turned into a new PDS-backed React app.
 
+## Minimum Read Path
+
+Always read:
+
+- [router.md](../router.md)
+- This workflow
+- Target folder listing
+
+Choose one:
+
+- [start-new-react-app.md](../../recipes/start-new-react-app.md) when the user
+  needs to understand the generated app setup
+- No additional docs when running the starter in a clearly empty target folder
+
+Read only if relevant:
+
+- Root [README.md](../../../README.md) when explaining install/update commands
+- Component contracts only when the user also asks to customize the first screen
+
+Do not read:
+
+- Existing-app adoption recipe
+- Screen structures, patterns, or architecture docs unless the user asks for
+  custom app work beyond bootstrapping
+
 ## Behavior
 
 Run the bundled installer script from the folder that should become the app. The

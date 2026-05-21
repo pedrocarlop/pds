@@ -6,7 +6,7 @@ import {
   AvatarFallback,
   Badge,
   Button,
-  Checkbox,
+  Cell,
   Composer,
   ComposerActions,
   ComposerFooter,
@@ -19,14 +19,7 @@ import {
   InlineAlertActions,
   InlineAlertDescription,
   InlineAlertTitle,
-  Input,
-  Menu,
-  MenuContent,
-  MenuItem,
-  MenuLabel,
-  MenuSeparator,
-  MenuShortcut,
-  MenuTrigger,
+  Icon,
   Message,
   MessageActions,
   MessageAuthor,
@@ -34,6 +27,13 @@ import {
   MessageContent,
   MessageHeader,
   MessageMeta,
+  PageHeader,
+  PageHeaderActions,
+  PageHeaderContent,
+  PageHeaderDescription,
+  PageHeaderMeta,
+  PageHeaderText,
+  PageHeaderTitle,
   Progress,
   RunStatus,
   Select,
@@ -49,19 +49,10 @@ import {
   SurfaceFooter,
   SurfaceHeader,
   SurfaceTitle,
-  Switch,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableHeader,
-  TableRow,
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-  Textarea,
   Transcript,
   TranscriptList
 } from "@pds/react";
@@ -90,11 +81,13 @@ interface ReviewItem {
   summary: string;
 }
 
-interface Account {
+interface SettingsSection {
+  badge: string;
+  description: string;
+  icon: string;
   id: string;
-  name: string;
-  status: "success" | "warning" | "error";
-  meta: string;
+  title: string;
+  tone?: "neutral" | "accent" | "success" | "warning" | "danger" | "inactive";
 }
 
 const toolRuns: ToolRun[] = [
@@ -160,24 +153,52 @@ const reviewItems: ReviewItem[] = [
   }
 ];
 
-const accounts: Account[] = [
+const settingsSections: SettingsSection[] = [
   {
-    id: "github",
-    name: "GitHub",
-    status: "success",
-    meta: "Connected as pds-maintainer"
+    badge: "Live",
+    description: "Workspace name, default model lane, and system instructions.",
+    icon: "tune",
+    id: "workspace",
+    title: "Workspace defaults",
+    tone: "success"
   },
   {
-    id: "linear",
-    name: "Linear",
-    status: "warning",
-    meta: "Token expires in 6 days"
+    badge: "3 accounts",
+    description: "GitHub, Linear, Slack, and other connected account scopes.",
+    icon: "hub",
+    id: "accounts",
+    title: "Connected accounts"
   },
   {
-    id: "slack",
-    name: "Slack",
-    status: "error",
-    meta: "Action scopes need review"
+    badge: "Required",
+    description: "Human approval rules for publish, delete, and revoke flows.",
+    icon: "verified_user",
+    id: "approvals",
+    title: "Approval policy",
+    tone: "accent"
+  },
+  {
+    badge: "Degraded",
+    description: "Tool gateway latency, review API health, and incident status.",
+    icon: "monitor_heart",
+    id: "system",
+    title: "System status",
+    tone: "warning"
+  },
+  {
+    badge: "Audit",
+    description: "Run history, event exports, retention windows, and logs.",
+    icon: "history",
+    id: "audit",
+    title: "Audit and retention"
+  },
+  {
+    badge: "Locked",
+    description: "Delete workspace data, rotate secrets, and revoke access.",
+    icon: "warning",
+    id: "danger",
+    title: "Danger zone",
+    tone: "danger"
   }
 ];
 
@@ -582,186 +603,46 @@ function ReviewQueueSurface() {
 }
 
 function SettingsSystemSurface() {
-  const [telemetryEnabled, setTelemetryEnabled] = React.useState(true);
-  const [reviewRequired, setReviewRequired] = React.useState(true);
-  const [confirmDanger, setConfirmDanger] = React.useState(false);
-
   return (
-    <div className="examples-product-grid examples-product-grid-settings">
-      <Surface level="base">
-        <SurfaceHeader>
-          <div>
-            <SurfaceTitle>Settings and system</SurfaceTitle>
-            <SurfaceDescription>
-              Account controls, system posture, and destructive actions share
-              one durable settings layout.
-            </SurfaceDescription>
-          </div>
-        </SurfaceHeader>
-        <SurfaceContent>
-          <div className="examples-settings-form">
-            <label className="examples-field">
-              Workspace name
-              <Input defaultValue="PDS release workspace" />
-            </label>
+    <div className="examples-settings-page">
+      <PageHeader>
+        <PageHeaderContent>
+          <PageHeaderText>
+            <PageHeaderTitle>Settings</PageHeaderTitle>
+            <PageHeaderDescription>
+              Manage workspace defaults, account access, approval rules, and
+              operational safeguards from one scannable settings page.
+            </PageHeaderDescription>
+            <PageHeaderMeta>
+              <Badge>6 sections</Badge>
+              <RunStatus status="warning">1 section needs review</RunStatus>
+            </PageHeaderMeta>
+          </PageHeaderText>
+          <PageHeaderActions>
+            <Button intent="secondary">Export audit log</Button>
+            <Button>Save changes</Button>
+          </PageHeaderActions>
+        </PageHeaderContent>
+      </PageHeader>
 
-            <label className="examples-field">
-              Default model lane
-              <Select defaultValue="balanced">
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="fast">Fast triage</SelectItem>
-                  <SelectItem value="balanced">Balanced review</SelectItem>
-                  <SelectItem value="deep">Deep verification</SelectItem>
-                </SelectContent>
-              </Select>
-            </label>
-
-            <label className="examples-field">
-              System instructions
-              <Textarea
-                defaultValue="Keep product decisions inspectable, preserve review state, and avoid publishing generated output without approval."
-                rows={4}
+      <ul className="examples-settings-cell-list" aria-label="Settings sections">
+        {settingsSections.map((section) => (
+          <li key={section.id}>
+            <Cell use="button" variant="disclosure">
+              <Icon
+                aria-hidden="true"
+                className="examples-settings-cell-icon"
+                name={section.icon}
               />
-            </label>
-
-            <label className="examples-check-row">
-              <Checkbox
-                checked={reviewRequired}
-                onCheckedChange={(checked) => setReviewRequired(checked === true)}
-              />
-              <span>
-                <strong>Require approval for destructive actions</strong>
-                <span>Human review stays mandatory for publish, delete, and revoke flows.</span>
+              <span className="examples-settings-cell-copy">
+                <strong>{section.title}</strong>
+                <span>{section.description}</span>
               </span>
-            </label>
-
-            <label className="examples-switch-row">
-              <span>
-                <strong>Runtime telemetry</strong>
-                <span>Collect agent run status and tool failure metadata.</span>
-              </span>
-              <Switch
-                checked={telemetryEnabled}
-                onCheckedChange={setTelemetryEnabled}
-              />
-            </label>
-          </div>
-        </SurfaceContent>
-      </Surface>
-
-      <div className="examples-settings-side">
-        <Surface level="elevated">
-          <SurfaceHeader>
-            <div>
-              <SurfaceTitle>Connected accounts</SurfaceTitle>
-              <SurfaceDescription>
-                Rows expose account health and local account actions.
-              </SurfaceDescription>
-            </div>
-          </SurfaceHeader>
-          <SurfaceContent>
-            <div className="examples-account-list">
-              {accounts.map((account) => (
-                <div className="examples-account-row" key={account.id}>
-                  <span>
-                    <strong>{account.name}</strong>
-                    <span>{account.meta}</span>
-                  </span>
-                  <span className="examples-account-actions">
-                    <RunStatus status={account.status}>
-                      {account.status === "success"
-                        ? "Connected"
-                        : account.status === "warning"
-                          ? "Attention"
-                          : "Blocked"}
-                    </RunStatus>
-                    <Menu>
-                      <MenuTrigger asChild>
-                        <Button aria-label={`${account.name} account actions`} intent="quiet" size="sm">
-                          Manage
-                        </Button>
-                      </MenuTrigger>
-                      <MenuContent align="end">
-                        <MenuLabel>{account.name}</MenuLabel>
-                        <MenuItem>Reconnect</MenuItem>
-                        <MenuItem>View scopes</MenuItem>
-                        <MenuSeparator />
-                        <MenuItem intent="danger">
-                          Remove
-                          <MenuShortcut>!</MenuShortcut>
-                        </MenuItem>
-                      </MenuContent>
-                    </Menu>
-                  </span>
-                </div>
-              ))}
-            </div>
-          </SurfaceContent>
-        </Surface>
-
-        <Surface level="elevated">
-          <SurfaceHeader>
-            <div>
-              <SurfaceTitle>System status</SurfaceTitle>
-              <SurfaceDescription>
-                Compact rows keep operational details scannable.
-              </SurfaceDescription>
-            </div>
-          </SurfaceHeader>
-          <SurfaceContent>
-            <TableContainer>
-              <Table density="compact">
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Service</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Latency</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  <TableRow>
-                    <TableCell>Tool gateway</TableCell>
-                    <TableCell>
-                      <RunStatus status="success">Healthy</RunStatus>
-                    </TableCell>
-                    <TableCell>142 ms</TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>Review API</TableCell>
-                    <TableCell>
-                      <RunStatus status="warning">Degraded</RunStatus>
-                    </TableCell>
-                    <TableCell>480 ms</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-
-            <InlineAlert tone="danger">
-              <InlineAlertTitle>Delete workspace data</InlineAlertTitle>
-              <InlineAlertDescription>
-                Destructive actions require visible confirmation and a durable
-                recovery explanation.
-              </InlineAlertDescription>
-              <InlineAlertActions>
-                <label className="examples-confirm-row">
-                  <Checkbox
-                    checked={confirmDanger}
-                    onCheckedChange={(checked) => setConfirmDanger(checked === true)}
-                  />
-                  <span>I understand this removes local run history.</span>
-                </label>
-                <Button disabled={!confirmDanger} intent="danger" size="sm">
-                  Delete data
-                </Button>
-              </InlineAlertActions>
-            </InlineAlert>
-          </SurfaceContent>
-        </Surface>
-      </div>
+              <Badge tone={section.tone}>{section.badge}</Badge>
+            </Cell>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

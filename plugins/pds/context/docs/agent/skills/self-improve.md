@@ -5,6 +5,33 @@ current artifact. Treat the feedback as a small incident review: inspect what
 happened, identify the instruction gap, fix the artifact when expected, and
 patch the smallest durable guidance owner.
 
+## Minimum Read Path
+
+Always read:
+
+- [router.md](../router.md)
+- This workflow
+- Evidence for the artifact: current source, diff, generated UI, screenshot,
+  Figma handoff, or upstream primitive when available
+
+Choose one:
+
+- Smallest durable owner from [router.md](../router.md): screen structure,
+  pattern, component contract, foundation docs, token source, architecture docs,
+  or skill workflow
+
+Read only if relevant:
+
+- Source and tests for the artifact being fixed
+- Matching quality gate for the owner being changed
+- `DESIGN.md` only when the portable design routing contract itself is wrong
+
+Do not read:
+
+- Every foundation doc
+- Every component contract
+- Generated plugin context before changing canonical docs
+
 ## Workflow
 
 1. Capture the feedback precisely: what the user objected to, which artifact is

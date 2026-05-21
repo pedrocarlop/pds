@@ -4,9 +4,20 @@ Patterns document repeatable product flows that combine PDS foundations and
 components. They describe state, accessibility, resilience, and client
 responsibilities without creating a single required implementation.
 
-Use patterns after [DESIGN.md](../../../DESIGN.md) and the relevant foundation
-docs. Pattern guidance can supersede general component guidance when a flow has
-legal, safety, audit, or task-completion requirements.
+Use this index only when the task matches a documented repeated product flow.
+Choose the matching child doc, then stop. Pattern guidance can supersede general
+component guidance when a flow has legal, safety, audit, or task-completion
+requirements.
+
+## Decision Table
+
+| Flow need | Use |
+| --- | --- |
+| Agent conversation, tool execution, workspace state, transcript, or run status | [Agent workspace](agent-workspace.md) |
+| Legal or policy document review with explicit acceptance or signing | [Agreement signing](agreement-signing.md) |
+| Queue-based triage, approval, review, or batch decisions | [Review queue](review-queue.md) |
+| Preferences, account, admin, permissions, system state, or configuration | [Settings and system](settings-system.md) |
+| No matching repeated flow | Skip patterns and use screen structure plus component contracts only |
 
 ## Current Patterns
 

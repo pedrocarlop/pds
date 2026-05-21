@@ -3,14 +3,15 @@
 This file exists because Codex and similar tools look for a root `AGENTS.md`.
 It is only the compatibility adapter and short safety checklist for agents.
 
-The canonical agent documentation lives in [docs/agent](docs/agent/README.md)
+The canonical agent router lives in [docs/agent/router.md](docs/agent/router.md).
+The full agent documentation index lives in [docs/agent](docs/agent/README.md)
 so humans can review agent behavior in one place. Product install instructions
 belong in [README.md](README.md), and human repo orientation belongs in
 [docs/start-here.md](docs/start-here.md).
 
 ## Start Here
 
-1. Read [docs/agent/README.md](docs/agent/README.md) for task routing.
+1. Read [docs/agent/router.md](docs/agent/router.md) for task routing.
 2. Read [DESIGN.md](DESIGN.md) before making visual decisions.
 3. Read [docs/agent/workflow.md](docs/agent/workflow.md) before editing files.
 4. Follow only the component, pattern, recipe, package, or skill docs needed for

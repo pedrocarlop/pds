@@ -11,9 +11,11 @@ limitations.
 
 ## How Agents Should Use These Files
 
+- Use this index to choose only the component contracts involved in the task,
+  then stop.
 - Before editing a component, read its component context and source file.
 - Before changing `components.css`, read the affected component context plus the
-  relevant foundation docs.
+  relevant foundation docs for the visual area being changed.
 - Before changing public API, update the component context, package README,
   exports, and tests together.
 - Before adding examples or tests, check the documented slots, data attributes,
@@ -21,7 +23,21 @@ limitations.
 - Before adding a new component, create its context file from
   [_template.md](_template.md).
 
-## Current Context Files
+## Grouped Navigation
+
+| Purpose | Component contracts |
+| --- | --- |
+| Actions | [ActionMenu](action-menu.md), [ActionWidget](action-widget.md), [Button](button.md), [Menu](menu.md) |
+| Forms | [Checkbox](checkbox.md), [FilterChip](filter-chip.md), [Input](input.md), [RadioGroup](radio-group.md), [Select](select.md), [Switch](switch.md), [Textarea](textarea.md) |
+| Surfaces | [BottomSheet](bottom-sheet.md), [Details](details.md), [Dialog](dialog.md), [Popover](popover.md), [Surface](surface.md), [Tooltip](tooltip.md) |
+| Data | [Amount](amount.md), [Avatar](avatar.md), [Cell](cell.md), [DataList](data-list.md), [Table](table.md), [TravelWidget](travel-widget.md) |
+| Feedback | [Badge](badge.md), [InlineAlert](inline-alert.md), [Progress](progress.md), [RunStatus](run-status.md), [Skeleton](skeleton.md), [Toast](toast.md) |
+| Navigation | [Breadcrumbs](breadcrumbs.md), [PageHeader](page-header.md), [Pagination](pagination.md), [Tabs](tabs.md) |
+| Agent-facing | [Composer](composer.md), [Message](message.md), [RunStatus](run-status.md), [Transcript](transcript.md) |
+
+Choose the matching child doc, then stop expanding this index.
+
+## Complete Index
 
 - [ActionMenu](action-menu.md)
 - [ActionWidget](action-widget.md)
@@ -46,6 +62,7 @@ limitations.
 - [Item](item.md)
 - [Menu](menu.md)
 - [Pagination](pagination.md)
+- [PageHeader](page-header.md)
 - [Popover](popover.md)
 - [Progress](progress.md)
 - [RadioGroup](radio-group.md)

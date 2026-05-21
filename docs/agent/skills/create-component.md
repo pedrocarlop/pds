@@ -11,24 +11,38 @@ Infer the component job, target user, anatomy, states, interaction model,
 content resilience requirements, and likely component group. Ask one concise
 question only when the component purpose or public API cannot be inferred safely.
 
-## Required Reading
+## Minimum Read Path
 
-Before editing, read:
+Always read:
 
-1. [AGENTS.md](../../../AGENTS.md), [DESIGN.md](../../../DESIGN.md), and
-   [workflow.md](../workflow.md).
-2. Relevant foundation docs in [docs/foundations](../../foundations), especially
-   tokens, colour, typography, spacing, motion, and content resilience.
-3. [packages/react/README.md](../../../packages/react/README.md).
-4. [components/README.md](../components/README.md) and
-   [components/_template.md](../components/_template.md).
-5. [PDS Component Quality Gates](../pds-quality-gates.md), plus
-   [PDS Screen Quality Gates](../pds-screen-quality-gates.md) when the request
-   may be screen composition rather than a reusable component.
-6. Nearby component contracts, source, CSS, tests, and previews for similar
-   components.
-7. [examples/react/README.md](../../../examples/react/README.md) for Ladle
-   preview rules.
+- [router.md](../router.md)
+- [workflow.md](../workflow.md)
+- This workflow
+- [packages/react/README.md](../../../packages/react/README.md)
+- [components/_template.md](../components/_template.md)
+- Nearby component contracts, source, CSS, tests, and previews for similar
+  components
+
+Choose one:
+
+- The closest component group in [components/README.md](../components/README.md)
+- The closest existing component contract to model API, slots, states, and
+  accessibility
+
+Read only if relevant:
+
+- Foundation docs for the visual areas being changed
+- [PDS Component Quality Gates](../pds-quality-gates.md) before handoff
+- [PDS Screen Quality Gates](../pds-screen-quality-gates.md) when the request is
+  really screen composition
+- [examples/react/README.md](../../../examples/react/README.md) for Ladle
+  preview rules
+
+Do not read:
+
+- Every component contract
+- Screen structures or patterns unless deciding that the request is not a
+  reusable component
 
 ## Pre-build Preview
 
