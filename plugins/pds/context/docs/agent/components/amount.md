@@ -130,6 +130,19 @@ Amount uses PDS color, spacing, radius, typography, focus, invalid state,
 interaction layer, disabled opacity, and motion tokens. Do not add hard-coded
 colors, spacing, radii, transitions, or brand-specific asset references.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Currency side and input side render as a grouped amount control. | `data-slot='amount'`, `amount-currency`, `amount-input` | Consumers provide labels and descriptions for the input and grouped context. |
+| Hover | Pointer hover | Currency cell and input wrapper use hover state layer when enabled. | `.pds-amount-currency.pds-cell:hover`, `.pds-amount-input:not([data-disabled='true']):hover` | Hover does not change form semantics. |
+| Focus-visible | Keyboard focus | Currency focus and input focus-within use the shared PDS focus shadow. | `.pds-amount-currency:focus-visible`, `.pds-amount-input:focus-within` | Input focus remains on the native input control. |
+| Active | Pressed | Currency cell uses Cell pressed treatment when interactive; input has no pressed state. | `.pds-amount-currency.pds-cell:active` | Activation semantics come from the rendered currency root. |
+| Disabled | `disabled` / `aria-disabled` | Disabled input dims the wrapper; disabled currency follows Cell disabled treatment. | `data-disabled='true'`, `:disabled`, `aria-disabled` | Native input disabled prevents editing; non-button currency roots use `aria-disabled`. |
+| Loading | `loading` prop / `data-busy` | Not applicable: Amount has no loading or busy prop. | Not applicable | Use Skeleton or a disabled wrapper while amount data loads. |
+| Error | `data-invalid` / error prop | Invalid root, currency, and input use invalid border and error text treatment. | `data-invalid='true'`, `aria-invalid='true'` | Invalid input sets or preserves `aria-invalid`; error text must remain visible. |
+| Success | status / success prop | Not applicable: Amount has no success state. | Not applicable | Use adjacent status text or Badge for successful validation feedback. |
+
 ## State Behavior
 
 - `Amount.invalid` marks the root for grouped invalid state.

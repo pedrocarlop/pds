@@ -116,6 +116,19 @@ motion tokens. The active reference state uses the neutral accent tokens for a
 white selected pill, while hover and pressed treatments use shared state-layer
 tokens.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Chip renders neutral filter surface with label, optional icon, count, remove, and notification slots. | `data-slot='filter-chip'` | Primary action and remove control are native buttons. |
+| Hover | Pointer hover | Enabled chip applies hover state layer; active chip preserves selected fill. | `.pds-filter-chip:not([data-disabled='true']):hover` | Hover is suppressed when root is disabled. |
+| Focus-visible | Keyboard focus | Action and remove buttons use shared PDS focus shadow. | `.pds-filter-chip-action:focus-visible`, `.pds-filter-chip-remove:focus-visible` | Focus stays on the button being operated. |
+| Active | Pressed | Enabled chip applies pressed state layer; active chip keeps selected treatment. | `.pds-filter-chip:not([data-disabled='true']):active`, `data-active='true'` | `active` maps to pressed semantics for the primary action. |
+| Disabled | `disabled` / `aria-disabled` | Disabled chip dims and suppresses hover or pressed layers. | `data-disabled='true'`, child `:disabled` | Native child buttons are disabled and cannot activate. |
+| Loading | `loading` prop / `data-busy` | Not applicable: FilterChip has no loading state. | Not applicable | Use disabled chip plus adjacent progress if filter updates are pending. |
+| Error | `data-invalid` / error prop | Not applicable: FilterChip has no error state. | Not applicable | Use validation messaging outside the filter chip. |
+| Success | status / success prop | Not applicable: active means selected filter, not success. | `data-active='true'` only | Do not use selected chip state as success feedback. |
+
 ## State Behavior
 
 `active` changes visual treatment and default pressed semantics. Native

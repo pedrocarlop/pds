@@ -98,6 +98,19 @@ Avatar uses PDS radius, surface color, typography, spacing, and status token
 categories. Do not add one-off sizes or badge colors without updating docs and
 tests.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Avatar renders image or fallback at the selected size; badges and groups are presentational. | `data-slot='avatar'`, `data-size` | Image alt text and fallback text determine accessible representation. |
+| Hover | Pointer hover | Not applicable: Avatar has no hover state of its own. | Not applicable | Interactive wrappers own hover semantics. |
+| Focus-visible | Keyboard focus | Not applicable: Avatar is not focusable by default. | Not applicable | Focusable wrappers must provide the focus indicator. |
+| Active | Pressed | Not applicable: Avatar has no activation behavior. | Not applicable | Activation belongs to the parent control. |
+| Disabled | `disabled` / `aria-disabled` | Not applicable: Avatar has no disabled state. | Not applicable | Disabled treatment belongs to the containing control. |
+| Loading | Image loading | Radix shows fallback until image loading resolves. | `data-slot='avatar-image'`, `data-slot='avatar-fallback'` | Fallback content should be meaningful or hidden according to context. |
+| Error | Image load failure | Radix keeps fallback visible when the image cannot load. | `data-slot='avatar-fallback'` | Do not announce image failures unless product flow requires it. |
+| Success | Image loaded | Loaded image replaces fallback within the same avatar frame. | `data-slot='avatar-image'` | Loaded image uses consumer-provided alt behavior. |
+
 ## State Behavior
 
 Avatar has no interactive state. Radix controls image loading and fallback

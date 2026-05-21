@@ -63,6 +63,19 @@ hover, focus-visible, and disabled selectors.
 Uses color, spacing, radius, typography, focus, state layer, segmented surface,
 and motion tokens.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Tabs render list, triggers, and content with line or segmented list treatment. | `data-slot='tabs-*'`, `data-variant` | Radix owns tablist, tab, and tabpanel semantics. |
+| Hover | Pointer hover | Enabled triggers use neutral hover treatment. | `.pds-tabs-trigger:not(:disabled):hover` | Hover does not change selected tab. |
+| Focus-visible | Keyboard focus | Tab triggers use shared PDS focus shadow. | `.pds-tabs-trigger:focus-visible` | Keyboard navigation follows Radix tabs behavior. |
+| Active | Pressed | Active trigger uses selected treatment; segmented active trigger uses segmented selected surface. | `data-state='active'`, `.pds-tabs-trigger[data-state='active']` | Radix updates selected tab and tabpanel relationship. |
+| Disabled | `disabled` / `aria-disabled` | Disabled triggers dim and suppress hover treatment. | `.pds-tabs-trigger:disabled` | Radix disabled tabs are not activatable. |
+| Loading | `loading` prop / `data-busy` | Not applicable: Tabs has no loading state. | Not applicable | Expose loading inside the active tab panel. |
+| Error | `data-invalid` / error prop | Not applicable: Tabs has no error state. | Not applicable | Use status indicators in tab labels only with readable text. |
+| Success | status / success prop | Not applicable: active tab is navigation state, not success. | `data-state='active'` only | Use separate status text for successful panel actions. |
+
 ## State Behavior
 
 Active triggers use selected state treatment. Segmented lists use segmented

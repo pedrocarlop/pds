@@ -57,6 +57,19 @@ hover/focus, and list wrapping.
 
 Uses typography, spacing, radius, color, focus, and state layer tokens.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Pagination renders nav list, previous/next controls, links, and ellipsis. | `data-slot='pagination-*'` | Use navigation semantics and accessible labels for previous and next. |
+| Hover | Pointer hover | Pagination links use link or button hover treatment from composed elements. | `data-slot='pagination-link'` | Hover does not change current-page semantics. |
+| Focus-visible | Keyboard focus | Pagination links use focus treatment from anchor or button composition. | `data-slot='pagination-link'`, `:focus-visible` on composed control | Keyboard focus remains on the active page control. |
+| Active | Pressed | Current page uses accent fill; pressed controls use native activation behavior. | `data-current='true'`, native `:active` | Current page should expose current-page semantics. |
+| Disabled | `disabled` / `aria-disabled` | Disabled previous or next is consumer-owned for custom composition. | Consumer `disabled` or `aria-disabled` | Consumer must prevent activation when using `aria-disabled`. |
+| Loading | `loading` prop / `data-busy` | Not applicable: Pagination has no loading state. | Not applicable | Expose page loading on the paginated region. |
+| Error | `data-invalid` / error prop | Not applicable: Pagination has no error state. | Not applicable | Page loading errors belong to the content region. |
+| Success | status / success prop | Not applicable: current page is navigation state, not success. | `data-current='true'` only | Do not use current-page state as success feedback. |
+
 ## State Behavior
 
 Current links use accent fill. Disabled behavior is consumer-owned for custom

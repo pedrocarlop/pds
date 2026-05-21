@@ -59,6 +59,19 @@ structure.
 Uses surface color, typography, spacing, radius, elevation, and state layer
 tokens.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Table renders container, semantic table sections, rows, cells, and caption at selected density. | `data-slot='table-*'`, `data-density` | Use native table semantics for tabular data. |
+| Hover | Pointer hover | Rows apply a neutral hover layer to cells. | `.pds-table-row:hover .pds-table-cell` | Hover does not imply row selection. |
+| Focus-visible | Keyboard focus | Not applicable by default: table rows are not focusable. | Not applicable | Focusable controls inside cells own focus treatment. |
+| Active | Pressed | Not applicable: Table has no row activation state. | Not applicable | Clickable row behavior must be provided by controls or links. |
+| Disabled | `disabled` / `aria-disabled` | Not applicable: Table has no disabled state. | Not applicable | Disabled state belongs to controls inside cells. |
+| Loading | `loading` prop / `data-busy` | Not applicable: Table has no loading state. | Not applicable | Use Skeleton rows or busy state on the table region while data loads. |
+| Error | `data-invalid` / error prop | Not applicable: Table has no error state. | Not applicable | Use InlineAlert or error rows outside the data table semantics. |
+| Success | status / success prop | Not applicable: Table has no success state. | Not applicable | Use status cells, Badge, or RunStatus for row success. |
+
 ## State Behavior
 
 Rows receive a neutral hover layer. Sorting, selection, and virtualization are

@@ -64,6 +64,19 @@ disabled, and danger intent selectors.
 Uses popover surface color, typography, spacing, radius, elevation, state layer,
 disabled opacity, and motion tokens.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Trigger, content, labels, separators, and items use menu spacing and neutral item treatment. | `data-slot='menu-*'`, `.pds-menu-item` | Radix menu primitives own menu roles, roving focus, and selection semantics. |
+| Hover | Pointer hover or Radix highlight | Highlighted items receive the shared hover state layer. | `data-highlighted`, `.pds-menu-item[data-highlighted]` | Highlight follows Radix pointer and keyboard focus management. |
+| Focus-visible | Keyboard focus | Focused menu items use shared PDS focus shadow. | `.pds-menu-item:focus-visible` | Keyboard users navigate items through Radix menu behavior. |
+| Active | Pressed or checked item | Checked menu items use selected state layer. | `data-state='checked'`, `.pds-menu-item[data-state='checked']` | Radix owns checkbox and radio item ARIA state. |
+| Disabled | `disabled` or Radix disabled item | Disabled items use disabled opacity and suppress highlight selection. | `data-disabled`, `.pds-menu-item[data-disabled]` | Radix removes disabled items from activation. |
+| Loading | `loading` prop / `data-busy` | Not applicable: Menu has no loading or busy state. | Not applicable | Expose loading on item content or surrounding region if needed. |
+| Error | `data-invalid` / error prop | Not applicable: danger intent is destructive emphasis, not validation error. | `data-intent='danger'` only | Do not use danger items as error announcements. |
+| Success | status / success prop | Not applicable: Menu has no success state. | Not applicable | Use item text or surrounding status components for success feedback. |
+
 ## State Behavior
 
 Highlighted items use hover state layer. Checked items use selected state layer.

@@ -118,6 +118,19 @@ TravelWidget uses PDS surface color, overlay color, state layers, focus shadow,
 spacing, radius, elevation, typography, disabled opacity, and motion tokens.
 Do not hard-code upstream color, spacing, radius, typography, or shadow values.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Widget renders image, body, details, action slot, and optional carousel at selected variant. | `data-slot='travel-widget'`, `data-variant`, `data-image`, `data-carousel` | Primary control semantics come from the rendered button, link, or role. |
+| Hover | Pointer hover | Widget surface applies hover state layer when the primary control is interactive and enabled. | `.pds-travel-widget:has(.pds-travel-widget-control:hover)` | Hover is suppressed when primary control is disabled. |
+| Focus-visible | Keyboard focus | Widget wrapper shows shared focus shadow when the primary control is focus-visible. | `.pds-travel-widget:has(.pds-travel-widget-control:focus-visible)` | Keyboard focus stays on the primary control. |
+| Active | Pressed | Widget surface applies pressed state layer when the primary control is pressed. | `.pds-travel-widget:has(.pds-travel-widget-control:active)` | Activation semantics come from the primary control element. |
+| Disabled | `disabled` / `aria-disabled` | Disabled widget dims and disables primary control behavior. | `data-disabled='true'`, control `:disabled` or `aria-disabled` | Button controls disable natively; non-button controls use `aria-disabled`. |
+| Loading | `loading` prop / `data-busy` | Skeleton variants render visual placeholders for widget content. | `data-slot='travel-widget-skeleton'`, `aria-hidden='true'` | Expose loading state on the owning region when skeletons are shown. |
+| Error | `data-invalid` / error prop | Not applicable: TravelWidget has no error state. | Not applicable | Use InlineAlert or replacement content for travel data errors. |
+| Success | status / success prop | Not applicable: TravelWidget has no success state. | Not applicable | Use action result messaging outside the widget. |
+
 ## State Behavior
 
 - Hover and pressed state apply to the widget surface when the primary control

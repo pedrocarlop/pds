@@ -96,6 +96,19 @@ CSS depends on `data-tone`, Radix `data-state`, Radix `data-swipe`,
 Toast uses PDS surface color, semantic status color, spacing, radius, elevation,
 typography, focus, state layer, disabled opacity, and motion tokens.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Toast renders viewport, title, description, action, and close slots with neutral tone by default. | `data-slot='toast'`, `data-tone` | Radix toast owns live-region and dismissible toast semantics. |
+| Hover | Pointer hover | Toast action and close controls use hover state layers. | `.pds-toast-action:not(:disabled):hover`, `.pds-toast-close:not(:disabled):hover` | Hover does not pause or alter announcement semantics by itself. |
+| Focus-visible | Keyboard focus | Action and close controls use shared PDS focus shadow. | `.pds-toast-action:focus-visible`, `.pds-toast-close:focus-visible` | Keyboard users can reach toast actions when they are rendered. |
+| Active | Pressed or swipe gesture | Action and close controls use pressed state; Radix swipe states animate movement. | `.pds-toast-action:active`, `.pds-toast-close:active`, Radix `data-swipe` | Close activation dismisses through Radix. |
+| Disabled | `disabled` / `aria-disabled` | Disabled toast action or close controls dim and suppress hover treatment. | `.pds-toast-action:disabled`, `.pds-toast-close:disabled` | Disabled native controls are not activatable. |
+| Loading | `loading` prop / `data-busy` | Not applicable: Toast has no loading state. | Not applicable | Use toast content text for pending status if needed. |
+| Error | `data-invalid` / error prop | Danger tone uses semantic danger accent treatment. | `data-tone='danger'` | Toast text must clearly state the error. |
+| Success | status / success prop | Success tone uses semantic success accent treatment. | `data-tone='success'` | Toast text must clearly state the success result. |
+
 ## State Behavior
 
 Open, closed, swipe move, swipe cancel, and swipe end states are owned by Radix.

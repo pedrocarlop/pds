@@ -113,6 +113,19 @@ The default row padding is `--pds-space-sp-300` vertically and
 `--pds-color-grey-tone-50` with a `body1` type recipe when the consumer provides
 that content.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Cell renders the selected row variant with tokenized surface, spacing, and type. | `data-slot='cell'`, `data-variant` | Semantics come from the chosen root element. |
+| Hover | Pointer hover | Interactive roots apply shared hover state layer. | `.pds-cell:is(button, a, label, [role='button']):hover` | Hover is only visual and is suppressed for disabled rows. |
+| Focus-visible | Keyboard focus | Interactive roots use the shared PDS focus shadow. | `.pds-cell:focus-visible` | Keyboard focus stays on the rendered root. |
+| Active | Pressed | Interactive roots apply pressed state layer; choice rows can show selected affordance. | `.pds-cell:active`, `[aria-pressed='true']` | Use `aria-pressed` only for button-style selected rows. |
+| Disabled | `disabled` / `aria-disabled` | Disabled rows use disabled opacity and suppress hover or active layers. | `:disabled`, `[aria-disabled='true']`, `data-disabled='true'` | Native buttons disable activation; non-button roots use `aria-disabled`. |
+| Loading | `loading` prop / `data-busy` | Not applicable: Cell has no loading state. | Not applicable | Use Skeleton or a busy wrapper around row content. |
+| Error | `data-invalid` / error prop | Not applicable: Cell has no validation state. | Not applicable | Use form controls or alert content for validation errors. |
+| Success | status / success prop | Not applicable: Cell has no success state. | Not applicable | Use Badge, RunStatus, or status text inside the row. |
+
 ## State Behavior
 
 - Hover and active treatments apply only to interactive roots and are suppressed

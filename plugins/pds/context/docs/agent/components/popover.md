@@ -56,6 +56,19 @@ viewport constraints, arrow fill, and close-button focus/hover selectors.
 Uses popover surface color, typography, spacing, radius, elevation, state layer,
 focus, and motion tokens.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Trigger renders normally; content and optional arrow render when Radix opens the popover. | `data-slot='popover-*'`, Radix `data-state` | Radix owns popover positioning and open state. |
+| Hover | Pointer hover | Close button uses neutral hover treatment when present. | `.pds-popover-close:not(:disabled):hover` | Trigger hover belongs to the trigger control. |
+| Focus-visible | Keyboard focus | Close button uses shared PDS focus shadow when present. | `.pds-popover-close:focus-visible` | Radix manages focus according to popover composition. |
+| Active | Pressed | Pressing trigger toggles open state; close button activates dismissal. | Radix trigger state and `.pds-popover-close` | Activation semantics are owned by Radix and the trigger element. |
+| Disabled | `disabled` / `aria-disabled` | No root disabled state; disabled trigger or close button is native or consumer-owned. | Trigger `disabled`, `.pds-popover-close:disabled` | Disabled controls must not open or dismiss. |
+| Loading | `loading` prop / `data-busy` | Not applicable: Popover has no loading state. | Not applicable | Expose loading inside popover content if needed. |
+| Error | `data-invalid` / error prop | Not applicable: Popover has no error state. | Not applicable | Place validation messaging inside content. |
+| Success | status / success prop | Not applicable: Popover has no success state. | Not applicable | Place success feedback inside content or trigger label. |
+
 ## State Behavior
 
 Open state is owned by Radix. `showArrow` only controls arrow rendering.

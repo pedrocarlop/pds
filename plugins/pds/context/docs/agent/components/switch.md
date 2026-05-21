@@ -54,6 +54,19 @@ disabled, hover, focus-visible, and thumb transform selectors.
 Uses color, radius, elevation, focus, interaction state layer, disabled opacity,
 and motion tokens.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Unchecked switch renders neutral track and thumb. | `data-slot='switch'`, `data-state='unchecked'` | Radix switch owns switch semantics and ARIA checked state. |
+| Hover | Pointer hover | Enabled switch uses neutral hover state layer; checked hover preserves accent fill. | `.pds-switch:not(:disabled):hover`, `[data-state='checked']:hover` | Hover does not change checked state. |
+| Focus-visible | Keyboard focus | Switch uses shared PDS focus shadow. | `.pds-switch:focus-visible` | Keyboard users toggle through Radix switch behavior. |
+| Active | Pressed | Pressed switch toggles checked state and moves the thumb. | `data-state='checked'`, `.pds-switch-thumb` | Radix updates ARIA checked state. |
+| Disabled | `disabled` / `aria-disabled` | Disabled switch dims and suppresses pointer affordance. | `.pds-switch:disabled` | Radix disabled switch is not activatable. |
+| Loading | `loading` prop / `data-busy` | Not applicable: Switch has no loading state. | Not applicable | Disable the switch and expose busy state externally if needed. |
+| Error | `data-invalid` / error prop | Not applicable: Switch has no invalid prop. | Not applicable | Use field-level validation messaging around the switch. |
+| Success | status / success prop | Not applicable: checked state is preference state, not success. | `data-state='checked'` only | Use separate status text for save success. |
+
 ## State Behavior
 
 Checked state uses accent fill and moves the thumb. Disabled switches dim and

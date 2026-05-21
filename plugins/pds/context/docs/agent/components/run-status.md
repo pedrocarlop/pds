@@ -76,6 +76,19 @@ treatment.
 RunStatus uses Badge token categories plus PDS semantic status colors. Status
 mapping should stay semantic and subdued.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | RunStatus renders a Badge-like status with derived tone and text. | `data-slot='run-status'`, `data-status`, `data-tone` | Readable text communicates status; color is secondary. |
+| Hover | Pointer hover | Not applicable by default: RunStatus has no hover state. | Not applicable | `asChild` interactive children own hover semantics. |
+| Focus-visible | Keyboard focus | Not applicable by default: RunStatus is not focusable. | Not applicable | `asChild` interactive children must expose focus treatment. |
+| Active | Pressed | Not applicable by default: RunStatus has no activation behavior. | Not applicable | `asChild` interactive children own activation. |
+| Disabled | `disabled` / `aria-disabled` | Cancelled and idle are statuses, not disabled states. | `data-status='cancelled'`, `data-status='idle'` only | Do not use status as disabled semantics. |
+| Loading | `loading` prop / `data-busy` | Queued and running statuses use neutral or accent status tones. | `data-status='queued'`, `data-status='running'` | Status text should name the current work state. |
+| Error | `data-invalid` / error prop | Error status uses danger tone. | `data-status='error'`, `data-tone='danger'` | Readable text must describe the error state. |
+| Success | status / success prop | Success status uses success tone. | `data-status='success'`, `data-tone='success'` | Readable text must describe completion. |
+
 ## State Behavior
 
 RunStatus has no internal async behavior. It maps `status` to default text and a

@@ -57,6 +57,19 @@ page, separator, and wrapping list layout.
 
 Uses typography, spacing, color, radius, and focus tokens.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Breadcrumb navigation renders list, links, current page, separators, and ellipsis. | `data-slot='breadcrumbs-*'` | Use `nav` labeling and mark the current page with page semantics. |
+| Hover | Pointer hover | Links use native or consumer link hover treatment. | `data-slot='breadcrumbs-link'` | Hover does not change current-page semantics. |
+| Focus-visible | Keyboard focus | Links use browser or app focus treatment. | `data-slot='breadcrumbs-link'`, `:focus-visible` on links | Keyboard focus remains on the anchor. |
+| Active | Pressed | Links use native activation behavior. | `data-slot='breadcrumbs-link'`, native `:active` | Navigation activation is owned by anchor or router link. |
+| Disabled | `disabled` / `aria-disabled` | Not applicable: Breadcrumbs has no disabled state. | Not applicable | Do not render disabled breadcrumbs as links. |
+| Loading | `loading` prop / `data-busy` | Not applicable: Breadcrumbs has no loading state. | Not applicable | Use placeholder text or Skeleton before rendering breadcrumbs. |
+| Error | `data-invalid` / error prop | Not applicable: Breadcrumbs has no error state. | Not applicable | Routing errors belong to the page or alert region. |
+| Success | status / success prop | Not applicable: Breadcrumbs has no success state. | Not applicable | Success feedback belongs outside navigation. |
+
 ## State Behavior
 
 Breadcrumbs is static except for native link interaction.

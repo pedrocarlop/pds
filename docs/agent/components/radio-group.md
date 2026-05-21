@@ -59,6 +59,19 @@ state, focus-visible, hover, and disabled selectors.
 Uses color, spacing, radius, focus, state layer, disabled opacity, and motion
 tokens.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Radio group lays out unchecked items by orientation. | `data-slot='radio-group'`, `data-orientation`, `data-state='unchecked'` | Radix owns radiogroup and radio item semantics. |
+| Hover | Pointer hover | Enabled items use neutral hover state layer. | `.pds-radio-group-item:not(:disabled):hover` | Hover does not change checked state. |
+| Focus-visible | Keyboard focus | Radio items use the shared PDS focus shadow. | `.pds-radio-group-item:focus-visible` | Keyboard navigation follows Radix radio group behavior. |
+| Active | Pressed | Pressed item becomes checked and uses accent fill. | `data-state='checked'` | Radix updates checked state and ARIA semantics. |
+| Disabled | `disabled` / `aria-disabled` | Disabled radio item dims and suppresses hover treatment. | `.pds-radio-group-item:disabled` | Radix disabled item is not activatable. |
+| Loading | `loading` prop / `data-busy` | Not applicable: RadioGroup has no loading state. | Not applicable | Disable the group and expose busy state externally if needed. |
+| Error | `data-invalid` / error prop | Not applicable: RadioGroup has no invalid prop. | Not applicable | Use field-level validation messaging around the group. |
+| Success | status / success prop | Not applicable: checked state is selection, not success. | `data-state='checked'` only | Use separate status text for successful completion. |
+
 ## State Behavior
 
 The checked item uses accent fill. Orientation is passed to Radix and exposed as

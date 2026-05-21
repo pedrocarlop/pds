@@ -105,6 +105,19 @@ Surface uses PDS surface color, spacing, radius, elevation, typography, and
 content resilience rules. Choose levels by hierarchy and containment, not by
 visual preference.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Surface renders structural sections at the selected hierarchy level. | `data-slot='surface'`, `data-level` | Surface is structural; children own semantics. |
+| Hover | Pointer hover | Not applicable: Surface has no hover state. | Not applicable | Interactive children own hover treatment. |
+| Focus-visible | Keyboard focus | Not applicable: Surface root is not an interactive target. | Not applicable | Focusable children must expose focus treatment. |
+| Active | Pressed | Not applicable: Surface has no activation behavior. | Not applicable | Activation belongs to child controls. |
+| Disabled | `disabled` / `aria-disabled` | Not applicable: Surface has no disabled state. | Not applicable | Disable child controls individually. |
+| Loading | `loading` prop / `data-busy` | Not applicable: Surface has no loading state. | Not applicable | Use Skeleton or Progress inside the surface while content loads. |
+| Error | `data-invalid` / error prop | Not applicable: Surface has no error state. | Not applicable | Use InlineAlert or validation components inside the surface. |
+| Success | status / success prop | Not applicable: Surface has no success state. | Not applicable | Use status components inside the surface. |
+
 ## State Behavior
 
 Surface has no interactive state of its own. Interactive behavior belongs to

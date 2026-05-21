@@ -106,6 +106,19 @@ default close-button structure.
 Dialog uses PDS surface color, overlay color, spacing, radius, elevation,
 typography, focus, state layer, and motion tokens.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Trigger renders normally; overlay and content animate when Radix opens the dialog. | `data-slot='dialog-*'`, Radix `data-state` | Radix owns dialog semantics, focus trap, and dismissal. |
+| Hover | Pointer hover | Default close button uses neutral hover treatment. | `.pds-dialog-close:not(:disabled):hover` | Hover does not change dialog semantics. |
+| Focus-visible | Keyboard focus | Close button uses shared PDS focus shadow; trigger focus belongs to the trigger control. | `.pds-dialog-close:focus-visible` | Radix moves focus into and out of the dialog. |
+| Active | Pressed | Close button uses pressed state layer before dismissal. | `.pds-dialog-close:not(:disabled):active` | Activation closes through Radix close behavior. |
+| Disabled | `disabled` / `aria-disabled` | Disabled close or trigger controls use disabled opacity through native selectors. | `.pds-dialog-close:disabled` | Disabled native controls are not activatable. |
+| Loading | `loading` prop / `data-busy` | Not applicable: Dialog has no loading state. | Not applicable | Expose loading inside dialog body with Progress or Skeleton. |
+| Error | `data-invalid` / error prop | Not applicable: Dialog has no validation state. | Not applicable | Place form errors or alerts inside the dialog content. |
+| Success | status / success prop | Not applicable: Dialog has no success state. | Not applicable | Place success feedback inside content or close after completion. |
+
 ## State Behavior
 
 Open and closed state is owned by Radix and exposed through `data-state`.

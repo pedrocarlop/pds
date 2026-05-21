@@ -150,6 +150,19 @@ spacing, radius, focus, disabled opacity, and motion tokens through Cell and
 slot CSS. Do not add hard-coded colors, spacing, radii, transitions, performance
 color roles, or local component-specific token names.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Item renders a Cell-backed rich row with explicit content, side, action, and value slots. | `data-slot='item'`, `data-variant` | Root semantics come from the chosen `use` element. |
+| Hover | Pointer hover | Interactive Item roots inherit Cell hover state layer. | `.pds-item.pds-cell:hover` through Cell selector | Hover is suppressed for disabled or pending rows. |
+| Focus-visible | Keyboard focus | Interactive Item roots inherit Cell focus-visible shadow. | `.pds-cell:focus-visible` | Keyboard focus remains on the rendered root or nested control. |
+| Active | Pressed | Interactive Item roots inherit Cell pressed layer; pressed rows may use selected treatment. | `.pds-cell:active`, `[aria-pressed='true']` | Use `aria-pressed` for selected button-style rows only. |
+| Disabled | `disabled` / `aria-disabled` | Disabled or pending Item dims through Cell disabled treatment. | `data-disabled='true'`, `data-pending='true'`, `aria-disabled` | Button roots disable natively; pending sets `aria-busy`. |
+| Loading | `loading` prop / `data-busy` | Pending rows show disabled progress cursor; ItemSkeleton provides placeholder rows. | `data-pending='true'`, `aria-busy='true'`, `data-slot='item-skeleton'` | Expose loading on the owning region when skeletons are visible. |
+| Error | `data-invalid` / error prop | Item has no validation prop; danger tone is available only for status value content. | `data-tone='danger'` on Item.Value or icon | Do not use value tone as an error announcement without text. |
+| Success | status / success prop | Success tone is available for status value or icon content. | `data-tone='success'` on Item.Value or icon | Readable text must carry success status, not color alone. |
+
 ## State Behavior
 
 - Hover and active row treatment come from Cell and apply only to interactive

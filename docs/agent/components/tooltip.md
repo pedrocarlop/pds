@@ -90,6 +90,19 @@ z-index, and reduced-motion behavior when changing tooltip selectors.
 Tooltip uses PDS surface color, foreground color, typography, spacing, radius,
 elevation, and motion tokens.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Trigger renders normally; content and optional arrow render when Radix opens the tooltip. | `data-slot='tooltip-*'`, Radix `data-state` | Radix owns tooltip relationship, delay, and dismissal behavior. |
+| Hover | Pointer hover | Pointer hover on trigger opens positioned tooltip content through Radix. | Radix trigger hover and content `data-state` | Tooltip content supplements but does not replace accessible names. |
+| Focus-visible | Keyboard focus | Keyboard focus on trigger opens tooltip through Radix; trigger owns focus styling. | Radix trigger focus and content `data-state` | Trigger remains the keyboard focus target. |
+| Active | Pressed | Not applicable: Tooltip has no activation behavior. | Not applicable | Do not put interactive content inside tooltip. |
+| Disabled | `disabled` / `aria-disabled` | No root disabled state; disabled trigger behavior is native or consumer-owned. | Trigger `disabled` or `aria-disabled` | Disabled triggers may not emit focus or hover events. |
+| Loading | `loading` prop / `data-busy` | Not applicable: Tooltip has no loading state. | Not applicable | Do not use tooltip content for loading announcements. |
+| Error | `data-invalid` / error prop | Not applicable: Tooltip has no error state. | Not applicable | Use validation messaging outside tooltip-only content. |
+| Success | status / success prop | Not applicable: Tooltip has no success state. | Not applicable | Use visible status text for success feedback. |
+
 ## State Behavior
 
 Open state, delay, pointer handling, and keyboard behavior are owned by Radix.

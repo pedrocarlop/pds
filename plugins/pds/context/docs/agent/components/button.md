@@ -106,6 +106,19 @@ Button uses PDS typography, spacing, radius, color, elevation focus, interaction
 state layer, disabled opacity, and motion tokens. Use semantic token categories
 instead of adding one-off colors, spacing, radii, transitions, or shadows.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Button uses intent, size, and tokenized action surface treatment. | `data-slot='button'`, `data-intent`, `data-size` | Native button defaults to `type='button'`; `asChild` child owns semantics. |
+| Hover | Pointer hover | Enabled buttons apply intent-specific state layer or link underline. | `.pds-button:not(:disabled, [aria-disabled='true']):hover` | Hover is suppressed for disabled and aria-disabled buttons. |
+| Focus-visible | Keyboard focus | Shared PDS focus shadow appears around the button. | `.pds-button:focus-visible` | Keyboard focus remains on the button or composed child. |
+| Active | Pressed | Enabled buttons apply pressed state layer. | `.pds-button:not(:disabled, [aria-disabled='true']):active` | Native button activation remains browser-owned. |
+| Disabled | `disabled` / `aria-disabled` | Disabled buttons use disabled opacity and suppress hover or active treatment. | `:disabled`, `[aria-disabled='true']` | Native disabled prevents activation; `aria-disabled` consumers must prevent activation. |
+| Loading | `loading` prop / `data-busy` | Not applicable: Button has no loading state. | Not applicable | Use disabled state plus adjacent Progress or text for busy actions. |
+| Error | `data-invalid` / error prop | Danger intent uses destructive action colors, not form invalid styling. | `data-intent='danger'` | Danger is not an error announcement. |
+| Success | status / success prop | Not applicable: Button has no success state. | Not applicable | Use adjacent status text or a status component after completion. |
+
 ## State Behavior
 
 - Hover and active treatments are suppressed for native disabled buttons and

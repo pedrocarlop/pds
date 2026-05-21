@@ -56,6 +56,19 @@ and respects reduced motion.
 
 Uses shimmer color, neutral overlays, radius, line-height, and motion tokens.
 
+## State Matrix
+
+| State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
+| --- | --- | --- | --- | --- |
+| Default | Normal render | Skeleton renders the selected shape as a placeholder block. | `data-slot='skeleton'`, `data-shape` | Skeleton is usually decorative and should be hidden when real content is available. |
+| Hover | Pointer hover | Not applicable: Skeleton has no hover state. | Not applicable | Skeleton is not interactive. |
+| Focus-visible | Keyboard focus | Not applicable: Skeleton is not focusable. | Not applicable | Do not expose skeleton placeholders as focus targets. |
+| Active | Pressed | Not applicable: Skeleton has no activation behavior. | Not applicable | Skeleton does not respond to presses. |
+| Disabled | `disabled` / `aria-disabled` | Not applicable: Skeleton has no disabled state. | Not applicable | Skeleton represents loading content, not a disabled control. |
+| Loading | `loading` prop / `data-busy` | Animated skeleton shimmers unless animation is disabled or reduced motion applies. | `data-animated='true'`, `.pds-skeleton[data-animated='true']` | Expose busy state on the owning region when skeletons replace meaningful content. |
+| Error | `data-invalid` / error prop | Not applicable: Skeleton has no error state. | Not applicable | Replace skeleton with error content when loading fails. |
+| Success | status / success prop | Not applicable: Skeleton has no success state. | Not applicable | Replace skeleton with loaded content on success. |
+
 ## State Behavior
 
 Animated skeletons shimmer unless reduced motion is requested.
