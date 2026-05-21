@@ -15,8 +15,8 @@ PDS is organized as a design system workspace, not a single package dump.
 - `AGENTS.md`: Codex-compatible adapter that points to `docs/agent`.
 - `CLAUDE.md`: Claude-compatible adapter that imports `AGENTS.md`.
 - `docs/README.md`: documentation index.
-- `docs/agent`: canonical agent workflows, component contracts, patterns, and
-  skill workflows.
+- `docs/agent`: canonical agent workflows, component contracts, screen
+  structures, patterns, and skill workflows.
 - `docs/foundations`: token guidance, visual rationale, layout types, motion, and content resilience rules.
 - `docs/recipes`: practical React app setup and PDS adoption recipes.
 - `docs/architecture`: structure, ownership, and scaling guidance.

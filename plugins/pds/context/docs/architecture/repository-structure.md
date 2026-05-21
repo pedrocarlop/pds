@@ -10,8 +10,8 @@ source, and generated outputs kept out of source control.
 - `AGENTS.md`: Codex-compatible adapter for agent instructions.
 - `CLAUDE.md`: Claude-compatible adapter that imports `AGENTS.md`.
 - `docs/`: human and agent guidance.
-- `docs/agent`: canonical agent workflows, component contracts, patterns, and
-  skill workflows.
+- `docs/agent`: canonical agent workflows, component contracts, screen
+  structures, patterns, and skill workflows.
 - `scripts/`: repeatable repository maintenance scripts.
 - `plugins/`: agent plugins, skills, and generated plugin context.
 - `packages/`: publishable packages.
@@ -50,8 +50,8 @@ Current source:
 
 - `docs/README.md`: index of documentation sources.
 - `docs/foundations`: design rules by foundation, including motion and resilient content behavior.
-- `docs/agent`: all canonical agent-only guidance, including flow-level
-  patterns and React component contracts.
+- `docs/agent`: all canonical agent-only guidance, including screen structures,
+  flow-level patterns, and React component contracts.
 - `docs/architecture`: how the system is organized.
 
 Docs should be short, navigable, and written as source material for both humans
@@ -70,8 +70,9 @@ package source rather than being rewritten inside plugin adapters.
 
 Plugin skills may create or modify app code, but durable PDS guidance should
 live in the narrowest source of truth: `docs/agent/components` for component
-rules, foundation docs for shared visual rules, `docs/agent/patterns` for flow
-rules, and `docs/agent/skills` for plugin workflow rules.
+rules, foundation docs for shared visual rules, `docs/agent/screen-structures`
+for page-level IA rules, `docs/agent/patterns` for flow rules, and
+`docs/agent/skills` for plugin workflow rules.
 
 ## Scripts
 

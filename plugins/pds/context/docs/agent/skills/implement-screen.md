@@ -22,7 +22,8 @@ node <plugin-root>/skills/audit/scripts/audit-web-project.mjs --target <project-
 
 3. Load PDS guidance: [DESIGN.md](../../../DESIGN.md),
    [workflow.md](../workflow.md), the relevant [recipe](../../recipes/README.md),
-   relevant [patterns](../patterns/README.md), and relevant
+   relevant [screen structure](../screen-structures/README.md), relevant
+   [patterns](../patterns/README.md), and relevant
    [component contracts](../components/README.md).
 4. If PDS is not wired in an existing React app, follow the existing-app recipe:
    install or use the available `@pds/react` package path, import `@pds/react/styles.css`

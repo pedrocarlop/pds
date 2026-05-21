@@ -12,7 +12,7 @@ guidance is centralized under [agent](agent/README.md).
 
 - [start-here.md](start-here.md): human orientation and repository map.
 - [agent](agent/README.md): canonical agent routing, workflows, component
-  contracts, patterns, and skill workflows.
+  contracts, screen structures, patterns, and skill workflows.
 - [foundations/tokens.md](foundations/tokens.md): token ownership and source rules.
 - [foundations/colour.md](foundations/colour.md): color usage rules.
 - [foundations/typography.md](foundations/typography.md): typography role and recipe rules.

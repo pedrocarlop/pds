@@ -16,6 +16,7 @@ for implementation values.
 - `--pds-layout-content-max`: default maximum app shell width.
 - `--pds-layout-reading-max`: readable heading and prose measure.
 - `--pds-layout-hero-max`: compact hero/header copy measure.
+- `--pds-layout-focus-max`: focused task-completion screen maximum width.
 - `--pds-layout-narrow-frame`: narrow demonstration or constrained-control frame.
 - `--pds-layout-side-panel-min`: default side-panel minimum column width.
 - `--pds-layout-side-panel-wide-min`: wider side-panel minimum column width.
@@ -35,8 +36,8 @@ for implementation values.
 
 ## Layout Dimension Rules
 
-- Use layout variables for shared app shell widths, readable measures,
-  side-panel minimums, and narrow frames.
+- Use layout variables for shared app shell widths, readable measures, focused
+  task-completion widths, side-panel minimums, and narrow frames.
 - Keep one-off embed sizes, asset dimensions, icon geometry, and component
   internals local unless they become shared layout rules.
 - Do not put spacing rhythm, radius, typography, or color values in layout

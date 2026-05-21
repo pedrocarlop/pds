@@ -8,6 +8,8 @@ tools that require fixed filenames.
 
 - [workflow.md](workflow.md): shared editing, routing, verification, and cleanup
   rules for coding agents.
+- [screen structures](screen-structures/README.md): page-level IA and layout
+  structures for generated screens.
 - [components](components/README.md): React component contracts for agents.
 - [patterns](patterns/README.md): repeatable product flow guidance.
 - [skills](skills/README.md): canonical PDS plugin skill workflows.
@@ -18,6 +20,9 @@ tools that require fixed filenames.
   matching foundation doc and `packages/tokens/src`.
 - React component edits: use `packages/react/README.md`, the matching
   [component contract](components/README.md), source, CSS, and tests.
+- Page or screen structure decisions: use the matching
+  [screen structure](screen-structures/README.md), then the relevant pattern and
+  component contracts.
 - Product flows: use the matching [pattern](patterns/README.md), then the
   involved component contracts.
 - PDS app setup or adoption: use [docs/recipes](../recipes) and the relevant

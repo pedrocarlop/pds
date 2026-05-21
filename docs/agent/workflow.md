@@ -17,8 +17,9 @@ or [CLAUDE.md](../../CLAUDE.md).
 9. [docs/foundations/motion.md](../foundations/motion.md)
 10. [docs/foundations/content-resilience.md](../foundations/content-resilience.md)
 11. [docs/recipes](../recipes)
-12. [docs/agent/patterns](patterns/README.md)
-13. [docs/architecture/repository-structure.md](../architecture/repository-structure.md)
+12. [docs/agent/screen-structures](screen-structures/README.md)
+13. [docs/agent/patterns](patterns/README.md)
+14. [docs/architecture/repository-structure.md](../architecture/repository-structure.md)
 
 ## Task Routing
 
@@ -32,6 +33,9 @@ or [CLAUDE.md](../../CLAUDE.md).
   update the matching component contract unless the existing doc already
   contained the exact rule and the miss was only failure to follow it.
 - For React app setup or PDS adoption, use the matching file in `docs/recipes`.
+- For page-level IA, navigation, or task-focus decisions, use the matching file
+  in [screen structures](screen-structures/README.md) before pattern and
+  component guidance.
 - For documented product flows, use the matching file in [patterns](patterns/README.md), then
   the involved component context docs.
 - For verification, use `pnpm check`; it covers publishable packages, the private
