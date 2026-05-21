@@ -22,9 +22,12 @@ Before editing, read:
 3. [packages/react/README.md](../../../packages/react/README.md).
 4. [components/README.md](../components/README.md) and
    [components/_template.md](../components/_template.md).
-5. Nearby component contracts, source, CSS, tests, and previews for similar
+5. [PDS Component Quality Gates](../pds-quality-gates.md), plus
+   [PDS Screen Quality Gates](../pds-screen-quality-gates.md) when the request
+   may be screen composition rather than a reusable component.
+6. Nearby component contracts, source, CSS, tests, and previews for similar
    components.
-6. [examples/react/README.md](../../../examples/react/README.md) for Ladle
+7. [examples/react/README.md](../../../examples/react/README.md) for Ladle
    preview rules.
 
 ## Pre-build Preview
@@ -44,7 +47,8 @@ Before editing files, output:
 ## Workflow
 
 1. Decide whether this is truly a reusable PDS component. If it is only a screen
-   composition, use existing components instead.
+   composition, use existing components instead and apply the
+   [PDS Screen Quality Gates](../pds-screen-quality-gates.md).
 2. Map the component anatomy before coding: root, slots, optional children,
    actions, icons, status/tone/size variants, disabled/invalid/loading states,
    focus behavior, keyboard behavior, and overflow behavior.

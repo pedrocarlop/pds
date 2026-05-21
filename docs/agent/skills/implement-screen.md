@@ -79,7 +79,8 @@ node <plugin-root>/skills/audit/scripts/audit-web-project.mjs --target <project-
 3. Load PDS guidance: [DESIGN.md](../../../DESIGN.md),
    [workflow.md](../workflow.md), the relevant [recipe](../../recipes/README.md),
    relevant [screen structure](../screen-structures/README.md), relevant
-   [patterns](../patterns/README.md), and relevant
+   [patterns](../patterns/README.md), the
+   [PDS Screen Quality Gates](../pds-screen-quality-gates.md), and relevant
    [component contracts](../components/README.md).
 4. Complete [Structure Selection](#structure-selection) and output the
    [Pre-build Preview](#pre-build-preview) before making code changes.
@@ -96,7 +97,8 @@ node <plugin-root>/skills/audit/scripts/audit-web-project.mjs --target <project-
    do not deep-import PDS source files.
 9. Verify with the app's normal typecheck/build/test command. For visible UI,
    check narrow viewport, long text, loading/empty/error/success states, and
-   200% zoom where practical.
+   200% zoom where practical. Do not hand back until the
+   [PDS Screen Quality Gates](../pds-screen-quality-gates.md) pass.
 
 ## Defaults
 

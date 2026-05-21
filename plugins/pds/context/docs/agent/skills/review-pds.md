@@ -17,7 +17,8 @@ node ./scripts/review-pds.mjs --target <path-or-directory>
 
 3. Inspect the relevant source manually. Treat script output as hints, not final
    findings.
-4. Use [DESIGN.md](../../../DESIGN.md), foundation docs, pattern docs, and
+4. Use [DESIGN.md](../../../DESIGN.md), foundation docs,
+   [PDS Screen Quality Gates](../pds-screen-quality-gates.md), pattern docs, and
    component contracts as the review source of truth.
 5. Return findings first, ordered by severity, with file and line references.
 6. If the user pushes back on a design finding or gives component-level feedback,
@@ -25,6 +26,8 @@ node ./scripts/review-pds.mjs --target <path-or-directory>
 
 ## Review Checklist
 
+- Screen-level findings map to
+  [PDS Screen Quality Gates](../pds-screen-quality-gates.md).
 - PDS is imported publicly from `@pds/react`; no deep package or source imports.
 - `@pds/react/styles.css` is imported once at the app root.
 - UI chrome uses PDS tokens instead of hard-coded visual values.
