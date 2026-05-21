@@ -36,6 +36,36 @@ single-task flow where the user completes an action from beginning to end.
 If neither fits, state the closest structure and document the missing structure
 as a possible future addition.
 
+## Pre-build Preview
+
+Before editing files, output a PDS implementation preview:
+
+- Job: user goal in one sentence
+- Structure: chosen screen structure
+- Route / target: file or screen being changed
+- PDS components: components planned for composition
+- Local CSS: layout-only responsibilities
+- States: loading, empty, error, success, disabled, focus, active
+- Resilience: narrow viewport, 40% longer text, 200% zoom
+- Verification: commands to run
+
+Use this format:
+
+```md
+PDS implementation preview:
+- Job: let the merchant review and complete business information
+- Structure: Focus Layout
+- Target: src/routes/business-info.tsx
+- PDS components: Surface, Input, Select, Checkbox, InlineAlert, Button
+- Local CSS: centered 628px focus shell and vertical section spacing
+- States: loading, validation error, saving, saved, disabled submit
+- Resilience: long labels, translated helper text, 200% zoom
+- Verification: pnpm check
+```
+
+This gives the user a chance to redirect before the agent creates the wrong
+shape.
+
 ## Workflow
 
 1. Inspect the target app before editing: `package.json`, framework entrypoints,
@@ -51,8 +81,8 @@ node <plugin-root>/skills/audit/scripts/audit-web-project.mjs --target <project-
    relevant [screen structure](../screen-structures/README.md), relevant
    [patterns](../patterns/README.md), and relevant
    [component contracts](../components/README.md).
-4. Complete [Structure Selection](#structure-selection) before making code
-   changes.
+4. Complete [Structure Selection](#structure-selection) and output the
+   [Pre-build Preview](#pre-build-preview) before making code changes.
 5. If PDS is not wired in an existing React app, follow the existing-app recipe:
    install or use the available `@pds/react` package path, import `@pds/react/styles.css`
    once at the app root, and keep app CSS layout-focused.
