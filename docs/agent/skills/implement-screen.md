@@ -10,6 +10,32 @@ data/states/actions, and source design intent. If a Figma connector is available
 and the user provided a Figma URL, fetch design context first. Ask one concise
 question only when the target screen or primary workflow cannot be inferred.
 
+## Structure Selection
+
+Before editing, choose one screen structure from
+[docs/agent/screen-structures](../screen-structures/README.md). State:
+
+- Product job
+- Chosen structure
+- Why this structure fits
+- Primary action
+- Secondary actions
+- Main content region
+- Supporting content regions
+- Required states
+- Mobile stacking order
+
+Do not start implementation until the structure is clear.
+
+Use [First Level Navigation Page](../screen-structures/first-level-navigation-page.md)
+when the screen is a top-level product area.
+
+Use [Focus Layout](../screen-structures/focus-layout.md) when the screen is a
+single-task flow where the user completes an action from beginning to end.
+
+If neither fits, state the closest structure and document the missing structure
+as a possible future addition.
+
 ## Workflow
 
 1. Inspect the target app before editing: `package.json`, framework entrypoints,
@@ -25,18 +51,20 @@ node <plugin-root>/skills/audit/scripts/audit-web-project.mjs --target <project-
    relevant [screen structure](../screen-structures/README.md), relevant
    [patterns](../patterns/README.md), and relevant
    [component contracts](../components/README.md).
-4. If PDS is not wired in an existing React app, follow the existing-app recipe:
+4. Complete [Structure Selection](#structure-selection) before making code
+   changes.
+5. If PDS is not wired in an existing React app, follow the existing-app recipe:
    install or use the available `@pds/react` package path, import `@pds/react/styles.css`
    once at the app root, and keep app CSS layout-focused.
-5. Map the design to PDS primitives before creating local UI: surfaces,
+6. Map the design to PDS primitives before creating local UI: surfaces,
    buttons, badges, form controls, overlays, table/data-list, navigation, and
    agent-facing `Message`, `Transcript`, `Composer`, or `RunStatus` when the
    workflow calls for them.
-6. Implement the smallest coherent screen or flow. Preserve business logic,
+7. Implement the smallest coherent screen or flow. Preserve business logic,
    data loading, routing, analytics, and app-owned state boundaries.
-7. Use app CSS only for layout and composition. Use PDS tokens for visuals and
+8. Use app CSS only for layout and composition. Use PDS tokens for visuals and
    do not deep-import PDS source files.
-8. Verify with the app's normal typecheck/build/test command. For visible UI,
+9. Verify with the app's normal typecheck/build/test command. For visible UI,
    check narrow viewport, long text, loading/empty/error/success states, and
    200% zoom where practical.
 
