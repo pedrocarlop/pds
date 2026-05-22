@@ -11,34 +11,13 @@ components and styles.
 
 ## Install The Latest Package
 
-From the app folder:
-
-```sh
-pnpm add @pds/react@latest
-```
-
-Equivalent commands:
-
-```sh
-npm install @pds/react@latest
-yarn add @pds/react@latest
-bun add @pds/react@latest
-```
-
-To update an existing install, run the same command again from the app folder:
-
-```sh
-pnpm add @pds/react@latest
-```
+Use the root [install guide](../../README.md#install-in-an-app) for registry
+and update commands. Return here for app-root style wiring and verification.
 
 ## Install With Codex
 
-Open Codex in the app folder and ask:
-
-```text
-Install the latest PDS package in this React app. Import @pds/react/styles.css once at
-the app root, use public imports from @pds/react, and run the app checks.
-```
+Use the Codex prompt in the root [install guide](../../README.md#install-with-codex),
+then continue with this recipe's style and smoke-test steps.
 
 ## Install From This Repo Before A Registry Release
 
@@ -48,20 +27,8 @@ For an app inside this pnpm workspace, add `@pds/react` with the workspace proto
 pnpm --filter <app-package-name> add @pds/react@workspace:^
 ```
 
-For an app outside this repo, build and pack the local packages, then install
-both tarballs in the app:
-
-```sh
-cd /path/to/PDS
-pnpm install
-pnpm build
-mkdir -p /tmp/pds-packages
-pnpm --dir packages/tokens pack --pack-destination /tmp/pds-packages
-pnpm --dir packages/react pack --pack-destination /tmp/pds-packages
-
-cd /path/to/react-app
-pnpm add /tmp/pds-packages/pds-tokens-*.tgz /tmp/pds-packages/pds-react-*.tgz
-```
+For an external local app, use the tarball workflow in the root
+[local install guide](../../README.md#local-install-before-a-registry-release).
 
 ## Load Styles Once
 

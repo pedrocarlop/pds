@@ -36,12 +36,6 @@ import "@pds/tokens/elevation.css";
 import "@pds/tokens/motion.css";
 ```
 
-To update to the latest published token release:
-
-```sh
-pnpm add @pds/tokens@latest
-```
-
 ## Source Files
 
 - `src/colour.css`, `src/typography.css`, `src/spacing.css`, `src/layout.css`, `src/elevation.css`, and `src/motion.css`: implementation sources for foundation CSS variables.

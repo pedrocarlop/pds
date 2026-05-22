@@ -112,18 +112,17 @@ Composer uses PDS surface color, spacing, radius, elevation/focus, typography,
 interaction state layer, disabled opacity, invalid state, and motion tokens. Do
 not add one-off form colors or untokenized transitions.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
 | Default | Normal render | Composer renders grouped input, actions, and footer on the base composer surface. | `data-slot='composer'` | Root is a form; submit behavior is native and consumer-owned. |
-| Hover | Pointer hover | Not applicable: Composer root has no hover selector. | Not applicable | Hover belongs to composed controls such as Textarea and Button. |
 | Focus-visible | Keyboard focus | Composer surface highlights when focus moves inside the form. | `.pds-composer:focus-within`, `.pds-composer-input:focus-visible` | Focus remains on the active input or control. |
-| Active | Pressed | Not applicable on root; submit and action presses belong to child controls. | Not applicable | Form submission remains native and handler-owned. |
 | Disabled | `disabled` / `aria-disabled` | Disabled composer dims and disables `ComposerInput` by default. | `data-disabled='true'` | Disabled input is not editable; child props may override context state. |
 | Loading | `loading` prop / `data-busy` | Busy composer applies busy visual treatment. | `data-busy='true'`, `aria-busy='true'` | `busy` announces busy state through `aria-busy` on the form. |
 | Error | `data-invalid` / error prop | Invalid composer applies invalid treatment to root and input. | `data-invalid='true'`, `aria-invalid='true'` on input | Invalid input must keep visible error or supporting text nearby. |
-| Success | status / success prop | Not applicable: Composer has no success state. | Not applicable | Use surrounding status feedback after submit success. |
+
+Non-applicable states: Hover, Active, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -190,8 +189,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [Content resilience](../../foundations/content-resilience.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Composer source](../../../packages/react/src/components/composer.tsx)
+- Component source: [packages/react/src/components/composer.tsx](../../../packages/react/src/components/composer.tsx)

@@ -10,31 +10,12 @@ Command: `/pds:audit`.
 
 ## Minimum Read Path
 
-Always read:
-
-- [router.md](../router.md)
-- This workflow
-- Target project package manifest, app entrypoints, root styles, and
-  routing/layout files named by the audit report
-
-Choose one:
-
-- [add-to-existing-react-app.md](../../recipes/add-to-existing-react-app.md) for
-  React apps that can adopt `@pds/react`
-- No recipe when the target stack is outside the current React focus
-
-Read only if relevant:
-
-- [start-new-react-app.md](../../recipes/start-new-react-app.md) when the audit
-  result is to create a fresh app instead
-- Component contracts only for a specific migration candidate
-- Foundation docs only when token or visual migration risk is being assessed
-
-Do not read:
-
-- Every component contract
-- Screen structures or patterns unless the audit names a specific screen or flow
-- Architecture docs unless package ownership or file moves are part of the plan
+Use [router.md](../router.md), this workflow, and the target package manifest,
+entrypoints, root styles, and routing/layout files. Add
+[add-to-existing-react-app.md](../../recipes/add-to-existing-react-app.md) only
+for React adoption paths, [start-new-react-app.md](../../recipes/start-new-react-app.md)
+only for fresh-app recommendations, and component/foundation docs only for
+specific migration candidates named by the audit.
 
 ## Workflow
 

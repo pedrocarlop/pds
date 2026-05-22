@@ -76,18 +76,17 @@ when changing selectors.
 Textarea uses PDS typography, spacing, radius, color, focus, invalid state,
 interaction state layer, disabled opacity, and motion tokens.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
 | Default | Normal render | Textarea renders tokenized multiline field surface at selected density. | `data-slot='textarea'`, `data-density` | Native textarea semantics and labels are consumer-owned. |
 | Hover | Pointer hover | Enabled textarea uses neutral hover border treatment. | `.pds-textarea:not(:disabled):hover` | Hover is suppressed for disabled textareas. |
 | Focus-visible | Keyboard focus | Textarea uses shared PDS focus shadow; invalid focus keeps invalid border. | `.pds-textarea:focus-visible`, `.pds-textarea[aria-invalid='true']:focus-visible` | Keyboard focus remains on the native textarea. |
-| Active | Pressed | Not applicable: textarea has editing focus, not pressed state. | Not applicable | Typing and selection are native textarea behavior. |
 | Disabled | `disabled` / `aria-disabled` | Disabled textarea dims and suppresses hover treatment. | `.pds-textarea:disabled` | Native disabled prevents editing and form submission. |
-| Loading | `loading` prop / `data-busy` | Not applicable: Textarea has no loading state. | Not applicable | Use disabled or read-only state plus external busy feedback when needed. |
 | Error | `data-invalid` / error prop | Invalid textarea uses invalid border treatment. | `data-invalid='true'`, `aria-invalid='true'` | `invalid` sets `aria-invalid`; explicit ARIA invalid values are preserved. |
-| Success | status / success prop | Not applicable: Textarea has no success state. | Not applicable | Use adjacent success text or status components. |
+
+Non-applicable states: Active, Loading, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -134,8 +133,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [Content resilience](../../foundations/content-resilience.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Textarea source](../../../packages/react/src/components/textarea.tsx)
+- Component source: [packages/react/src/components/textarea.tsx](../../../packages/react/src/components/textarea.tsx)

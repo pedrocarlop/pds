@@ -9,28 +9,11 @@ Command: `/pds:start`.
 
 ## Minimum Read Path
 
-Always read:
-
-- [router.md](../router.md)
-- This workflow
-- Target folder listing
-
-Choose one:
-
-- [start-new-react-app.md](../../recipes/start-new-react-app.md) when the user
-  needs to understand the generated app setup
-- No additional docs when running the starter in a clearly empty target folder
-
-Read only if relevant:
-
-- Root [README.md](../../../README.md) when explaining install/update commands
-- Component contracts only when the user also asks to customize the first screen
-
-Do not read:
-
-- Existing-app adoption recipe
-- Screen structures, patterns, or architecture docs unless the user asks for
-  custom app work beyond bootstrapping
+Use [router.md](../router.md), this workflow, and the target folder listing.
+Add [start-new-react-app.md](../../recipes/start-new-react-app.md) only when
+explaining the generated setup, root [README.md](../../../README.md) for
+install/update command explanations, and component contracts only when the user
+also asks to customize the first screen.
 
 ## Behavior
 

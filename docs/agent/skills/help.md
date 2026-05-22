@@ -10,27 +10,11 @@ Command: `/pds:help`.
 
 ## Minimum Read Path
 
-Always read:
-
-- [router.md](../router.md)
-- This workflow
-- The current folder listing or target project files when the user asks for
-  project-specific help
-
-Read only if relevant:
-
-- [start.md](start.md) for new empty-folder setup.
-- [audit.md](audit.md) for existing app readiness.
-- [implement-screen.md](implement-screen.md) for screen implementation.
-- [create-component.md](create-component.md) for reusable component work.
-- [review-pds.md](review-pds.md) for design-system review.
-- [self-improve.md](self-improve.md) for feedback loops.
-
-Do not read:
-
-- Every component contract
-- Every foundation doc
-- Generated plugin context before canonical guidance
+Use [router.md](../router.md), this workflow, and target files only for
+project-specific help. Add [start.md](start.md), [audit.md](audit.md),
+[implement-screen.md](implement-screen.md), [create-component.md](create-component.md),
+[review-pds.md](review-pds.md), or [self-improve.md](self-improve.md) only for
+the workflow the user is trying to choose.
 
 ## Skill Picker
 

@@ -33,7 +33,6 @@ const requiredFiles = [
   "plugins/pds/README.md",
   "plugins/pds/context/AGENTS.md",
   "plugins/pds/context/CLAUDE.md",
-  "plugins/pds/context/docs/agent/evaluation-scenarios.md",
   "scripts/check-package-contracts.mjs",
   "scripts/check-agent-component-contracts.mjs",
   "scripts/check-agent-foundation-contracts.mjs",
@@ -193,7 +192,8 @@ await expectIncludes("packages/README.md", [
 await expectIncludes("scripts/sync-plugin-context.mjs", [
   'addFile("AGENTS.md")',
   'addFile("CLAUDE.md")',
-  'addDirectory("docs/agent")'
+  'addDirectory("docs/agent")',
+  "skippedContextPaths"
 ]);
 await expectIncludes("scripts/check-react-preview-browser.mjs", [
   'name: "desktop"',

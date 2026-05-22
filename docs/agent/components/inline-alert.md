@@ -57,18 +57,15 @@ the semantic accent.
 Uses semantic color, surface color, typography, spacing, radius, and elevation
 tokens.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
 | Default | Normal render | Neutral alert renders title, description, and action slots with alert spacing. | `data-slot='inline-alert'`, `data-tone='neutral'` | Default role follows the alert contract unless overridden. |
-| Hover | Pointer hover | Not applicable: InlineAlert has no hover state. | Not applicable | Action children own hover treatment. |
-| Focus-visible | Keyboard focus | Not applicable on root; action children own focus treatment. | Not applicable | Focusable alert actions must expose focus-visible state. |
-| Active | Pressed | Not applicable on root; action children own activation. | Not applicable | Alert itself does not activate. |
-| Disabled | `disabled` / `aria-disabled` | Not applicable: InlineAlert has no disabled state. | Not applicable | Disable action children individually. |
-| Loading | `loading` prop / `data-busy` | Not applicable: InlineAlert has no loading state. | Not applicable | Use Progress or Skeleton near the alert for loading. |
 | Error | `data-invalid` / error prop | Danger tone uses error alert visual treatment. | `data-tone='danger'` | Use appropriate role or live-region behavior for urgent errors. |
 | Success | status / success prop | Success tone uses success alert visual treatment. | `data-tone='success'` | Readable text must carry the success message, not color alone. |
+
+Non-applicable states: Hover, Focus-visible, Active, Disabled, Loading. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -106,7 +103,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [InlineAlert source](../../../packages/react/src/components/inline-alert.tsx)
+- Component source: [packages/react/src/components/inline-alert.tsx](../../../packages/react/src/components/inline-alert.tsx)

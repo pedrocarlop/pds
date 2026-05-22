@@ -7,13 +7,6 @@ results. It presents a visual area, primary title, supporting details,
 description text, custom content rows, and one overlay action while preserving a
 single primary card control.
 
-## Landing Requirement
-
-TravelWidget lands with component source, component CSS, this docs file, example
-usage in `examples/react`, tests, stable `data-slot` / `data-*` attributes,
-content-resilience notes, and keyboard/focus behavior for the primary control
-and internal carousel controls.
-
 ## When To Use
 
 - Use for hotel, trip, listing, booking, offer, or commerce result summaries.
@@ -121,7 +114,7 @@ TravelWidget uses PDS surface color, overlay color, state layers, focus shadow,
 spacing, radius, elevation, typography, disabled opacity, and motion tokens.
 Do not hard-code upstream color, spacing, radius, typography, or shadow values.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
@@ -131,8 +124,8 @@ Do not hard-code upstream color, spacing, radius, typography, or shadow values.
 | Active | Pressed | Widget surface applies pressed state layer when the primary control is pressed. | `.pds-travel-widget:has(.pds-travel-widget-control:active)` | Activation semantics come from the primary control element. |
 | Disabled | `disabled` / `aria-disabled` | Disabled widget dims and disables primary control behavior. | `data-disabled='true'`, control `:disabled` or `aria-disabled` | Button controls disable natively; non-button controls use `aria-disabled`. |
 | Loading | `loading` prop / `data-busy` | Skeleton variants render visual placeholders for widget content. | `data-slot='travel-widget-skeleton'`, `aria-hidden='true'` | Expose loading state on the owning region when skeletons are shown. |
-| Error | `data-invalid` / error prop | Not applicable: TravelWidget has no error state. | Not applicable | Use InlineAlert or replacement content for travel data errors. |
-| Success | status / success prop | Not applicable: TravelWidget has no success state. | Not applicable | Use action result messaging outside the widget. |
+
+Non-applicable states: Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -194,8 +187,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [Content resilience](../../foundations/content-resilience.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- Component source: `packages/react/src/components/travel-widget.tsx`
+- Component source: [packages/react/src/components/travel-widget.tsx](../../../packages/react/src/components/travel-widget.tsx)

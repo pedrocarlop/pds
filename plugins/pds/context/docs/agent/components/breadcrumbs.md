@@ -57,7 +57,7 @@ page, separator, and wrapping list layout.
 
 Uses typography, spacing, color, radius, and focus tokens.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
@@ -65,10 +65,8 @@ Uses typography, spacing, color, radius, and focus tokens.
 | Hover | Pointer hover | Links use native or consumer link hover treatment. | `data-slot='breadcrumbs-link'` | Hover does not change current-page semantics. |
 | Focus-visible | Keyboard focus | Links use browser or app focus treatment. | `data-slot='breadcrumbs-link'`, `:focus-visible` on links | Keyboard focus remains on the anchor. |
 | Active | Pressed | Links use native activation behavior. | `data-slot='breadcrumbs-link'`, native `:active` | Navigation activation is owned by anchor or router link. |
-| Disabled | `disabled` / `aria-disabled` | Not applicable: Breadcrumbs has no disabled state. | Not applicable | Do not render disabled breadcrumbs as links. |
-| Loading | `loading` prop / `data-busy` | Not applicable: Breadcrumbs has no loading state. | Not applicable | Use placeholder text or Skeleton before rendering breadcrumbs. |
-| Error | `data-invalid` / error prop | Not applicable: Breadcrumbs has no error state. | Not applicable | Routing errors belong to the page or alert region. |
-| Success | status / success prop | Not applicable: Breadcrumbs has no success state. | Not applicable | Success feedback belongs outside navigation. |
+
+Non-applicable states: Disabled, Loading, Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -108,7 +106,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Breadcrumbs source](../../../packages/react/src/components/breadcrumbs.tsx)
+- Component source: [packages/react/src/components/breadcrumbs.tsx](../../../packages/react/src/components/breadcrumbs.tsx)

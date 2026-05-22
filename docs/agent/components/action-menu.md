@@ -62,7 +62,7 @@ depends on highlighted, disabled, and danger intent selectors.
 Uses popover surface color, typography, spacing, radius, elevation, state layer,
 disabled opacity, and motion tokens.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
@@ -71,9 +71,8 @@ disabled opacity, and motion tokens.
 | Focus-visible | Keyboard focus | Focused trigger or item uses the shared PDS focus shadow. | `.pds-action-menu-item:focus-visible`, trigger focus selector from composed control | Keyboard users navigate items through Radix menu behavior. |
 | Active | Pressed or selected menu item | Pressed trigger opens the menu; selected item activation keeps item treatment stable. | Radix trigger events and `.pds-action-menu-item` | Activation semantics are owned by the chosen trigger and Radix item type. |
 | Disabled | `disabled` or Radix disabled item | Disabled items use disabled opacity and suppress highlight selection. | `data-disabled`, `.pds-action-menu-item[data-disabled]` | Radix removes disabled items from activation. |
-| Loading | `loading` prop / `data-busy` | Not applicable: ActionMenu has no loading or busy state. | Not applicable | Expose loading on the triggering region or item content if needed. |
-| Error | `data-invalid` / error prop | Not applicable: danger intent is destructive emphasis, not validation error. | `data-intent='danger'` only | Do not use menu danger items as error announcements. |
-| Success | status / success prop | Not applicable: ActionMenu has no success state. | Not applicable | Use item text or surrounding status components for success feedback. |
+
+Non-applicable states: Loading, Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -114,7 +113,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [ActionMenu source](../../../packages/react/src/components/action-menu.tsx)
+- Component source: [packages/react/src/components/action-menu.tsx](../../../packages/react/src/components/action-menu.tsx)

@@ -56,18 +56,14 @@ root style and reduced-motion-safe animations.
 
 Uses color, radius, state, and motion tokens.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
 | Default | Normal render | Determinate progress renders a track and indicator translated by percentage. | `data-slot='progress'`, `progress-indicator` | Expose a label or surrounding text for the progress meaning. |
-| Hover | Pointer hover | Not applicable: Progress has no hover state. | Not applicable | Progress is display-only. |
-| Focus-visible | Keyboard focus | Not applicable: Progress is not focusable by default. | Not applicable | Do not make Progress focusable without additional semantics. |
-| Active | Pressed | Not applicable: Progress has no activation behavior. | Not applicable | Progress does not respond to presses. |
-| Disabled | `disabled` / `aria-disabled` | Not applicable: Progress has no disabled state. | Not applicable | Disable the process controls, not the progress display. |
 | Loading | `loading` prop / `data-busy` | Indeterminate progress animates the indicator. | `data-indeterminate='true'` | Indeterminate progress should be described by nearby text when meaning is not obvious. |
-| Error | `data-invalid` / error prop | Not applicable: Progress has no error state. | Not applicable | Use InlineAlert or RunStatus for failed work. |
-| Success | status / success prop | Not applicable: complete percentage is progress value, not success state. | Value at 100 percent only | Use status text for completion success. |
+
+Non-applicable states: Hover, Focus-visible, Active, Disabled, Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -104,7 +100,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Progress source](../../../packages/react/src/components/progress.tsx)
+- Component source: [packages/react/src/components/progress.tsx](../../../packages/react/src/components/progress.tsx)

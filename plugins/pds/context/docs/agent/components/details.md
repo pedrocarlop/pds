@@ -97,18 +97,15 @@ Details uses inherited PDS typography, spacing, radius, disabled, and skeleton
 motion tokens through its root, slots, and composed Skeleton children. Do not add
 hard-coded colors, spacing, radii, or local component-specific token names.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
 | Default | Normal render | Details renders title, content, and optional note with selected variant. | `data-slot="details"`, `data-variant` | Semantics come from the chosen `use` element. |
-| Hover | Pointer hover | No package hover selector currently applies to Details roots. | Not applicable | If rendered as a button, native or consumer styles may apply hover. |
-| Focus-visible | Keyboard focus | No package focus-visible selector currently applies to Details roots. | Not applicable | If rendered as a button, keyboard focus remains on the native button. |
-| Active | Pressed | No package pressed selector currently applies to Details roots. | Not applicable | If rendered as a button, activation is native button behavior. |
 | Disabled | `disabled` / `aria-disabled` | Disabled roots expose stable disabled state for styling and tests. | `data-disabled="true"`, native `disabled`, `aria-disabled="true"` | Native button roots disable activation; non-button roots expose `aria-disabled`. |
 | Loading | `loading` prop / `data-busy` | DetailsSkeleton and DetailsCellSkeleton render Skeleton placeholders. | `data-slot="details-skeleton"`, `data-slot="details-cell-skeleton"` | Expose loading on the owning region when skeletons replace content. |
-| Error | `data-invalid` / error prop | Not applicable: Details has no invalid or error state. | Not applicable | Use adjacent validation or alert components for errors. |
-| Success | status / success prop | Not applicable: Details has no success state. | Not applicable | Use Badge, RunStatus, or status text near Details for success. |
+
+Non-applicable states: Hover, Focus-visible, Active, Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -177,7 +174,4 @@ Don't:
 
 ## Related Sources
 
-- [Cell](cell.md)
-- [Skeleton](skeleton.md)
-- [PDS React README](../../../packages/react/README.md)
-- [Details source](../../../packages/react/src/components/details.tsx)
+- Component source: [packages/react/src/components/details.tsx](../../../packages/react/src/components/details.tsx)

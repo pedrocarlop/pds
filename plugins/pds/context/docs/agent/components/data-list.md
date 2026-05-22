@@ -57,18 +57,13 @@ layout.
 
 Uses surface color, typography, spacing, radius, and content resilience tokens.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
 | Default | Normal render | DataList renders term and description pairs at default or compact density. | `data-slot='data-list'`, `data-density` | Use semantic list or description-list structure from the component. |
-| Hover | Pointer hover | Not applicable: DataList is static display. | Not applicable | Interactive content inside descriptions owns hover. |
-| Focus-visible | Keyboard focus | Not applicable: DataList root is not focusable. | Not applicable | Focusable child content owns focus treatment. |
-| Active | Pressed | Not applicable: DataList has no activation behavior. | Not applicable | Activation belongs to child controls. |
-| Disabled | `disabled` / `aria-disabled` | Not applicable: DataList has no disabled state. | Not applicable | Disable child controls individually. |
-| Loading | `loading` prop / `data-busy` | Not applicable: DataList has no loading state. | Not applicable | Use Skeleton rows or a busy owning region while data loads. |
-| Error | `data-invalid` / error prop | Not applicable: DataList has no error state. | Not applicable | Use InlineAlert or field errors near the list. |
-| Success | status / success prop | Not applicable: DataList has no success state. | Not applicable | Use status text or Badge inside descriptions if needed. |
+
+Non-applicable states: Hover, Focus-visible, Active, Disabled, Loading, Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -108,7 +103,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [DataList source](../../../packages/react/src/components/data-list.tsx)
+- Component source: [packages/react/src/components/data-list.tsx](../../../packages/react/src/components/data-list.tsx)

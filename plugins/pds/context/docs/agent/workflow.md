@@ -24,6 +24,9 @@ these rules after reading [AGENTS.md](../../AGENTS.md) and using
   Claude.
 - Source files and tests must still be inspected before editing existing code.
   Do not rely only on docs when implementation exists.
+- When working in this source repo, do not read `plugins/pds/context` for
+  guidance. It is generated from canonical files and exists for installed
+  plugin use.
 - For verification, use `pnpm check`; it covers publishable packages, the
   private React example consumer, plugin context sync, `DESIGN.md` lint,
   package contract coverage, skill contract coverage, component contract coverage,

@@ -106,7 +106,7 @@ Button uses PDS typography, spacing, radius, color, elevation focus, interaction
 state layer, disabled opacity, and motion tokens. Use semantic token categories
 instead of adding one-off colors, spacing, radii, transitions, or shadows.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
@@ -115,9 +115,9 @@ instead of adding one-off colors, spacing, radii, transitions, or shadows.
 | Focus-visible | Keyboard focus | Shared PDS focus shadow appears around the button. | `.pds-button:focus-visible` | Keyboard focus remains on the button or composed child. |
 | Active | Pressed | Enabled buttons apply pressed state layer. | `.pds-button:not(:disabled, [aria-disabled='true']):active` | Native button activation remains browser-owned. |
 | Disabled | `disabled` / `aria-disabled` | Disabled buttons use disabled opacity and suppress hover or active treatment. | `:disabled`, `[aria-disabled='true']` | Native disabled prevents activation; `aria-disabled` consumers must prevent activation. |
-| Loading | `loading` prop / `data-busy` | Not applicable: Button has no loading state. | Not applicable | Use disabled state plus adjacent Progress or text for busy actions. |
 | Error | `data-invalid` / error prop | Danger intent uses destructive action colors, not form invalid styling. | `data-intent='danger'` | Danger is not an error announcement. |
-| Success | status / success prop | Not applicable: Button has no success state. | Not applicable | Use adjacent status text or a status component after completion. |
+
+Non-applicable states: Loading, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -178,8 +178,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [Content resilience](../../foundations/content-resilience.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Button source](../../../packages/react/src/components/button.tsx)
+- Component source: [packages/react/src/components/button.tsx](../../../packages/react/src/components/button.tsx)

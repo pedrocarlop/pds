@@ -16,8 +16,8 @@ limitations.
 - Before editing a component, read its component context and source file.
 - Before changing `components.css`, read the affected component context plus the
   relevant foundation docs for the visual area being changed.
-- Before changing public API, update the component context, package README,
-  exports, and tests together.
+- Before changing public API, update the component context, exports, and tests
+  together.
 - Before adding examples or tests, check the documented slots, data attributes,
   state behavior, and limitations.
 - Before adding a new component, create its context file from
@@ -87,8 +87,8 @@ Keep checks lightweight in this phase:
 - Every documented component should name its public slots and stable data
   attributes.
 - Every React component source file must have a matching component contract,
-  source link, component index link, package README link, and the required
-  contract sections checked by `scripts/check-agent-component-contracts.mjs`.
+  source link, component index link, and the required contract sections checked
+  by `scripts/check-agent-component-contracts.mjs`.
 - Every new component must land with source, component CSS, this docs file,
   example usage in `examples/react`, tests, stable `data-slot` / `data-*`
   attributes, content-resilience notes, and keyboard/focus behavior when

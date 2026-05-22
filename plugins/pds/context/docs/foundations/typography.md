@@ -3,9 +3,8 @@
 Typography roles are recipes. Every text style combines four token groups:
 family, size, line-height, and weight.
 
-Related sources: start with [DESIGN.md](../../DESIGN.md) for the portable
-contract, then use [packages/tokens/src/typography.css](../../packages/tokens/src/typography.css)
-for implementation values.
+Sources: [DESIGN.md](../../DESIGN.md) and
+[packages/tokens/src/typography.css](../../packages/tokens/src/typography.css).
 
 ## Families
 

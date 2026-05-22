@@ -64,7 +64,7 @@ disabled, and danger intent selectors.
 Uses popover surface color, typography, spacing, radius, elevation, state layer,
 disabled opacity, and motion tokens.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
@@ -73,9 +73,8 @@ disabled opacity, and motion tokens.
 | Focus-visible | Keyboard focus | Focused menu items use shared PDS focus shadow. | `.pds-menu-item:focus-visible` | Keyboard users navigate items through Radix menu behavior. |
 | Active | Pressed or checked item | Checked menu items use selected state layer. | `data-state='checked'`, `.pds-menu-item[data-state='checked']` | Radix owns checkbox and radio item ARIA state. |
 | Disabled | `disabled` or Radix disabled item | Disabled items use disabled opacity and suppress highlight selection. | `data-disabled`, `.pds-menu-item[data-disabled]` | Radix removes disabled items from activation. |
-| Loading | `loading` prop / `data-busy` | Not applicable: Menu has no loading or busy state. | Not applicable | Expose loading on item content or surrounding region if needed. |
-| Error | `data-invalid` / error prop | Not applicable: danger intent is destructive emphasis, not validation error. | `data-intent='danger'` only | Do not use danger items as error announcements. |
-| Success | status / success prop | Not applicable: Menu has no success state. | Not applicable | Use item text or surrounding status components for success feedback. |
+
+Non-applicable states: Loading, Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -117,7 +116,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Menu source](../../../packages/react/src/components/menu.tsx)
+- Component source: [packages/react/src/components/menu.tsx](../../../packages/react/src/components/menu.tsx)

@@ -16,28 +16,9 @@ becoming a generated starter app or documentation site.
 
 ## Install Model
 
-For published releases, install the React package from the app folder:
-
-```sh
-pnpm add @pds/react@latest
-```
-
-Then import `@pds/react/styles.css` once at the app root and import components from
-`@pds/react`. The `@pds/react` package brings in `@pds/tokens` for React consumers.
-
-For Codex-based setup, open Codex in the app folder and ask it to install the
-latest `@pds/react` package, import `@pds/react/styles.css` once, use public
-imports from `@pds/react`, and run the app checks.
-
-Before a registry release is available, use local workspace dependencies for
-in-repo apps. For external local app experiments, build and pack both
-publishable packages from this repo, then install both tarballs in the app.
-
-Use the same command to update a published install:
-
-```sh
-pnpm add @pds/react@latest
-```
+The canonical install, update, Codex, and local tarball commands live in the
+root [install guide](../../README.md#install-in-an-app). Recipes only add
+scenario-specific wiring and verification.
 
 ## Related Sources
 

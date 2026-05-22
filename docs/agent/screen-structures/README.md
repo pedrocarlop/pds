@@ -22,6 +22,13 @@ they are relevant to the implementation or review.
 - [First Level Navigation Page](first-level-navigation-page.md)
 - [Focus Layout](focus-layout.md)
 
+## Shared App CSS Boundary
+
+Screen-level app CSS may own shell layout, region placement, page padding,
+responsive stacking, vertical rhythm, and reachable/sticky action placement.
+It must not own PDS component colors, radius, typography, state styling, or
+replacement implementations of existing PDS components.
+
 ## Authoring
 
 Future screen structures should include:

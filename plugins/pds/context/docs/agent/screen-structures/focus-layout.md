@@ -64,21 +64,9 @@ Focus layout
 
 ## App CSS Responsibilities
 
-App CSS may own:
-
-- Focus shell centering.
-- `--pds-layout-focus-max` application.
-- Page padding.
-- Vertical spacing between sections.
-- Sticky or bottom action placement when required.
-
-App CSS must not own:
-
-- Component colors.
-- Component radius.
-- Component typography.
-- Component state styling.
-- Replacement versions of existing PDS components.
+Follow the shared app CSS boundary in [screen structures](README.md). This
+structure may own focus shell centering, `--pds-layout-focus-max` application,
+page padding, vertical section rhythm, and sticky or bottom action placement.
 
 ## State Placement
 

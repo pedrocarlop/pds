@@ -48,15 +48,12 @@ matching pattern and component docs.
   when user design feedback reveals missing, failed, ambiguous, conflicting, or
   unowned guidance.
 
-## Source Ownership
+## Ownership
 
-- `docs/foundations` owns visual guidelines.
-- `packages/tokens/src` owns CSS custom properties.
-- `docs/agent/components` owns React component contracts.
-- `packages/react` owns React implementation and package styles.
-- `docs/agent/patterns` owns repeatable product-flow guidance.
-- `docs/recipes` owns app setup and adoption paths.
-- `docs/agent` owns agent routing, workflows, and verification rules.
+Use the source-of-truth and owner routing tables in
+[docs/agent/router.md](docs/agent/router.md). Use
+[docs/architecture/repository-structure.md](docs/architecture/repository-structure.md)
+only when package, plugin, file, or generated-output boundaries change.
 
 ## Do Not Stop Here
 

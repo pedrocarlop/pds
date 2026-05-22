@@ -113,7 +113,7 @@ The default row padding is `--pds-space-sp-300` vertically and
 `--pds-color-grey-tone-50` with a `body1` type recipe when the consumer provides
 that content.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
@@ -122,9 +122,8 @@ that content.
 | Focus-visible | Keyboard focus | Interactive roots use the shared PDS focus shadow. | `.pds-cell:focus-visible` | Keyboard focus stays on the rendered root. |
 | Active | Pressed | Interactive roots apply pressed state layer; choice rows can show selected affordance. | `.pds-cell:active`, `[aria-pressed='true']` | Use `aria-pressed` only for button-style selected rows. |
 | Disabled | `disabled` / `aria-disabled` | Disabled rows use disabled opacity and suppress hover or active layers. | `:disabled`, `[aria-disabled='true']`, `data-disabled='true'` | Native buttons disable activation; non-button roots use `aria-disabled`. |
-| Loading | `loading` prop / `data-busy` | Not applicable: Cell has no loading state. | Not applicable | Use Skeleton or a busy wrapper around row content. |
-| Error | `data-invalid` / error prop | Not applicable: Cell has no validation state. | Not applicable | Use form controls or alert content for validation errors. |
-| Success | status / success prop | Not applicable: Cell has no success state. | Not applicable | Use Badge, RunStatus, or status text inside the row. |
+
+Non-applicable states: Loading, Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -217,9 +216,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [Content resilience](../../foundations/content-resilience.md)
-- [Spacing and radius](../../foundations/spacing.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Cell source](../../../packages/react/src/components/cell.tsx)
+- Component source: [packages/react/src/components/cell.tsx](../../../packages/react/src/components/cell.tsx)

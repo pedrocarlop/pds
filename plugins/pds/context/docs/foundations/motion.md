@@ -3,9 +3,8 @@
 Motion communicates state, hierarchy, and spatial relationships. Use it
 purposefully, keep it interruptible, and make it optional.
 
-Related sources: start with [DESIGN.md](../../DESIGN.md) for the portable
-contract, then use [packages/tokens/src/motion.css](../../packages/tokens/src/motion.css)
-for implementation values.
+Sources: [DESIGN.md](../../DESIGN.md) and
+[packages/tokens/src/motion.css](../../packages/tokens/src/motion.css).
 
 ## Core Rules
 

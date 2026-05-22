@@ -108,7 +108,7 @@ selectors, viewport media queries, and reduced-motion treatment.
 BottomSheet uses PDS overlay, surface color, spacing, radius, elevation,
 typography, focus, state layer, disabled opacity, and motion tokens.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
@@ -117,9 +117,8 @@ typography, focus, state layer, disabled opacity, and motion tokens.
 | Focus-visible | Keyboard focus | Close button uses shared PDS focus shadow; trigger focus belongs to the trigger control. | `.pds-bottom-sheet-close:focus-visible` | Radix manages focus movement for modal content. |
 | Active | Pressed | Close button uses pressed state layer before dismissal. | `.pds-bottom-sheet-close:not(:disabled):active` | Activation closes through Radix close behavior. |
 | Disabled | `disabled` / `aria-disabled` | Disabled close or trigger controls use disabled opacity through native disabled selectors. | `.pds-bottom-sheet-close:disabled` | Disabled native controls are not activatable. |
-| Loading | `loading` prop / `data-busy` | Not applicable: BottomSheet has no loading state. | Not applicable | Expose loading inside the sheet body with Progress or Skeleton. |
-| Error | `data-invalid` / error prop | Not applicable: BottomSheet has no validation state. | Not applicable | Place errors inside the sheet content with alert or form components. |
-| Success | status / success prop | Not applicable: BottomSheet has no success state. | Not applicable | Place success feedback inside content or close after completion. |
+
+Non-applicable states: Loading, Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -191,8 +190,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [Content resilience](../../foundations/content-resilience.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [BottomSheet source](../../../packages/react/src/components/bottom-sheet.tsx)
+- Component source: [packages/react/src/components/bottom-sheet.tsx](../../../packages/react/src/components/bottom-sheet.tsx)

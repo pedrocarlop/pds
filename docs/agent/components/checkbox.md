@@ -59,7 +59,7 @@ native disabled state, focus-visible, and invalid attributes.
 Uses color, radius, focus, invalid state, interaction state layer, disabled
 opacity, and motion tokens.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
@@ -68,9 +68,9 @@ opacity, and motion tokens.
 | Focus-visible | Keyboard focus | Checkbox uses the shared PDS focus shadow. | `.pds-checkbox:focus-visible` | Keyboard users toggle with native checkbox interaction through Radix. |
 | Active | Pressed | Press toggles checked or indeterminate state with accent fill when selected. | `data-state='checked'`, `data-state='indeterminate'` | Radix updates `aria-checked` for checked and mixed states. |
 | Disabled | `disabled` / `aria-disabled` | Disabled checkbox dims and suppresses hover treatment. | `.pds-checkbox:disabled` | Radix disabled checkbox is not activatable. |
-| Loading | `loading` prop / `data-busy` | Not applicable: Checkbox has no loading state. | Not applicable | Disable the control and expose busy state on the owning region if needed. |
 | Error | `data-invalid` / error prop | Invalid checkbox uses semantic invalid border treatment. | `data-invalid='true'`, `aria-invalid='true'` | `invalid` sets or preserves invalid ARIA state. |
-| Success | status / success prop | Not applicable: Checkbox checked state is selection, not success. | Not applicable | Use separate status text for successful completion. |
+
+Non-applicable states: Loading, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -108,7 +108,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Checkbox source](../../../packages/react/src/components/checkbox.tsx)
+- Component source: [packages/react/src/components/checkbox.tsx](../../../packages/react/src/components/checkbox.tsx)

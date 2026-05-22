@@ -80,18 +80,15 @@ Badge uses PDS color, typography, spacing, radius, focus, and motion tokens.
 Status tones must map to semantic token categories rather than hard-coded
 colors.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
 | Default | Normal render | Badge uses `tone` and `emphasis` for compact status or metadata treatment. | `data-slot='badge'`, `data-tone`, `data-emphasis` | Badge is presentational unless composed with `asChild`. |
-| Hover | Pointer hover | Not applicable by default: Badge has no hover style. | Not applicable | `asChild` interactive children own hover semantics. |
-| Focus-visible | Keyboard focus | Not applicable by default: Badge is not focusable. | Not applicable | `asChild` interactive children must provide focus treatment. |
-| Active | Pressed | Not applicable by default: Badge has no activation behavior. | Not applicable | `asChild` interactive children own activation behavior. |
-| Disabled | `disabled` / `aria-disabled` | Not applicable: Badge has no disabled state. | Not applicable | Disabled treatment belongs to the composed child control. |
-| Loading | `loading` prop / `data-busy` | Not applicable: Badge has no loading state. | Not applicable | Use Skeleton or Progress near the badge for loading status. |
 | Error | `data-invalid` / error prop | Danger tone uses semantic danger colors for error-like status. | `data-tone='danger'` | Tone does not announce errors; pair with text or live regions when needed. |
 | Success | status / success prop | Success tone uses semantic success colors. | `data-tone='success'` | Tone does not announce success; pair with readable status text. |
+
+Non-applicable states: Hover, Focus-visible, Active, Disabled, Loading. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -140,8 +137,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [Content resilience](../../foundations/content-resilience.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Badge source](../../../packages/react/src/components/badge.tsx)
+- Component source: [packages/react/src/components/badge.tsx](../../../packages/react/src/components/badge.tsx)

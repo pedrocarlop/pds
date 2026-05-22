@@ -83,18 +83,13 @@ Material Symbols examples and agent-authored markup.
 Icon inherits color and size from its context. Spacing is owned by the parent
 component or layout.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
 | Default | Normal render | Icon renders the requested Material Symbols glyph with inherited color and icon sizing. | `data-slot='icon'`, `data-icon` | Decorative icons should be hidden; meaningful icons need an accessible name from context. |
-| Hover | Pointer hover | Not applicable: Icon has no hover state of its own. | Not applicable | Parent controls own hover color and semantics. |
-| Focus-visible | Keyboard focus | Not applicable: Icon is not focusable by default. | Not applicable | Do not make standalone icons keyboard targets without semantics. |
-| Active | Pressed | Not applicable: Icon has no activation behavior. | Not applicable | Parent controls own activation. |
-| Disabled | `disabled` / `aria-disabled` | Not applicable: Icon has no disabled state. | Not applicable | Disabled treatment comes from the parent control. |
-| Loading | `loading` prop / `data-busy` | Not applicable: Icon has no loading state. | Not applicable | Use Progress or Skeleton for loading. |
-| Error | `data-invalid` / error prop | Not applicable: Icon has no error state. | Not applicable | Use semantic color only through owning status components. |
-| Success | status / success prop | Not applicable: Icon has no success state. | Not applicable | Use semantic color only through owning status components. |
+
+Non-applicable states: Hover, Focus-visible, Active, Disabled, Loading, Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -145,7 +140,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Icon source](../../../packages/react/src/components/icon.tsx)
+- Component source: [packages/react/src/components/icon.tsx](../../../packages/react/src/components/icon.tsx)

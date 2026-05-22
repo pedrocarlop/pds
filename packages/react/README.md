@@ -10,31 +10,9 @@ React components for PDS agent-facing product surfaces.
 
 ## Install
 
-From a React app folder:
-
-```sh
-pnpm add @pds/react@latest
-```
-
-Then import the stylesheet once at the app root:
-
-```tsx
-import "@pds/react/styles.css";
-```
-
-To update an app to the latest published PDS release, run the same install
-command again:
-
-```sh
-pnpm add @pds/react@latest
-```
-
-Codex users can ask from the app folder:
-
-```text
-Install the latest PDS package in this React app, import @pds/react/styles.css once,
-use public imports from @pds/react, and run the app checks.
-```
+Use the root [install guide](../../README.md#install-in-an-app) for registry,
+Codex, update, and local tarball flows. This package requires one app-root
+`@pds/react/styles.css` import and uses `@pds/tokens` for CSS variables.
 
 ## Current Surface
 
@@ -102,53 +80,6 @@ The package README stays as the package overview. Component context explains
 implementation-specific slots, stable `data-*` attributes, accessibility
 contracts, content resilience rules, styling hooks, token categories, examples,
 and known limitations.
-
-## Component Index
-
-Detailed component contracts live in
-[docs/agent/components](../../docs/agent/components/README.md).
-Use those files before editing source, CSS, examples, tests, or public APIs.
-
-| Component | Context |
-| --- | --- |
-| ActionMenu | [action-menu.md](../../docs/agent/components/action-menu.md) |
-| ActionWidget | [action-widget.md](../../docs/agent/components/action-widget.md) |
-| Amount | [amount.md](../../docs/agent/components/amount.md) |
-| Avatar | [avatar.md](../../docs/agent/components/avatar.md) |
-| Badge | [badge.md](../../docs/agent/components/badge.md) |
-| Breadcrumbs | [breadcrumbs.md](../../docs/agent/components/breadcrumbs.md) |
-| BottomSheet | [bottom-sheet.md](../../docs/agent/components/bottom-sheet.md) |
-| Button | [button.md](../../docs/agent/components/button.md) |
-| Cell | [cell.md](../../docs/agent/components/cell.md) |
-| Checkbox | [checkbox.md](../../docs/agent/components/checkbox.md) |
-| Composer | [composer.md](../../docs/agent/components/composer.md) |
-| DataList | [data-list.md](../../docs/agent/components/data-list.md) |
-| Details | [details.md](../../docs/agent/components/details.md) |
-| Dialog | [dialog.md](../../docs/agent/components/dialog.md) |
-| FilterChip | [filter-chip.md](../../docs/agent/components/filter-chip.md) |
-| Icon | [icon.md](../../docs/agent/components/icon.md) |
-| InlineAlert | [inline-alert.md](../../docs/agent/components/inline-alert.md) |
-| Input | [input.md](../../docs/agent/components/input.md) |
-| Item | [item.md](../../docs/agent/components/item.md) |
-| Menu | [menu.md](../../docs/agent/components/menu.md) |
-| Message | [message.md](../../docs/agent/components/message.md) |
-| Pagination | [pagination.md](../../docs/agent/components/pagination.md) |
-| PageHeader | [page-header.md](../../docs/agent/components/page-header.md) |
-| Popover | [popover.md](../../docs/agent/components/popover.md) |
-| Progress | [progress.md](../../docs/agent/components/progress.md) |
-| RadioGroup | [radio-group.md](../../docs/agent/components/radio-group.md) |
-| RunStatus | [run-status.md](../../docs/agent/components/run-status.md) |
-| Select | [select.md](../../docs/agent/components/select.md) |
-| Skeleton | [skeleton.md](../../docs/agent/components/skeleton.md) |
-| Surface | [surface.md](../../docs/agent/components/surface.md) |
-| Switch | [switch.md](../../docs/agent/components/switch.md) |
-| Table | [table.md](../../docs/agent/components/table.md) |
-| Tabs | [tabs.md](../../docs/agent/components/tabs.md) |
-| Textarea | [textarea.md](../../docs/agent/components/textarea.md) |
-| Toast | [toast.md](../../docs/agent/components/toast.md) |
-| Tooltip | [tooltip.md](../../docs/agent/components/tooltip.md) |
-| Transcript | [transcript.md](../../docs/agent/components/transcript.md) |
-| TravelWidget | [travel-widget.md](../../docs/agent/components/travel-widget.md) |
 
 ## Current Limitations
 

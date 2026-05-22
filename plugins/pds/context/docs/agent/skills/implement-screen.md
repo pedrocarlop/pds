@@ -16,31 +16,13 @@ question only when the target screen or primary workflow cannot be inferred.
 
 ## Minimum Read Path
 
-Always read:
-
-- [router.md](../router.md)
-- [workflow.md](../workflow.md)
-- This workflow
-- Target app source, routing/layout files, root styles, and nearby screens
-
-Choose one:
-
-- One [screen structure](../screen-structures/README.md)
-- One [pattern](../patterns/README.md) only when the flow matches a documented
-  repeated product flow
-
-Read only if relevant:
-
-- [docs/recipes](../../recipes) when PDS is not already wired into the app
-- Component contracts for components being composed or modified
-- Foundation docs for visual areas being changed
-- [PDS Screen Quality Gates](../pds-screen-quality-gates.md) before handoff
-
-Do not read:
-
-- Every component contract
-- Every pattern
-- Architecture docs unless moving files, changing ownership, or adding packages
+Use [router.md](../router.md), [workflow.md](../workflow.md), this workflow,
+target app source, routing/layout files, root styles, and nearby screens. Choose
+one [screen structure](../screen-structures/README.md), add one
+[pattern](../patterns/README.md) only for a documented repeated flow, and read
+only the component contracts, foundations, [docs/recipes](../../recipes), and
+[PDS Screen Quality Gates](../pds-screen-quality-gates.md) needed by the
+selected screen.
 
 ## Structure Selection
 

@@ -106,7 +106,7 @@ default close-button structure.
 Dialog uses PDS surface color, overlay color, spacing, radius, elevation,
 typography, focus, state layer, and motion tokens.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
@@ -115,9 +115,8 @@ typography, focus, state layer, and motion tokens.
 | Focus-visible | Keyboard focus | Close button uses shared PDS focus shadow; trigger focus belongs to the trigger control. | `.pds-dialog-close:focus-visible` | Radix moves focus into and out of the dialog. |
 | Active | Pressed | Close button uses pressed state layer before dismissal. | `.pds-dialog-close:not(:disabled):active` | Activation closes through Radix close behavior. |
 | Disabled | `disabled` / `aria-disabled` | Disabled close or trigger controls use disabled opacity through native selectors. | `.pds-dialog-close:disabled` | Disabled native controls are not activatable. |
-| Loading | `loading` prop / `data-busy` | Not applicable: Dialog has no loading state. | Not applicable | Expose loading inside dialog body with Progress or Skeleton. |
-| Error | `data-invalid` / error prop | Not applicable: Dialog has no validation state. | Not applicable | Place form errors or alerts inside the dialog content. |
-| Success | status / success prop | Not applicable: Dialog has no success state. | Not applicable | Place success feedback inside content or close after completion. |
+
+Non-applicable states: Loading, Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -184,8 +183,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [Content resilience](../../foundations/content-resilience.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Dialog source](../../../packages/react/src/components/dialog.tsx)
+- Component source: [packages/react/src/components/dialog.tsx](../../../packages/react/src/components/dialog.tsx)

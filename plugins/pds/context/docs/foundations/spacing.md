@@ -5,9 +5,8 @@ Choose spacing tokens by layout role, not by numeric preference. Use
 [layout-types.md](layout-types.md) for shared page widths, side-panel minimums,
 and breakpoint values.
 
-Related sources: start with [DESIGN.md](../../DESIGN.md) for the portable
-contract, then use [packages/tokens/src/spacing.css](../../packages/tokens/src/spacing.css)
-for implementation values.
+Sources: [DESIGN.md](../../DESIGN.md) and
+[packages/tokens/src/spacing.css](../../packages/tokens/src/spacing.css).
 
 ## Component Spacing Rules
 

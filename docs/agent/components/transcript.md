@@ -88,18 +88,13 @@ contract and wrapping behavior when changing selectors.
 Transcript uses PDS spacing, typography, surface color, and content resilience
 rules. Message role styling belongs to Message, not Transcript.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
 | Default | Normal render | Transcript renders list content or the empty slot at selected density. | `data-slot='transcript'`, `data-density` | Children define message semantics; empty text must be readable. |
-| Hover | Pointer hover | Not applicable: Transcript has no hover state. | Not applicable | Interactive message children own hover treatment. |
-| Focus-visible | Keyboard focus | Not applicable: Transcript root is not focusable. | Not applicable | Focusable message children own focus treatment. |
-| Active | Pressed | Not applicable: Transcript has no activation behavior. | Not applicable | Activation belongs to child controls. |
-| Disabled | `disabled` / `aria-disabled` | Not applicable: Transcript has no disabled state. | Not applicable | Disable child controls individually. |
-| Loading | `loading` prop / `data-busy` | Not applicable: Transcript has no streaming or loading state. | Not applicable | Compose Progress, Skeleton, or Message content for loading. |
-| Error | `data-invalid` / error prop | Not applicable: Transcript has no error state. | Not applicable | Compose InlineAlert or Message content for errors. |
-| Success | status / success prop | Not applicable: Transcript has no success state. | Not applicable | Compose RunStatus or Message content for success feedback. |
+
+Non-applicable states: Hover, Focus-visible, Active, Disabled, Loading, Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -149,8 +144,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [Content resilience](../../foundations/content-resilience.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Transcript source](../../../packages/react/src/components/transcript.tsx)
+- Component source: [packages/react/src/components/transcript.tsx](../../../packages/react/src/components/transcript.tsx)

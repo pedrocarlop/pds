@@ -96,7 +96,7 @@ CSS depends on `data-tone`, Radix `data-state`, Radix `data-swipe`,
 Toast uses PDS surface color, semantic status color, spacing, radius, elevation,
 typography, focus, state layer, disabled opacity, and motion tokens.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
@@ -105,9 +105,10 @@ typography, focus, state layer, disabled opacity, and motion tokens.
 | Focus-visible | Keyboard focus | Action and close controls use shared PDS focus shadow. | `.pds-toast-action:focus-visible`, `.pds-toast-close:focus-visible` | Keyboard users can reach toast actions when they are rendered. |
 | Active | Pressed or swipe gesture | Action and close controls use pressed state; Radix swipe states animate movement. | `.pds-toast-action:active`, `.pds-toast-close:active`, Radix `data-swipe` | Close activation dismisses through Radix. |
 | Disabled | `disabled` / `aria-disabled` | Disabled toast action or close controls dim and suppress hover treatment. | `.pds-toast-action:disabled`, `.pds-toast-close:disabled` | Disabled native controls are not activatable. |
-| Loading | `loading` prop / `data-busy` | Not applicable: Toast has no loading state. | Not applicable | Use toast content text for pending status if needed. |
 | Error | `data-invalid` / error prop | Danger tone uses semantic danger accent treatment. | `data-tone='danger'` | Toast text must clearly state the error. |
 | Success | status / success prop | Success tone uses semantic success accent treatment. | `data-tone='success'` | Toast text must clearly state the success result. |
+
+Non-applicable states: Loading. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -164,8 +165,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [Content resilience](../../foundations/content-resilience.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Toast source](../../../packages/react/src/components/toast.tsx)
+- Component source: [packages/react/src/components/toast.tsx](../../../packages/react/src/components/toast.tsx)

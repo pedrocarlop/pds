@@ -57,7 +57,7 @@ hover/focus, and list wrapping.
 
 Uses typography, spacing, radius, color, focus, and state layer tokens.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
@@ -66,9 +66,8 @@ Uses typography, spacing, radius, color, focus, and state layer tokens.
 | Focus-visible | Keyboard focus | Pagination links use focus treatment from anchor or button composition. | `data-slot='pagination-link'`, `:focus-visible` on composed control | Keyboard focus remains on the active page control. |
 | Active | Pressed | Current page uses accent fill; pressed controls use native activation behavior. | `data-current='true'`, native `:active` | Current page should expose current-page semantics. |
 | Disabled | `disabled` / `aria-disabled` | Disabled previous or next is consumer-owned for custom composition. | Consumer `disabled` or `aria-disabled` | Consumer must prevent activation when using `aria-disabled`. |
-| Loading | `loading` prop / `data-busy` | Not applicable: Pagination has no loading state. | Not applicable | Expose page loading on the paginated region. |
-| Error | `data-invalid` / error prop | Not applicable: Pagination has no error state. | Not applicable | Page loading errors belong to the content region. |
-| Success | status / success prop | Not applicable: current page is navigation state, not success. | `data-current='true'` only | Do not use current-page state as success feedback. |
+
+Non-applicable states: Loading, Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -109,7 +108,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Pagination source](../../../packages/react/src/components/pagination.tsx)
+- Component source: [packages/react/src/components/pagination.tsx](../../../packages/react/src/components/pagination.tsx)

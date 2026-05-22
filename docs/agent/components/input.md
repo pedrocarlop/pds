@@ -75,18 +75,17 @@ when changing selectors.
 Input uses PDS typography, spacing, radius, color, focus, invalid state,
 interaction state layer, disabled opacity, and motion tokens.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
 | Default | Normal render | Input renders tokenized field surface at selected density. | `data-slot='input'`, `data-density` | Native input semantics and labels are consumer-owned. |
 | Hover | Pointer hover | Enabled input uses neutral hover border treatment. | `.pds-input:not(:disabled):hover` | Hover is suppressed for disabled inputs. |
 | Focus-visible | Keyboard focus | Input uses shared PDS focus shadow; invalid focus keeps invalid border. | `.pds-input:focus-visible`, `.pds-input[aria-invalid='true']:focus-visible` | Keyboard focus remains on the native input. |
-| Active | Pressed | Not applicable: text input has editing focus, not pressed state. | Not applicable | Typing and selection are native input behavior. |
 | Disabled | `disabled` / `aria-disabled` | Disabled input dims and suppresses hover treatment. | `.pds-input:disabled` | Native disabled prevents editing and form submission. |
-| Loading | `loading` prop / `data-busy` | Not applicable: Input has no loading state. | Not applicable | Use disabled or read-only state plus external busy feedback when needed. |
 | Error | `data-invalid` / error prop | Invalid input uses invalid border treatment. | `data-invalid='true'`, `aria-invalid='true'` | `invalid` sets `aria-invalid`; explicit ARIA invalid values are preserved. |
-| Success | status / success prop | Not applicable: Input has no success state. | Not applicable | Use adjacent success text or status components. |
+
+Non-applicable states: Active, Loading, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -133,8 +132,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [Content resilience](../../foundations/content-resilience.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Input source](../../../packages/react/src/components/input.tsx)
+- Component source: [packages/react/src/components/input.tsx](../../../packages/react/src/components/input.tsx)

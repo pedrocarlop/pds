@@ -6,13 +6,6 @@ PageHeader provides the page-level heading region for product screens. It owns
 the responsive arrangement of breadcrumbs, title, description, metadata, and
 page actions without owning routing, tabs, or page shell layout.
 
-## Landing Requirement
-
-Before PageHeader lands, the change must include component source, component
-CSS, this docs file, example usage in `examples/react`, tests, stable
-`data-slot` attributes, content-resilience notes, and keyboard/focus behavior
-for any interactive children.
-
 ## When To Use
 
 - Use at the top of product pages, settings pages, collection pages, detail
@@ -119,18 +112,13 @@ PageHeader uses PDS typography, color, spacing, and layout tokens. It does not
 own surface color, radius, elevation, or motion because it is an unframed page
 region.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
 | Default | Normal render | Header lays out breadcrumbs, text, metadata, and actions with tokenized spacing and type. | `data-slot='page-header'` and child slots | Root is semantic `header`; title is `h1`. |
-| Hover | Pointer hover | Not applicable on root. | Not applicable | Interactive children own hover behavior. |
-| Focus-visible | Keyboard focus | Not applicable on root. | Not applicable | Buttons, links, and menus inside actions own focus behavior. |
-| Active | Pressed | Not applicable on root. | Not applicable | Activation belongs to child controls. |
-| Disabled | `disabled` / `aria-disabled` | Not applicable on root. | Not applicable | Disable child controls individually. |
-| Loading | `loading` prop / `data-busy` | Not applicable on root. | Not applicable | Use child status, Skeleton, Progress, or busy action text. |
-| Error | `data-invalid` / error prop | Not applicable on root. | Not applicable | Use InlineAlert or visible metadata for page errors. |
-| Success | status / success prop | Not applicable on root. | Not applicable | Use Badge, RunStatus, Toast, or inline confirmation as appropriate. |
+
+Non-applicable states: Hover, Focus-visible, Active, Disabled, Loading, Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -205,9 +193,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [Content resilience](../../foundations/content-resilience.md)
-- [Layout types](../../foundations/layout-types.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- Component source: `packages/react/src/components/page-header.tsx`
+- Component source: [packages/react/src/components/page-header.tsx](../../../packages/react/src/components/page-header.tsx)

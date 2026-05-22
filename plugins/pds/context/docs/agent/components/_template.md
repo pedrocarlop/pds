@@ -5,13 +5,6 @@
 Describe the component's job in PDS product surfaces. Keep this about the
 component contract, not a general design-system essay.
 
-## Landing Requirement
-
-Before a new component lands, the change must include component source,
-component CSS, this docs file, example usage in `examples/react`, tests, stable
-`data-slot` / `data-*` attributes, content-resilience notes, and keyboard/focus
-behavior when the component is interactive.
-
 ## When To Use
 
 - Use when ...
@@ -70,18 +63,17 @@ Call out behavior agents must preserve before changing selectors.
 Reference token categories instead of duplicating values. Use names such as
 color, spacing, radius, elevation, typography, and motion.
 
-## State Matrix
+## State Contract
+
+List only states this component owns. Summarize omitted states in one sentence
+after the table instead of adding "not applicable" rows.
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
 | Default | Normal render |  |  |  |
-| Hover | Pointer hover |  |  |  |
-| Focus-visible | Keyboard focus |  |  |  |
-| Active | Pressed |  |  |  |
-| Disabled | `disabled` / `aria-disabled` |  |  |  |
-| Loading | `loading` prop / `data-busy` |  |  |  |
-| Error | `data-invalid` / error prop |  |  |  |
-| Success | status / success prop |  |  |  |
+
+Non-applicable states: list omitted states and the owning child or surrounding
+region when needed.
 
 ## State Behavior
 
@@ -116,7 +108,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
 - Component source: `packages/react/src/components/component-name.tsx`

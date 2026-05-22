@@ -63,21 +63,10 @@ Product shell
 
 ## App CSS Responsibilities
 
-App CSS may own:
-
-- Product shell layout.
-- Header, tab, primary, and secondary region placement.
-- Column widths and responsive stacking.
-- Page padding and section spacing.
-- Sticky or reachable page action placement when required.
-
-App CSS must not own:
-
-- Component colors.
-- Component radius.
-- Component typography.
-- Component state styling.
-- Replacement versions of existing PDS components.
+Follow the shared app CSS boundary in [screen structures](README.md). This
+structure may own product shell layout, header/tab/primary/secondary placement,
+column widths, responsive stacking, page padding, section spacing, and reachable
+page action placement.
 
 ## State Placement
 

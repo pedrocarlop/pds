@@ -10,32 +10,11 @@ Command: `/pds:review-pds`.
 
 ## Minimum Read Path
 
-Always read:
-
-- [router.md](../router.md)
-- This workflow
-- The changed or selected UI files, nearby source, and relevant tests
-
-Choose one:
-
-- Matching [screen structure](../screen-structures/README.md) when the review is
-  page-level
-- Component contracts for components being reviewed
-
-Read only if relevant:
-
-- Foundation docs for visual findings
-- Pattern docs when the reviewed flow matches a documented repeated product flow
-- [PDS Screen Quality Gates](../pds-screen-quality-gates.md) for screen-level
-  findings
-- [PDS Component Quality Gates](../pds-quality-gates.md) for component-level
-  findings
-
-Do not read:
-
-- Every foundation doc
-- Every component contract
-- Architecture docs unless the finding is about ownership or package boundaries
+Use [router.md](../router.md), this workflow, changed UI files, nearby source,
+and relevant tests. Add the matching
+[screen structure](../screen-structures/README.md) for page-level reviews,
+component contracts for reviewed components, foundation/pattern docs only for
+findings in those owners, and the matching screen or component quality gate.
 
 ## Workflow
 

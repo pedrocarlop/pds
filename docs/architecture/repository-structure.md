@@ -69,10 +69,9 @@ context, while canonical source guidance stays in `docs/agent/skills` and
 package source rather than being rewritten inside plugin adapters.
 
 Plugin skills may create or modify app code, but durable PDS guidance should
-live in the narrowest source of truth: `docs/agent/components` for component
-rules, foundation docs for shared visual rules, `docs/agent/screen-structures`
-for page-level IA rules, `docs/agent/patterns` for flow rules, and
-`docs/agent/skills` for plugin workflow rules.
+move through the narrowest owner named by
+[docs/agent/router.md](../agent/router.md) and
+[docs/agent/living-system.md](../agent/living-system.md).
 
 ## Scripts
 

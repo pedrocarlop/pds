@@ -4,9 +4,8 @@ This file owns shared viewport breakpoints and reusable layout dimensions for
 PDS product UI. Spacing tokens own rhythm and padding; layout tokens own app
 shell widths, readable measure, side-panel minimums, and breakpoint thresholds.
 
-Related sources: start with [DESIGN.md](../../DESIGN.md) for the portable
-contract, then use [packages/tokens/src/layout.css](../../packages/tokens/src/layout.css)
-for implementation values.
+Sources: [DESIGN.md](../../DESIGN.md) and
+[packages/tokens/src/layout.css](../../packages/tokens/src/layout.css).
 
 ## Layout Tokens
 

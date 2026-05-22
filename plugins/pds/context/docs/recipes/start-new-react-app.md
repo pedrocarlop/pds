@@ -32,34 +32,13 @@ workspace dependencies.
 
 ## Install PDS From The Registry
 
-From the new app folder:
-
-```sh
-pnpm add @pds/react@latest
-```
-
-Equivalent commands:
-
-```sh
-npm install @pds/react@latest
-yarn add @pds/react@latest
-bun add @pds/react@latest
-```
-
-To update later, run the same command again:
-
-```sh
-pnpm add @pds/react@latest
-```
+Use the root [install guide](../../README.md#install-in-an-app) for registry
+and update commands. Return here to wire the Vite root and first screen.
 
 ## Install With Codex
 
-Open Codex in the app folder and ask:
-
-```text
-Install the latest PDS package in this React app. Import @pds/react/styles.css once at
-the app root, use public imports from @pds/react, and run the app checks.
-```
+Use the Codex prompt in the root [install guide](../../README.md#install-with-codex),
+then continue with this recipe's root wiring.
 
 ## Install PDS From This Repo Before A Registry Release
 
@@ -69,23 +48,10 @@ For an in-repo app in this workspace:
 pnpm --filter <app-package-name> add @pds/react@workspace:^
 ```
 
-For an external local app:
-
-```sh
-cd /path/to/PDS
-pnpm install
-pnpm build
-mkdir -p /tmp/pds-packages
-pnpm --dir packages/tokens pack --pack-destination /tmp/pds-packages
-pnpm --dir packages/react pack --pack-destination /tmp/pds-packages
-
-cd /path/to/my-pds-app
-pnpm add /tmp/pds-packages/pds-tokens-*.tgz /tmp/pds-packages/pds-react-*.tgz
-```
-
-Install both tarballs for external local apps. The packed `@pds/react` package depends
-on `@pds/tokens`, and the local token package is not available from a registry
-until it is published.
+For an external local app, use the tarball workflow in the root
+[local install guide](../../README.md#local-install-before-a-registry-release).
+Install both tarballs because the packed `@pds/react` package depends on
+`@pds/tokens`.
 
 ## Wire The App Root
 

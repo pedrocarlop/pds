@@ -4,7 +4,6 @@ import path from "node:path";
 const root = process.cwd();
 const componentsDir = path.join(root, "packages/react/src/components");
 const componentDocsDir = path.join(root, "docs/agent/components");
-const packageReadmePath = path.join(root, "packages/react/README.md");
 const componentIndexPath = path.join(componentDocsDir, "README.md");
 const failures = [];
 
@@ -19,7 +18,7 @@ const requiredSections = [
   "## Content Resilience Rules",
   "## Styling Contract",
   "## Token Usage",
-  "## State Matrix",
+  "## State Contract",
   "## State Behavior",
   "## Composition Examples",
   "## Known Limitations",
@@ -30,7 +29,6 @@ const requiredSections = [
 const componentIds = await collectComponentIds();
 const docIds = await collectComponentDocIds();
 const componentIndex = await readFile(componentIndexPath, "utf8");
-const packageReadme = await readFile(packageReadmePath, "utf8");
 
 for (const id of componentIds) {
   const docPath = path.join(componentDocsDir, `${id}.md`);
@@ -57,12 +55,6 @@ for (const id of componentIds) {
 
   if (!componentIndex.includes(`${id}.md`)) {
     report(`${relative(componentIndexPath)}: missing link to ${id}.md`);
-  }
-
-  if (!packageReadme.includes(`docs/agent/components/${id}.md`)) {
-    report(
-      `${relative(packageReadmePath)}: missing component index link for ${id}`
-    );
   }
 }
 

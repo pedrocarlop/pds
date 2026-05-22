@@ -6,12 +6,6 @@ FilterChip is the compact, single-pill filter control for PDS product surfaces.
 Each FilterChip opens, targets, or summarizes one filter dimension. A row of
 filters is made from sibling FilterChip instances.
 
-## Landing Requirement
-
-Before FilterChip changes land, keep source, component CSS, this docs file,
-example usage in `examples/react`, tests, stable `data-slot` / `data-*`
-attributes, content-resilience notes, and focus behavior in sync.
-
 ## When To Use
 
 - Use for toolbar, header, or list controls that open filter choices.
@@ -116,7 +110,7 @@ motion tokens. The active reference state uses the neutral accent tokens for a
 white selected pill, while hover and pressed treatments use shared state-layer
 tokens.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
@@ -125,9 +119,8 @@ tokens.
 | Focus-visible | Keyboard focus | Action and remove buttons use shared PDS focus shadow. | `.pds-filter-chip-action:focus-visible`, `.pds-filter-chip-remove:focus-visible` | Focus stays on the button being operated. |
 | Active | Pressed | Enabled chip applies pressed state layer; active chip keeps selected treatment. | `.pds-filter-chip:not([data-disabled='true']):active`, `data-active='true'` | `active` maps to pressed semantics for the primary action. |
 | Disabled | `disabled` / `aria-disabled` | Disabled chip dims and suppresses hover or pressed layers. | `data-disabled='true'`, child `:disabled` | Native child buttons are disabled and cannot activate. |
-| Loading | `loading` prop / `data-busy` | Not applicable: FilterChip has no loading state. | Not applicable | Use disabled chip plus adjacent progress if filter updates are pending. |
-| Error | `data-invalid` / error prop | Not applicable: FilterChip has no error state. | Not applicable | Use validation messaging outside the filter chip. |
-| Success | status / success prop | Not applicable: active means selected filter, not success. | `data-active='true'` only | Do not use selected chip state as success feedback. |
+
+Non-applicable states: Loading, Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -181,8 +174,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [Content resilience](../../foundations/content-resilience.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [FilterChip source](../../../packages/react/src/components/filter-chip.tsx)
+- Component source: [packages/react/src/components/filter-chip.tsx](../../../packages/react/src/components/filter-chip.tsx)

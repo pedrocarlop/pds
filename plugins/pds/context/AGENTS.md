@@ -1,24 +1,15 @@
 # Agent Guide
 
-This file exists because Codex and similar tools look for a root `AGENTS.md`.
-It is only the compatibility adapter and short safety checklist for agents.
-
-The canonical agent router lives in [docs/agent/router.md](docs/agent/router.md).
-The full agent documentation index lives in [docs/agent](docs/agent/README.md)
-so humans can review agent behavior in one place. Product install instructions
-belong in [README.md](README.md), and human repo orientation belongs in
-[docs/start-here.md](docs/start-here.md).
-
-The living operating model for PDS growth and self-improvement lives in
-[docs/agent/living-system.md](docs/agent/living-system.md).
+Root adapter for Codex-compatible tools. Keep detailed workflow guidance in
+[docs/agent](docs/agent/README.md), not here.
 
 ## Start Here
 
-1. Read [docs/agent/router.md](docs/agent/router.md) for task routing.
-2. Read [DESIGN.md](DESIGN.md) before making visual decisions.
+1. Use [docs/agent/router.md](docs/agent/router.md) to choose the minimum route.
+2. Read [DESIGN.md](DESIGN.md) before visual decisions.
 3. Read [docs/agent/workflow.md](docs/agent/workflow.md) before editing files.
-4. Read [docs/agent/living-system.md](docs/agent/living-system.md) when changing
-   how PDS grows, self-improves, or keeps Codex and Claude aligned.
+4. Read [docs/agent/living-system.md](docs/agent/living-system.md) for PDS
+   growth, self-improvement, or Codex/Claude alignment changes.
 5. Follow only the component, pattern, recipe, package, or skill docs needed for
    the task.
 
@@ -31,9 +22,8 @@ The living operating model for PDS growth and self-improvement lives in
 - Do not create websites, docs apps, demos, or new components unless the task
   asks for them.
 - Do not commit generated `dist/` output unless publishing policy changes.
-- Preserve generated output policy, do not delete `node_modules`, and use
-  `pnpm clean:workspace` for ignored build/cache artifacts when cleanup is
-  needed.
+- Do not delete `node_modules`; use `pnpm clean:workspace` for ignored
+  build/cache artifacts when cleanup is needed.
 
 ## Checks
 
@@ -41,4 +31,5 @@ The living operating model for PDS growth and self-improvement lives in
 - Run `pnpm clean:workspace` after checks when ignored build/cache artifacts
   should be cleared.
 
-Do not duplicate the detailed agent workflow here. Update `docs/agent` instead.
+Update the narrowest owning doc under `docs/agent` instead of expanding this
+adapter.

@@ -17,26 +17,21 @@ live in [docs/agent/evaluation-scenarios.md](agent/evaluation-scenarios.md).
 
 ## Repository Map
 
-- `DESIGN.md`: portable design contract for LLMs and design tooling; links to detailed guidelines.
-- `AGENTS.md`: Codex-compatible adapter that points to `docs/agent`.
-- `CLAUDE.md`: Claude-compatible adapter that imports `AGENTS.md`.
-- `docs/README.md`: documentation index.
-- `docs/agent`: canonical agent workflows, component contracts, screen
-structures, patterns, skill workflows, readiness audit, and the living-system
-operating model.
-- `docs/foundations`: token guidance, visual rationale, layout types,
-  elevation, motion, and content resilience rules.
-- `docs/recipes`: practical React app setup and PDS adoption recipes.
-- `docs/architecture`: structure, ownership, and scaling guidance.
-- `plugins/pds`: PDS agent plugin skills for help, audit, implementation,
-  review, self-improvement from feedback, and app bootstrapping. Its `SKILL.md`
-  files are discovery adapters that read the generated plugin context; canonical
-  workflows stay in `docs/agent/skills`.
-- `scripts`: repository maintenance scripts for repeatable local hygiene.
-- `packages/tokens`: token implementation package.
-- `packages/react`: PDS React component package.
-- `examples/react`: private browser demo consumer for starter React primitives;
-  not a publishable package or full docs site.
+- `DESIGN.md`, `AGENTS.md`, and `CLAUDE.md`: fixed-name adapters into the
+  canonical docs.
+- `docs/agent`: router, workflow, component contracts, screen structures,
+  patterns, skills, readiness audit, and living-system model.
+- `docs/foundations`: token guidance including colour, type, spacing, layout,
+  elevation, motion, and content resilience.
+- `docs/recipes` and `docs/architecture`: app adoption paths and repo boundary
+  rules.
+- `plugins/pds`: thin skill adapters plus generated plugin context copied from
+  canonical guidance.
+- `packages/tokens`, `packages/react`, and `packages/cli`: publishable packages.
+- `examples/react`: private browser consumer, not a docs site or publishable app.
+
+Use [docs/architecture/repository-structure.md](architecture/repository-structure.md)
+for detailed package and generated-output boundaries.
 
 ## First Principles
 

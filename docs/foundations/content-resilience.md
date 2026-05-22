@@ -4,10 +4,8 @@ PDS interfaces must survive translated strings, user-generated content,
 accessibility text settings, and browser zoom. Assume translated English text can
 be 40% longer, and verify critical product flows at 200% browser zoom.
 
-Related sources: start with [DESIGN.md](../../DESIGN.md) for the portable
-contract, then use [docs/foundations/typography.md](typography.md) and
-[docs/foundations/spacing.md](spacing.md) for the type and layout tokens that
-support resilient content.
+Sources: [DESIGN.md](../../DESIGN.md), [typography.md](typography.md), and
+[spacing.md](spacing.md).
 
 ## Boundless By Default
 

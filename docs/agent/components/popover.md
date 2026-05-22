@@ -60,7 +60,7 @@ viewport constraints, arrow fill, and close-button focus/hover selectors.
 Uses popover surface color, typography, spacing, radius, elevation, state layer,
 focus, and motion tokens.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
@@ -69,9 +69,8 @@ focus, and motion tokens.
 | Focus-visible | Keyboard focus | Close button uses shared PDS focus shadow when present. | `.pds-popover-close:focus-visible` | Radix manages focus according to popover composition. |
 | Active | Pressed | Pressing trigger toggles open state; close button activates dismissal. | Radix trigger state and `.pds-popover-close` | Activation semantics are owned by Radix and the trigger element. |
 | Disabled | `disabled` / `aria-disabled` | No root disabled state; disabled trigger or close button is native or consumer-owned. | Trigger `disabled`, `.pds-popover-close:disabled` | Disabled controls must not open or dismiss. |
-| Loading | `loading` prop / `data-busy` | Not applicable: Popover has no loading state. | Not applicable | Expose loading inside popover content if needed. |
-| Error | `data-invalid` / error prop | Not applicable: Popover has no error state. | Not applicable | Place validation messaging inside content. |
-| Success | status / success prop | Not applicable: Popover has no success state. | Not applicable | Place success feedback inside content or trigger label. |
+
+Non-applicable states: Loading, Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -109,7 +108,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Popover source](../../../packages/react/src/components/popover.tsx)
+- Component source: [packages/react/src/components/popover.tsx](../../../packages/react/src/components/popover.tsx)

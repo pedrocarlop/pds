@@ -108,18 +108,13 @@ Message uses PDS surface color, nested radius, spacing, elevation, typography,
 and content resilience rules. Role styling should remain semantic and subdued;
 do not introduce brand colors or performance colors.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
 | Default | Normal render | Message renders role and variant-specific layout with avatar, header, content, and action slots. | `data-slot='message'`, `data-role`, `data-variant` | Message content semantics come from the rendered children. |
-| Hover | Pointer hover | Not applicable: Message root has no hover state. | Not applicable | Action children own hover treatment. |
-| Focus-visible | Keyboard focus | Not applicable on root; action children own focus treatment. | Not applicable | Focusable message actions must expose focus-visible state. |
-| Active | Pressed | Not applicable on root; action children own activation. | Not applicable | Message does not define activation behavior. |
-| Disabled | `disabled` / `aria-disabled` | Not applicable: Message has no disabled state. | Not applicable | Disable action children individually. |
-| Loading | `loading` prop / `data-busy` | Not applicable: Message has no streaming or loading state. | Not applicable | Compose RunStatus, Progress, or Skeleton for loading messages. |
-| Error | `data-invalid` / error prop | Not applicable: Message has no error state. | Not applicable | Compose InlineAlert or RunStatus for errors. |
-| Success | status / success prop | Not applicable: Message has no success state. | Not applicable | Compose RunStatus or Badge for success feedback. |
+
+Non-applicable states: Hover, Focus-visible, Active, Disabled, Loading, Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -200,8 +195,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [Content resilience](../../foundations/content-resilience.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Message source](../../../packages/react/src/components/message.tsx)
+- Component source: [packages/react/src/components/message.tsx](../../../packages/react/src/components/message.tsx)

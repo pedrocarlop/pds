@@ -7,12 +7,6 @@ side with a numeric amount side. It composes existing PDS primitives so product
 surfaces can present balances, fees, invalid states, disabled states, and
 localized money display without building a one-off field layout.
 
-## Landing Requirement
-
-Before Amount lands, the change must include component source, component CSS,
-this docs file, example usage in `examples/react`, tests, stable `data-slot` /
-`data-*` attributes, content-resilience notes, and keyboard/focus behavior.
-
 ## When To Use
 
 - Use when a value entry needs a left currency, account, or asset selector and a
@@ -130,7 +124,7 @@ Amount uses PDS color, spacing, radius, typography, focus, invalid state,
 interaction layer, disabled opacity, and motion tokens. Do not add hard-coded
 colors, spacing, radii, transitions, or brand-specific asset references.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
@@ -139,9 +133,9 @@ colors, spacing, radii, transitions, or brand-specific asset references.
 | Focus-visible | Keyboard focus | Currency focus and input focus-within use the shared PDS focus shadow. | `.pds-amount-currency:focus-visible`, `.pds-amount-input:focus-within` | Input focus remains on the native input control. |
 | Active | Pressed | Currency cell uses Cell pressed treatment when interactive; input has no pressed state. | `.pds-amount-currency.pds-cell:active` | Activation semantics come from the rendered currency root. |
 | Disabled | `disabled` / `aria-disabled` | Disabled input dims the wrapper; disabled currency follows Cell disabled treatment. | `data-disabled='true'`, `:disabled`, `aria-disabled` | Native input disabled prevents editing; non-button currency roots use `aria-disabled`. |
-| Loading | `loading` prop / `data-busy` | Not applicable: Amount has no loading or busy prop. | Not applicable | Use Skeleton or a disabled wrapper while amount data loads. |
 | Error | `data-invalid` / error prop | Invalid root, currency, and input use invalid border and error text treatment. | `data-invalid='true'`, `aria-invalid='true'` | Invalid input sets or preserves `aria-invalid`; error text must remain visible. |
-| Success | status / success prop | Not applicable: Amount has no success state. | Not applicable | Use adjacent status text or Badge for successful validation feedback. |
+
+Non-applicable states: Loading, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -216,8 +210,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [Content resilience](../../foundations/content-resilience.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Amount source](../../../packages/react/src/components/amount.tsx)
+- Component source: [packages/react/src/components/amount.tsx](../../../packages/react/src/components/amount.tsx)

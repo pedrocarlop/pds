@@ -4,9 +4,8 @@ Elevation creates hierarchy with shadow only when spacing, surface contrast, and
 layout position are not enough. Use it sparingly so dense product UI stays calm,
 inspectable, and token-first.
 
-Related sources: start with [DESIGN.md](../../DESIGN.md) for the portable
-contract, then use [packages/tokens/src/elevation.css](../../packages/tokens/src/elevation.css)
-for implementation values.
+Sources: [DESIGN.md](../../DESIGN.md) and
+[packages/tokens/src/elevation.css](../../packages/tokens/src/elevation.css).
 
 ## Core Rules
 
@@ -54,4 +53,3 @@ for implementation values.
 - Do not use elevation to communicate semantic status, risk, success, warning,
   danger, or performance direction.
 - Do not hide required state feedback behind shadow changes alone.
-

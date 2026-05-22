@@ -17,36 +17,15 @@ question only when the component purpose or public API cannot be inferred safely
 
 ## Minimum Read Path
 
-Always read:
-
-- [router.md](../router.md)
-- [workflow.md](../workflow.md)
-- This workflow
-- [packages/react/README.md](../../../packages/react/README.md)
-- [components/_template.md](../components/_template.md)
-- Nearby component contracts, source, CSS, tests, and previews for similar
-  components
-
-Choose one:
-
-- The closest component group in [components/README.md](../components/README.md)
-- The closest existing component contract to model API, slots, states, and
-  accessibility
-
-Read only if relevant:
-
-- Foundation docs for the visual areas being changed
-- [PDS Component Quality Gates](../pds-quality-gates.md) before handoff
-- [PDS Screen Quality Gates](../pds-screen-quality-gates.md) when the request is
-  really screen composition
-- [examples/react/README.md](../../../examples/react/README.md) for Ladle
-  preview rules
-
-Do not read:
-
-- Every component contract
-- Screen structures or patterns unless deciding that the request is not a
-  reusable component
+Use [router.md](../router.md), [workflow.md](../workflow.md), this workflow,
+[packages/react/README.md](../../../packages/react/README.md),
+[components/_template.md](../components/_template.md), and nearby component
+contracts/source/CSS/tests/previews for similar components. Add the closest
+group in [components/README.md](../components/README.md), foundation docs for
+changed visuals, [PDS Component Quality Gates](../pds-quality-gates.md) before
+handoff, [examples/react/README.md](../../../examples/react/README.md) for
+preview rules, and [PDS Screen Quality Gates](../pds-screen-quality-gates.md)
+only when the request is actually screen composition.
 
 ## Pre-build Preview
 
@@ -56,8 +35,7 @@ Before editing files, output:
 - Reusability: why this belongs in PDS rather than app code.
 - Anatomy: root, slots, actions, icons, metadata.
 - Public API: planned props and exported types.
-- States: default, hover, focus-visible, active, disabled, loading, error,
-  success.
+- States: applicable states only, plus a short non-applicable state summary.
 - Token categories: colour, spacing, radius, typography, motion.
 - Preview coverage: normal, long text, narrow container, all states.
 - Verification: tests, CSS contract, Ladle preview, browser preview smoke check,
@@ -75,8 +53,8 @@ Before editing files, output:
    replace unstyled or app-specific patterns with PDS package conventions.
 4. Create the component contract from `docs/agent/components/_template.md`.
    Document purpose, when to use, API, slots, data attributes, accessibility,
-   content resilience, styling contract, token categories, State Matrix, state
-   behavior, examples, limitations, and related sources.
+   content resilience, styling contract, token categories, state contract,
+   state behavior, examples, limitations, and related sources.
 5. Implement source in `packages/react/src/components/<component-id>.tsx`. Use
    public React patterns already present in nearby components: forwarded refs
    where appropriate, explicit TypeScript props, stable `data-slot` and state
@@ -101,8 +79,9 @@ Before editing files, output:
 12. Run `pnpm examples:previews:sync` after adding the preview.
 13. Use `pnpm examples:visual:build` and `pnpm examples:visual:check` to verify
     the built preview in Chromium at desktop and a 200% zoom proxy.
-14. Update `packages/react/README.md` and
-    `docs/agent/components/README.md` indexes if the component is public.
+14. Update `docs/agent/components/README.md` if the component is public. Keep
+    `packages/react/README.md` pointed at the component index instead of adding
+    another per-component table.
 15. Run `pnpm check`. Run `pnpm clean:workspace` afterward only when ignored
     build/cache artifacts should be cleared.
 
@@ -113,8 +92,8 @@ Before editing files, output:
 - Use semantic PDS tokens by role, not visual preference.
 - Keep components resilient to translation, user content, narrow containers, and
   200% zoom.
-- Every new interactive component must complete the State Matrix in its
-  component contract. If a state is not applicable, state why.
+- Every new component contract must include only applicable state rows and a
+  one-line summary of non-applicable states.
 - Avoid fixed dimensions except for intentional affordances.
 - Use Material Symbols through the exported `Icon` component when an icon is
   needed.

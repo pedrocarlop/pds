@@ -7,12 +7,6 @@ visual, supporting copy, and one or more actions. It composes the existing
 Surface visual treatment and expects interactive controls to use PDS primitives
 such as Button.
 
-## Landing Requirement
-
-ActionWidget lands with component source, component CSS, this docs file, example
-usage in `examples/react`, tests, stable `data-slot` / `data-*` attributes,
-content-resilience notes, and keyboard/focus behavior for the composed actions.
-
 ## When To Use
 
 - Use for compact recommendation, next-step, review, or setup prompts.
@@ -117,18 +111,13 @@ ActionWidget uses PDS surface color, spacing, radius, elevation, typography, and
 content resilience tokens. Icon treatment inside the avatar slot uses action and
 accent token roles, not brand palette colors.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
 | Default | Normal render | Widget surface uses its `level` and action alignment treatment. | `data-slot='action-widget'`, `data-level`, `data-justify` | ActionWidget is structural; children own semantics. |
-| Hover | Pointer hover | Not applicable: ActionWidget has no hover style of its own. | Not applicable | Hover belongs to child Buttons, Menus, Popovers, or links. |
-| Focus-visible | Keyboard focus | Not applicable: ActionWidget root is not an interactive target. | Not applicable | Focusable children must expose their own focus-visible state. |
-| Active | Pressed | Not applicable: ActionWidget root has no activation behavior. | Not applicable | Activation belongs to child controls. |
-| Disabled | `disabled` / `aria-disabled` | Not applicable: ActionWidget has no disabled prop. | Not applicable | Disable child controls individually. |
-| Loading | `loading` prop / `data-busy` | Not applicable: ActionWidget has no loading state. | Not applicable | Use child Skeleton, Progress, or busy controls when content loads. |
-| Error | `data-invalid` / error prop | Not applicable: ActionWidget has no validation state. | Not applicable | Place validation status in child components. |
-| Success | status / success prop | Not applicable: ActionWidget has no success state. | Not applicable | Place success status in child components. |
+
+Non-applicable states: Hover, Focus-visible, Active, Disabled, Loading, Error, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -193,8 +182,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [Content resilience](../../foundations/content-resilience.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [ActionWidget source](../../../packages/react/src/components/action-widget.tsx)
+- Component source: [packages/react/src/components/action-widget.tsx](../../../packages/react/src/components/action-widget.tsx)

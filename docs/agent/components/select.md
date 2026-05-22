@@ -75,7 +75,7 @@ and scroll button slots.
 Uses color, typography, spacing, radius, elevation, focus, invalid state,
 interaction state layer, disabled opacity, and motion tokens.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
@@ -84,9 +84,9 @@ interaction state layer, disabled opacity, and motion tokens.
 | Focus-visible | Keyboard focus | Trigger uses shared PDS focus shadow; invalid focus keeps invalid border. | `.pds-select-trigger:focus-visible`, `[aria-invalid='true']:focus-visible` | Keyboard interaction follows Radix select behavior. |
 | Active | Pressed | Pressed trigger opens content; checked item uses selected state layer. | `data-state='open'`, `.pds-select-item[data-state='checked']` | Radix owns selected item ARIA state. |
 | Disabled | `disabled` / `aria-disabled` | Disabled trigger and items dim and suppress highlight selection. | `.pds-select-trigger:disabled`, `data-disabled` | Radix disabled controls are not activatable. |
-| Loading | `loading` prop / `data-busy` | Not applicable: Select has no loading state. | Not applicable | Use disabled trigger or placeholder item while options load. |
 | Error | `data-invalid` / error prop | Invalid trigger uses invalid border treatment. | `data-invalid='true'`, `aria-invalid='true'` | `invalid` sets invalid ARIA state while explicit values are preserved. |
-| Success | status / success prop | Not applicable: Select has no success state. | Not applicable | Use adjacent success text or status component. |
+
+Non-applicable states: Loading, Success. Use child components or the surrounding region for those states when needed.
 
 ## State Behavior
 
@@ -135,7 +135,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Select source](../../../packages/react/src/components/select.tsx)
+- Component source: [packages/react/src/components/select.tsx](../../../packages/react/src/components/select.tsx)

@@ -8,12 +8,6 @@ slots. It builds on Cell for the row shell, surface, focus, disabled, selected,
 and disclosure behavior while keeping avatar, content, side, action, value, and
 input areas explicit.
 
-## Landing Requirement
-
-Item lands with component source, component CSS, this docs file, example usage
-in `examples/react`, tests, stable `data-slot` / `data-*` attributes,
-content-resilience notes, and keyboard/focus behavior for interactive rows.
-
 ## When To Use
 
 - Use for rich rows that need identity, title, description, side values, actions,
@@ -150,7 +144,7 @@ spacing, radius, focus, disabled opacity, and motion tokens through Cell and
 slot CSS. Do not add hard-coded colors, spacing, radii, transitions, performance
 color roles, or local component-specific token names.
 
-## State Matrix
+## State Contract
 
 | State | Trigger | Visual treatment | Data attribute / selector | Accessibility notes |
 | --- | --- | --- | --- | --- |
@@ -270,10 +264,4 @@ Don't:
 
 ## Related Sources
 
-- [DESIGN.md](../../../DESIGN.md)
-- [Content resilience](../../foundations/content-resilience.md)
-- [Spacing and radius](../../foundations/spacing.md)
-- [Colour guidelines](../../foundations/colour.md)
-- [PDS React README](../../../packages/react/README.md)
-- [components.css](../../../packages/react/src/components.css)
-- [Item source](../../../packages/react/src/components/item.tsx)
+- Component source: [packages/react/src/components/item.tsx](../../../packages/react/src/components/item.tsx)

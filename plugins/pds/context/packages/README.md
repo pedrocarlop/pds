@@ -11,20 +11,9 @@ consumer, build output, or ownership boundary.
 
 ## Which Package To Install
 
-Install `@pds/react` in React apps:
-
-```sh
-pnpm add @pds/react@latest
-```
-
-Install `@pds/tokens` only when a consumer needs PDS CSS variables without React
-components:
-
-```sh
-pnpm add @pds/tokens@latest
-```
-
-Use the same commands to update consuming apps to the latest published version.
+Use the root [install guide](../README.md#install-in-an-app) for React apps.
+Install `@pds/tokens` directly only when a non-React consumer needs PDS CSS
+variables without components.
 
 ## Dependency Direction
 
