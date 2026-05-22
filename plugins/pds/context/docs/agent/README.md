@@ -12,6 +12,12 @@ index once the task route is known.
 - [router.md](router.md): compact LLM navigation and minimum reading paths.
 - [workflow.md](workflow.md): shared editing, verification, source inspection,
   and cleanup rules for coding agents.
+- [living-system.md](living-system.md): operating model for how PDS grows,
+  self-improves, and stays reliable for Codex and Claude.
+- [readiness-audit.md](readiness-audit.md): objective-level evidence floor for
+  AI-agent reliability across docs, packages, plugin context, and checks.
+- [evaluation-scenarios.md](evaluation-scenarios.md): outcome-oriented task
+  scenarios for sampling Codex and Claude result quality.
 - [screen structures](screen-structures/README.md): page-level IA and layout
   structures for generated screens.
 - [components](components/README.md): React component contracts for agents.
@@ -24,7 +30,9 @@ Do not read every markdown file before starting.
 ## Compatibility Adapters
 
 - `AGENTS.md` is the Codex-compatible root adapter and should stay short.
-- `CLAUDE.md` is the Claude-compatible root adapter and imports `AGENTS.md`.
+- `CLAUDE.md` is the Claude-compatible root adapter. It imports `AGENTS.md`
+  and links directly to the same canonical routing, workflow, living-system,
+  and index docs.
 - `plugins/pds/skills/*/SKILL.md` files are plugin discovery adapters; they
   read the generated plugin context, while detailed source workflows live in
   [skills](skills/README.md).
@@ -32,4 +40,5 @@ Do not read every markdown file before starting.
   context.
 
 Do not reintroduce full agent workflows outside `docs/agent`. Add links from
-tool-required files back to this folder instead.
+tool-required files back to this folder instead. `pnpm docs:lint` checks that
+root and plugin adapters stay thin and point back to the canonical docs.

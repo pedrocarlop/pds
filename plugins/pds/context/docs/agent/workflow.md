@@ -19,10 +19,19 @@ these rules after reading [AGENTS.md](../../AGENTS.md) and using
   hierarchy, or task-focus decisions.
 - Component contracts are only required for components being used, edited,
   reviewed, or created.
+- Use [living-system.md](living-system.md) when the task changes how PDS grows,
+  self-improves, promotes local patterns, or stays reliable across Codex and
+  Claude.
 - Source files and tests must still be inspected before editing existing code.
   Do not rely only on docs when implementation exists.
 - For verification, use `pnpm check`; it covers publishable packages, the
-  private React example consumer, plugin context sync, and `DESIGN.md` lint.
+  private React example consumer, plugin context sync, `DESIGN.md` lint,
+  package contract coverage, skill contract coverage, component contract coverage,
+  foundation contract coverage, guidance contract coverage, agent evaluation scenario coverage,
+  the agent readiness audit, and browser-level component preview smoke checks.
+- Use [evaluation-scenarios.md](evaluation-scenarios.md) when a change could
+  alter the quality of generated Codex or Claude outcomes, not only the
+  structure of docs or packages.
 - For cleanup, use `pnpm clean:workspace`; it removes ignored build/cache files
   and `.DS_Store` files while preserving installed dependencies.
 
@@ -86,6 +95,8 @@ linked docs and the token package source before making a visual decision.
 - Do not leave component-level design feedback only in the chat transcript when
   it reveals reusable guidance; self-improve the relevant component docs or
   failed workflow instructions.
+- Do not add a new guidance surface, package, pattern, or component before
+  checking the growth routing in [living-system.md](living-system.md).
 
 ## When Unsure
 

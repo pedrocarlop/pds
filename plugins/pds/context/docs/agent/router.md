@@ -19,6 +19,7 @@ selected docs, then inspect source and tests before editing existing code.
 | Create a reusable component | [skills/create-component.md](skills/create-component.md), [packages/react/README.md](../../packages/react/README.md) | Similar component contracts and [components/_template.md](components/_template.md) | Relevant foundations, component quality gates, examples README | Reusability, API, slots, styles, tests, preview, and exports are specified |
 | Review PDS UI | [skills/review-pds.md](skills/review-pds.md), changed files | Matching screen structure and component contracts for the reviewed surface | Relevant foundations, patterns, quality gates | Findings can be tied to source lines and owning docs |
 | Self-improve from feedback | [skills/self-improve.md](skills/self-improve.md), evidence for the artifact | Smallest durable owner from the table below | Source, tests, screenshots, Figma, or upstream primitives needed to verify the gap | The gap is classified and the owning doc/source is clear |
+| Grow or optimize PDS itself | [living-system.md](living-system.md), [workflow.md](workflow.md) | Smallest durable owner from the growth routing table | [readiness-audit.md](readiness-audit.md) when proving objective-level agent reliability; architecture docs only when package, plugin, or ownership boundaries change | The improvement owner, enforcement path, and verification command are clear |
 | Start a new PDS app | [skills/start.md](skills/start.md), [recipes/start-new-react-app.md](../recipes/start-new-react-app.md) | None unless the first screen is also requested | `README.md`, target folder state | App setup path and verification command are clear |
 | Audit an existing app | [skills/audit.md](skills/audit.md), target app manifest and entrypoints | Existing-app recipe when the app is React | Root styles, layout files, routing files | Adoption status, likely changes, risks, and checks are clear |
 
@@ -27,6 +28,9 @@ selected docs, then inspect source and tests before editing existing code.
 | Topic | Owner |
 | --- | --- |
 | Workflow decisions | [workflow.md](workflow.md) and [skills](skills/README.md) |
+| PDS growth and self-improvement model | [living-system.md](living-system.md) |
+| Objective-level agent readiness | [readiness-audit.md](readiness-audit.md) |
+| Agent outcome evaluation scenarios | [evaluation-scenarios.md](evaluation-scenarios.md) |
 | Screen structures | [screen-structures](screen-structures/README.md) |
 | Product-flow patterns | [patterns](patterns/README.md) |
 | Component contracts | [components](components/README.md) |
@@ -45,6 +49,9 @@ selected docs, then inspect source and tests before editing existing code.
 | Shared visual, token, color, type, spacing, motion, or resilience rule | Foundation docs and token source |
 | Package boundary, file ownership, or new package | Architecture docs |
 | Agent workflow miss | The matching skill workflow or [workflow.md](workflow.md) |
+| Repeated PDS growth, promotion, or anti-drift decision | [living-system.md](living-system.md) |
+| Objective-level readiness evidence or verification drift | [readiness-audit.md](readiness-audit.md) and maintenance scripts |
+| Codex or Claude output-quality sampling | [evaluation-scenarios.md](evaluation-scenarios.md) and the smallest route named by the scenario |
 
 ## Stop Rules
 

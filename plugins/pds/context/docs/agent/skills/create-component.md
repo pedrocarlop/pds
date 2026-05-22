@@ -4,6 +4,10 @@ Use this workflow when the user asks to add a new reusable component to the PDS
 React library, or pastes unstyled React component code that should become a PDS
 component.
 
+## Command
+
+Command: `/pds:create-component`.
+
 ## Inputs
 
 Accept either a brief such as "create a banner" or pasted React component code.
@@ -56,7 +60,8 @@ Before editing files, output:
   success.
 - Token categories: colour, spacing, radius, typography, motion.
 - Preview coverage: normal, long text, narrow container, all states.
-- Verification: tests, CSS contract, Ladle preview, `pnpm check`.
+- Verification: tests, CSS contract, Ladle preview, browser preview smoke check,
+  `pnpm check`.
 
 ## Workflow
 
@@ -94,9 +99,11 @@ Before editing files, output:
     PDS components only from `@pds/react`. Include representative states, long
     text, narrow layout where relevant, and real product-like content.
 12. Run `pnpm examples:previews:sync` after adding the preview.
-13. Update `packages/react/README.md` and
+13. Use `pnpm examples:visual:build` and `pnpm examples:visual:check` to verify
+    the built preview in Chromium at desktop and a 200% zoom proxy.
+14. Update `packages/react/README.md` and
     `docs/agent/components/README.md` indexes if the component is public.
-14. Run `pnpm check`. Run `pnpm clean:workspace` afterward only when ignored
+15. Run `pnpm check`. Run `pnpm clean:workspace` afterward only when ignored
     build/cache artifacts should be cleared.
 
 ## Defaults

@@ -22,6 +22,8 @@ limitations.
   state behavior, and limitations.
 - Before adding a new component, create its context file from
   [_template.md](_template.md).
+- Before handing back a changed public component, ensure the component preview
+  passes the browser preview check through `pnpm check`.
 
 ## Grouped Navigation
 
@@ -84,6 +86,9 @@ Keep checks lightweight in this phase:
 
 - Every documented component should name its public slots and stable data
   attributes.
+- Every React component source file must have a matching component contract,
+  source link, component index link, package README link, and the required
+  contract sections checked by `scripts/check-agent-component-contracts.mjs`.
 - Every new component must land with source, component CSS, this docs file,
   example usage in `examples/react`, tests, stable `data-slot` / `data-*`
   attributes, content-resilience notes, and keyboard/focus behavior when

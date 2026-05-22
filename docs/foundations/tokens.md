@@ -7,7 +7,8 @@ PDS tokens are implemented as CSS custom properties with the `--pds-` prefix.
 - Foundation CSS files in [packages/tokens/src](../../packages/tokens/src) are the current implementation source.
 - [packages/tokens/src/styles.css](../../packages/tokens/src/styles.css) bundles those foundation files for the default public import.
 - [DESIGN.md](../../DESIGN.md) is the portable, agent-readable visual contract.
-- [docs/foundations/colour.md](colour.md), [docs/foundations/typography.md](typography.md), [docs/foundations/spacing.md](spacing.md), [docs/foundations/layout-types.md](layout-types.md), [docs/foundations/motion.md](motion.md), and [docs/foundations/content-resilience.md](content-resilience.md) explain usage.
+- [docs/foundations/README.md](README.md) indexes foundation usage guidance.
+- [docs/foundations/colour.md](colour.md), [docs/foundations/typography.md](typography.md), [docs/foundations/spacing.md](spacing.md), [docs/foundations/layout-types.md](layout-types.md), [docs/foundations/elevation.md](elevation.md), [docs/foundations/motion.md](motion.md), and [docs/foundations/content-resilience.md](content-resilience.md) explain usage.
 - [packages/tokens/README.md](../../packages/tokens/README.md) explains package ownership and exports.
 
 ## Ownership
@@ -29,6 +30,8 @@ Token names describe role before appearance:
 - `--pds-space-sp-400`
 - `--pds-radius-primary`
 - `--pds-layout-breakpoint-narrow`
+- `--pds-shadow-surface`
+- `--pds-shadow-focus`
 - `--pds-motion-duration-standard`
 - `--pds-ease-smooth-swoop`
 

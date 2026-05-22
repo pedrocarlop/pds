@@ -229,3 +229,91 @@ body {
 .visual-lab-product-frame {
   grid-template-columns: minmax(0, 1fr);
 }
+
+.visual-lab-scenario-shell,
+.visual-lab-scenario-main,
+.visual-lab-scenario-content,
+.visual-lab-scenario-nav,
+.visual-lab-scenario-detail,
+.visual-lab-scenario-filters,
+.visual-lab-scenario-loading {
+  display: grid;
+  min-width: 0;
+}
+
+.visual-lab-scenario-shell {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, var(--pds-layout-narrow-frame)), 1fr)
+  );
+  gap: var(--pds-space-sp-500);
+  align-items: start;
+}
+
+.visual-lab-scenario-nav {
+  gap: var(--pds-space-sp-100);
+  align-content: start;
+}
+
+.visual-lab-scenario-nav a {
+  min-width: 0;
+  padding: var(--pds-space-sp-200) var(--pds-space-sp-300);
+  border-radius: var(--pds-radius-nested);
+  color: var(--pds-color-grey-tone-50);
+  font-size: var(--pds-emphasis2);
+  font-weight: var(--pds-fw-emphasis);
+  line-height: var(--pds-lh-emphasis2);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.visual-lab-scenario-nav a[aria-current="page"] {
+  color: var(--pds-color-accent);
+  background: var(--pds-color-accent-soft-background);
+}
+
+.visual-lab-scenario-main {
+  gap: var(--pds-space-sp-500);
+}
+
+.visual-lab-scenario-content {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, var(--pds-layout-side-panel-min)), 1fr)
+  );
+  gap: var(--pds-space-sp-400);
+  align-items: start;
+}
+
+.visual-lab-scenario-primary {
+  min-width: 0;
+}
+
+.visual-lab-scenario-filters {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, var(--pds-layout-narrow-frame)), max-content)
+  );
+  gap: var(--pds-space-sp-200);
+  align-items: start;
+  margin-block-end: var(--pds-space-sp-300);
+}
+
+.visual-lab-scenario-cell-note {
+  display: block;
+  max-width: var(--pds-layout-reading-max);
+  margin-block-start: var(--pds-space-sp-100);
+  color: var(--pds-color-grey-tone-50);
+  font-size: var(--pds-body2);
+  font-weight: var(--pds-fw-body);
+  line-height: var(--pds-lh-body2);
+  overflow-wrap: anywhere;
+}
+
+.visual-lab-scenario-detail {
+  gap: var(--pds-space-sp-300);
+}
+
+.visual-lab-scenario-loading {
+  gap: var(--pds-space-sp-200);
+}

@@ -3,6 +3,10 @@
 Use this workflow when the user wants a React web UI screen or flow built from a
 brief, design intent, screenshot, or Figma handoff.
 
+## Command
+
+Command: `/pds:implement-screen`.
+
 ## Inputs
 
 Infer the product job, target audience, target route or component, required

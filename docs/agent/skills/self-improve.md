@@ -5,12 +5,17 @@ current artifact. Treat the feedback as a small incident review: inspect what
 happened, identify the instruction gap, fix the artifact when expected, and
 patch the smallest durable guidance owner.
 
+## Command
+
+Command: `/pds:self-improve`.
+
 ## Minimum Read Path
 
 Always read:
 
 - [router.md](../router.md)
 - This workflow
+- [living-system.md](../living-system.md)
 - Evidence for the artifact: current source, diff, generated UI, screenshot,
   Figma handoff, or upstream primitive when available
 
@@ -48,7 +53,8 @@ Do not read:
 3. Diagnose the root cause as missing, failed, ambiguous, conflicting, or
    unowned guidance; missing evidence; implementation shortcut; missing
    enforcement; or premature systemization.
-4. Choose the smallest durable owner:
+4. Choose the smallest durable owner using
+   [living-system.md](../living-system.md):
    - Component contracts: [components](../components/README.md).
    - Component source, CSS, and tests: `packages/react`.
    - Shared visual usage: foundation docs and `packages/tokens/src`.

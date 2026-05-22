@@ -8,6 +8,12 @@ install and update commands. It is not the agent workflow; use
 [AGENTS.md](../AGENTS.md) and [docs/agent](agent/README.md) for that.
 
 PDS is organized as a design system workspace, not a single package dump.
+Its growth model lives in [docs/agent/living-system.md](agent/living-system.md)
+so agent-facing quality improvements stay routed to durable owners.
+The objective-level readiness audit lives in
+[docs/agent/readiness-audit.md](agent/readiness-audit.md).
+Outcome-oriented task scenarios for sampling Codex and Claude result quality
+live in [docs/agent/evaluation-scenarios.md](agent/evaluation-scenarios.md).
 
 ## Repository Map
 
@@ -16,8 +22,10 @@ PDS is organized as a design system workspace, not a single package dump.
 - `CLAUDE.md`: Claude-compatible adapter that imports `AGENTS.md`.
 - `docs/README.md`: documentation index.
 - `docs/agent`: canonical agent workflows, component contracts, screen
-  structures, patterns, and skill workflows.
-- `docs/foundations`: token guidance, visual rationale, layout types, motion, and content resilience rules.
+structures, patterns, skill workflows, readiness audit, and the living-system
+operating model.
+- `docs/foundations`: token guidance, visual rationale, layout types,
+  elevation, motion, and content resilience rules.
 - `docs/recipes`: practical React app setup and PDS adoption recipes.
 - `docs/architecture`: structure, ownership, and scaling guidance.
 - `plugins/pds`: PDS agent plugin skills for help, audit, implementation,

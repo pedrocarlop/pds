@@ -25,6 +25,18 @@ audit storage.
 | Success | Confirm completion with visible copy. Use `Toast` only for non-blocking confirmation; keep audit-relevant details available where needed. |
 | Error | Keep the user in context, preserve progress, show a visible inline error, and offer retry. |
 
+## Layout Anatomy
+
+- Document identity region: title, version, jurisdiction, and requirement
+  summary.
+- Review region: inline summary, document list, `Dialog`, `BottomSheet`, or
+  scroll-gated document view.
+- Requirement feedback region: visible locked-state reason, validation message,
+  or submission error near the CTA.
+- Action region: accept, review, cancel, retry, and secondary actions.
+- On narrow screens, document identity remains above the review region and CTA
+  actions wrap without hiding requirements or errors.
+
 ## Flow Variants
 
 | Flow | Use |

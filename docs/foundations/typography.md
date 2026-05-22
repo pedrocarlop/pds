@@ -30,6 +30,8 @@ Only four weights are available: `--pds-fw-regular`, `--pds-fw-medium`,
 ## Role Scale
 
 - Core: `--pds-display1/2`, `--pds-heading1/2/3`, `--pds-emphasis1..4`, and `--pds-body1/2/3`.
+- Each size role pairs with its matching line-height token, such as
+  `--pds-body1` with `--pds-lh-body1`.
 - Marketing: `--pds-marketing-display1/2/3` and `--pds-marketing-heading3`.
 - Tabular: `--pds-tabular-*` mirrors the core scale for aligned numbers.
 

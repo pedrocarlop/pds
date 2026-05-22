@@ -5,9 +5,9 @@ consumer, build output, or ownership boundary.
 
 ## Current Packages
 
-- `tokens`: `@pds/tokens`, the framework-agnostic token package.
-- `react`: `@pds/react`, the React component package.
-- `cli`: `@pds/cli`, the installer for Codex and Claude plugin setup.
+- `tokens`: [`@pds/tokens`](tokens/README.md), the framework-agnostic token package.
+- `react`: [`@pds/react`](react/README.md), the React component package.
+- `cli`: [`@pds/cli`](cli/README.md), the installer for Codex and Claude plugin setup.
 
 ## Which Package To Install
 

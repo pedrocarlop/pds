@@ -23,6 +23,8 @@ Run \`pnpm plugin:context\` after changing agent-facing PDS guidance.
 `;
 
 addGeneratedFile("README.md", contextReadme);
+addFile("AGENTS.md");
+addFile("CLAUDE.md");
 addFile("DESIGN.md");
 addFile("README.md");
 addFile("docs/README.md");
@@ -32,6 +34,7 @@ addDirectory("docs/agent");
 addDirectory("docs/foundations");
 addDirectory("docs/recipes");
 addFile("packages/README.md");
+addFile("packages/cli/README.md");
 addFile("packages/react/README.md");
 addFile("packages/tokens/README.md");
 addDirectory("packages/tokens/src");

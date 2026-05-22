@@ -17,3 +17,4 @@ A component should not be handed back until these pass:
 13. Preview includes normal, long text, narrow layout, and relevant states.
 14. Tests cover render contract, refs, classes, data attributes, accessibility, and interaction behaviour.
 15. CSS contract tests cover required selectors and token constraints.
+16. Browser preview checks pass at desktop and a 200% zoom proxy.

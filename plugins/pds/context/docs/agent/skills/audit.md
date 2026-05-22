@@ -4,6 +4,10 @@ Use this workflow when the user wants to understand how an existing web project
 can adopt PDS before making changes. This workflow is read-only unless the user
 separately asks for implementation.
 
+## Command
+
+Command: `/pds:audit`.
+
 ## Minimum Read Path
 
 Always read:

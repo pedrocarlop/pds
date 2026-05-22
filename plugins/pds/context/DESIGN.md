@@ -39,6 +39,9 @@ matching pattern and component docs.
 - Use [docs/recipes](docs/recipes) for React app setup and PDS adoption.
 - Use [docs/agent/skills](docs/agent/skills/README.md) for plugin skill
   workflows.
+- Use [docs/agent/living-system.md](docs/agent/living-system.md) when a task is
+  about growing PDS itself, self-improvement loops, promotion rules, or keeping
+  Codex and Claude behavior aligned.
 - Use [docs/architecture/repository-structure.md](docs/architecture/repository-structure.md)
   before moving files, adding packages, or changing ownership boundaries.
 - Use [docs/agent/skills/self-improve.md](docs/agent/skills/self-improve.md)

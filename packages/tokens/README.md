@@ -29,6 +29,11 @@ that token group:
 
 ```tsx
 import "@pds/tokens/colour.css";
+import "@pds/tokens/typography.css";
+import "@pds/tokens/spacing.css";
+import "@pds/tokens/layout.css";
+import "@pds/tokens/elevation.css";
+import "@pds/tokens/motion.css";
 ```
 
 To update to the latest published token release:
@@ -51,4 +56,5 @@ pnpm add @pds/tokens@latest
 - [docs/foundations/typography.md](../../docs/foundations/typography.md) for typography usage.
 - [docs/foundations/spacing.md](../../docs/foundations/spacing.md) for spacing and radius usage.
 - [docs/foundations/layout-types.md](../../docs/foundations/layout-types.md) for shared layout dimensions and breakpoints.
+- [docs/foundations/elevation.md](../../docs/foundations/elevation.md) for shadow and focus ring usage.
 - [docs/foundations/motion.md](../../docs/foundations/motion.md) for motion usage.

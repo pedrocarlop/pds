@@ -24,9 +24,7 @@ const preview = {
           <Stack>
             <strong>Tool details</strong>
             <p className="visual-lab-note">{longBody}</p>
-            <PopoverClose asChild>
-              <Button size="sm">Close</Button>
-            </PopoverClose>
+            <PopoverClose>Close</PopoverClose>
           </Stack>
         </PopoverContent>
       </Popover>

@@ -24,7 +24,10 @@ semantics.
     <SelectValue />
   </SelectTrigger>
   <SelectContent>
-    <SelectItem value="queued">Queued</SelectItem>
+    <SelectGroup>
+      <SelectLabel>Status</SelectLabel>
+      <SelectItem value="queued">Queued</SelectItem>
+    </SelectGroup>
   </SelectContent>
 </Select>
 ```
@@ -117,6 +120,8 @@ Do:
 
 - Preserve Radix primitives and stable slot attributes.
 - Keep invalid and explicit `aria-invalid` behavior distinct.
+- Place `SelectLabel` inside `SelectGroup`; Radix throws when labels are used
+  outside a group.
 
 Don't:
 

@@ -141,21 +141,60 @@ async function lintMarkdownLinks(markdownFiles) {
 }
 
 async function lintRootAdapters() {
-  const agentsPath = path.join(root, "AGENTS.md");
-  const claudePath = path.join(root, "CLAUDE.md");
-  const agentsSource = await readFile(agentsPath, "utf8");
-  const claudeSource = await readFile(claudePath, "utf8");
+  const adapterContracts = [
+    {
+      filePath: "AGENTS.md",
+      maxLines: 80,
+      requiredReferences: [
+        ["docs/agent/router.md", "must link to docs/agent/router.md"],
+        ["DESIGN.md", "must link to DESIGN.md before visual decisions"],
+        ["docs/agent/workflow.md", "must link to docs/agent/workflow.md"],
+        [
+          "docs/agent/living-system.md",
+          "must link to docs/agent/living-system.md for PDS growth tasks"
+        ],
+        [
+          "docs/agent/README.md",
+          "must link to docs/agent/README.md as the folder index"
+        ]
+      ]
+    },
+    {
+      filePath: "CLAUDE.md",
+      maxLines: 60,
+      requiredReferences: [
+        ["@AGENTS.md", "must import @AGENTS.md"],
+        ["docs/agent/router.md", "must link to docs/agent/router.md"],
+        ["DESIGN.md", "must link to DESIGN.md before visual decisions"],
+        ["docs/agent/workflow.md", "must link to docs/agent/workflow.md"],
+        [
+          "docs/agent/living-system.md",
+          "must link to docs/agent/living-system.md for PDS growth tasks"
+        ],
+        [
+          "docs/agent/README.md",
+          "must link to docs/agent/README.md as the folder index"
+        ]
+      ]
+    }
+  ];
 
-  if (!agentsSource.includes("docs/agent/router.md")) {
-    report("AGENTS.md", "must link to docs/agent/router.md");
-  }
+  for (const contract of adapterContracts) {
+    const source = await readFile(path.join(root, contract.filePath), "utf8");
+    const lineCount = source.split(/\r?\n/).length;
 
-  if (!agentsSource.includes("docs/agent/README.md")) {
-    report("AGENTS.md", "must link to docs/agent/README.md as the folder index");
-  }
+    if (lineCount > contract.maxLines) {
+      report(
+        contract.filePath,
+        `must stay under ${contract.maxLines} lines and route to canonical docs`
+      );
+    }
 
-  if (!claudeSource.includes("@AGENTS.md")) {
-    report("CLAUDE.md", "must import @AGENTS.md");
+    for (const [reference, message] of contract.requiredReferences) {
+      if (!source.includes(reference)) {
+        report(contract.filePath, message);
+      }
+    }
   }
 }
 
@@ -211,6 +250,8 @@ async function lintCanonicalAgentDirs() {
     "docs/agent/router.md",
     "docs/agent/README.md",
     "docs/agent/workflow.md",
+    "docs/agent/living-system.md",
+    "docs/agent/readiness-audit.md",
     "docs/agent/components/README.md",
     "docs/agent/patterns/README.md",
     "docs/agent/skills/README.md"

@@ -1,6 +1,7 @@
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectLabel,
   SelectSeparator,
@@ -25,9 +26,11 @@ const preview = {
               <SelectValue placeholder="Select destination" />
             </SelectTrigger>
             <SelectContent>
-              <SelectLabel>Queues</SelectLabel>
-              <SelectItem value="review">Review queue</SelectItem>
-              <SelectItem value="automation">Automation run</SelectItem>
+              <SelectGroup>
+                <SelectLabel>Queues</SelectLabel>
+                <SelectItem value="review">Review queue</SelectItem>
+                <SelectItem value="automation">Automation run</SelectItem>
+              </SelectGroup>
               <SelectSeparator />
               <SelectItem value="archive">Archive</SelectItem>
             </SelectContent>

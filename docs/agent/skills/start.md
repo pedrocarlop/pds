@@ -3,6 +3,10 @@
 Use this workflow only when the user explicitly invokes the PDS starter and
 wants the current empty folder turned into a new PDS-backed React app.
 
+## Command
+
+Command: `/pds:start`.
+
 ## Minimum Read Path
 
 Always read:

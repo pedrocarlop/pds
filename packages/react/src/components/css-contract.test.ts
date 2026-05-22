@@ -48,6 +48,7 @@ describe("PDS CSS contract", () => {
       '.pds-action-widget-actions[data-justify="center"]',
       ".pds-travel-widget",
       '.pds-travel-widget[data-variant="small"]',
+      '.pds-travel-widget[data-variant="small"]:has(.pds-travel-widget-action) .pds-travel-widget-body',
       ".pds-travel-widget-control",
       ".pds-travel-widget-media",
       ".pds-travel-widget-body",

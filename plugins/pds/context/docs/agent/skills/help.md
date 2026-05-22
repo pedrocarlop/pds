@@ -4,6 +4,34 @@ Use this workflow when the user wants orientation, onboarding, or a practical
 guide to the PDS plugin. Prefer a tailored guide over a generic command list:
 inspect the current folder when useful, then recommend the next best workflow.
 
+## Command
+
+Command: `/pds:help`.
+
+## Minimum Read Path
+
+Always read:
+
+- [router.md](../router.md)
+- This workflow
+- The current folder listing or target project files when the user asks for
+  project-specific help
+
+Read only if relevant:
+
+- [start.md](start.md) for new empty-folder setup.
+- [audit.md](audit.md) for existing app readiness.
+- [implement-screen.md](implement-screen.md) for screen implementation.
+- [create-component.md](create-component.md) for reusable component work.
+- [review-pds.md](review-pds.md) for design-system review.
+- [self-improve.md](self-improve.md) for feedback loops.
+
+Do not read:
+
+- Every component contract
+- Every foundation doc
+- Generated plugin context before canonical guidance
+
 ## Skill Picker
 
 - Empty folder and user wants a new app: `/pds:start`.

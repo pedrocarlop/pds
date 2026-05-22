@@ -46,6 +46,10 @@ the content.
 Popover content wraps and is viewport constrained. Long content should use
 internal scrolling only when the product task requires it.
 
+`PopoverClose` is a compact dismiss control and must keep its visible label or
+accessible name available. Do not compose it in a way that forces text into a
+fixed square icon affordance.
+
 ## Styling Contract
 
 Classes use the `pds-popover-*` prefix. CSS depends on content animation,

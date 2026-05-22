@@ -22,3 +22,17 @@ Ladle previews are registry-driven from `src/component-previews`.
 - `pnpm examples:previews:check` fails when a root component source file and
   preview module drift out of sync or when the generated sidebar story file is
   stale.
+- `pnpm examples:visual:build` builds the static Ladle app used by browser
+  verification.
+- `pnpm examples:visual:check` serves the built Ladle output and runs Playwright
+  Chromium checks for every component preview at desktop and a 200% zoom proxy.
+  Install the browser once with `pnpm exec playwright install chromium`.
+- Browser check failure screenshots are written to
+  `/tmp/pds-preview-browser-failures`.
+
+## Ladle Scenario Previews
+
+Agent outcome scenarios live in `src/stories/agent-scenarios.stories.tsx`.
+These stories compose existing public PDS components into rendered product
+surfaces for representative Codex and Claude tasks. The browser visual check
+verifies them alongside component previews at desktop and a 200% zoom proxy.

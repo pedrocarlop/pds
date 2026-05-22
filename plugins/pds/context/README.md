@@ -189,6 +189,12 @@ Install workspace dependencies:
 pnpm install
 ```
 
+Install the Chromium browser used by the component preview browser check:
+
+```sh
+pnpm exec playwright install chromium
+```
+
 Run all checks before handing work back:
 
 ```sh

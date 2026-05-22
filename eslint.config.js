@@ -19,11 +19,12 @@ export default tseslint.config(
     }
   },
   {
-    files: ["scripts/**/*.mjs"],
+    files: ["scripts/**/*.mjs", "plugins/pds/skills/*/scripts/**/*.mjs"],
     languageOptions: {
       globals: {
         console: "readonly",
-        process: "readonly"
+        process: "readonly",
+        URL: "readonly"
       }
     }
   },

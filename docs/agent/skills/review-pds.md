@@ -4,6 +4,10 @@ Use this workflow when the user wants a PDS-focused review of a web UI change.
 The default output is review findings, not code edits, unless the user explicitly
 asks to fix the issues.
 
+## Command
+
+Command: `/pds:review-pds`.
+
 ## Minimum Read Path
 
 Always read:

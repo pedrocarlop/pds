@@ -98,6 +98,9 @@ content, and action slots wrap by default. The small variant stacks to one
 column at the compact breakpoint so side-by-side content does not crush the
 primary title at narrow widths or high zoom.
 
+When the small variant includes `TravelWidget.Action`, the body reserves inline
+space for the overlay action so long titles do not sit underneath icon buttons.
+
 Use content slots for long translated labels and user-generated listing names.
 Do not truncate primary titles, price, status, or required action labels.
 

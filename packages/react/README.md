@@ -46,7 +46,7 @@ use public imports from @pds/react, and run the app checks.
 - `@pds/react/styles.css` imports `@pds/tokens/styles.css` and component styles.
 - Components use PDS-specific props and stable `data-*` attributes rather than Tailwind classes.
 - This is a starter component slice, not a full production-maturity component library. APIs, behavior, and styling contracts should harden incrementally as real PDS surfaces need them.
-- Browser-level visual, zoom, and focus-trap verification is future work. Current coverage is package-level TypeScript, CSS contract, and jsdom interaction testing.
+- Browser-level component preview verification covers private Ladle previews at desktop and a 200% zoom proxy. Focus-trap verification remains future work.
 
 ## Usage
 
@@ -157,7 +157,7 @@ Use those files before editing source, CSS, examples, tests, or public APIs.
 - No virtualization.
 - No tool output rendering.
 - No form submission side effects.
-- No browser-level visual, zoom, or focus-trap verification yet.
+- No browser-level focus-trap verification yet.
 
 ## Related Docs
 
