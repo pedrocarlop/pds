@@ -6,8 +6,8 @@ export function ButtonsSection() {
       <div className="examples-section-heading">
         <h2 id="buttons-title">Button</h2>
         <p>
-          Intent, fixed size, disabled, icon, and narrow-row behavior using the
-          public Button API.
+          Intent, compact size, expanded trigger, disabled, icon, and narrow-row
+          behavior using the public Button API.
         </p>
       </div>
 
@@ -28,11 +28,30 @@ export function ButtonsSection() {
         <div className="examples-panel">
           <h3>Size</h3>
           <div className="examples-row">
+            <Button size="xs">Extra small</Button>
             <Button size="sm">Small</Button>
             <Button size="md">Medium</Button>
             <Button size="lg">Large</Button>
             <Button aria-label="Create run" size="icon">
               <Icon name="add" />
+            </Button>
+          </div>
+        </div>
+
+        <div className="examples-panel">
+          <h3>Icon size</h3>
+          <div className="examples-row">
+            <Button aria-label="Pin run" size="icon-xs">
+              <Icon name="keep" />
+            </Button>
+            <Button aria-label="Create run" size="icon-sm">
+              <Icon name="add" />
+            </Button>
+            <Button aria-label="Refresh run" size="icon">
+              <Icon name="refresh" />
+            </Button>
+            <Button aria-label="Open details" size="icon-lg">
+              <Icon name="open_in_new" />
             </Button>
           </div>
         </div>
@@ -46,6 +65,18 @@ export function ButtonsSection() {
             </Button>
             <Button disabled intent="danger">
               Cannot delete
+            </Button>
+          </div>
+        </div>
+
+        <div className="examples-panel">
+          <h3>Expanded trigger</h3>
+          <div className="examples-row">
+            <Button aria-expanded intent="secondary">
+              Actions
+            </Button>
+            <Button aria-expanded intent="quiet">
+              More options
             </Button>
           </div>
         </div>

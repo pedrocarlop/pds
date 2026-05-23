@@ -6,7 +6,15 @@ import { Slot } from "radix-ui";
 import { cn } from "../utilities";
 
 export type ButtonIntent = "primary" | "secondary" | "danger" | "quiet" | "link";
-export type ButtonSize = "sm" | "md" | "lg" | "icon";
+export type ButtonSize =
+  | "xs"
+  | "sm"
+  | "md"
+  | "lg"
+  | "icon-xs"
+  | "icon-sm"
+  | "icon"
+  | "icon-lg";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {

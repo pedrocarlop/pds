@@ -5,6 +5,11 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 import {
+  Accordion,
+  AccordionContent,
+  AccordionHeader,
+  AccordionItem,
+  AccordionTrigger,
   ActionMenu,
   ActionMenuContent,
   ActionMenuItem,
@@ -15,10 +20,20 @@ import {
   ActionWidgetAvatar,
   ActionWidgetContent,
   ActionWidgetTitle,
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
   Amount,
   AmountCurrency,
   AmountInput,
   AmountInputType,
+  AspectRatio,
   Avatar,
   AvatarBadge,
   AvatarFallback,
@@ -48,10 +63,17 @@ import {
   Cell,
   Checkbox,
   CheckboxIndicator,
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
   Composer,
   ComposerActions,
   ComposerFooter,
   ComposerInput,
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
   CurrencyProvider,
   DataList,
   DataListDescription,
@@ -78,6 +100,15 @@ import {
   DialogTitle,
   DialogTrigger,
   FilterChip,
+  Form,
+  FormControl,
+  FormField,
+  FormLabel,
+  FormMessage,
+  FormSubmit,
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
   Icon,
   InlineAlert,
   InlineAlertActions,
@@ -87,6 +118,7 @@ import {
   IntlProvider,
   Item,
   ItemSkeleton,
+  Label,
   Menu,
   MenuCheckboxItem,
   MenuContent,
@@ -97,6 +129,12 @@ import {
   MenuSeparator,
   MenuShortcut,
   MenuTrigger,
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarShortcut,
+  MenubarTrigger,
   Message,
   MessageActions,
   MessageAuthor,
@@ -104,6 +142,16 @@ import {
   MessageContent,
   MessageHeader,
   MessageMeta,
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+  OneTimePasswordField,
+  OneTimePasswordFieldHiddenInput,
+  OneTimePasswordFieldInput,
   Pagination,
   PaginationEllipsis,
   PaginationItem,
@@ -119,6 +167,10 @@ import {
   PageHeaderMeta,
   PageHeaderText,
   PageHeaderTitle,
+  PasswordToggleField,
+  PasswordToggleFieldInput,
+  PasswordToggleFieldSlot,
+  PasswordToggleFieldToggle,
   Popover,
   PopoverClose,
   PopoverContent,
@@ -129,6 +181,10 @@ import {
   RadioGroupIndicator,
   RadioGroupItem,
   RunStatus,
+  ScrollArea,
+  ScrollAreaScrollbar,
+  ScrollAreaThumb,
+  ScrollAreaViewport,
   Select,
   SelectContent,
   SelectGroup,
@@ -137,7 +193,12 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
+  Separator,
   Skeleton,
+  Slider,
+  SliderRange,
+  SliderThumb,
+  SliderTrack,
   Surface,
   SurfaceAction,
   SurfaceContent,
@@ -160,6 +221,14 @@ import {
   TabsList,
   TabsTrigger,
   Textarea,
+  Toggle,
+  ToggleGroup,
+  ToggleGroupItem,
+  Toolbar,
+  ToolbarButton,
+  ToolbarSeparator,
+  ToolbarToggleGroup,
+  ToolbarToggleItem,
   Toast,
   ToastAction,
   ToastClose,
@@ -184,7 +253,8 @@ import {
   TravelWidgetSkeletonDescription,
   TravelWidgetSkeletonDetails,
   TravelWidgetSkeletonTitle,
-  TravelWidgetTitle
+  TravelWidgetTitle,
+  VisuallyHidden
 } from "../index";
 
 describe("PDS starter components", () => {
@@ -234,6 +304,47 @@ describe("PDS starter components", () => {
     expect(screen.getByRole("button", { name: label })).toHaveTextContent(label);
   });
 
+  it("supports compact Button sizes and expanded trigger state", () => {
+    render(
+      <>
+        <Button size="xs">Compact</Button>
+        <Button aria-expanded intent="secondary">
+          Actions
+        </Button>
+        <Button aria-label="Pin run" size="icon-xs">
+          <Icon name="keep" />
+        </Button>
+        <Button aria-label="Create run" size="icon-sm">
+          <Icon name="add" />
+        </Button>
+        <Button aria-label="Open command" size="icon-lg">
+          <Icon name="open_in_new" />
+        </Button>
+      </>
+    );
+
+    expect(screen.getByRole("button", { name: "Compact" })).toHaveAttribute(
+      "data-size",
+      "xs"
+    );
+    expect(screen.getByRole("button", { name: "Actions" })).toHaveAttribute(
+      "aria-expanded",
+      "true"
+    );
+    expect(screen.getByRole("button", { name: "Pin run" })).toHaveAttribute(
+      "data-size",
+      "icon-xs"
+    );
+    expect(screen.getByRole("button", { name: "Create run" })).toHaveAttribute(
+      "data-size",
+      "icon-sm"
+    );
+    expect(screen.getByRole("button", { name: "Open command" })).toHaveAttribute(
+      "data-size",
+      "icon-lg"
+    );
+  });
+
   it("renders Icon with Material Symbols Rounded hooks", () => {
     const ref = React.createRef<HTMLSpanElement>();
 
@@ -253,6 +364,303 @@ describe("PDS starter components", () => {
     const icon = container.querySelector("[data-slot='icon']");
     expect(icon).toHaveAttribute("aria-hidden", "true");
     expect(icon).not.toHaveAttribute("role");
+  });
+
+  it("renders Label, Separator, and VisuallyHidden primitives", () => {
+    const { container } = render(
+      <>
+        <Label htmlFor="run-name">Run name</Label>
+        <input id="run-name" />
+        <Separator orientation="vertical" />
+        <Button size="icon">
+          <Icon name="refresh" />
+          <VisuallyHidden>Refresh run</VisuallyHidden>
+        </Button>
+      </>
+    );
+
+    expect(screen.getByText("Run name")).toHaveAttribute("data-slot", "label");
+    expect(container.querySelector(".pds-separator")).toHaveAttribute(
+      "data-orientation",
+      "vertical"
+    );
+    expect(screen.getByRole("button", { name: "Refresh run" })).toHaveAttribute(
+      "data-slot",
+      "button"
+    );
+    expect(container.querySelector(".pds-visually-hidden")).toHaveAttribute(
+      "data-slot",
+      "visually-hidden"
+    );
+  });
+
+  it("renders Slider default and custom anatomy", () => {
+    const { container } = render(
+      <>
+        <Slider aria-label="Confidence" defaultValue={[40]} />
+        <Slider aria-label="Custom" defaultValue={[20, 80]}>
+          <SliderTrack>
+            <SliderRange />
+          </SliderTrack>
+          <SliderThumb aria-label="Minimum" />
+          <SliderThumb aria-label="Maximum" />
+        </Slider>
+      </>
+    );
+
+    expect(container.querySelectorAll(".pds-slider")).toHaveLength(2);
+    expect(screen.getByRole("slider", { name: "Confidence" })).toHaveAttribute(
+      "data-slot",
+      "slider-thumb"
+    );
+    expect(screen.getByRole("slider", { name: "Minimum" })).toHaveAttribute(
+      "data-slot",
+      "slider-thumb"
+    );
+    expect(screen.getByRole("slider", { name: "Maximum" })).toHaveAttribute(
+      "data-slot",
+      "slider-thumb"
+    );
+  });
+
+  it("renders Toggle and ToggleGroup pressed-state primitives", () => {
+    render(
+      <>
+        <Toggle aria-label="Pin run" defaultPressed size="icon">
+          <Icon name="keep" />
+        </Toggle>
+        <ToggleGroup aria-label="View mode" defaultValue="list" type="single">
+          <ToggleGroupItem value="list">List</ToggleGroupItem>
+          <ToggleGroupItem value="grid">Grid</ToggleGroupItem>
+        </ToggleGroup>
+      </>
+    );
+
+    expect(screen.getByRole("button", { name: "Pin run" })).toHaveAttribute(
+      "data-state",
+      "on"
+    );
+    expect(screen.getByRole("radio", { name: "List" })).toHaveAttribute(
+      "data-slot",
+      "toggle-group-item"
+    );
+  });
+
+  it("renders Toolbar controls with default button type", () => {
+    render(
+      <Toolbar aria-label="Run tools">
+        <ToolbarButton>Undo</ToolbarButton>
+        <ToolbarSeparator />
+        <ToolbarToggleGroup defaultValue="inspect" type="single">
+          <ToolbarToggleItem value="inspect">Inspect</ToolbarToggleItem>
+          <ToolbarToggleItem value="edit">Edit</ToolbarToggleItem>
+        </ToolbarToggleGroup>
+      </Toolbar>
+    );
+
+    expect(screen.getByRole("toolbar", { name: "Run tools" })).toHaveAttribute(
+      "data-slot",
+      "toolbar"
+    );
+    expect(screen.getByRole("button", { name: "Undo" })).toHaveAttribute(
+      "type",
+      "button"
+    );
+    expect(screen.getByRole("radio", { name: "Inspect" })).toHaveAttribute(
+      "data-state",
+      "on"
+    );
+  });
+
+  it("renders Accordion, AspectRatio, and Collapsible primitives", () => {
+    const { container } = render(
+      <>
+        <Accordion defaultValue="policy" type="single">
+          <AccordionItem value="policy">
+            <AccordionHeader>
+              <AccordionTrigger>Review policy</AccordionTrigger>
+            </AccordionHeader>
+            <AccordionContent>Manual checks required.</AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        <AspectRatio ratio={16 / 9}>
+          <img alt="Run preview" src="/preview.png" />
+        </AspectRatio>
+        <Collapsible defaultOpen>
+          <CollapsibleTrigger>Advanced settings</CollapsibleTrigger>
+          <CollapsibleContent>Retries and timeout controls.</CollapsibleContent>
+        </Collapsible>
+      </>
+    );
+
+    expect(screen.getByRole("button", { name: "Review policy" })).toHaveAttribute(
+      "data-state",
+      "open"
+    );
+    expect(container.querySelector(".pds-aspect-ratio")).toHaveAttribute(
+      "data-slot",
+      "aspect-ratio"
+    );
+    expect(screen.getByRole("button", { name: "Advanced settings" })).toHaveAttribute(
+      "data-slot",
+      "collapsible-trigger"
+    );
+  });
+
+  it("renders AlertDialog and HoverCard overlay primitives", () => {
+    render(
+      <>
+        <AlertDialog open>
+          <AlertDialogTrigger asChild>
+            <Button>Delete run</Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete draft run?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This removes the draft and all temporary tool output.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction>Delete</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+        <HoverCard open>
+          <HoverCardTrigger href="/agents/codex">Codex agent</HoverCardTrigger>
+          <HoverCardContent>Last active 2 minutes ago</HoverCardContent>
+        </HoverCard>
+      </>
+    );
+
+    expect(screen.getByRole("alertdialog", { name: "Delete draft run?" })).toHaveClass(
+      "pds-alert-dialog-content"
+    );
+    expect(screen.getByRole("button", { name: "Cancel" })).toHaveAttribute(
+      "data-slot",
+      "alert-dialog-cancel"
+    );
+    expect(screen.getByText("Last active 2 minutes ago")).toHaveAttribute(
+      "data-slot",
+      "hover-card-content"
+    );
+  });
+
+  it("renders ContextMenu and Menubar menu surfaces", () => {
+    render(
+      <>
+        <ContextMenu modal={false}>
+          <ContextMenuTrigger>Run row</ContextMenuTrigger>
+          <ContextMenuContent forceMount>
+            <ContextMenuItem>Open run</ContextMenuItem>
+          </ContextMenuContent>
+        </ContextMenu>
+        <Menubar value="file">
+          <MenubarMenu value="file">
+            <MenubarTrigger>File</MenubarTrigger>
+            <MenubarContent forceMount>
+              <MenubarItem>
+                Export
+                <MenubarShortcut>⌘E</MenubarShortcut>
+              </MenubarItem>
+            </MenubarContent>
+          </MenubarMenu>
+        </Menubar>
+      </>
+    );
+
+    expect(screen.getByText("Run row")).toHaveAttribute(
+      "data-slot",
+      "context-menu-trigger"
+    );
+    expect(screen.getByRole("menubar")).toHaveAttribute("data-slot", "menubar");
+    expect(screen.getByRole("menuitem", { name: /Export/ })).toHaveAttribute(
+      "data-slot",
+      "menubar-item"
+    );
+  });
+
+  it("renders Form, NavigationMenu, password, and scroll primitives", () => {
+    const { container } = render(
+      <>
+        <Form>
+          <FormField name="runName">
+            <FormLabel>Run name</FormLabel>
+            <FormControl required />
+            <FormMessage>Run name is required.</FormMessage>
+          </FormField>
+          <FormSubmit>Save run</FormSubmit>
+        </Form>
+        <NavigationMenu value="runs">
+          <NavigationMenuList>
+            <NavigationMenuItem value="runs">
+              <NavigationMenuTrigger>Runs</NavigationMenuTrigger>
+              <NavigationMenuContent forceMount>
+                Recent agent runs and saved drafts.
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink active href="/settings">
+                Settings
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+          <NavigationMenuViewport />
+        </NavigationMenu>
+        <OneTimePasswordField defaultValue="12" name="code">
+          <OneTimePasswordFieldInput aria-label="Digit 1" index={0} />
+          <OneTimePasswordFieldInput aria-label="Digit 2" index={1} />
+          <OneTimePasswordFieldHiddenInput />
+        </OneTimePasswordField>
+        <PasswordToggleField>
+          <PasswordToggleFieldInput aria-label="Password" />
+          <PasswordToggleFieldToggle>
+            <PasswordToggleFieldSlot hidden="Show" visible="Hide" />
+          </PasswordToggleFieldToggle>
+        </PasswordToggleField>
+        <ScrollArea style={{ height: 120, width: 240 }}>
+          <ScrollAreaViewport>Long scrollable audit log</ScrollAreaViewport>
+          <ScrollAreaScrollbar forceMount>
+            <ScrollAreaThumb />
+          </ScrollAreaScrollbar>
+        </ScrollArea>
+      </>
+    );
+
+    expect(screen.getByText("Run name")).toHaveAttribute(
+      "data-slot",
+      "form-label"
+    );
+    expect(screen.getByRole("button", { name: "Save run" })).toHaveAttribute(
+      "type",
+      "submit"
+    );
+    expect(screen.getByRole("navigation")).toHaveAttribute(
+      "data-slot",
+      "navigation-menu"
+    );
+    expect(screen.getByRole("link", { name: "Settings" })).toHaveAttribute(
+      "data-active",
+      ""
+    );
+    expect(screen.getByLabelText("Digit 1")).toHaveAttribute(
+      "data-slot",
+      "one-time-password-field-input"
+    );
+    expect(container.querySelector(".pds-visually-hidden")).toHaveAttribute(
+      "data-slot",
+      "one-time-password-field-hidden-input"
+    );
+    expect(screen.getByLabelText("Password")).toHaveAttribute("type", "password");
+    expect(screen.getByRole("button", { name: "Show" })).toHaveAttribute(
+      "data-slot",
+      "password-toggle-field-toggle"
+    );
+    expect(container.querySelector(".pds-scroll-area-viewport")).toHaveAttribute(
+      "data-slot",
+      "scroll-area-viewport"
+    );
   });
 
   it("renders Cell with row attributes, variants, and forwarded refs", () => {

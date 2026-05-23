@@ -16,6 +16,9 @@ elements.
 - Use `intent="quiet"` for lower-emphasis actions that should remain available.
 - Use `intent="danger"` only for destructive or high-risk actions.
 - Use `intent="link"` when the action should visually read as inline navigation.
+- Use `size="xs"` for dense inline command clusters where surrounding layout
+  preserves the target spacing.
+- Use icon sizes only for compact affordances with an accessible name.
 
 ## When Not To Use
 
@@ -48,7 +51,7 @@ the package stylesheet can size them consistently.
 | Prop | Values | Default | Notes |
 | --- | --- | --- | --- |
 | `intent` | `primary`, `secondary`, `danger`, `quiet`, `link` | `primary` | Maps to visual action intent. |
-| `size` | `sm`, `md`, `lg`, `icon` | `md` | Controls spacing and minimum size. |
+| `size` | `xs`, `sm`, `md`, `lg`, `icon-xs`, `icon-sm`, `icon`, `icon-lg` | `md` | Controls fixed height, padding, and square icon affordance size. |
 | `asChild` | `boolean` | `false` | Renders through Radix `Slot.Root`. |
 | `type` | Native button type | `button` | Applied only when rendering a native `button`. |
 
@@ -61,7 +64,7 @@ Button extends native `button` attributes, forwards refs, and preserves
 | --- | --- | --- |
 | `data-slot` | `button` | Component |
 | `data-intent` | `primary`, `secondary`, `danger`, `quiet`, `link` | Component |
-| `data-size` | `sm`, `md`, `lg`, `icon` | Component |
+| `data-size` | `xs`, `sm`, `md`, `lg`, `icon-xs`, `icon-sm`, `icon`, `icon-lg` | Component |
 | `data-icon` | Empty marker on child icon | Consumer |
 
 ## Accessibility Contract
@@ -77,6 +80,11 @@ Icon-only buttons must provide an accessible name with `aria-label`,
 `aria-labelledby`, or hidden text. Link buttons rendered with `asChild` should
 use a real anchor with `href`.
 
+Menu, popover, and action-menu triggers can pass `aria-expanded`. Button styles
+provide an expanded treatment for enabled secondary and quiet trigger buttons,
+while the overlay component owns popup roles, focus management, and keyboard
+navigation.
+
 ## Content Resilience Rules
 
 Button sizes are fixed-height and labels render as a single line. Keep action
@@ -88,8 +96,9 @@ The full label must stay in the DOM for assistive technology, but the visual
 button must not grow taller to absorb long copy. Do not rely on Button wrapping
 for translation, narrow containers, or 200% zoom.
 
-`size="icon"` is the square fixed-size variant. It should contain an icon or
-compact accessible affordance, not long text.
+`size="xs"` is for dense supporting actions, not the primary action in a form or
+modal footer. Icon sizes are square fixed-size variants. They should contain an
+icon or compact accessible affordance, not long text.
 
 ## Styling Contract
 
@@ -97,8 +106,8 @@ The root class is `pds-button`; styling lives in
 `packages/react/src/components.css`.
 
 CSS depends on `data-intent`, `data-size`, native `:disabled`, optional
-`[aria-disabled="true"]`, `:hover`, `:active`, and `:focus-visible`. Preserve
-those selectors when changing implementation details.
+`[aria-disabled="true"]`, `aria-expanded`, `:hover`, `:active`, and
+`:focus-visible`. Preserve those selectors when changing implementation details.
 
 ## Token Usage
 
@@ -114,6 +123,7 @@ instead of adding one-off colors, spacing, radii, transitions, or shadows.
 | Hover | Pointer hover | Enabled buttons apply intent-specific state layer or link underline. | `.pds-button:not(:disabled, [aria-disabled='true']):hover` | Hover is suppressed for disabled and aria-disabled buttons. |
 | Focus-visible | Keyboard focus | Shared PDS focus shadow appears around the button. | `.pds-button:focus-visible` | Keyboard focus remains on the button or composed child. |
 | Active | Pressed | Enabled buttons apply pressed state layer. | `.pds-button:not(:disabled, [aria-disabled='true']):active` | Native button activation remains browser-owned. |
+| Expanded | `aria-expanded="true"` on a trigger | Enabled secondary and quiet buttons use selected state-layer treatment. | `[aria-expanded='true']` with `data-intent='secondary'` or `data-intent='quiet'` | Popup semantics, focus management, and keyboard navigation are owned by the paired overlay component. |
 | Disabled | `disabled` / `aria-disabled` | Disabled buttons use disabled opacity and suppress hover or active treatment. | `:disabled`, `[aria-disabled='true']` | Native disabled prevents activation; `aria-disabled` consumers must prevent activation. |
 | Error | `data-invalid` / error prop | Danger intent uses destructive action colors, not form invalid styling. | `data-intent='danger'` | Danger is not an error announcement. |
 
@@ -127,6 +137,8 @@ Non-applicable states: Loading, Success. Use child components or the surrounding
 - Solid primary and danger intents layer shared on-solid state tokens over the
   base fill.
 - Secondary and quiet intents use neutral state layer tokens.
+- Expanded secondary and quiet trigger buttons use selected state layer tokens
+  and stay suppressible by `disabled` or `aria-disabled`.
 - Link intent uses underline on hover instead of a filled background.
 
 ## Composition Examples
@@ -135,10 +147,15 @@ Non-applicable states: Loading, Success. Use child components or the surrounding
 import { Button, Icon } from "@pds/react";
 
 <Button>Run agent</Button>
+<Button size="xs">Compact action</Button>
 <Button intent="secondary">View details</Button>
+<Button aria-expanded intent="secondary">Actions</Button>
 <Button intent="danger">Delete run</Button>
 <Button aria-label="Create run" size="icon">
   <Icon name="add" />
+</Button>
+<Button aria-label="Open details" size="icon-lg">
+  <Icon name="open_in_new" />
 </Button>
 <Button asChild intent="link">
   <a href="/runs">View runs</a>
@@ -159,6 +176,8 @@ Do:
 - Keep labels concise and single-line.
 - Preserve the fixed-height sizing contract.
 - Use `intent="danger"` only for destructive actions.
+- Map upstream `variant` names onto the PDS `intent` and `size` contract instead
+  of importing CVA, shadcn, Tailwind classes, or visual-only prop names.
 - Add tests when changing public props, default behavior, or state selectors.
 
 Don't:

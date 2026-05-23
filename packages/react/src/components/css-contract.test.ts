@@ -34,7 +34,12 @@ describe("PDS CSS contract", () => {
       ".pds-button",
       ".pds-icon",
       ".material-symbols-rounded",
+      ".pds-visually-hidden",
+      '.pds-button[data-size="xs"]',
       '.pds-button[data-size="sm"]',
+      '.pds-button[data-size="icon-xs"]',
+      '.pds-button[data-size="icon-sm"]',
+      '.pds-button[data-size="icon-lg"]',
       '.pds-button[data-intent="primary"]',
       '.pds-button[data-intent="danger"]',
       ".pds-action-menu-content",
@@ -46,6 +51,21 @@ describe("PDS CSS contract", () => {
       ".pds-action-widget-content",
       ".pds-action-widget-actions",
       '.pds-action-widget-actions[data-justify="center"]',
+      ".pds-accordion",
+      ".pds-accordion-item",
+      ".pds-accordion-trigger",
+      '.pds-accordion-trigger[data-state="open"]',
+      ".pds-accordion-content",
+      ".pds-accordion-chevron",
+      ".pds-alert-dialog-overlay",
+      ".pds-alert-dialog-content",
+      ".pds-alert-dialog-header",
+      ".pds-alert-dialog-footer",
+      ".pds-alert-dialog-title",
+      ".pds-alert-dialog-description",
+      ".pds-alert-dialog-action",
+      ".pds-alert-dialog-cancel",
+      ".pds-aspect-ratio",
       ".pds-travel-widget",
       '.pds-travel-widget[data-variant="small"]',
       '.pds-travel-widget[data-variant="small"]:has(.pds-travel-widget-action) .pds-travel-widget-body',
@@ -122,18 +142,49 @@ describe("PDS CSS contract", () => {
       ".pds-checkbox",
       '.pds-checkbox[data-state="checked"]',
       '.pds-checkbox[aria-invalid="true"]',
+      ".pds-collapsible",
+      ".pds-collapsible-trigger",
+      '.pds-collapsible-trigger[data-state="open"]',
+      ".pds-collapsible-content",
+      ".pds-context-menu-trigger",
       ".pds-data-list",
       ".pds-data-list-item",
       ".pds-surface",
       '.pds-surface[data-level="nested"]',
       ".pds-inline-alert",
       '.pds-inline-alert[data-tone="danger"]',
+      ".pds-form",
+      ".pds-form-field",
+      ".pds-form-label",
+      ".pds-form-control",
+      ".pds-form-message",
+      ".pds-form-submit",
+      ".pds-hover-card-content",
+      ".pds-hover-card-arrow",
+      ".pds-label",
       ".pds-menu-content",
       ".pds-menu-item",
       '.pds-menu-item[data-intent="danger"]',
+      ".pds-menubar",
+      ".pds-menubar-trigger",
+      '.pds-menubar-trigger[data-state="open"]',
+      ".pds-navigation-menu",
+      ".pds-navigation-menu-list",
+      ".pds-navigation-menu-item",
+      ".pds-navigation-menu-trigger",
+      ".pds-navigation-menu-link",
+      ".pds-navigation-menu-content",
+      ".pds-navigation-menu-indicator",
+      ".pds-navigation-menu-viewport",
+      ".pds-one-time-password-field",
+      ".pds-one-time-password-field-input",
       ".pds-pagination",
       ".pds-pagination-link",
       '.pds-pagination-link[data-current="true"]',
+      ".pds-password-toggle-field",
+      ".pds-password-toggle-field-input",
+      ".pds-password-toggle-field-toggle",
+      ".pds-password-toggle-field-icon",
       ".pds-popover-content",
       ".pds-progress",
       ".pds-progress-indicator",
@@ -142,13 +193,23 @@ describe("PDS CSS contract", () => {
       ".pds-radio-group-item",
       '.pds-radio-group-item[data-state="checked"]',
       ".pds-run-status",
+      ".pds-scroll-area",
+      ".pds-scroll-area-viewport",
+      ".pds-scroll-area-scrollbar",
+      ".pds-scroll-area-thumb",
+      ".pds-scroll-area-corner",
       ".pds-select-trigger",
       '.pds-select-trigger[data-density="compact"]',
       ".pds-select-content",
       ".pds-select-item",
       '.pds-select-item[data-state="checked"]',
+      ".pds-separator",
       ".pds-skeleton",
       '.pds-skeleton[data-shape="text"]',
+      ".pds-slider",
+      ".pds-slider-track",
+      ".pds-slider-range",
+      ".pds-slider-thumb",
       ".pds-switch",
       '.pds-switch[data-state="checked"]',
       ".pds-table",
@@ -158,6 +219,17 @@ describe("PDS CSS contract", () => {
       '.pds-tabs-list[data-variant="segmented"]',
       ".pds-tabs-trigger",
       '.pds-tabs-trigger[data-state="active"]',
+      ".pds-toggle",
+      '.pds-toggle[data-state="on"]',
+      ".pds-toggle-group",
+      ".pds-toggle-group-item",
+      '.pds-toggle-group-item[data-state="on"]',
+      ".pds-toolbar",
+      ".pds-toolbar-button",
+      ".pds-toolbar-separator",
+      ".pds-toolbar-toggle-group",
+      ".pds-toolbar-toggle-item",
+      '.pds-toolbar-toggle-item[data-state="on"]',
       ".pds-message",
       '.pds-message[data-role="user"]',
       '.pds-message[data-role="system"]',
@@ -271,6 +343,9 @@ describe("PDS CSS contract", () => {
 
   it("keeps Button fixed-height and single-line", () => {
     const buttonBlock = componentStyles.match(/\.pds-button\s*{[^}]*}/)?.[0];
+    const extraSmallBlock = componentStyles.match(
+      /\.pds-button\[data-size="xs"\]\s*{[^}]*}/
+    )?.[0];
     const smallBlock = componentStyles.match(
       /\.pds-button\[data-size="sm"\]\s*{[^}]*}/
     )?.[0];
@@ -280,6 +355,9 @@ describe("PDS CSS contract", () => {
     const largeBlock = componentStyles.match(
       /\.pds-button\[data-size="lg"\]\s*{[^}]*}/
     )?.[0];
+    const iconBlock = componentStyles.match(
+      /\.pds-button\[data-size="icon"\]\s*{[^}]*}/
+    )?.[0];
 
     expect(buttonBlock).toBeDefined();
     expect(buttonBlock).toContain("box-sizing: border-box;");
@@ -287,9 +365,20 @@ describe("PDS CSS contract", () => {
     expect(buttonBlock).toContain("text-overflow: ellipsis;");
     expect(buttonBlock).not.toContain("white-space: normal;");
 
-    expect(smallBlock).toContain("height: 32px;");
-    expect(mediumBlock).toContain("height: 36px;");
-    expect(largeBlock).toContain("height: 44px;");
+    expect(extraSmallBlock).toContain("height: var(--pds-space-sp-600);");
+    expect(smallBlock).toContain(
+      "height: calc(var(--pds-space-sp-600) + var(--pds-space-sp-200));"
+    );
+    expect(mediumBlock).toContain(
+      "height: calc(var(--pds-space-sp-600) + var(--pds-space-sp-300));"
+    );
+    expect(largeBlock).toContain(
+      "height: calc(var(--pds-space-sp-1000) + var(--pds-space-sp-100));"
+    );
+    expect(iconBlock).toContain(
+      "height: calc(var(--pds-space-sp-600) + var(--pds-space-sp-300));"
+    );
+    expect(extraSmallBlock).not.toContain("px;");
     expect(smallBlock).not.toContain("min-height:");
     expect(mediumBlock).not.toContain("min-height:");
     expect(largeBlock).not.toContain("min-height:");
@@ -309,6 +398,19 @@ describe("PDS CSS contract", () => {
       ".pds-action-widget-content",
       ".pds-action-widget-actions",
       ".pds-travel-widget",
+      ".pds-accordion",
+      ".pds-accordion-item",
+      ".pds-accordion-trigger",
+      ".pds-accordion-content",
+      ".pds-accordion-content-inner",
+      ".pds-alert-dialog-content",
+      ".pds-alert-dialog-header",
+      ".pds-alert-dialog-footer",
+      ".pds-alert-dialog-title",
+      ".pds-alert-dialog-description",
+      ".pds-collapsible",
+      ".pds-collapsible-trigger",
+      ".pds-collapsible-content",
       ".pds-travel-widget-control",
       ".pds-travel-widget-media",
       ".pds-travel-widget-body",
@@ -372,10 +474,25 @@ describe("PDS CSS contract", () => {
       ".pds-inline-alert-title",
       ".pds-inline-alert-description",
       ".pds-inline-alert-actions",
+      ".pds-form",
+      ".pds-form-field",
+      ".pds-form-label",
+      ".pds-form-message",
+      ".pds-hover-card-content",
       ".pds-menu-content",
       ".pds-menu-item",
+      ".pds-menubar",
+      ".pds-menubar-trigger",
+      ".pds-navigation-menu",
+      ".pds-navigation-menu-item",
+      ".pds-navigation-menu-trigger",
+      ".pds-navigation-menu-link",
+      ".pds-navigation-menu-content",
+      ".pds-navigation-menu-viewport",
+      ".pds-one-time-password-field",
       ".pds-pagination",
       ".pds-pagination-link",
+      ".pds-password-toggle-field",
       ".pds-popover-content",
       ".pds-radio-group",
       ".pds-select-trigger",
@@ -396,6 +513,8 @@ describe("PDS CSS contract", () => {
       ".pds-dialog-content",
       ".pds-dialog-title",
       ".pds-dialog-description",
+      ".pds-scroll-area",
+      ".pds-scroll-area-viewport",
       ".pds-bottom-sheet-content",
       ".pds-bottom-sheet-header",
       ".pds-bottom-sheet-body",
@@ -441,6 +560,9 @@ describe("PDS CSS contract", () => {
       '.pds-button[data-intent="primary"]:not(:disabled, [aria-disabled="true"]):active'
     );
     expect(componentStyles).toContain(
+      '.pds-button[data-intent="secondary"][aria-expanded="true"]:not(\n    :disabled,\n    [aria-disabled="true"]\n  )'
+    );
+    expect(componentStyles).toContain(
       '.pds-filter-chip:not([data-disabled="true"]):hover'
     );
     expect(componentStyles).toContain(
@@ -469,6 +591,30 @@ describe("PDS CSS contract", () => {
     expect(componentStyles).toContain(".pds-radio-group-item:not(:disabled):hover");
     expect(componentStyles).toContain(".pds-switch:not(:disabled):hover");
     expect(componentStyles).toContain(".pds-tabs-trigger:not(:disabled):hover");
+    expect(componentStyles).toContain(
+      ".pds-accordion-trigger:not(:disabled):hover"
+    );
+    expect(componentStyles).toContain(
+      ".pds-collapsible-trigger:not(:disabled):hover"
+    );
+    expect(componentStyles).toContain(
+      ".pds-alert-dialog-action:not(:disabled):hover"
+    );
+    expect(componentStyles).toContain(
+      ".pds-alert-dialog-cancel:not(:disabled):hover"
+    );
+    expect(componentStyles).toContain(
+      ".pds-menubar-trigger:not(:disabled):hover"
+    );
+    expect(componentStyles).toContain(
+      ".pds-navigation-menu-trigger:not(:disabled):hover"
+    );
+    expect(componentStyles).toContain(
+      ".pds-one-time-password-field-input:not(:disabled):hover"
+    );
+    expect(componentStyles).toContain(
+      ".pds-password-toggle-field-toggle:not(:disabled):hover"
+    );
     expect(componentStyles).toContain(".pds-dialog-close:not(:disabled):hover");
     expect(componentStyles).toContain(".pds-dialog-close:not(:disabled):active");
     expect(componentStyles).toContain(".pds-toast-action:not(:disabled):hover");

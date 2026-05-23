@@ -195,9 +195,13 @@ function runBrowserAssertions({ storyName, viewportName }) {
       .filter((element) => {
         if (
           element.matches(
-            '[data-slot="select-content"], [data-slot="menu-content"], [data-slot="action-menu-content"], [data-slot="travel-widget"]'
+            '[data-slot="select-content"], [data-slot="menu-content"], [data-slot="action-menu-content"], [data-slot="travel-widget"], [data-slot="visually-hidden"]'
           )
         ) {
+          return false;
+        }
+
+        if (element.matches('[data-slot="scroll-area-viewport"]')) {
           return false;
         }
 

@@ -16,10 +16,14 @@ Codex, update, and local tarball flows. This package requires one app-root
 
 ## Current Surface
 
-- Icon, Button, Badge, FilterChip, Avatar, Surface, ActionWidget, Cell, Item, Details, Tooltip, Dialog,
-  BottomSheet, Toast, Input, Amount, Textarea, Select, Checkbox, RadioGroup,
-  Switch, Tabs, Menu, Popover, Skeleton, Progress, InlineAlert, Table, DataList,
-  Breadcrumbs, Pagination, PageHeader, ActionMenu, and TravelWidget.
+- Icon, Button, Badge, FilterChip, Avatar, Surface, ActionWidget, Cell, Item, Details,
+  Tooltip, Dialog, AlertDialog, BottomSheet, Toast, Input, Amount, Textarea,
+  Select, Checkbox, RadioGroup, Switch, Slider, Label, Form,
+  OneTimePasswordField, PasswordToggleField, Tabs, Toggle, ToggleGroup,
+  Toolbar, Menu, ContextMenu, Menubar, NavigationMenu, Popover, HoverCard,
+  Accordion, Collapsible, AspectRatio, ScrollArea, Skeleton, Progress,
+  InlineAlert, Table, DataList, Separator, Breadcrumbs, Pagination, PageHeader,
+  ActionMenu, VisuallyHidden, and TravelWidget.
 - Product components: RunStatus, Message, Transcript, and Composer.
 - `@pds/react/styles.css` imports `@pds/tokens/styles.css` and component styles.
 - Components use PDS-specific props and stable `data-*` attributes rather than Tailwind classes.
