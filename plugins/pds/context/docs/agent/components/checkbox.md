@@ -5,6 +5,8 @@
 Checkbox provides a compact binary or indeterminate control backed by Radix
 Checkbox.
 
+![Checkbox component preview](images/checkbox.png)
+
 ## When To Use
 
 - Use for independent yes/no settings.

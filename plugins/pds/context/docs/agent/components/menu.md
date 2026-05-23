@@ -5,6 +5,8 @@
 Menu provides contextual dropdown actions and choices backed by Radix Dropdown
 Menu.
 
+![Menu component preview](images/menu.png)
+
 ## When To Use
 
 - Use for secondary action sets attached to a trigger.

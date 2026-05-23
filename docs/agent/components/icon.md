@@ -6,6 +6,8 @@ Icon is the PDS wrapper for Google Material Symbols Rounded. It gives consumers
 a stable React API, the existing `data-icon` sizing hook, and the shared
 Material Symbols variation settings used across PDS icons.
 
+![Icon component preview](images/icon.png)
+
 ## When To Use
 
 - Use for compact visual affordances inside Button, menus, pagination, and other

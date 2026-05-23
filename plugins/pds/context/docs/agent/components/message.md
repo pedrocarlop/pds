@@ -7,6 +7,8 @@ agent-facing surfaces. It owns message structure, role-based visual treatment,
 metadata layout, content wrapping, and optional actions. It does not own message
 data, markdown parsing, streaming, or persistence.
 
+![Message component preview](images/message.png)
+
 ## When To Use
 
 - Use inside [Transcript](transcript.md) or another conversation-like surface.

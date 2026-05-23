@@ -6,6 +6,8 @@ Tooltip provides the PDS supplemental label and description primitive. It wraps
 Radix Tooltip for trigger behavior, timing, keyboard support, portal rendering,
 and accessible tooltip semantics.
 
+![Tooltip component preview](images/tooltip.png)
+
 ## When To Use
 
 - Use for brief supplemental labels, icon button names, or compact metadata

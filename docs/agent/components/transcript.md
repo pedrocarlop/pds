@@ -6,6 +6,8 @@ Transcript is the PDS conversation container primitive. It owns transcript
 section structure, density, message list spacing, and empty state layout without
 fetching, ordering, streaming, or virtualizing messages.
 
+![Transcript component preview](images/transcript.png)
+
 ## When To Use
 
 - Use around Message collections in conversation-like product surfaces.

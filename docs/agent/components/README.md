@@ -20,6 +20,8 @@ limitations.
   together.
 - Before adding examples or tests, check the documented slots, data attributes,
   state behavior, and limitations.
+- Before handing back component documentation, ensure the contract includes the
+  generated preview image from `images/<component-id>.png` before `## When To Use`.
 - Before adding a new component, create its context file from
   [_template.md](_template.md).
 - Before handing back a changed public component, ensure the component preview
@@ -87,12 +89,12 @@ Keep checks lightweight in this phase:
 - Every documented component should name its public slots and stable data
   attributes.
 - Every React component source file must have a matching component contract,
-  source link, component index link, and the required contract sections checked
-  by `scripts/check-agent-component-contracts.mjs`.
+  source link, component index link, generated preview image, and the required
+  contract sections checked by `scripts/check-agent-component-contracts.mjs`.
 - Every new component must land with source, component CSS, this docs file,
-  example usage in `examples/react`, tests, stable `data-slot` / `data-*`
-  attributes, content-resilience notes, and keyboard/focus behavior when
-  interactive.
+  example usage in `examples/react`, generated preview image, tests, stable
+  `data-slot` / `data-*` attributes, content-resilience notes, and
+  keyboard/focus behavior when interactive.
 - Component docs should not duplicate token values from `DESIGN.md` or
   `packages/tokens`.
 - Component docs should reference current exported component names.

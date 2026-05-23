@@ -7,6 +7,8 @@ results. It presents a visual area, primary title, supporting details,
 description text, custom content rows, and one overlay action while preserving a
 single primary card control.
 
+![TravelWidget component preview](images/travel-widget.png)
+
 ## When To Use
 
 - Use for hotel, trip, listing, booking, offer, or commerce result summaries.

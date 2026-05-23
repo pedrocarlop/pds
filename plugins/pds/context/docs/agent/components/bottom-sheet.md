@@ -6,6 +6,8 @@ BottomSheet provides a bottom-attached modal surface for focused review or
 short tasks that should stay anchored to the current context, especially on
 narrow screens.
 
+![BottomSheet component preview](images/bottom-sheet.png)
+
 ## When To Use
 
 - Use for document review, compact task detail, or contextual decisions that

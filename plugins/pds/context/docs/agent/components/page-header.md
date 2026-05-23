@@ -6,6 +6,8 @@ PageHeader provides the page-level heading region for product screens. It owns
 the responsive arrangement of breadcrumbs, title, description, metadata, and
 page actions without owning routing, tabs, or page shell layout.
 
+![PageHeader component preview](images/page-header.png)
+
 ## When To Use
 
 - Use at the top of product pages, settings pages, collection pages, detail

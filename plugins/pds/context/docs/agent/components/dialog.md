@@ -6,6 +6,8 @@ Dialog provides the PDS modal overlay primitive. It wraps Radix Dialog for focus
 management and accessibility, then adds PDS overlay, content, header, footer,
 title, description, and close-button styling.
 
+![Dialog component preview](images/dialog.png)
+
 ## When To Use
 
 - Use for blocking confirmations, focused review flows, or compact modal tasks.

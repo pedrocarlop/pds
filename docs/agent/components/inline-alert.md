@@ -5,6 +5,8 @@
 InlineAlert provides in-flow feedback for neutral, success, warning, and danger
 messages.
 
+![InlineAlert component preview](images/inline-alert.png)
+
 ## When To Use
 
 - Use for form feedback, policy notes, validation summaries, or local warnings.

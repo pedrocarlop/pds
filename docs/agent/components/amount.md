@@ -7,6 +7,8 @@ side with a numeric amount side. It composes existing PDS primitives so product
 surfaces can present balances, fees, invalid states, disabled states, and
 localized money display without building a one-off field layout.
 
+![Amount component preview](images/amount.png)
+
 ## When To Use
 
 - Use when a value entry needs a left currency, account, or asset selector and a

@@ -6,6 +6,8 @@ Toast provides the PDS non-blocking feedback primitive for temporary
 notifications such as saved, completed, queued, or recoverable contextual
 messages.
 
+![Toast component preview](images/toast.png)
+
 ## When To Use
 
 - Use for feedback that can disappear without blocking the user's current task.

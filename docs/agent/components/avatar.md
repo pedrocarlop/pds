@@ -6,6 +6,8 @@ Avatar provides the PDS identity primitive for people, agents, teams, or compact
 actors in product surfaces. It wraps Radix Avatar primitives and adds PDS sizing,
 fallback, badge, and group slots.
 
+![Avatar component preview](images/avatar.png)
+
 ## When To Use
 
 - Use for actor identity next to messages, assignees, run owners, or compact

@@ -5,6 +5,8 @@
 Tabs provides same-page view switching backed by Radix Tabs. `TabsList` can use
 line or segmented visual treatment.
 
+![Tabs component preview](images/tabs.png)
+
 ## When To Use
 
 - Use for peer views within one surface.

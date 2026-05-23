@@ -40,6 +40,7 @@ const requiredFiles = [
   "scripts/check-agent-evaluation-scenarios.mjs",
   "scripts/check-agent-readiness.mjs",
   "scripts/check-agent-skill-contracts.mjs",
+  "scripts/capture-component-doc-images.mjs",
   "scripts/check-react-component-previews.mjs",
   "scripts/check-react-preview-browser.mjs",
   "scripts/lint-component-css-tokens.mjs",
@@ -81,6 +82,7 @@ expectScriptIncludes("lint", [
   "turbo run lint"
 ]);
 expectScriptEquals("css:lint", "node scripts/lint-component-css-tokens.mjs");
+expectScriptEquals("docs:component-images", "node scripts/capture-component-doc-images.mjs");
 expectScriptEquals("packages:check", "node scripts/check-package-contracts.mjs");
 expectScriptEquals("examples:previews:check", "node scripts/check-react-component-previews.mjs");
 expectScriptEquals("examples:visual:check", "node scripts/check-react-preview-browser.mjs");
@@ -148,6 +150,7 @@ await expectIncludes("docs/agent/readiness-audit.md", [
   "scripts/check-agent-guidance-contracts.mjs",
   "scripts/check-agent-evaluation-scenarios.mjs",
   "scripts/check-agent-readiness.mjs",
+  "scripts/capture-component-doc-images.mjs",
   "pnpm examples:visual:check",
   "pnpm check"
 ]);
@@ -279,9 +282,12 @@ async function expectComponentPreviewParity() {
     "examples/react/src/component-previews",
     ".preview.tsx"
   );
+  const imageIds = await collectIds("docs/agent/components/images", ".png");
 
   const missingPreviews = componentIds.filter((id) => !previewIds.includes(id));
   const extraPreviews = previewIds.filter((id) => !componentIds.includes(id));
+  const missingImages = componentIds.filter((id) => !imageIds.includes(id));
+  const extraImages = imageIds.filter((id) => !componentIds.includes(id));
 
   if (componentIds.length === 0) {
     report("packages/react/src/components", "must contain public component sources");
@@ -306,12 +312,37 @@ async function expectComponentPreviewParity() {
   } else {
     checkCount += 1;
   }
+
+  if (missingImages.length > 0) {
+    report(
+      "docs/agent/components/images",
+      `missing documentation images for ${missingImages.join(", ")}`
+    );
+  } else {
+    checkCount += 1;
+  }
+
+  if (extraImages.length > 0) {
+    report(
+      "docs/agent/components/images",
+      `documentation images without component sources: ${extraImages.join(", ")}`
+    );
+  } else {
+    checkCount += 1;
+  }
 }
 
 async function collectIds(directory, suffix, ignore = () => false) {
-  const entries = await readdir(path.join(root, directory), {
-    withFileTypes: true
-  });
+  let entries;
+
+  try {
+    entries = await readdir(path.join(root, directory), {
+      withFileTypes: true
+    });
+  } catch {
+    report(directory, "required readiness directory is missing");
+    return [];
+  }
 
   return entries
     .filter((entry) => entry.isFile())

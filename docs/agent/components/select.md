@@ -6,6 +6,8 @@ Select provides a token-first single-value selection control backed by Radix
 Select for keyboard navigation, typeahead, popover positioning, and selection
 semantics.
 
+![Select component preview](images/select.png)
+
 ## When To Use
 
 - Use for compact option sets where only one value can be chosen.

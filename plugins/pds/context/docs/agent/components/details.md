@@ -5,6 +5,8 @@
 Details renders compact label-value rows with optional supporting notes. DetailsCell
 uses the same structure with grouped-cell row semantics.
 
+![Details component preview](images/details.png)
+
 ## When To Use
 
 - Use Details for label-value rows, fees, metadata, and short explanatory notes.

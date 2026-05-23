@@ -8,6 +8,8 @@ slots. It builds on Cell for the row shell, surface, focus, disabled, selected,
 and disclosure behavior while keeping avatar, content, side, action, value, and
 input areas explicit.
 
+![Item component preview](images/item.png)
+
 ## When To Use
 
 - Use for rich rows that need identity, title, description, side values, actions,

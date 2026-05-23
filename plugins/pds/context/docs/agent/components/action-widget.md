@@ -7,6 +7,8 @@ visual, supporting copy, and one or more actions. It composes the existing
 Surface visual treatment and expects interactive controls to use PDS primitives
 such as Button.
 
+![ActionWidget component preview](images/action-widget.png)
+
 ## When To Use
 
 - Use for compact recommendation, next-step, review, or setup prompts.

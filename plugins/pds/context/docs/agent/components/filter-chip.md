@@ -6,6 +6,8 @@ FilterChip is the compact, single-pill filter control for PDS product surfaces.
 Each FilterChip opens, targets, or summarizes one filter dimension. A row of
 filters is made from sibling FilterChip instances.
 
+![FilterChip component preview](images/filter-chip.png)
+
 ## When To Use
 
 - Use for toolbar, header, or list controls that open filter choices.

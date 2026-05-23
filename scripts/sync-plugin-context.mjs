@@ -7,12 +7,13 @@ import {
   statSync,
   writeFileSync
 } from "node:fs";
+import { Buffer } from "node:buffer";
 import path from "node:path";
 
 const root = process.cwd();
 const contextRoot = path.join(root, "plugins/pds/context");
 const check = process.argv.includes("--check");
-const allowedExtensions = new Set([".css", ".md", ".ts"]);
+const allowedExtensions = new Set([".css", ".md", ".png", ".ts"]);
 const expected = new Map();
 const skippedContextPaths = new Set([
   "docs/agent/evaluation-scenarios.md",
@@ -49,11 +50,11 @@ if (check) {
 }
 
 function addGeneratedFile(relativePath, content) {
-  expected.set(toPosix(relativePath), content);
+  expected.set(toPosix(relativePath), Buffer.from(content, "utf8"));
 }
 
 function addFile(relativePath) {
-  expected.set(toPosix(relativePath), readFileSync(path.join(root, relativePath), "utf8"));
+  expected.set(toPosix(relativePath), readFileSync(path.join(root, relativePath)));
 }
 
 function addDirectory(relativePath) {
@@ -84,7 +85,7 @@ function writeContext() {
   for (const [relativePath, content] of expected) {
     const targetPath = path.join(contextRoot, relativePath);
     mkdirSync(path.dirname(targetPath), { recursive: true });
-    writeFileSync(targetPath, content, "utf8");
+    writeFileSync(targetPath, content);
   }
 
   console.log(`Synced ${expected.size} plugin context files.`);
@@ -103,9 +104,9 @@ function checkContext() {
       continue;
     }
 
-    const actual = readFileSync(targetPath, "utf8");
+    const actual = readFileSync(targetPath);
 
-    if (actual !== content) {
+    if (!actual.equals(content)) {
       failures.push(`${relativePath}: out of sync`);
     }
   }

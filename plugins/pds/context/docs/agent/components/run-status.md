@@ -5,6 +5,8 @@
 RunStatus is the PDS compact run-state primitive. It composes Badge styling with
 a constrained status vocabulary and default labels for agent or tool run state.
 
+![RunStatus component preview](images/run-status.png)
+
 ## When To Use
 
 - Use for compact run, job, queue, or tool execution state.

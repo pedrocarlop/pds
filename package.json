@@ -16,6 +16,7 @@
     "clean:workspace": "node scripts/clean-workspace.mjs",
     "css:lint": "node scripts/lint-component-css-tokens.mjs",
     "design:lint": "design.md lint DESIGN.md",
+    "docs:component-images": "node scripts/capture-component-doc-images.mjs",
     "docs:lint": "node scripts/lint-agent-docs.mjs && node scripts/check-agent-skill-contracts.mjs && node scripts/check-agent-component-contracts.mjs && node scripts/check-agent-guidance-contracts.mjs && node scripts/check-agent-foundation-contracts.mjs && node scripts/check-agent-evaluation-scenarios.mjs && node scripts/check-agent-readiness.mjs && pnpm plugin:context:check",
     "examples:build": "turbo run build --filter=@pds/examples-react",
     "examples:dev": "pnpm build && pnpm --filter @pds/examples-react dev",

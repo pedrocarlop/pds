@@ -5,6 +5,10 @@
 Describe the component's job in PDS product surfaces. Keep this about the
 component contract, not a general design-system essay.
 
+Add the generated preview image before `## When To Use` after landing the
+component. Use `pnpm docs:component-images` to capture
+`docs/agent/components/images/<component-id>.png`.
+
 ## When To Use
 
 - Use when ...

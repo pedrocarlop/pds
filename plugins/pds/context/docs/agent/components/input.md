@@ -6,6 +6,8 @@ Input is the PDS single-line field primitive. It provides token-first field
 styling, density, invalid state mapping, native input behavior, and stable
 attributes for package CSS and tests.
 
+![Input component preview](images/input.png)
+
 ## When To Use
 
 - Use for short single-line values such as names, filters, identifiers, or

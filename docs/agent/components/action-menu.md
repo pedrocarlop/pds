@@ -5,6 +5,8 @@
 ActionMenu provides a compact command-style dropdown for grouped actions, backed
 by Radix Dropdown Menu.
 
+![ActionMenu component preview](images/action-menu.png)
+
 ## When To Use
 
 - Use for command lists attached to toolbar or row action triggers.

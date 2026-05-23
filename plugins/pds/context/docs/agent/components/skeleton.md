@@ -4,6 +4,8 @@
 
 Skeleton provides loading placeholders for progressive rendering states.
 
+![Skeleton component preview](images/skeleton.png)
+
 ## When To Use
 
 - Use while predictable content is loading.

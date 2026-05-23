@@ -4,6 +4,8 @@
 
 Switch provides an immediate on/off setting backed by Radix Switch.
 
+![Switch component preview](images/switch.png)
+
 ## When To Use
 
 - Use for settings that can be enabled or disabled immediately.

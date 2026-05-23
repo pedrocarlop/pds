@@ -5,6 +5,8 @@
 Progress communicates determinate or indeterminate task completion backed by
 Radix Progress.
 
+![Progress component preview](images/progress.png)
+
 ## When To Use
 
 - Use for uploads, generation steps, or long-running known tasks.

@@ -6,6 +6,8 @@ Cell is the base row primitive for simple static, action, disclosure, and
 selectable rows. It owns the row shell, density, state styling, and side
 affordances without imposing richer item slots.
 
+![Cell component preview](images/cell.png)
+
 ## When To Use
 
 - Use for simple row content that does not need avatar, description, side, or

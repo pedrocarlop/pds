@@ -19,7 +19,7 @@ system that exists today.
 | Plugin skill workflows are discoverable and structured | Every `/pds:*` skill has a canonical workflow, command section, minimum read path, plugin adapter, skills index entry, and plugin README entry | `scripts/check-agent-skill-contracts.mjs` |
 | Package exports and install docs are stable | Public package manifests, export maps, published files, package READMEs, token scoped CSS exports, and CLI install docs stay aligned | `scripts/check-package-contracts.mjs` |
 | Foundation rules match token source | Token-backed foundation docs link to their source CSS, package README entries, scoped imports, and docs index entries | `scripts/check-agent-foundation-contracts.mjs` |
-| Public React components are agent-addressable | Every `packages/react/src/components/*.tsx` component has a matching contract under `docs/agent/components`, source link, component index link, and preview file | `scripts/check-agent-component-contracts.mjs` and `scripts/check-react-component-previews.mjs` |
+| Public React components are agent-addressable | Every `packages/react/src/components/*.tsx` component has a matching contract under `docs/agent/components`, source link, component index link, generated preview image, and preview file | `scripts/check-agent-component-contracts.mjs` and `scripts/check-react-component-previews.mjs` |
 | Screen and flow guidance is agent-addressable | Pattern and screen-structure docs keep required sections, related source links, and index links | `scripts/check-agent-guidance-contracts.mjs` |
 | Agent outcomes have named quality scenarios | Representative Codex and Claude tasks define route, prompt, evidence, scoring rubric, pass conditions, quality signals, failure signals, rendered reference coverage, and verification | `scripts/check-agent-evaluation-scenarios.mjs` and `pnpm examples:visual:check` |
 | Component rendering is verified, not only documented | Component previews build through the private React consumer and render in browser checks at desktop and a 200% zoom proxy | `pnpm examples:visual:build` and `pnpm examples:visual:check` |
@@ -41,9 +41,12 @@ above checkable:
 - `docs:lint` includes the agent-doc linter, skill-contract check,
   component-contract check, guidance-contract check, foundation-contract check,
   evaluation-scenario check, readiness audit, and plugin-context sync check.
-- Component source files and preview files remain in one-to-one coverage.
+- Component source files, preview files, and generated documentation images
+  remain in one-to-one coverage.
 - Browser preview verification keeps the desktop and 200% zoom proxy viewports
   and targets component preview stories plus rendered agent scenario stories.
+- `scripts/capture-component-doc-images.mjs` captures component documentation
+  images from the built Ladle preview shell when images need regeneration.
 - The living-system, router, workflow, and indexes link to this audit so agents
   can find the readiness model.
 - Evaluation scenarios remain linked from the agent indexes and checked by

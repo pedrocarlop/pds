@@ -6,6 +6,8 @@ Badge is the PDS compact metadata and status primitive. It provides token-first
 tone and emphasis treatment, stable attributes, wrapping labels, and optional
 `asChild` composition for link-like metadata.
 
+![Badge component preview](images/badge.png)
+
 ## When To Use
 
 - Use for short status, category, count, or metadata labels.

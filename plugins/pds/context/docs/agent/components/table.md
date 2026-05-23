@@ -5,6 +5,8 @@
 Table provides semantic tabular data primitives with PDS density and surface
 styling.
 
+![Table component preview](images/table.png)
+
 ## When To Use
 
 - Use for row-and-column data where headers define cell meaning.

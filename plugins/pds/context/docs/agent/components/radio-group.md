@@ -5,6 +5,8 @@
 RadioGroup provides mutually exclusive choice controls backed by Radix
 RadioGroup.
 
+![RadioGroup component preview](images/radio-group.png)
+
 ## When To Use
 
 - Use when all options should remain visible.

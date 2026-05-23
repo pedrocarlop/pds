@@ -6,6 +6,8 @@ Surface is the structural composition primitive for grouped PDS content. It
 provides layered backgrounds, radius, spacing, header/content/footer slots, and
 action placement without imposing application landmarks or data behavior.
 
+![Surface component preview](images/surface.png)
+
 ## When To Use
 
 - Use for grouped product modules, panels, run summaries, review blocks, and

@@ -4,6 +4,8 @@
 
 Popover provides non-modal contextual content backed by Radix Popover.
 
+![Popover component preview](images/popover.png)
+
 ## When To Use
 
 - Use for compact inspectors, filters, and inline settings.

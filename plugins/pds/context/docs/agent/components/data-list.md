@@ -5,6 +5,8 @@
 DataList provides semantic key-value metadata layouts using native description
 list elements.
 
+![DataList component preview](images/data-list.png)
+
 ## When To Use
 
 - Use for entity details, run metadata, or settings summaries.

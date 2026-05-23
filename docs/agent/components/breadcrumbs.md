@@ -4,6 +4,8 @@
 
 Breadcrumbs provides semantic hierarchy navigation for the current location.
 
+![Breadcrumbs component preview](images/breadcrumbs.png)
+
 ## When To Use
 
 - Use for nested inspectable resources and drill-down pages.

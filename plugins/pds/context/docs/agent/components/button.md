@@ -7,6 +7,8 @@ provides token-first visual treatment, stable state attributes, native button
 behavior, and optional `asChild` composition for links or custom interactive
 elements.
 
+![Button component preview](images/button.png)
+
 ## When To Use
 
 - Use for actions that run, submit, approve, cancel, inspect, navigate, or expose

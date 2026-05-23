@@ -1,9 +1,10 @@
-import { readdir, readFile } from "node:fs/promises";
+import { readdir, readFile, stat } from "node:fs/promises";
 import path from "node:path";
 
 const root = process.cwd();
 const componentsDir = path.join(root, "packages/react/src/components");
 const componentDocsDir = path.join(root, "docs/agent/components");
+const componentImagesDir = path.join(componentDocsDir, "images");
 const componentIndexPath = path.join(componentDocsDir, "README.md");
 const failures = [];
 
@@ -40,6 +41,12 @@ for (const id of componentIds) {
 
   const source = await readFile(docPath, "utf8");
   const relativeSourcePath = `packages/react/src/components/${id}.tsx`;
+  const relativeImagePath = `images/${id}.png`;
+  const imagePattern = new RegExp(
+    `!\\[[^\\]]+\\]\\(${escapeRegExp(relativeImagePath)}\\)`
+  );
+  const imageIndex = source.search(imagePattern);
+  const whenToUseIndex = source.indexOf("## When To Use");
 
   for (const section of requiredSections) {
     if (!source.includes(section)) {
@@ -52,6 +59,16 @@ for (const id of componentIds) {
       `${relative(docPath)}: must link to component source ${relativeSourcePath}`
     );
   }
+
+  if (imageIndex === -1) {
+    report(`${relative(docPath)}: must include component image ${relativeImagePath}`);
+  } else if (whenToUseIndex !== -1 && imageIndex > whenToUseIndex) {
+    report(
+      `${relative(docPath)}: component image must appear before "## When To Use"`
+    );
+  }
+
+  await checkComponentImage(id);
 
   if (!componentIndex.includes(`${id}.md`)) {
     report(`${relative(componentIndexPath)}: missing link to ${id}.md`);
@@ -108,6 +125,26 @@ function report(message) {
   failures.push(message);
 }
 
+async function checkComponentImage(id) {
+  const imagePath = path.join(componentImagesDir, `${id}.png`);
+
+  try {
+    const imageStats = await stat(imagePath);
+
+    if (!imageStats.isFile()) {
+      report(`${relative(imagePath)}: component image must be a file`);
+    } else if (imageStats.size < 1_000) {
+      report(`${relative(imagePath)}: component image is unexpectedly small`);
+    }
+  } catch {
+    report(`${relative(imagePath)}: missing component image`);
+  }
+}
+
 function relative(absolutePath) {
   return path.relative(root, absolutePath);
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }

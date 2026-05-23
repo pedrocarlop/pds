@@ -6,6 +6,8 @@ Textarea is the PDS multiline field primitive. It provides token-first field
 styling, density, invalid state mapping, native textarea behavior, and stable
 attributes for package CSS and tests.
 
+![Textarea component preview](images/textarea.png)
+
 ## When To Use
 
 - Use for multiline notes, prompts, descriptions, or generated text input.

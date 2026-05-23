@@ -8,6 +8,8 @@ propagation of disabled and invalid state to `ComposerInput`. It does not own
 submission side effects, shortcuts, attachments, model selection, or message
 persistence.
 
+![Composer component preview](images/composer.png)
+
 ## When To Use
 
 - Use for message entry at the end of a [Transcript](transcript.md) or agent surface.

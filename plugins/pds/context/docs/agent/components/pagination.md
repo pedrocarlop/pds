@@ -4,6 +4,8 @@
 
 Pagination provides navigation primitives for paged data sets.
 
+![Pagination component preview](images/pagination.png)
+
 ## When To Use
 
 - Use when content is split into discrete pages.
