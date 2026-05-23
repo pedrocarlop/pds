@@ -127,6 +127,34 @@ Verification Commands:
   `pnpm examples:visual:check` for the rendered reference; run `pnpm check`
   when the scenario exposes reusable PDS guidance changes.
 
+## Scenario: avoid-generic-product-screen
+
+- Route: [skills/implement-screen.md](skills/implement-screen.md), one
+  [screen structure](screen-structures/README.md), the
+  [PDS Screen Quality Gates](pds-screen-quality-gates.md), and only the pattern
+  or component contracts needed by the requested workflow.
+- Prompt: Implement a product screen from a broad brief while keeping the result
+  operational, domain-specific, and free of landing-page filler.
+- Required Evidence: selected structure, pre-build content contract, source
+  diff, rendered desktop view, rendered 200% zoom proxy or narrow viewport view,
+  and build or test output. This repo keeps a rendered reference for this
+  scenario in `examples/react/src/stories/agent-scenarios.stories.tsx`.
+- Quality Signals: each major region maps to the user job, a decision, a
+  required state, or a reachable action; domain entities and controls are
+  visible; empty, error, loading, and success feedback have clear placement; and
+  copy describes the workflow instead of the product's vibe.
+- Failure Signals: oversized hero sections, testimonial or logo filler, fake
+  proof, decorative metrics, generic card grids, single-purpose atmosphere,
+  hidden primary actions, absent workflow states, or a screen that could fit any
+  SaaS product after renaming the title.
+- Pass Conditions: Task Fitness, Token And Visual Fidelity, and Resilience And
+  Accessibility each score 2; the content contract is reflected in the rendered
+  screen; and the run meets the shared scoring rubric.
+- Verification: inspect screenshots against the content contract, run the
+  target app checks, run `pnpm examples:visual:check` for the rendered
+  reference, and run `pnpm check` when guidance, examples, plugin context, or
+  packages changed.
+
 ## Scenario: create-reusable-component
 
 - Route: [skills/create-component.md](skills/create-component.md),

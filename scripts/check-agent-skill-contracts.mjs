@@ -34,6 +34,8 @@ const skillContracts = {
     "## Minimum Read Path",
     "## Structure Selection",
     "## Pre-build Preview",
+    "Content contract:",
+    "every major region must map to the",
     "## Workflow",
     "## Defaults",
     "## Completion Message"
@@ -224,4 +226,3 @@ async function readRootFile(filePath) {
 function report(filePath, message) {
   failures.push(`${filePath}: ${message}`);
 }
-

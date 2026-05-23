@@ -59,6 +59,8 @@ Before editing files, output a PDS implementation preview:
 - Route / target: file or screen being changed
 - PDS components: components planned for composition
 - Local CSS: layout-only responsibilities
+- Content contract: real entities, required data, forbidden placeholders, and
+  the purpose of each major region
 - States: loading, empty, error, success, disabled, focus, active
 - Resilience: narrow viewport, 40% longer text, 200% zoom
 - Verification: commands to run
@@ -72,6 +74,8 @@ PDS implementation preview:
 - Target: src/routes/business-info.tsx
 - PDS components: Surface, Input, Select, Checkbox, InlineAlert, Button
 - Local CSS: centered 628px focus shell and vertical section spacing
+- Content contract: merchant profile fields, validation evidence, save status,
+  and no fake testimonials, metrics, users, or proof
 - States: loading, validation error, saving, saved, disabled submit
 - Resilience: long labels, translated helper text, 200% zoom
 - Verification: pnpm check
@@ -94,6 +98,10 @@ node <plugin-root>/skills/audit/scripts/audit-web-project.mjs --target <project-
    indexes to choose matching structure, pattern, and component docs, then stop.
 4. Complete [Structure Selection](#structure-selection) and output the
    [Pre-build Preview](#pre-build-preview) before making code changes.
+   Treat the content contract as a blocker: every major region must map to the
+   user job, a decision, a required state, or a reachable action. Remove regions
+   that only add atmosphere, generic marketing copy, decorative metrics, or
+   placeholder proof.
 5. If PDS is not wired in an existing React app, follow the existing-app recipe:
    install or use the available `@pds/react` package path, import `@pds/react/styles.css`
    once at the app root, and keep app CSS layout-focused.
@@ -115,6 +123,9 @@ node <plugin-root>/skills/audit/scripts/audit-web-project.mjs --target <project-
 - Prefer modifying the existing screen over creating a parallel demo.
 - Prefer public imports from `@pds/react` over local equivalents.
 - Keep generated UI operational, dense, inspectable, and product-focused.
+- When a brief is broad, choose concrete domain data, workflow states, and
+  primary actions before composing visuals; do not compensate with landing-page
+  filler, decorative card grids, or invented proof.
 - Do not create marketing pages, docs sites, Storybook, or new PDS components
   unless the user explicitly asks.
 

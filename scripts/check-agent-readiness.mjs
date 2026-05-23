@@ -116,6 +116,7 @@ await expectIncludes("docs/agent/living-system.md", [
 await expectIncludes("docs/agent/evaluation-scenarios.md", [
   "## Scenario: start-new-pds-app",
   "## Scenario: implement-review-queue-screen",
+  "## Scenario: avoid-generic-product-screen",
   "## Scenario: create-reusable-component",
   "## Scenario: review-and-self-improve",
   "## Scenario: audit-existing-react-app",
@@ -159,6 +160,8 @@ await expectIncludes("examples/react/README.md", [
 await expectIncludes("examples/react/src/stories/agent-scenarios.stories.tsx", [
   "Review queue scenario",
   "Operations review queue",
+  "Generic product screen guardrail",
+  "Chargeback evidence workspace",
   "TableContainer",
   "InlineAlert",
   "PageHeader",
