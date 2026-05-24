@@ -30,8 +30,9 @@ these rules after reading [AGENTS.md](../../AGENTS.md) and using
 - For verification, use `pnpm check`; it covers publishable packages, the
   private React example consumer, plugin context sync, `DESIGN.md` lint,
   package contract coverage, skill contract coverage, component contract coverage,
-  foundation contract coverage, guidance contract coverage, agent evaluation scenario coverage,
-  the agent readiness audit, and browser-level component preview smoke checks.
+  foundation contract coverage, guidance contract coverage, generated reference docs,
+  agent evaluation scenario coverage, the agent readiness audit, and
+  browser-level component preview smoke checks.
 - Use [evaluation-scenarios.md](evaluation-scenarios.md) when a change could
   alter the quality of generated Codex or Claude outcomes, not only the
   structure of docs or packages.

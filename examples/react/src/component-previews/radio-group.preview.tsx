@@ -13,15 +13,15 @@ const preview = {
       <RadioGroup defaultValue="agent">
         <Stack>
           <label className="visual-lab-inline-field">
-            <RadioGroupItem value="agent" />
+            <RadioGroupItem aria-label="Agent workspace" value="agent" />
             <span>Agent workspace</span>
           </label>
           <label className="visual-lab-inline-field">
-            <RadioGroupItem value="human" />
+            <RadioGroupItem aria-label="Human review queue" value="human" />
             <span>Human review queue</span>
           </label>
           <label className="visual-lab-inline-field">
-            <RadioGroupItem disabled value="locked" />
+            <RadioGroupItem aria-label="Locked destination" disabled value="locked" />
             <span>Locked destination</span>
           </label>
         </Stack>

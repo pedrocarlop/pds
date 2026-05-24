@@ -18,6 +18,12 @@ limitations.
   relevant foundation docs for the visual area being changed.
 - Before changing public API, update the component context, exports, and tests
   together.
+- Use the generated [React component API reference](../../reference/react-components.md)
+  for the current TypeScript export and prop surface, then return to the
+  component contract for behavior, accessibility, and composition guidance.
+- Use the generated [supported surface matrix](../../reference/supported-surface-matrix.md)
+  when checking maturity, source, docs, preview, tests, a11y/focus coverage, and
+  known gaps across the component set.
 - Before adding examples or tests, check the documented slots, data attributes,
   state behavior, and limitations.
 - Before handing back component documentation, ensure the contract includes the

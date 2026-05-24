@@ -23,8 +23,11 @@ live in [docs/agent/evaluation-scenarios.md](agent/evaluation-scenarios.md).
   patterns, skills, readiness audit, and living-system model.
 - `docs/foundations`: token guidance including colour, type, spacing, layout,
   elevation, motion, and content resilience.
+- `docs/reference`: generated React API reference and supported surface matrix.
 - `docs/recipes` and `docs/architecture`: app adoption paths and repo boundary
   rules.
+- `CHANGELOG.md`, `CONTRIBUTING.md`, `SECURITY.md`, `.github/workflows`, and
+  `docs/release-policy.md`: public-repo maturity basics.
 - `plugins/pds`: thin skill adapters plus generated plugin context copied from
   canonical guidance.
 - `packages/tokens`, `packages/react`, and `packages/cli`: publishable packages.
@@ -45,8 +48,9 @@ for detailed package and generated-output boundaries.
 
 The current workspace supports tokens, an initial React component slice, pattern
 guidance, React adoption recipes, tests, agent-readable guidance, and a
-lightweight private React examples app. It does not include a website,
-Storybook, visual regression suite, or broader component library in this phase.
+lightweight private React examples app. It includes generated reference docs and
+CI wiring, but does not include a website, Storybook, visual regression suite,
+design-tool export, or broader component library in this phase.
 
 ## Navigation Rule
 

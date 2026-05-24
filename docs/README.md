@@ -20,6 +20,13 @@ guidance is centralized under [agent](agent/README.md).
 - [agent/evaluation-scenarios.md](agent/evaluation-scenarios.md):
   outcome-oriented task scenarios for Codex and Claude result quality.
 - [agent/skills](agent/skills/README.md): canonical `/pds:*` plugin workflows.
+- [reference](reference/README.md): generated API reference and supported
+  surface matrix.
+- [reference/react-components.md](reference/react-components.md): generated
+  React prop and export reference.
+- [reference/supported-surface-matrix.md](reference/supported-surface-matrix.md):
+  component maturity, source, docs, preview, tests, a11y/focus coverage, and
+  known gaps.
 - [foundations](foundations/README.md): foundation guidance index for visual
   token usage.
 - [foundations/tokens.md](foundations/tokens.md): token ownership and source rules.
@@ -32,6 +39,8 @@ guidance is centralized under [agent](agent/README.md).
 - [foundations/content-resilience.md](foundations/content-resilience.md): translation, zoom, and overflow behavior.
 - [recipes](recipes): practical React app setup and PDS adoption recipes.
 - [architecture/repository-structure.md](architecture/repository-structure.md): package and documentation structure.
+- [release-policy.md](release-policy.md): versioning, release checklist, and
+  stable API bar.
 - [packages](../packages/README.md): publishable package ownership and install
   boundaries.
 

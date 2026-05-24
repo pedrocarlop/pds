@@ -12,15 +12,15 @@ const preview = {
     return (
       <Stack>
         <label className="visual-lab-inline-field">
-          <Checkbox defaultChecked />
+          <Checkbox aria-label="Require human approval" defaultChecked />
           <span>Require human approval</span>
         </label>
         <label className="visual-lab-inline-field">
-          <Checkbox checked="indeterminate" />
+          <Checkbox aria-label="Some reviewers assigned" checked="indeterminate" />
           <span>Some reviewers assigned</span>
         </label>
         <label className="visual-lab-inline-field">
-          <Checkbox invalid />
+          <Checkbox aria-label="Invalid acknowledgement" invalid />
           <span>Invalid acknowledgement</span>
         </label>
       </Stack>

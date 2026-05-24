@@ -16,5 +16,9 @@ A component should not be handed back until these pass:
 12. Primary actions, required labels, errors, and state feedback do not truncate.
 13. Preview includes normal, long text, narrow layout, and relevant states.
 14. Tests cover render contract, refs, classes, data attributes, accessibility, and interaction behaviour.
-15. CSS contract tests cover required selectors and token constraints.
-16. Browser preview checks pass at desktop and a 200% zoom proxy.
+15. Dialog, BottomSheet, Menu, Select, Popover, Toast, and Tabs keep targeted
+    focus, dismissal, role, and keyboard or trigger interaction coverage.
+16. CSS contract tests cover required selectors and token constraints.
+17. Generated API reference and supported surface matrix stay current through
+    `pnpm docs:reference:check`.
+18. Browser preview checks pass at desktop and a 200% zoom proxy.

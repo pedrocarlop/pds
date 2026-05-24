@@ -7,3 +7,5 @@ class PdsResizeObserver {
 }
 
 globalThis.ResizeObserver ??= PdsResizeObserver;
+
+Element.prototype.scrollIntoView ??= function scrollIntoView() {};

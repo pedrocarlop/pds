@@ -14,6 +14,7 @@ requirements.
 | Flow need | Use |
 | --- | --- |
 | Agent conversation, tool execution, workspace state, transcript, or run status | [Agent workspace](agent-workspace.md) |
+| One run's timeline, tool evidence, approval gates, output, errors, or audit trail | [Run details](run-details.md) |
 | Legal or policy document review with explicit acceptance or signing | [Agreement signing](agreement-signing.md) |
 | Queue-based triage, approval, review, or batch decisions | [Review queue](review-queue.md) |
 | Preferences, account, admin, permissions, system state, or configuration | [Settings and system](settings-system.md) |
@@ -22,9 +23,24 @@ requirements.
 ## Current Patterns
 
 - [Agent workspace](agent-workspace.md)
+- [Run details](run-details.md)
 - [Agreement signing](agreement-signing.md)
 - [Review queue](review-queue.md)
 - [Settings and system](settings-system.md)
+
+## Rendered Workflow Templates
+
+The private React visual lab includes rendered templates for the current agent
+workflow set in `examples/react/src/stories/agent-scenarios.stories.tsx`:
+
+- Agent workspace.
+- Review queue.
+- Run details.
+- Settings.
+- Approval/signing flow.
+
+`pnpm examples:visual:check` exercises these templates at desktop and a 200%
+zoom proxy so workflow guidance is checked against real component composition.
 
 ## Authoring
 

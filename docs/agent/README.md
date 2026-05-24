@@ -23,6 +23,8 @@ index once the task route is known.
 - [components](components/README.md): React component contracts for agents.
 - [patterns](patterns/README.md): repeatable product flow guidance.
 - [skills](skills/README.md): canonical PDS plugin skill workflows.
+- [../reference](../reference/README.md): generated React API reference and
+  supported surface matrix for source, docs, preview, tests, coverage, and gaps.
 
 Choose the matching child doc from an index, then stop expanding that branch.
 Do not read every markdown file before starting.

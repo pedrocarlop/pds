@@ -1,4 +1,4 @@
-/* global document, getComputedStyle, HTMLElement, window */
+/* global document, getComputedStyle, HTMLElement, HTMLInputElement, HTMLSelectElement, HTMLTextAreaElement, window */
 
 import { createReadStream, existsSync, readFileSync, statSync } from "node:fs";
 import { mkdir, rm, writeFile } from "node:fs/promises";
@@ -242,6 +242,53 @@ function runBrowserAssertions({ storyName, viewportName }) {
       .map(describeElement);
   }
 
+  function collectUnlabeledInteractiveControls() {
+    return Array.from(
+      document.querySelectorAll(
+        [
+          "button",
+          "input",
+          "select",
+          "textarea",
+          "a[href]",
+          '[role="button"]',
+          '[role="checkbox"]',
+          '[role="combobox"]',
+          '[role="menuitem"]',
+          '[role="option"]',
+          '[role="radio"]',
+          '[role="switch"]',
+          '[role="tab"]'
+        ].join(",")
+      )
+    )
+      .filter(isVisibleElement)
+      .filter((element) => {
+        if (!(element instanceof HTMLElement)) {
+          return false;
+        }
+
+        return accessibleNameLike(element).length === 0;
+      })
+      .slice(0, 5)
+      .map(describeElement);
+  }
+
+  function collectBrokenAriaReferences() {
+    return Array.from(document.querySelectorAll("[aria-labelledby], [aria-describedby]"))
+      .filter(isVisibleElement)
+      .filter((element) => {
+        const idRefs = [
+          ...(element.getAttribute("aria-labelledby")?.split(/\s+/) ?? []),
+          ...(element.getAttribute("aria-describedby")?.split(/\s+/) ?? [])
+        ].filter(Boolean);
+
+        return idRefs.some((id) => !document.getElementById(id));
+      })
+      .slice(0, 5)
+      .map(describeElement);
+  }
+
   function isVisibleElement(element) {
     if (!(element instanceof HTMLElement)) {
       return false;
@@ -269,6 +316,48 @@ function runBrowserAssertions({ storyName, viewportName }) {
     return slot
       ? `${element.tagName.toLowerCase()}[data-slot="${slot}"] ${label}`
       : `${element.tagName.toLowerCase()} ${label}`;
+  }
+
+  function accessibleNameLike(element) {
+    const labelledBy = element.getAttribute("aria-labelledby");
+
+    if (labelledBy) {
+      return labelledBy
+        .split(/\s+/)
+        .map((id) => document.getElementById(id)?.textContent?.trim() ?? "")
+        .join(" ")
+        .trim();
+    }
+
+    if (element.getAttribute("aria-label")) {
+      return element.getAttribute("aria-label")?.trim() ?? "";
+    }
+
+    if (element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement) {
+      const labels = Array.from(element.labels ?? [])
+        .map((label) => label.textContent?.trim() ?? "")
+        .join(" ")
+        .trim();
+
+      if (labels.length > 0) {
+        return labels;
+      }
+
+      return element.placeholder?.trim() ?? "";
+    }
+
+    if (element instanceof HTMLSelectElement) {
+      return Array.from(element.labels ?? [])
+        .map((label) => label.textContent?.trim() ?? "")
+        .join(" ")
+        .trim();
+    }
+
+    return (
+      element.getAttribute("title")?.trim() ||
+      element.textContent?.trim().replace(/\s+/g, " ") ||
+      ""
+    );
   }
 
   function collectTravelWidgetActionOverlaps() {
@@ -384,6 +473,22 @@ function runBrowserAssertions({ storyName, viewportName }) {
   if (zeroSizedControls.length > 0) {
     failures.push(
       `visible controls or slots have no size: ${zeroSizedControls.join(", ")}`
+    );
+  }
+
+  const unlabeledInteractiveControls = collectUnlabeledInteractiveControls();
+
+  if (unlabeledInteractiveControls.length > 0) {
+    failures.push(
+      `visible interactive controls are missing accessible names: ${unlabeledInteractiveControls.join(", ")}`
+    );
+  }
+
+  const brokenAriaReferences = collectBrokenAriaReferences();
+
+  if (brokenAriaReferences.length > 0) {
+    failures.push(
+      `visible controls reference missing aria-labelledby or aria-describedby ids: ${brokenAriaReferences.join(", ")}`
     );
   }
 

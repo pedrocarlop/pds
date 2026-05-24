@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom/vitest";
 
 import * as React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 import {
@@ -1570,6 +1570,31 @@ describe("PDS starter components", () => {
     });
   });
 
+  it("returns focus to the Dialog trigger after keyboard dismissal", async () => {
+    render(
+      <Dialog>
+        <DialogTrigger>Open dialog</DialogTrigger>
+        <DialogContent>
+          <DialogTitle>Confirm run</DialogTitle>
+          <DialogDescription>Start this agent run?</DialogDescription>
+        </DialogContent>
+      </Dialog>
+    );
+
+    const trigger = screen.getByRole("button", { name: "Open dialog" });
+
+    trigger.focus();
+    fireEvent.click(trigger);
+
+    const dialog = await screen.findByRole("dialog");
+    fireEvent.keyDown(dialog, { code: "Escape", key: "Escape" });
+
+    await waitFor(() => {
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+      expect(trigger).toHaveFocus();
+    });
+  });
+
   it("allows explicit Dialog portal and overlay composition", () => {
     render(
       <Dialog open>
@@ -1649,6 +1674,29 @@ describe("PDS starter components", () => {
     );
   });
 
+  it("keeps Toast action and close controls keyboard focusable", () => {
+    render(
+      <ToastProvider>
+        <ToastViewport />
+        <Toast defaultOpen tone="warning">
+          <ToastTitle>Action needed</ToastTitle>
+          <ToastDescription>Review the blocked run.</ToastDescription>
+          <ToastAction altText="Review blocked run">Review</ToastAction>
+          <ToastClose />
+        </Toast>
+      </ToastProvider>
+    );
+
+    const action = screen.getByRole("button", { name: "Review" });
+    const close = screen.getByRole("button", { name: "Dismiss notification" });
+
+    action.focus();
+    expect(action).toHaveFocus();
+
+    close.focus();
+    expect(close).toHaveFocus();
+  });
+
   it("wires BottomSheet primitives and accessible content", () => {
     render(
       <BottomSheet open>
@@ -1720,6 +1768,32 @@ describe("PDS starter components", () => {
 
     await waitFor(() => {
       expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+  });
+
+  it("returns focus to the BottomSheet trigger after keyboard dismissal", async () => {
+    render(
+      <BottomSheet>
+        <BottomSheetTrigger>Open sheet</BottomSheetTrigger>
+        <BottomSheetContent>
+          <BottomSheetTitle>Agreement details</BottomSheetTitle>
+          <BottomSheetDescription>Read the summary.</BottomSheetDescription>
+          <BottomSheetBody>Summary</BottomSheetBody>
+        </BottomSheetContent>
+      </BottomSheet>
+    );
+
+    const trigger = screen.getByRole("button", { name: "Open sheet" });
+
+    trigger.focus();
+    fireEvent.click(trigger);
+
+    const sheet = await screen.findByRole("dialog");
+    fireEvent.keyDown(sheet, { code: "Escape", key: "Escape" });
+
+    await waitFor(() => {
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+      expect(trigger).toHaveFocus();
     });
   });
 
@@ -1842,6 +1916,44 @@ describe("PDS starter components", () => {
     );
   });
 
+  it("opens Select from the keyboard with listbox and option semantics", async () => {
+    render(
+      <Select defaultValue="queued">
+        <SelectTrigger aria-label="Run status">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="queued">Queued</SelectItem>
+          <SelectItem value="running">Running</SelectItem>
+          <SelectItem disabled value="cancelled">
+            Cancelled
+          </SelectItem>
+        </SelectContent>
+      </Select>
+    );
+
+    const trigger = screen.getByRole("combobox", { name: "Run status" });
+
+    trigger.focus();
+    fireEvent.keyDown(trigger, { code: "ArrowDown", key: "ArrowDown" });
+
+    const listbox = await screen.findByRole("listbox");
+    expect(listbox).toHaveAttribute("data-slot", "select-content");
+    expect(within(listbox).getByText("Queued").closest('[data-slot="select-item"]')).toHaveAttribute(
+      "aria-selected",
+      "true"
+    );
+    expect(within(listbox).getByText("Cancelled").closest('[data-slot="select-item"]')).toHaveAttribute(
+      "data-disabled"
+    );
+
+    fireEvent.keyDown(listbox, { code: "Escape", key: "Escape" });
+
+    await waitFor(() => {
+      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    });
+  });
+
   it("renders Checkbox with default and custom indicators", () => {
     const ref = React.createRef<HTMLButtonElement>();
 
@@ -1932,6 +2044,52 @@ describe("PDS starter components", () => {
     );
   });
 
+  it("switches Tabs panels through trigger interaction", () => {
+    function TabsHarness() {
+      const [value, setValue] = React.useState("runs");
+
+      return (
+        <Tabs value={value} onValueChange={setValue}>
+          <TabsList aria-label="Workspace sections" variant="line">
+            <TabsTrigger value="runs">Runs</TabsTrigger>
+            <TabsTrigger value="settings">Settings</TabsTrigger>
+          </TabsList>
+          <TabsContent value="runs">Recent runs</TabsContent>
+          <TabsContent value="settings">Settings panel</TabsContent>
+        </Tabs>
+      );
+    }
+
+    render(<TabsHarness />);
+
+    const settingsTab = screen.getByRole("tab", { name: "Settings" });
+
+    fireEvent.mouseDown(settingsTab, { button: 0, ctrlKey: false });
+    fireEvent.click(settingsTab);
+
+    expect(settingsTab).toHaveAttribute("data-state", "active");
+    expect(screen.getByRole("tabpanel")).toHaveTextContent("Settings panel");
+  });
+
+  it("keeps Tabs triggers keyboard focusable", () => {
+    render(
+      <Tabs defaultValue="runs">
+        <TabsList aria-label="Workspace sections" variant="line">
+          <TabsTrigger value="runs">Runs</TabsTrigger>
+          <TabsTrigger value="settings">Settings</TabsTrigger>
+        </TabsList>
+        <TabsContent value="runs">Recent runs</TabsContent>
+        <TabsContent value="settings">Settings panel</TabsContent>
+      </Tabs>
+    );
+
+    const settingsTab = screen.getByRole("tab", { name: "Settings" });
+
+    settingsTab.focus();
+
+    expect(settingsTab).toHaveFocus();
+  });
+
   it("renders Menu, Popover, and ActionMenu overlay primitives", () => {
     render(
       <>
@@ -2017,6 +2175,70 @@ describe("PDS starter components", () => {
       "action-menu-shortcut"
     );
     expect(screen.getByText("Remove")).toHaveAttribute("data-intent", "danger");
+  });
+
+  it("opens and dismisses Menu from the trigger with menu roles", async () => {
+    render(
+      <Menu>
+        <MenuTrigger>Run actions</MenuTrigger>
+        <MenuContent>
+          <MenuItem>Copy run id</MenuItem>
+          <MenuItem disabled>Archive run</MenuItem>
+        </MenuContent>
+      </Menu>
+    );
+
+    const trigger = screen.getByRole("button", { name: "Run actions" });
+
+    fireEvent.pointerDown(trigger, {
+      button: 0,
+      ctrlKey: false,
+      pointerType: "mouse"
+    });
+
+    const menu = await screen.findByRole("menu");
+    expect(screen.getByRole("menuitem", { name: "Copy run id" })).toHaveAttribute(
+      "data-slot",
+      "menu-item"
+    );
+    expect(screen.getByRole("menuitem", { name: "Archive run" })).toHaveAttribute(
+      "data-disabled"
+    );
+
+    fireEvent.keyDown(menu, { code: "Escape", key: "Escape" });
+
+    await waitFor(() => {
+      expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+    });
+  });
+
+  it("opens and closes Popover while preserving trigger focus", async () => {
+    render(
+      <Popover>
+        <PopoverTrigger>Open filters</PopoverTrigger>
+        <PopoverContent>
+          Filter controls
+          <PopoverClose>Close filters</PopoverClose>
+        </PopoverContent>
+      </Popover>
+    );
+
+    const trigger = screen.getByRole("button", { name: "Open filters" });
+
+    trigger.focus();
+    fireEvent.click(trigger);
+
+    expect(await screen.findByText("Filter controls")).toHaveAttribute(
+      "data-slot",
+      "popover-content"
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Close filters" }));
+
+    await waitFor(() => {
+      expect(screen.queryByText("Filter controls")).not.toBeInTheDocument();
+      expect(trigger).toHaveFocus();
+    });
   });
 
   it("renders Skeleton, Progress, and InlineAlert feedback primitives", () => {

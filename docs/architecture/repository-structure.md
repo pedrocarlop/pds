@@ -32,7 +32,9 @@ Current source:
 - `src/styles.css`: aggregate stylesheet that imports the foundation CSS files for the stable default package export.
 
 Future source can add DTCG JSON, token build scripts, and platform exports when
-the token system needs it.
+the token system needs it. Token export, design kit, and Figma mapping are
+intentionally deferred until the React component APIs and token names are stable
+enough that design-tool output will not freeze churn into external assets.
 
 ### `packages/react`
 
@@ -45,6 +47,21 @@ Current source:
   fields, surfaces, and agent-facing product composition.
 - `src/components.css`: token-first component styles.
 - `src/styles.css`: aggregate stylesheet for package consumers.
+
+Current boundary decision:
+
+- Keep the public boundary as Radix-backed styled React components plus stable
+  PDS slots, props, and data attributes.
+- Do not add a true headless primitives package yet. Radix already owns the
+  hardest keyboard, focus, role, typeahead, popover, and modal behavior for the
+  current component set, and a separate headless layer would duplicate that
+  contract before PDS has enough non-React or unstyled consumers.
+- Revisit a headless layer only when at least two real consumers need unstyled
+  primitives, a non-React target, or behavior reuse without PDS CSS. That change
+  needs an architecture update, package ownership, generated API reference
+  coverage, component contracts, tests, and migration guidance.
+- Keep any future design-tool output downstream of stable component APIs:
+  token export first, then design kit primitives, then Figma mapping.
 
 ## Documentation
 

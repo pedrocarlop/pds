@@ -12,15 +12,15 @@ const preview = {
     return (
       <Stack>
         <label className="visual-lab-inline-field">
-          <Switch defaultChecked />
+          <Switch aria-label="Auto-approve low-risk runs" defaultChecked />
           <span>Auto-approve low-risk runs</span>
         </label>
         <label className="visual-lab-inline-field">
-          <Switch />
+          <Switch aria-label="Notify reviewers" />
           <span>Notify reviewers</span>
         </label>
         <label className="visual-lab-inline-field">
-          <Switch disabled />
+          <Switch aria-label="Locked setting" disabled />
           <span>Locked setting</span>
         </label>
       </Stack>

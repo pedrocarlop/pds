@@ -213,3 +213,7 @@ pnpm clean:workspace
 - Design rules: [DESIGN.md](DESIGN.md).
 - Full docs index: [docs/README.md](docs/README.md).
 - Agent workflow: [AGENTS.md](AGENTS.md).
+- Supported surface matrix: [docs/reference/supported-surface-matrix.md](docs/reference/supported-surface-matrix.md).
+- Release policy: [docs/release-policy.md](docs/release-policy.md).
+- Contributing: [CONTRIBUTING.md](CONTRIBUTING.md).
+- Security policy: [SECURITY.md](SECURITY.md).

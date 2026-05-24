@@ -109,6 +109,9 @@ A PDS change is agent-reliable when:
 - Foundation contract coverage keeps token-backed guidance aligned with
   `packages/tokens/src`.
 - Component contract coverage passes for every exported React component source.
+- Generated reference coverage keeps TypeScript prop/export docs and the
+  supported surface matrix aligned with component source, docs, previews, tests,
+  accessibility/focus coverage notes, and known limitations.
 - Guidance contract coverage passes for pattern and screen-structure docs.
 - Agent evaluation scenario coverage keeps representative Codex and Claude
   outcome checks tied to routes, evidence, scoring rubric, pass conditions,

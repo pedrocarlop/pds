@@ -24,7 +24,10 @@ Codex, update, and local tarball flows. This package requires one app-root
 - `@pds/react/styles.css` imports `@pds/tokens/styles.css` and component styles.
 - Components use PDS-specific props and stable `data-*` attributes rather than Tailwind classes.
 - This is a starter component slice, not a full production-maturity component library. APIs, behavior, and styling contracts should harden incrementally as real PDS surfaces need them.
-- Browser-level component preview verification covers private Ladle previews at desktop and a 200% zoom proxy. Focus-trap verification remains future work.
+- Browser-level component preview verification covers private Ladle previews at
+  desktop and a 200% zoom proxy. Unit tests cover targeted focus, dismissal,
+  roles, and interaction behavior for Dialog, BottomSheet, Menu, Select,
+  Popover, Toast, and Tabs.
 
 ## Usage
 
@@ -76,6 +79,11 @@ Lightweight per-component guidance lives in
 matching component contract before changing component source, `components.css`,
 examples, tests, or public APIs.
 
+Generated reference docs live in [docs/reference](../../docs/reference/README.md).
+Use the API reference for current TypeScript props and exports, and the supported
+surface matrix for component maturity, source, docs, previews, tests, coverage,
+and known gaps.
+
 The package README stays as the package overview. Component context explains
 implementation-specific slots, stable `data-*` attributes, accessibility
 contracts, content resilience rules, styling hooks, token categories, examples,
@@ -88,12 +96,15 @@ and known limitations.
 - No virtualization.
 - No tool output rendering.
 - No form submission side effects.
-- No browser-level focus-trap verification yet.
+- No browser-level focus-trap verification yet; modal focus behavior is covered
+  by Radix-backed contracts and targeted unit assertions.
 
 ## Related Docs
 
 - [DESIGN.md](../../DESIGN.md) for the portable visual contract.
 - [docs/agent/workflow.md](../../docs/agent/workflow.md) for agent usage rules.
+- [docs/reference](../../docs/reference/README.md) for generated API and
+  supported surface references.
 - [docs/architecture/repository-structure.md](../../docs/architecture/repository-structure.md) for package boundaries.
 - [docs/agent/components](../../docs/agent/components/README.md) for component context.
 - [packages/tokens/README.md](../tokens/README.md) for token ownership.
