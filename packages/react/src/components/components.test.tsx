@@ -1,7 +1,8 @@
 import "@testing-library/jest-dom/vitest";
 
 import * as React from "react";
-import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
+import { Line, LineChart, XAxis } from "recharts";
 import { describe, expect, it, vi } from "vitest";
 
 import {
@@ -15,6 +16,25 @@ import {
   ActionWidgetAvatar,
   ActionWidgetContent,
   ActionWidgetTitle,
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  Alert,
+  AlertAction,
+  AlertDescription,
+  AlertTitle,
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogMedia,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  AspectRatio,
   Amount,
   AmountCurrency,
   AmountInput,
@@ -26,6 +46,13 @@ import {
   AvatarGroupCount,
   AvatarImage,
   Badge,
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
   Breadcrumbs,
   BreadcrumbsEllipsis,
   BreadcrumbsItem,
@@ -45,13 +72,77 @@ import {
   BottomSheetTitle,
   BottomSheetTrigger,
   Button,
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+  Calendar,
+  CalendarDayButton,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
   Cell,
+  ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
+  ChartStyle,
+  ChartTooltip,
+  ChartTooltipContent,
   Checkbox,
   CheckboxIndicator,
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+  Combobox,
+  ComboboxChip,
+  ComboboxChips,
+  ComboboxChipsInput,
+  ComboboxClear,
+  ComboboxCollection,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxGroup,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxLabel,
+  ComboboxList,
+  ComboboxSeparator,
+  ComboboxTrigger,
+  ComboboxValue,
+  Command,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
   Composer,
   ComposerActions,
   ComposerFooter,
   ComposerInput,
+  ContextMenu,
+  ContextMenuCheckboxItem,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuRadioGroup,
+  ContextMenuRadioItem,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuSub,
+  ContextMenuSubContent,
+  ContextMenuSubTrigger,
+  ContextMenuTrigger,
   CurrencyProvider,
   DataList,
   DataListDescription,
@@ -77,16 +168,71 @@ import {
   DialogPortal,
   DialogTitle,
   DialogTrigger,
+  DirectionProvider,
+  Drawer,
+  DrawerBody,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSeparator,
+  FieldSet,
+  FieldTitle,
   FilterChip,
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
   Icon,
   InlineAlert,
   InlineAlertActions,
   InlineAlertDescription,
   InlineAlertTitle,
   Input,
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+  InputGroupText,
+  InputGroupTextarea,
   IntlProvider,
   Item,
   ItemSkeleton,
+  Kbd,
+  KbdGroup,
+  Label,
   Menu,
   MenuCheckboxItem,
   MenuContent,
@@ -97,6 +243,20 @@ import {
   MenuSeparator,
   MenuShortcut,
   MenuTrigger,
+  Menubar,
+  MenubarCheckboxItem,
+  MenubarContent,
+  MenubarItem,
+  MenubarLabel,
+  MenubarMenu,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarSub,
+  MenubarSubContent,
+  MenubarSubTrigger,
+  MenubarTrigger,
   Message,
   MessageActions,
   MessageAuthor,
@@ -104,6 +264,16 @@ import {
   MessageContent,
   MessageHeader,
   MessageMeta,
+  NativeSelect,
+  NativeSelectOptGroup,
+  NativeSelectOption,
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
   Pagination,
   PaginationEllipsis,
   PaginationItem,
@@ -128,7 +298,12 @@ import {
   RadioGroup,
   RadioGroupIndicator,
   RadioGroupItem,
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
   RunStatus,
+  ScrollArea,
+  ScrollBar,
   Select,
   SelectContent,
   SelectGroup,
@@ -137,7 +312,42 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
+  Separator,
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupAction,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarInput,
+  SidebarInset,
+  SidebarMenu,
+  SidebarMenuAction,
+  SidebarMenuBadge,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSkeleton,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+  SidebarProvider,
+  SidebarRail,
+  SidebarSeparator,
+  SidebarTrigger,
+  Sheet,
+  SheetBody,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+  Slider,
   Skeleton,
+  Spinner,
   Surface,
   SurfaceAction,
   SurfaceContent,
@@ -160,6 +370,9 @@ import {
   TabsList,
   TabsTrigger,
   Textarea,
+  Toggle,
+  ToggleGroup,
+  ToggleGroupItem,
   Toast,
   ToastAction,
   ToastClose,
@@ -167,6 +380,7 @@ import {
   ToastProvider,
   ToastTitle,
   ToastViewport,
+  Toaster,
   Tooltip,
   TooltipContent,
   TooltipProvider,
@@ -184,8 +398,51 @@ import {
   TravelWidgetSkeletonDescription,
   TravelWidgetSkeletonDetails,
   TravelWidgetSkeletonTitle,
-  TravelWidgetTitle
+  TravelWidgetTitle,
+  navigationMenuTriggerStyle,
+  toast,
+  useDirection
 } from "../index";
+
+function stubMatchMedia(matches = false) {
+  vi.stubGlobal(
+    "matchMedia",
+    vi.fn().mockImplementation((query: string) => ({
+      addEventListener: vi.fn(),
+      addListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+      matches,
+      media: query,
+      onchange: null,
+      removeEventListener: vi.fn(),
+      removeListener: vi.fn()
+    }))
+  );
+  vi.stubGlobal(
+    "IntersectionObserver",
+    class TestIntersectionObserver implements IntersectionObserver {
+      readonly root = null;
+      readonly rootMargin = "";
+      readonly scrollMargin = "";
+      readonly thresholds = [];
+
+      disconnect() {}
+      observe() {}
+      takeRecords() {
+        return [];
+      }
+      unobserve() {}
+    }
+  );
+  vi.stubGlobal(
+    "ResizeObserver",
+    class TestResizeObserver implements ResizeObserver {
+      disconnect() {}
+      observe() {}
+      unobserve() {}
+    }
+  );
+}
 
 describe("PDS starter components", () => {
   it("renders Button with PDS data attributes, disabled state, and forwarded refs", () => {
@@ -232,6 +489,301 @@ describe("PDS starter components", () => {
     render(<Button>{label}</Button>);
 
     expect(screen.getByRole("button", { name: label })).toHaveTextContent(label);
+  });
+
+  it("renders ButtonGroup orientation, text, and separator slots", () => {
+    const groupRef = React.createRef<HTMLDivElement>();
+    const textRef = React.createRef<HTMLDivElement>();
+    const separatorRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <ButtonGroup
+        ref={groupRef}
+        aria-label="Run actions"
+        className="custom-button-group"
+        orientation="vertical"
+      >
+        <Button>Run</Button>
+        <ButtonGroupSeparator ref={separatorRef} decorative={false} />
+        <ButtonGroupText ref={textRef}>Draft</ButtonGroupText>
+      </ButtonGroup>
+    );
+
+    const group = screen.getByRole("group", { name: "Run actions" });
+    expect(group).toHaveAttribute("data-slot", "button-group");
+    expect(group).toHaveAttribute("data-orientation", "vertical");
+    expect(group).toHaveClass("pds-button-group", "custom-button-group");
+    expect(groupRef.current).toBe(group);
+    expect(screen.getByText("Draft")).toHaveAttribute(
+      "data-slot",
+      "button-group-text"
+    );
+    expect(textRef.current).toBe(screen.getByText("Draft"));
+
+    const separator = screen.getByRole("separator");
+    expect(separator).toHaveAttribute("data-slot", "button-group-separator");
+    expect(separator).toHaveAttribute("data-orientation", "vertical");
+    expect(separator).toHaveClass("pds-separator", "pds-button-group-separator");
+    expect(separatorRef.current).toBe(separator);
+  });
+
+  it("renders Card anatomy, size metadata, and forwarded refs", () => {
+    const cardRef = React.createRef<HTMLDivElement>();
+    const titleRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <Card ref={cardRef} className="custom-card" size="sm">
+        <CardHeader>
+          <CardTitle ref={titleRef}>Run summary</CardTitle>
+          <CardDescription>Generated changes are ready.</CardDescription>
+          <CardAction>
+            <Badge tone="success">Passed</Badge>
+          </CardAction>
+        </CardHeader>
+        <CardContent>Three checks passed.</CardContent>
+        <CardFooter>
+          <Button>Open</Button>
+        </CardFooter>
+      </Card>
+    );
+
+    const card = screen.getByText("Run summary").closest('[data-slot="card"]');
+    expect(card).toHaveAttribute("data-size", "sm");
+    expect(card).toHaveClass("pds-card", "custom-card");
+    expect(cardRef.current).toBe(card);
+    expect(screen.getByText("Run summary")).toHaveAttribute(
+      "data-slot",
+      "card-title"
+    );
+    expect(titleRef.current).toBe(screen.getByText("Run summary"));
+    expect(screen.getByText("Generated changes are ready.")).toHaveAttribute(
+      "data-slot",
+      "card-description"
+    );
+    expect(screen.getByText("Passed").closest('[data-slot="card-action"]')).toHaveClass(
+      "pds-card-action"
+    );
+    expect(screen.getByText("Three checks passed.")).toHaveAttribute(
+      "data-slot",
+      "card-content"
+    );
+    expect(screen.getByRole("button", { name: "Open" }).closest(
+      '[data-slot="card-footer"]'
+    )).toHaveClass("pds-card-footer");
+  });
+
+  it("renders Calendar with DayPicker slots and selected day metadata", () => {
+    const selected = new Date(2026, 4, 25);
+
+    const { container } = render(
+      <Calendar mode="single" month={selected} selected={selected} />
+    );
+
+    const calendar = container.querySelector('[data-slot="calendar"]');
+    expect(calendar).toHaveClass("pds-calendar");
+    expect(container.querySelector(".pds-calendar-caption")).toHaveTextContent(
+      "May 2026"
+    );
+    const selectedDay = Array.from(
+      container.querySelectorAll<HTMLButtonElement>("[data-day]")
+    ).find((button) => button.dataset.day === selected.toLocaleDateString());
+    expect(selectedDay).toHaveAttribute("data-selected-single", "true");
+    expect(selectedDay).toHaveClass("pds-calendar-day-button");
+    expect(CalendarDayButton).toBeDefined();
+  });
+
+  it("renders Carousel region, slides, controls, and context-backed buttons", () => {
+    stubMatchMedia();
+
+    render(
+      <Carousel aria-label="Feature slides">
+        <CarouselContent>
+          <CarouselItem>First slide</CarouselItem>
+          <CarouselItem>Second slide</CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+    );
+
+    expect(screen.getByRole("region", { name: "Feature slides" })).toHaveClass(
+      "pds-carousel"
+    );
+    expect(screen.getAllByRole("group")).toHaveLength(2);
+    expect(screen.getByRole("button", { name: "Previous slide" })).toHaveClass(
+      "pds-carousel-previous"
+    );
+    expect(screen.getByRole("button", { name: "Next slide" })).toHaveClass(
+      "pds-carousel-next"
+    );
+  });
+
+  it("renders ChartContainer style variables and custom tooltip content", () => {
+    const config = {
+      runs: {
+        color: "var(--pds-color-accent)",
+        label: "Runs"
+      }
+    };
+
+    const { container } = render(
+      <ChartContainer config={config} id="runs">
+        <LineChart data={[{ day: "Mon", runs: 12 }]}>
+          <XAxis dataKey="day" />
+          <ChartTooltip
+            content={
+              <ChartTooltipContent
+                active
+                payload={[
+                  {
+                    color: "var(--pds-color-accent)",
+                    dataKey: "runs",
+                    graphicalItemId: "runs-line",
+                    name: "runs",
+                    payload: { runs: 12 },
+                    type: "none",
+                    value: 12
+                  }
+                ]}
+              />
+            }
+          />
+          <ChartLegend content={<ChartLegendContent />} />
+          <Line dataKey="runs" stroke="var(--color-runs)" />
+        </LineChart>
+      </ChartContainer>
+    );
+
+    const chart = container.querySelector('[data-slot="chart"]');
+    expect(chart).toHaveClass("pds-chart");
+    expect(chart).toHaveAttribute("data-chart", "chart-runs");
+    expect(container.querySelector("style")).toHaveTextContent(
+      "--color-runs: var(--pds-color-accent)"
+    );
+    expect(ChartStyle).toBeDefined();
+  });
+
+  it("renders Sidebar provider, layout slots, menu states, and trigger behavior", () => {
+    stubMatchMedia();
+
+    render(
+      <SidebarProvider defaultOpen>
+        <Sidebar collapsible="icon">
+          <SidebarHeader>
+            <SidebarInput aria-label="Search navigation" />
+          </SidebarHeader>
+          <SidebarSeparator />
+          <SidebarContent>
+            <SidebarGroup>
+              <SidebarGroupLabel>Platform</SidebarGroupLabel>
+              <SidebarGroupAction aria-label="Add item">
+                <Icon name="add" />
+              </SidebarGroupAction>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton isActive tooltip="Runs">
+                      <Icon name="dashboard" />
+                      <span>Runs</span>
+                    </SidebarMenuButton>
+                    <SidebarMenuAction aria-label="More actions" showOnHover>
+                      <Icon name="more_horiz" />
+                    </SidebarMenuAction>
+                    <SidebarMenuBadge>3</SidebarMenuBadge>
+                    <SidebarMenuSub>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton href="#queued">
+                          <span>Queued</span>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    </SidebarMenuSub>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <SidebarMenuSkeleton showIcon />
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </SidebarContent>
+          <SidebarFooter>Footer</SidebarFooter>
+          <SidebarRail />
+        </Sidebar>
+        <SidebarInset>
+          <SidebarTrigger />
+          Workspace
+        </SidebarInset>
+      </SidebarProvider>
+    );
+
+    expect(document.querySelector('[data-slot="sidebar-wrapper"]')).toHaveClass(
+      "pds-sidebar-wrapper"
+    );
+    expect(document.querySelector('[data-slot="sidebar"]')).toHaveAttribute(
+      "data-state",
+      "expanded"
+    );
+    expect(screen.getByLabelText("Search navigation")).toHaveClass(
+      "pds-sidebar-input"
+    );
+    expect(screen.getByRole("button", { name: "Runs" })).toHaveAttribute(
+      "data-active",
+      "true"
+    );
+    expect(screen.getByRole("link", { name: "Queued" })).toHaveClass(
+      "pds-sidebar-menu-sub-button"
+    );
+    expect(document.querySelector('[data-slot="sidebar-menu-skeleton"]')).toHaveClass(
+      "pds-sidebar-menu-skeleton"
+    );
+
+    const trigger = document.querySelector(
+      '[data-slot="sidebar-trigger"]'
+    ) as HTMLElement;
+
+    fireEvent.click(trigger);
+
+    expect(document.querySelector('[data-slot="sidebar"]')).toHaveAttribute(
+      "data-state",
+      "collapsed"
+    );
+  });
+
+  it("renders Alert tones, status semantics, and action slots", () => {
+    const ref = React.createRef<HTMLDivElement>();
+
+    render(
+      <>
+        <Alert ref={ref} className="custom-alert" tone="danger">
+          <Icon name="warning" />
+          <AlertTitle>Review failed</AlertTitle>
+          <AlertDescription>One check needs attention.</AlertDescription>
+          <AlertAction>
+            <Button intent="secondary">Inspect</Button>
+          </AlertAction>
+        </Alert>
+        <Alert role="status" tone="success">
+          <AlertTitle>Review passed</AlertTitle>
+        </Alert>
+      </>
+    );
+
+    const alert = screen.getByRole("alert");
+    expect(alert).toHaveAttribute("data-slot", "alert");
+    expect(alert).toHaveAttribute("data-tone", "danger");
+    expect(alert).toHaveClass("pds-alert", "custom-alert");
+    expect(ref.current).toBe(alert);
+    expect(screen.getByText("Review failed")).toHaveAttribute(
+      "data-slot",
+      "alert-title"
+    );
+    expect(screen.getByText("One check needs attention.")).toHaveAttribute(
+      "data-slot",
+      "alert-description"
+    );
+    expect(screen.getByRole("button", { name: "Inspect" }).closest(
+      '[data-slot="alert-action"]'
+    )).toHaveClass("pds-alert-action");
+    expect(screen.getByRole("status")).toHaveAttribute("data-tone", "success");
   });
 
   it("renders Icon with Material Symbols Rounded hooks", () => {
@@ -1323,6 +1875,122 @@ describe("PDS starter components", () => {
     );
   });
 
+  it("renders InputGroup addons, compact button, focus behavior, and textarea control", () => {
+    const groupRef = React.createRef<HTMLDivElement>();
+    const inputRef = React.createRef<HTMLInputElement>();
+    const buttonRef = React.createRef<HTMLButtonElement>();
+    const textareaRef = React.createRef<HTMLTextAreaElement>();
+
+    render(
+      <>
+        <InputGroup ref={groupRef} aria-label="Repository" disabled>
+          <InputGroupAddon align="inline-start">
+            <InputGroupText>https://</InputGroupText>
+          </InputGroupAddon>
+          <InputGroupInput
+            ref={inputRef}
+            aria-label="Repository URL"
+            defaultValue="github.com/pds"
+            invalid
+          />
+          <InputGroupAddon align="inline-end">
+            <InputGroupButton
+              ref={buttonRef}
+              aria-label="Copy repository"
+              size="icon-xs"
+            >
+              <Icon name="content_copy" />
+            </InputGroupButton>
+          </InputGroupAddon>
+        </InputGroup>
+        <InputGroup aria-label="Notes">
+          <InputGroupAddon align="block-start">
+            <InputGroupText>Reviewer context</InputGroupText>
+          </InputGroupAddon>
+          <InputGroupTextarea ref={textareaRef} aria-label="Run notes" />
+        </InputGroup>
+      </>
+    );
+
+    const group = screen.getByRole("group", { name: "Repository" });
+    expect(group).toHaveAttribute("data-slot", "input-group");
+    expect(group).toHaveAttribute("data-disabled", "true");
+    expect(group).toHaveAttribute("aria-disabled", "true");
+    expect(groupRef.current).toBe(group);
+
+    const input = screen.getByLabelText("Repository URL");
+    expect(input).toHaveAttribute("data-slot", "input-group-control");
+    expect(input).toHaveAttribute("aria-invalid", "true");
+    expect(input).toHaveClass("pds-input", "pds-input-group-input");
+    expect(inputRef.current).toBe(input);
+
+    fireEvent.click(screen.getByText("https://"));
+    expect(input).toHaveFocus();
+
+    const button = screen.getByRole("button", { name: "Copy repository" });
+    expect(button).toHaveAttribute("data-slot", "input-group-button");
+    expect(button).toHaveAttribute("data-input-group-size", "icon-xs");
+    expect(button).toHaveClass("pds-button", "pds-input-group-button");
+    expect(buttonRef.current).toBe(button);
+
+    expect(screen.getByText("Reviewer context").closest("[data-align]")).toHaveAttribute(
+      "data-align",
+      "block-start"
+    );
+    expect(screen.getByLabelText("Run notes")).toHaveAttribute(
+      "data-slot",
+      "input-group-control"
+    );
+    expect(textareaRef.current).toBe(screen.getByLabelText("Run notes"));
+  });
+
+  it("renders InputOTP slots, invalid state, separator, and forwarded input ref", () => {
+    const ref = React.createRef<HTMLInputElement>();
+    const handleChange = vi.fn();
+
+    render(
+      <InputOTP
+        ref={ref}
+        aria-label="Verification code"
+        invalid
+        maxLength={6}
+        onChange={handleChange}
+        value="123"
+      >
+        <InputOTPGroup aria-label="First three digits">
+          <InputOTPSlot index={0} />
+          <InputOTPSlot index={1} />
+          <InputOTPSlot index={2} />
+        </InputOTPGroup>
+        <InputOTPSeparator />
+        <InputOTPGroup aria-label="Last three digits">
+          <InputOTPSlot index={3} />
+          <InputOTPSlot index={4} />
+          <InputOTPSlot index={5} />
+        </InputOTPGroup>
+      </InputOTP>
+    );
+
+    const input = screen.getByLabelText("Verification code");
+    expect(input).toHaveAttribute("data-slot", "input-otp");
+    expect(input).toHaveAttribute("aria-invalid", "true");
+    expect(input).toHaveAttribute("data-invalid", "true");
+    expect(input).toHaveClass("pds-input-otp-control");
+    expect(input.closest(".pds-input-otp")).toContainElement(input);
+    expect(ref.current).toBe(input);
+
+    const slots = document.querySelectorAll('[data-slot="input-otp-slot"]');
+    expect(slots).toHaveLength(6);
+    expect(slots[0]).toHaveTextContent("1");
+    expect(slots[0]).toHaveAttribute("data-filled", "true");
+    expect(slots[3]).not.toHaveAttribute("data-filled");
+
+    expect(screen.getByRole("separator")).toHaveAttribute(
+      "data-slot",
+      "input-otp-separator"
+    );
+  });
+
   it("renders Amount compound slots with primitive-backed currency and input sides", () => {
     const amountRef = React.createRef<HTMLDivElement>();
     const currencyRef = React.createRef<HTMLElement>();
@@ -1614,6 +2282,84 @@ describe("PDS starter components", () => {
     expect(screen.queryByRole("button", { name: "Close" })).not.toBeInTheDocument();
   });
 
+  it("wires AlertDialog confirmation slots and action controls", () => {
+    render(
+      <AlertDialog open>
+        <AlertDialogContent className="custom-alert-dialog" size="sm">
+          <AlertDialogHeader>
+            <AlertDialogMedia>!</AlertDialogMedia>
+            <AlertDialogTitle>Discard draft?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This will remove generated notes from the workspace.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Keep draft</AlertDialogCancel>
+            <AlertDialogAction>Discard</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    );
+
+    const dialog = screen.getByRole("alertdialog", { name: "Discard draft?" });
+    expect(dialog).toHaveAttribute("data-slot", "alert-dialog-content");
+    expect(dialog).toHaveAttribute("data-size", "sm");
+    expect(dialog).toHaveClass("pds-alert-dialog-content", "custom-alert-dialog");
+    expect(dialog).toHaveAccessibleDescription(
+      "This will remove generated notes from the workspace."
+    );
+    expect(screen.getByText("!")).toHaveAttribute(
+      "data-slot",
+      "alert-dialog-media"
+    );
+    expect(screen.getByText("Discard draft?")).toHaveAttribute(
+      "data-slot",
+      "alert-dialog-title"
+    );
+    expect(screen.getByRole("button", { name: "Keep draft" })).toHaveAttribute(
+      "data-slot",
+      "alert-dialog-cancel"
+    );
+    expect(screen.getByRole("button", { name: "Keep draft" })).toHaveAttribute(
+      "data-intent",
+      "secondary"
+    );
+    expect(screen.getByRole("button", { name: "Discard" })).toHaveAttribute(
+      "data-slot",
+      "alert-dialog-action"
+    );
+    expect(screen.getByRole("button", { name: "Discard" })).toHaveAttribute(
+      "data-intent",
+      "danger"
+    );
+  });
+
+  it("opens and dismisses AlertDialog through trigger and cancel", async () => {
+    render(
+      <AlertDialog>
+        <AlertDialogTrigger>Discard draft</AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogTitle>Discard draft?</AlertDialogTitle>
+          <AlertDialogDescription>This cannot be undone.</AlertDialogDescription>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction>Discard</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Discard draft" }));
+
+    expect(await screen.findByRole("alertdialog")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Cancel" }));
+
+    await waitFor(() => {
+      expect(screen.queryByRole("alertdialog")).not.toBeInTheDocument();
+    });
+  });
+
   it("renders Toast feedback with tone, slots, action, close, and viewport", () => {
     render(
       <ToastProvider swipeDirection="right">
@@ -1695,6 +2441,44 @@ describe("PDS starter components", () => {
 
     close.focus();
     expect(close).toHaveFocus();
+  });
+
+  it("renders Sonner Toaster with PDS classes and exported toast API", async () => {
+    const handleOpen = vi.fn();
+    const id = "sonner-test-toast";
+
+    render(<Toaster id="sonner-test" duration={100000} />);
+
+    act(() => {
+      toast.success("Run queued", {
+        action: {
+          label: "Open",
+          onClick: handleOpen
+        },
+        description: "We will notify reviewers when it starts.",
+        id,
+        toasterId: "sonner-test"
+      });
+    });
+
+    expect(await screen.findByText("Run queued")).toBeInTheDocument();
+
+    const toaster = document.querySelector("[data-sonner-toaster]");
+    expect(toaster).toHaveClass("pds-toaster");
+
+    const sonnerToast = screen.getByText("Run queued").closest("[data-sonner-toast]");
+    expect(sonnerToast).toHaveClass("pds-sonner-toast", "pds-sonner-success");
+    expect(screen.getByText("Run queued")).toHaveClass("pds-sonner-title");
+    expect(
+      screen.getByText("We will notify reviewers when it starts.")
+    ).toHaveClass("pds-sonner-description");
+    expect(screen.getByRole("button", { name: "Open" })).toHaveClass(
+      "pds-sonner-action-button"
+    );
+
+    act(() => {
+      toast.dismiss(id);
+    });
   });
 
   it("wires BottomSheet primitives and accessible content", () => {
@@ -1816,6 +2600,123 @@ describe("PDS starter components", () => {
     expect(screen.queryByRole("button", { name: "Close" })).not.toBeInTheDocument();
   });
 
+  it("wires Sheet side placement, content slots, and close controls", () => {
+    render(
+      <Sheet open>
+        <SheetContent className="custom-sheet" side="left">
+          <SheetHeader>
+            <SheetTitle>Run settings</SheetTitle>
+            <SheetDescription>Update workspace defaults.</SheetDescription>
+          </SheetHeader>
+          <SheetBody>Settings body</SheetBody>
+          <SheetFooter>
+            <SheetClose>Cancel</SheetClose>
+            <Button>Save</Button>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
+    );
+
+    const sheet = screen.getByRole("dialog", { name: "Run settings" });
+    expect(sheet).toHaveAttribute("data-slot", "sheet-content");
+    expect(sheet).toHaveAttribute("data-side", "left");
+    expect(sheet).toHaveClass("pds-sheet-content", "custom-sheet");
+    expect(sheet).toHaveAccessibleDescription("Update workspace defaults.");
+    expect(screen.getByText("Run settings")).toHaveAttribute(
+      "data-slot",
+      "sheet-title"
+    );
+    expect(screen.getByText("Settings body")).toHaveAttribute(
+      "data-slot",
+      "sheet-body"
+    );
+    expect(screen.getByRole("button", { name: "Close" })).toHaveAttribute(
+      "data-slot",
+      "sheet-close"
+    );
+    expect(screen.getByRole("button", { name: "Cancel" })).toHaveAttribute(
+      "data-slot",
+      "sheet-close"
+    );
+  });
+
+  it("opens and dismisses Sheet through Radix trigger and keyboard behavior", async () => {
+    render(
+      <Sheet>
+        <SheetTrigger>Open settings</SheetTrigger>
+        <SheetContent>
+          <SheetHeader>
+            <SheetTitle>Run settings</SheetTitle>
+            <SheetDescription>Update workspace defaults.</SheetDescription>
+          </SheetHeader>
+          <SheetBody>Settings body</SheetBody>
+        </SheetContent>
+      </Sheet>
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Open settings" }));
+
+    const sheet = await screen.findByRole("dialog");
+    expect(sheet).toHaveTextContent("Run settings");
+
+    fireEvent.keyDown(sheet, { code: "Escape", key: "Escape" });
+
+    await waitFor(() => {
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+  });
+
+  it("wires Drawer direction, handle, content slots, and close controls", () => {
+    render(
+      <Drawer direction="bottom" noBodyStyles open>
+        <DrawerTrigger>Open drawer</DrawerTrigger>
+        <DrawerContent className="custom-drawer">
+          <DrawerHeader>
+            <DrawerTitle>Review changes</DrawerTitle>
+            <DrawerDescription>Inspect the pending patch.</DrawerDescription>
+          </DrawerHeader>
+          <DrawerBody>Drawer body</DrawerBody>
+          <DrawerFooter>
+            <DrawerClose>Cancel</DrawerClose>
+            <Button>Apply</Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    );
+
+    const drawer = screen.getByRole("dialog", { name: "Review changes" });
+    expect(document.querySelector('[data-slot="drawer-trigger"]')).toHaveTextContent(
+      "Open drawer"
+    );
+    expect(document.querySelector('[data-slot="drawer-trigger"]')).toHaveAttribute(
+      "data-slot",
+      "drawer-trigger"
+    );
+    expect(drawer).toHaveAttribute("data-slot", "drawer-content");
+    expect(drawer).toHaveAttribute("data-vaul-drawer-direction", "bottom");
+    expect(drawer).toHaveClass("pds-drawer-content", "custom-drawer");
+    expect(drawer).toHaveAccessibleDescription("Inspect the pending patch.");
+    expect(document.querySelector('[data-slot="drawer-handle"]')).toHaveClass(
+      "pds-drawer-handle"
+    );
+    expect(screen.getByText("Review changes")).toHaveAttribute(
+      "data-slot",
+      "drawer-title"
+    );
+    expect(screen.getByText("Drawer body")).toHaveAttribute(
+      "data-slot",
+      "drawer-body"
+    );
+    expect(screen.getByRole("button", { name: "Close" })).toHaveAttribute(
+      "data-slot",
+      "drawer-close"
+    );
+    expect(screen.getByRole("button", { name: "Cancel" })).toHaveAttribute(
+      "data-slot",
+      "drawer-close"
+    );
+  });
+
   it("wires Tooltip primitives with accessible content and className", () => {
     render(
       <TooltipProvider>
@@ -1874,6 +2775,109 @@ describe("PDS starter components", () => {
     expect(await screen.findByRole("tooltip")).toHaveTextContent(
       "Agent status"
     );
+  });
+
+  it("renders HoverCard content, trigger slot, and optional arrow", () => {
+    const ref = React.createRef<HTMLDivElement>();
+
+    render(
+      <HoverCard open>
+        <HoverCardTrigger asChild>
+          <Button intent="secondary">Reviewer</Button>
+        </HoverCardTrigger>
+        <HoverCardContent ref={ref} className="custom-hover-card">
+          Reviewer details
+        </HoverCardContent>
+      </HoverCard>
+    );
+
+    expect(screen.getByRole("button", { name: "Reviewer" })).toHaveAttribute(
+      "data-slot",
+      "hover-card-trigger"
+    );
+    expect(screen.getByText("Reviewer details")).toHaveAttribute(
+      "data-slot",
+      "hover-card-content"
+    );
+    expect(screen.getByText("Reviewer details")).toHaveClass(
+      "pds-hover-card-content",
+      "custom-hover-card"
+    );
+    expect(document.querySelector('[data-slot="hover-card-arrow"]')).toBeInTheDocument();
+    expect(ref.current).toBe(screen.getByText("Reviewer details"));
+  });
+
+  it("renders Collapsible trigger and content state attributes", () => {
+    const triggerRef = React.createRef<HTMLButtonElement>();
+    const contentRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <Collapsible defaultOpen>
+        <CollapsibleTrigger ref={triggerRef}>Advanced settings</CollapsibleTrigger>
+        <CollapsibleContent ref={contentRef}>Retry controls</CollapsibleContent>
+      </Collapsible>
+    );
+
+    const trigger = screen.getByRole("button", { name: "Advanced settings" });
+    expect(trigger).toHaveAttribute("data-slot", "collapsible-trigger");
+    expect(trigger).toHaveAttribute("data-state", "open");
+    expect(trigger).toHaveClass("pds-collapsible-trigger");
+    expect(triggerRef.current).toBe(trigger);
+
+    const content = screen.getByText("Retry controls");
+    expect(content).toHaveAttribute("data-slot", "collapsible-content");
+    expect(content).toHaveAttribute("data-state", "open");
+    expect(content).toHaveClass("pds-collapsible-content");
+    expect(contentRef.current).toBe(content);
+  });
+
+  it("renders Accordion item, trigger, content, and disabled state", () => {
+    const rootRef = React.createRef<HTMLDivElement>();
+    const itemRef = React.createRef<HTMLDivElement>();
+    const triggerRef = React.createRef<HTMLButtonElement>();
+    const contentRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <Accordion ref={rootRef} collapsible defaultValue="checks" type="single">
+        <AccordionItem ref={itemRef} value="checks">
+          <AccordionTrigger ref={triggerRef}>Verification checks</AccordionTrigger>
+          <AccordionContent ref={contentRef}>All checks passed.</AccordionContent>
+        </AccordionItem>
+        <AccordionItem disabled value="archive">
+          <AccordionTrigger>Archived details</AccordionTrigger>
+          <AccordionContent>Unavailable</AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    );
+
+    const root = document.querySelector('[data-slot="accordion"]');
+    expect(root).toHaveClass("pds-accordion");
+    expect(rootRef.current).toBe(root);
+
+    expect(itemRef.current).toHaveAttribute("data-slot", "accordion-item");
+
+    const trigger = screen.getByRole("button", {
+      name: "Verification checks"
+    });
+    expect(trigger).toHaveAttribute("data-slot", "accordion-trigger");
+    expect(trigger).toHaveAttribute("data-state", "open");
+    expect(trigger).toHaveAttribute("aria-expanded", "true");
+    expect(triggerRef.current).toBe(trigger);
+    expect(trigger.querySelector('[data-slot="accordion-trigger-icon"]')).toHaveClass(
+      "pds-accordion-trigger-icon"
+    );
+
+    const content = screen.getByText("All checks passed.").closest(
+      '[data-slot="accordion-content"]'
+    );
+    expect(content).toHaveAttribute("data-state", "open");
+    expect(content).toHaveClass("pds-accordion-content");
+    expect(contentRef.current).toBe(content);
+
+    const disabledTrigger = screen.getByRole("button", {
+      name: "Archived details"
+    });
+    expect(disabledTrigger).toBeDisabled();
   });
 
   it("renders Select slots with density, invalid state, and item content", () => {
@@ -2177,6 +3181,292 @@ describe("PDS starter components", () => {
     expect(screen.getByText("Remove")).toHaveAttribute("data-intent", "danger");
   });
 
+  it("renders DropdownMenu, ContextMenu, and Menubar Radix surfaces", async () => {
+    render(
+      <>
+        <DropdownMenu open>
+          <DropdownMenuTrigger>Open dropdown</DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>Dropdown actions</DropdownMenuLabel>
+            <DropdownMenuItem>
+              Copy dropdown id <DropdownMenuShortcut>D</DropdownMenuShortcut>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuCheckboxItem checked>
+              Include dropdown logs
+            </DropdownMenuCheckboxItem>
+            <DropdownMenuRadioGroup value="json">
+              <DropdownMenuRadioItem value="json">
+                JSON export
+              </DropdownMenuRadioItem>
+            </DropdownMenuRadioGroup>
+            <DropdownMenuSub open>
+              <DropdownMenuSubTrigger>Send dropdown to</DropdownMenuSubTrigger>
+              <DropdownMenuSubContent>
+                <DropdownMenuItem>Reviewer queue</DropdownMenuItem>
+              </DropdownMenuSubContent>
+            </DropdownMenuSub>
+            <DropdownMenuItem intent="danger">Delete dropdown draft</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        <ContextMenu>
+          <ContextMenuTrigger>Context target</ContextMenuTrigger>
+          <ContextMenuContent>
+            <ContextMenuLabel>Context actions</ContextMenuLabel>
+            <ContextMenuItem>
+              Copy context path <ContextMenuShortcut>C</ContextMenuShortcut>
+            </ContextMenuItem>
+            <ContextMenuSeparator />
+            <ContextMenuCheckboxItem checked>
+              Include context metadata
+            </ContextMenuCheckboxItem>
+            <ContextMenuRadioGroup value="summary">
+              <ContextMenuRadioItem value="summary">
+                Summary format
+              </ContextMenuRadioItem>
+            </ContextMenuRadioGroup>
+            <ContextMenuSub open>
+              <ContextMenuSubTrigger>Open context in</ContextMenuSubTrigger>
+              <ContextMenuSubContent>
+                <ContextMenuItem>New panel</ContextMenuItem>
+              </ContextMenuSubContent>
+            </ContextMenuSub>
+            <ContextMenuItem intent="danger">Remove context item</ContextMenuItem>
+          </ContextMenuContent>
+        </ContextMenu>
+
+        <Menubar value="file">
+          <MenubarMenu value="file">
+            <MenubarTrigger>File</MenubarTrigger>
+            <MenubarContent>
+              <MenubarLabel>Run file</MenubarLabel>
+              <MenubarItem>
+                New run <MenubarShortcut>N</MenubarShortcut>
+              </MenubarItem>
+              <MenubarSeparator />
+              <MenubarCheckboxItem checked>Auto save</MenubarCheckboxItem>
+              <MenubarRadioGroup value="markdown">
+                <MenubarRadioItem value="markdown">Markdown</MenubarRadioItem>
+              </MenubarRadioGroup>
+              <MenubarSub open>
+                <MenubarSubTrigger>Export as</MenubarSubTrigger>
+                <MenubarSubContent>
+                  <MenubarItem>PDF</MenubarItem>
+                </MenubarSubContent>
+              </MenubarSub>
+              <MenubarItem intent="danger">Close workspace</MenubarItem>
+            </MenubarContent>
+          </MenubarMenu>
+        </Menubar>
+      </>
+    );
+
+    expect(screen.getByText("Open dropdown")).toHaveAttribute(
+      "data-slot",
+      "dropdown-menu-trigger"
+    );
+    expect(document.querySelector('[data-slot="dropdown-menu-content"]')).toHaveClass(
+      "pds-dropdown-menu-content"
+    );
+    expect(screen.getByText("Dropdown actions")).toHaveClass(
+      "pds-dropdown-menu-label"
+    );
+    expect(screen.getByText("D")).toHaveAttribute(
+      "data-slot",
+      "dropdown-menu-shortcut"
+    );
+    expect(screen.getByText("Delete dropdown draft")).toHaveAttribute(
+      "data-intent",
+      "danger"
+    );
+
+    const contextTrigger = screen.getByText("Context target");
+
+    fireEvent.contextMenu(contextTrigger);
+    await screen.findByText("Context actions");
+
+    expect(contextTrigger).toHaveAttribute(
+      "data-slot",
+      "context-menu-trigger"
+    );
+    expect(document.querySelector('[data-slot="context-menu-content"]')).toHaveClass(
+      "pds-context-menu-content"
+    );
+    expect(screen.getByText("Context actions")).toHaveClass(
+      "pds-context-menu-label"
+    );
+    expect(screen.getByText("C")).toHaveAttribute(
+      "data-slot",
+      "context-menu-shortcut"
+    );
+    expect(screen.getByText("Remove context item")).toHaveAttribute(
+      "data-intent",
+      "danger"
+    );
+
+    expect(document.querySelector('[data-slot="menubar"]')).toHaveClass(
+      "pds-menubar"
+    );
+    expect(screen.getByText("File")).toHaveClass("pds-menubar-trigger");
+    expect(document.querySelector('[data-slot="menubar-content"]')).toHaveClass(
+      "pds-menubar-content"
+    );
+    expect(screen.getByText("Run file")).toHaveClass("pds-menubar-label");
+    expect(screen.getByText("N")).toHaveAttribute(
+      "data-slot",
+      "menubar-shortcut"
+    );
+    expect(screen.getByText("Close workspace")).toHaveAttribute(
+      "data-intent",
+      "danger"
+    );
+  });
+
+  it("renders Command palette anatomy with searchable items and dialog metadata", () => {
+    const commandRef = React.createRef<HTMLDivElement>();
+    const inputRef = React.createRef<HTMLInputElement>();
+    const selectHandler = vi.fn();
+
+    render(
+      <>
+        <Command ref={commandRef} label="Workspace commands" value="open-run">
+          <CommandInput
+            ref={inputRef}
+            aria-label="Search workspace commands"
+            placeholder="Search commands"
+          />
+          <CommandList>
+            <CommandEmpty>No commands found</CommandEmpty>
+            <CommandGroup heading="Workspace">
+              <CommandItem
+                data-checked="true"
+                onSelect={selectHandler}
+                value="open-run"
+              >
+                Open run
+                <CommandShortcut>Enter</CommandShortcut>
+              </CommandItem>
+              <CommandSeparator />
+              <CommandItem disabled value="archive-run">
+                Archive run
+              </CommandItem>
+            </CommandGroup>
+          </CommandList>
+        </Command>
+        <CommandDialog open title="Quick actions">
+          <Command label="Dialog commands">
+            <CommandInput aria-label="Search quick actions" />
+            <CommandList>
+              <CommandItem value="copy">Copy link</CommandItem>
+            </CommandList>
+          </Command>
+        </CommandDialog>
+      </>
+    );
+
+    expect(commandRef.current).toHaveAttribute("data-slot", "command");
+    expect(commandRef.current).toHaveClass("pds-command");
+    expect(inputRef.current).toHaveAttribute("data-slot", "command-input");
+    expect(inputRef.current).toHaveClass("pds-command-input");
+    expect(screen.getByText("Workspace")).toHaveAttribute(
+      "cmdk-group-heading"
+    );
+    expect(screen.getByText("Open run").closest('[data-slot="command-item"]')).toHaveAttribute(
+      "data-checked",
+      "true"
+    );
+    expect(screen.getByText("Enter")).toHaveAttribute(
+      "data-slot",
+      "command-shortcut"
+    );
+    expect(document.querySelector('[data-slot="command-separator"]')).toHaveClass(
+      "pds-command-separator"
+    );
+    expect(screen.getByText("Archive run")).toHaveAttribute(
+      "data-disabled",
+      "true"
+    );
+    expect(screen.getByRole("dialog", { name: "Quick actions" })).toHaveClass(
+      "pds-command-dialog-content"
+    );
+  });
+
+  it("renders Combobox input, popup, collection slots, and multiselect chips", async () => {
+    const inputRef = React.createRef<HTMLInputElement>();
+    const chipsRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <>
+        <Combobox defaultValue="router" open>
+          <ComboboxInput
+            ref={inputRef}
+            aria-label="Component route"
+            placeholder="Choose route"
+            showClear
+          />
+          <ComboboxContent>
+            <ComboboxList>
+              <ComboboxGroup>
+                <ComboboxLabel>Routes</ComboboxLabel>
+                <ComboboxItem value="router">Router</ComboboxItem>
+                <ComboboxSeparator />
+                <ComboboxCollection>
+                  {() => <ComboboxItem value="workflow">Workflow</ComboboxItem>}
+                </ComboboxCollection>
+                <ComboboxEmpty>No routes found</ComboboxEmpty>
+              </ComboboxGroup>
+            </ComboboxList>
+          </ComboboxContent>
+        </Combobox>
+
+        <Combobox defaultValue={["agent"]} multiple>
+          <ComboboxChips ref={chipsRef}>
+            <ComboboxChip>Agent</ComboboxChip>
+            <ComboboxChipsInput aria-label="Add owner" />
+          </ComboboxChips>
+          <ComboboxTrigger>
+            <ComboboxValue placeholder="Owners" />
+          </ComboboxTrigger>
+          <ComboboxClear />
+        </Combobox>
+      </>
+    );
+
+    const comboboxInput = screen.getByRole("combobox", {
+      name: "Component route"
+    });
+    expect(comboboxInput).toHaveClass("pds-combobox-input");
+    expect(inputRef.current).toBe(comboboxInput);
+    expect(document.querySelector('[data-slot="combobox-content"]')).toHaveClass(
+      "pds-combobox-content"
+    );
+    expect(screen.getByText("Routes")).toHaveAttribute(
+      "data-slot",
+      "combobox-label"
+    );
+    expect(screen.getByText("Router")).toHaveAttribute(
+      "data-slot",
+      "combobox-item"
+    );
+    expect(document.querySelector('[data-slot="combobox-separator"]')).toHaveClass(
+      "pds-combobox-separator"
+    );
+    expect(document.querySelector('[data-slot="combobox-clear"]')).toHaveClass(
+      "pds-combobox-clear"
+    );
+    expect(chipsRef.current).toHaveAttribute("data-slot", "combobox-chips");
+    expect(screen.getByText("Agent")).toHaveAttribute(
+      "data-slot",
+      "combobox-chip"
+    );
+    expect(screen.getByLabelText("Add owner")).toHaveAttribute(
+      "data-slot",
+      "combobox-chip-input"
+    );
+    expect(screen.getByText("agent")).toBeInTheDocument();
+  });
+
   it("opens and dismisses Menu from the trigger with menu roles", async () => {
     render(
       <Menu>
@@ -2343,9 +3633,457 @@ describe("PDS starter components", () => {
     );
   });
 
+  it("renders Label and Field form grouping primitives", () => {
+    const labelRef = React.createRef<HTMLLabelElement>();
+    const standaloneLabelRef = React.createRef<HTMLLabelElement>();
+
+    render(
+      <>
+        <Label ref={standaloneLabelRef} htmlFor="standalone-label">
+          Standalone label
+        </Label>
+        <Input id="standalone-label" />
+        <FieldSet disabled>
+          <FieldLegend>Run settings</FieldLegend>
+          <FieldGroup>
+            <Field disabled invalid orientation="horizontal">
+              <FieldLabel ref={labelRef} htmlFor="run-name">
+                Run name
+              </FieldLabel>
+              <FieldContent>
+                <Input id="run-name" invalid defaultValue="Nightly analysis" />
+                <FieldDescription>
+                  Visible labels and descriptions stay outside placeholders.
+                </FieldDescription>
+                <FieldError
+                  errors={[
+                    { message: "Run name is required." },
+                    { message: "Run name is required." }
+                  ]}
+                />
+              </FieldContent>
+            </Field>
+            <FieldSeparator>Advanced</FieldSeparator>
+            <Field>
+              <FieldTitle>Model routing</FieldTitle>
+              <FieldContent>
+                <FieldDescription>Uses the workspace default.</FieldDescription>
+              </FieldContent>
+            </Field>
+          </FieldGroup>
+        </FieldSet>
+      </>
+    );
+
+    expect(screen.getByText("Standalone label")).toHaveAttribute(
+      "data-slot",
+      "label"
+    );
+    expect(standaloneLabelRef.current).toBe(screen.getByText("Standalone label"));
+    expect(screen.getByText("Run settings")).toHaveAttribute(
+      "data-slot",
+      "field-legend"
+    );
+    expect(screen.getByText("Run name")).toHaveAttribute(
+      "data-slot",
+      "field-label"
+    );
+    expect(labelRef.current).toBe(screen.getByText("Run name"));
+
+    const invalidField = document.querySelector('[data-slot="field"]');
+    expect(invalidField).toHaveAttribute("role", "group");
+    expect(invalidField).toHaveAttribute("data-orientation", "horizontal");
+    expect(invalidField).toHaveAttribute("data-disabled", "true");
+    expect(invalidField).toHaveAttribute("data-invalid", "true");
+    expect(invalidField).toHaveAttribute("aria-invalid", "true");
+
+    expect(screen.getByRole("textbox", { name: "Run name" })).toHaveAttribute(
+      "aria-invalid",
+      "true"
+    );
+    expect(screen.getByRole("alert")).toHaveTextContent("Run name is required.");
+    expect(screen.getByRole("alert").textContent).toBe("Run name is required.");
+    expect(screen.getByText("Advanced")).toHaveAttribute(
+      "data-slot",
+      "field-separator-content"
+    );
+    expect(screen.getByText("Model routing")).toHaveAttribute(
+      "data-slot",
+      "field-title"
+    );
+  });
+
+  it("renders Kbd shortcuts with grouped semantics and forwarded refs", () => {
+    const ref = React.createRef<HTMLElement>();
+
+    render(
+      <KbdGroup aria-label="Shortcut">
+        <Kbd ref={ref}>Cmd</Kbd>
+        <Kbd>K</Kbd>
+      </KbdGroup>
+    );
+
+    expect(screen.getByLabelText("Shortcut")).toHaveAttribute(
+      "data-slot",
+      "kbd-group"
+    );
+    expect(screen.getByText("Cmd")).toHaveAttribute("data-slot", "kbd");
+    expect(screen.getByText("K")).toHaveClass("pds-kbd");
+    expect(ref.current).toBe(screen.getByText("Cmd"));
+  });
+
+  it("renders Separator orientation and decorative behavior", () => {
+    const ref = React.createRef<HTMLDivElement>();
+    const { container } = render(
+      <>
+        <Separator />
+        <Separator ref={ref} decorative={false} orientation="vertical" />
+      </>
+    );
+
+    const decorative = container.querySelector(
+      '[data-slot="separator"][data-orientation="horizontal"]'
+    );
+    expect(decorative).toHaveAttribute("role", "none");
+
+    const separator = screen.getByRole("separator");
+    expect(separator).toHaveAttribute("data-slot", "separator");
+    expect(separator).toHaveAttribute("data-orientation", "vertical");
+    expect(separator).toHaveClass("pds-separator");
+    expect(ref.current).toBe(separator);
+  });
+
+  it("provides direction context with the direction alias prop", () => {
+    function DirectionValue() {
+      const direction = useDirection();
+
+      return <span data-testid="direction-value">{direction}</span>;
+    }
+
+    render(
+      <DirectionProvider direction="rtl">
+        <DirectionValue />
+      </DirectionProvider>
+    );
+
+    expect(screen.getByTestId("direction-value")).toHaveTextContent("rtl");
+  });
+
+  it("renders Resizable panes and handle anatomy", () => {
+    const groupRef = React.createRef<HTMLDivElement>();
+    const panelRef = React.createRef<HTMLDivElement>();
+    const handleRef = React.createRef<HTMLDivElement>();
+
+    render(
+      <ResizablePanelGroup
+        ref={groupRef}
+        defaultLayout={{ details: 40, transcript: 60 }}
+        id="run-layout"
+      >
+        <ResizablePanel ref={panelRef} id="transcript" minSize="30%">
+          Transcript
+        </ResizablePanel>
+        <ResizableHandle ref={handleRef} withHandle />
+        <ResizablePanel id="details" minSize="20%">
+          Details
+        </ResizablePanel>
+      </ResizablePanelGroup>
+    );
+
+    const group = document.querySelector('[data-slot="resizable-panel-group"]');
+    expect(group).toHaveAttribute("data-orientation", "horizontal");
+    expect(group).toHaveClass("pds-resizable-panel-group");
+    expect(groupRef.current).toBe(group);
+
+    const panels = document.querySelectorAll('[data-slot="resizable-panel"]');
+    expect(panels).toHaveLength(2);
+    expect(screen.getByText("Transcript").closest(".pds-resizable-panel")).toHaveClass(
+      "pds-resizable-panel"
+    );
+    expect(panelRef.current).toBe(panels[0]);
+
+    const handle = screen.getByRole("separator");
+    expect(handle).toHaveAttribute("data-slot", "resizable-handle");
+    expect(handle).toHaveClass("pds-resizable-handle");
+    expect(handle.querySelector('[data-slot="resizable-handle-grip"]')).toHaveClass(
+      "pds-resizable-handle-grip"
+    );
+    expect(handleRef.current).toBe(handle);
+  });
+
+  it("renders Empty state anatomy with icon media and long content", () => {
+    const ref = React.createRef<HTMLDivElement>();
+    const longDescription =
+      "No generated artifacts match the current filter for this unusually long workspace branch name.";
+
+    render(
+      <Empty ref={ref}>
+        <EmptyHeader>
+          <EmptyMedia variant="icon">
+            <Icon name="search" />
+          </EmptyMedia>
+          <EmptyTitle>No runs found</EmptyTitle>
+          <EmptyDescription>{longDescription}</EmptyDescription>
+        </EmptyHeader>
+        <EmptyContent>
+          <Button intent="secondary">Clear filters</Button>
+        </EmptyContent>
+      </Empty>
+    );
+
+    expect(screen.getByText("No runs found").parentElement).toHaveAttribute(
+      "data-slot",
+      "empty-header"
+    );
+    expect(screen.getByText("No runs found")).toHaveAttribute(
+      "data-slot",
+      "empty-title"
+    );
+    expect(screen.getByText(longDescription)).toHaveAttribute(
+      "data-slot",
+      "empty-description"
+    );
+    expect(screen.getByText("Clear filters").parentElement).toHaveAttribute(
+      "data-slot",
+      "empty-content"
+    );
+    expect(document.querySelector('[data-slot="empty-media"]')).toHaveAttribute(
+      "data-variant",
+      "icon"
+    );
+    expect(ref.current).toHaveAttribute("data-slot", "empty");
+  });
+
+  it("renders Spinner status and decorative states", () => {
+    const ref = React.createRef<HTMLSpanElement>();
+    const { container } = render(
+      <>
+        <Spinner ref={ref} label="Loading runs" size="lg" />
+        <Spinner decorative size="sm" />
+      </>
+    );
+
+    const spinner = screen.getByRole("status", { name: "Loading runs" });
+    expect(spinner).toHaveAttribute("data-slot", "spinner");
+    expect(spinner).toHaveAttribute("data-size", "lg");
+    expect(spinner).toHaveClass("pds-spinner");
+    expect(ref.current).toBe(spinner);
+
+    const decorative = container.querySelector(
+      '[data-slot="spinner"][aria-hidden="true"]'
+    );
+    expect(decorative).toHaveAttribute("data-size", "sm");
+    expect(decorative).not.toHaveAttribute("role");
+  });
+
+  it("renders AspectRatio with fit metadata and forwarded refs", () => {
+    const ref = React.createRef<HTMLDivElement>();
+
+    render(
+      <AspectRatio ref={ref} fit="contain" ratio={16 / 9}>
+        <img alt="Generated run preview" src="/preview.png" />
+      </AspectRatio>
+    );
+
+    expect(screen.getByAltText("Generated run preview").parentElement).toHaveAttribute(
+      "data-slot",
+      "aspect-ratio"
+    );
+    expect(ref.current).toHaveAttribute("data-fit", "contain");
+  });
+
+  it("renders ScrollArea root, viewport, scrollbar, and thumb slots", () => {
+    const ref = React.createRef<HTMLDivElement>();
+    const { container } = render(
+      <ScrollArea
+        ref={ref}
+        className="custom-scroll-area"
+        style={{ height: "40px" }}
+        type="always"
+        viewportProps={{
+          "aria-label": "Activity",
+          className: "custom-scroll-viewport",
+          tabIndex: 0
+        }}
+      >
+        <p>Run activity</p>
+      </ScrollArea>
+    );
+
+    const scrollArea = container.querySelector('[data-slot="scroll-area"]');
+    expect(scrollArea).toHaveClass("pds-scroll-area", "custom-scroll-area");
+    expect(ref.current).toBe(scrollArea);
+
+    const viewport = screen.getByLabelText("Activity");
+    expect(viewport).toHaveAttribute("data-slot", "scroll-area-viewport");
+    expect(viewport).toHaveClass(
+      "pds-scroll-area-viewport",
+      "custom-scroll-viewport"
+    );
+    expect(container.querySelector('[data-slot="scroll-area-scrollbar"]')).toHaveClass(
+      "pds-scroll-area-scrollbar"
+    );
+    expect(container.querySelector('[data-slot="scroll-area-thumb"]')).toHaveClass(
+      "pds-scroll-area-thumb"
+    );
+    expect(ScrollBar).toBeDefined();
+  });
+
+  it("renders NativeSelect with options, groups, invalid state, and refs", () => {
+    const ref = React.createRef<HTMLSelectElement>();
+
+    render(
+      <NativeSelect
+        ref={ref}
+        aria-label="Model routing"
+        className="custom-native-select"
+        defaultValue="balanced"
+        invalid
+        size="sm"
+      >
+        <NativeSelectOptGroup label="Recommended">
+          <NativeSelectOption value="balanced">Balanced</NativeSelectOption>
+          <NativeSelectOption value="fast">Fast</NativeSelectOption>
+        </NativeSelectOptGroup>
+      </NativeSelect>
+    );
+
+    const select = screen.getByRole("combobox", { name: "Model routing" });
+    expect(select).toHaveAttribute("data-slot", "native-select");
+    expect(select).toHaveAttribute("data-size", "sm");
+    expect(select).toHaveAttribute("data-invalid", "true");
+    expect(select).toHaveAttribute("aria-invalid", "true");
+    expect(select).toHaveClass("pds-native-select", "custom-native-select");
+    expect(ref.current).toBe(select);
+    expect(document.querySelector('[data-slot="native-select-wrapper"]')).toHaveClass(
+      "pds-native-select-wrapper"
+    );
+    expect(document.querySelector('[data-slot="native-select-icon"]')).toHaveAttribute(
+      "aria-hidden",
+      "true"
+    );
+    expect(screen.getByText("Balanced")).toHaveAttribute(
+      "data-slot",
+      "native-select-option"
+    );
+    expect(document.querySelector('[data-slot="native-select-optgroup"]')).toHaveAttribute(
+      "label",
+      "Recommended"
+    );
+  });
+
+  it("renders Slider thumbs from default values and orientation", () => {
+    const ref = React.createRef<HTMLSpanElement>();
+    const { container } = render(
+      <Slider
+        ref={ref}
+        aria-label="Confidence range"
+        defaultValue={[20, 80]}
+        orientation="vertical"
+        thumbLabel="Confidence bound"
+      />
+    );
+
+    const slider = container.querySelector('[data-slot="slider"]');
+    expect(slider).toHaveClass("pds-slider");
+    expect(slider).toHaveAttribute("data-orientation", "vertical");
+    expect(ref.current).toBe(slider);
+    expect(container.querySelector('[data-slot="slider-track"]')).toHaveClass(
+      "pds-slider-track"
+    );
+    expect(container.querySelector('[data-slot="slider-range"]')).toHaveClass(
+      "pds-slider-range"
+    );
+    expect(container.querySelectorAll('[data-slot="slider-thumb"]')).toHaveLength(2);
+    expect(screen.getByLabelText("Confidence bound 1")).toHaveAttribute(
+      "role",
+      "slider"
+    );
+  });
+
+  it("renders Toggle states, invalid mapping, and forwarded refs", () => {
+    const ref = React.createRef<HTMLButtonElement>();
+
+    render(
+      <Toggle
+        ref={ref}
+        aria-label="Show archived"
+        defaultPressed
+        invalid
+        size="icon"
+        variant="outline"
+      >
+        <Icon name="inventory_2" />
+      </Toggle>
+    );
+
+    const toggle = screen.getByRole("button", { name: "Show archived" });
+    expect(toggle).toHaveAttribute("data-slot", "toggle");
+    expect(toggle).toHaveAttribute("data-size", "icon");
+    expect(toggle).toHaveAttribute("data-variant", "outline");
+    expect(toggle).toHaveAttribute("data-invalid", "true");
+    expect(toggle).toHaveAttribute("aria-invalid", "true");
+    expect(toggle).toHaveAttribute("data-state", "on");
+    expect(ref.current).toBe(toggle);
+
+    fireEvent.click(toggle);
+
+    expect(toggle).toHaveAttribute("data-state", "off");
+  });
+
+  it("renders ToggleGroup with shared item metadata", () => {
+    const ref = React.createRef<HTMLDivElement>();
+
+    render(
+      <ToggleGroup
+        ref={ref}
+        aria-label="View mode"
+        defaultValue="preview"
+        size="sm"
+        spacing="separated"
+        type="single"
+        variant="outline"
+      >
+        <ToggleGroupItem value="preview">Preview</ToggleGroupItem>
+        <ToggleGroupItem value="code">Code</ToggleGroupItem>
+      </ToggleGroup>
+    );
+
+    const group = screen.getByRole("group", { name: "View mode" });
+    expect(group).toHaveAttribute("data-slot", "toggle-group");
+    expect(group).toHaveAttribute("data-size", "sm");
+    expect(group).toHaveAttribute("data-spacing", "separated");
+    expect(group).toHaveAttribute("data-variant", "outline");
+    expect(ref.current).toBe(group);
+
+    const preview = screen.getByRole("radio", { name: "Preview" });
+    const code = screen.getByRole("radio", { name: "Code" });
+    expect(preview).toHaveAttribute("data-slot", "toggle-group-item");
+    expect(preview).toHaveAttribute("data-size", "sm");
+    expect(preview).toHaveAttribute("data-variant", "outline");
+    expect(preview).toHaveAttribute("data-spacing", "separated");
+    expect(preview).toHaveAttribute("data-state", "on");
+    expect(code).toHaveAttribute("data-state", "off");
+  });
+
   it("renders Breadcrumbs and Pagination navigation primitives", () => {
     render(
       <>
+        <Breadcrumb aria-label="Project breadcrumb">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/workspaces">Workspaces</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbEllipsis />
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Imported run packet</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
         <Breadcrumbs>
           <BreadcrumbsList>
             <BreadcrumbsItem>
@@ -2382,6 +4120,25 @@ describe("PDS starter components", () => {
       </>
     );
 
+    expect(
+      screen.getByRole("navigation", { name: "Project breadcrumb" })
+    ).toHaveAttribute("data-slot", "breadcrumb");
+    expect(
+      screen.getByRole("link", { name: "Workspaces" })
+    ).toHaveAttribute("data-slot", "breadcrumb-link");
+    expect(screen.getByText("Imported run packet")).toHaveAttribute(
+      "data-slot",
+      "breadcrumb-page"
+    );
+    expect(screen.getByText("Imported run packet")).toHaveAttribute(
+      "aria-current",
+      "page"
+    );
+    expect(screen.getAllByLabelText("More pages")[0]).toHaveAttribute(
+      "data-slot",
+      "breadcrumb-ellipsis"
+    );
+
     expect(screen.getByRole("navigation", { name: "Breadcrumb" })).toHaveAttribute(
       "data-slot",
       "breadcrumbs"
@@ -2391,7 +4148,7 @@ describe("PDS starter components", () => {
       "breadcrumbs-link"
     );
     expect(screen.getByText("Run 123")).toHaveAttribute("aria-current", "page");
-    expect(screen.getAllByLabelText("More pages")[0]).toHaveAttribute(
+    expect(screen.getAllByLabelText("More pages")[1]).toHaveAttribute(
       "data-slot",
       "breadcrumbs-ellipsis"
     );
@@ -2411,6 +4168,65 @@ describe("PDS starter components", () => {
     expect(screen.getByRole("link", { name: "Next" })).toHaveAttribute(
       "data-slot",
       "pagination-next"
+    );
+  });
+
+  it("renders NavigationMenu trigger, content, links, indicator, and viewport", () => {
+    render(
+      <>
+        <NavigationMenu value="workspace">
+          <NavigationMenuList>
+            <NavigationMenuItem value="workspace">
+              <NavigationMenuTrigger>Workspace</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <NavigationMenuLink href="/runs">
+                  Runs dashboard
+                </NavigationMenuLink>
+                <NavigationMenuLink active href="/settings">
+                  Settings
+                </NavigationMenuLink>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+          <NavigationMenuIndicator forceMount />
+        </NavigationMenu>
+        <NavigationMenu viewport={false} value="docs">
+          <NavigationMenuList>
+            <NavigationMenuItem value="docs">
+              <NavigationMenuTrigger className="custom-navigation-trigger">
+                Docs
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <NavigationMenuLink href="/docs">
+                  Component contracts
+                </NavigationMenuLink>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </>
+    );
+
+    expect(document.querySelector('[data-slot="navigation-menu"]')).toHaveClass(
+      "pds-navigation-menu"
+    );
+    expect(screen.getByRole("button", { name: /Workspace/ })).toHaveClass(
+      "pds-navigation-menu-trigger"
+    );
+    expect(screen.getByText("Runs dashboard")).toHaveAttribute(
+      "data-slot",
+      "navigation-menu-link"
+    );
+    expect(screen.getByText("Settings")).toHaveAttribute("data-active");
+    expect(NavigationMenuIndicator).toBeDefined();
+    expect(
+      document.querySelector('[data-slot="navigation-menu-viewport"]')
+    ).toHaveClass("pds-navigation-menu-viewport");
+    expect(screen.getByRole("button", { name: /Docs/ })).toHaveClass(
+      "custom-navigation-trigger"
+    );
+    expect(navigationMenuTriggerStyle("custom")).toContain(
+      "pds-navigation-menu-trigger"
     );
   });
 });

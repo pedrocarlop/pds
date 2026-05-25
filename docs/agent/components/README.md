@@ -37,13 +37,14 @@ limitations.
 
 | Purpose | Component contracts |
 | --- | --- |
-| Actions | [ActionMenu](action-menu.md), [ActionWidget](action-widget.md), [Button](button.md), [Menu](menu.md) |
-| Forms | [Checkbox](checkbox.md), [FilterChip](filter-chip.md), [Input](input.md), [RadioGroup](radio-group.md), [Select](select.md), [Switch](switch.md), [Textarea](textarea.md) |
-| Surfaces | [BottomSheet](bottom-sheet.md), [Details](details.md), [Dialog](dialog.md), [Popover](popover.md), [Surface](surface.md), [Tooltip](tooltip.md) |
-| Data | [Amount](amount.md), [Avatar](avatar.md), [Cell](cell.md), [DataList](data-list.md), [Table](table.md), [TravelWidget](travel-widget.md) |
-| Feedback | [Badge](badge.md), [InlineAlert](inline-alert.md), [Progress](progress.md), [RunStatus](run-status.md), [Skeleton](skeleton.md), [Toast](toast.md) |
-| Navigation | [Breadcrumbs](breadcrumbs.md), [PageHeader](page-header.md), [Pagination](pagination.md), [Tabs](tabs.md) |
+| Actions | [ActionMenu](action-menu.md), [ActionWidget](action-widget.md), [Button](button.md), [ButtonGroup](button-group.md), [Command](command.md), [ContextMenu](context-menu.md), [DropdownMenu](dropdown-menu.md), [Menu](menu.md), [Menubar](menubar.md) |
+| Forms | [Calendar](calendar.md), [Checkbox](checkbox.md), [Combobox](combobox.md), [Field](field.md), [FilterChip](filter-chip.md), [Input](input.md), [InputGroup](input-group.md), [InputOTP](input-otp.md), [Label](label.md), [NativeSelect](native-select.md), [RadioGroup](radio-group.md), [Select](select.md), [Slider](slider.md), [Switch](switch.md), [Textarea](textarea.md), [Toggle](toggle.md), [ToggleGroup](toggle-group.md) |
+| Surfaces | [Accordion](accordion.md), [AlertDialog](alert-dialog.md), [BottomSheet](bottom-sheet.md), [Card](card.md), [Collapsible](collapsible.md), [Details](details.md), [Dialog](dialog.md), [Drawer](drawer.md), [HoverCard](hover-card.md), [Popover](popover.md), [ScrollArea](scroll-area.md), [Separator](separator.md), [Sheet](sheet.md), [Surface](surface.md), [Tooltip](tooltip.md) |
+| Data | [Amount](amount.md), [AspectRatio](aspect-ratio.md), [Avatar](avatar.md), [Carousel](carousel.md), [Cell](cell.md), [Chart](chart.md), [DataList](data-list.md), [Resizable](resizable.md), [Table](table.md), [TravelWidget](travel-widget.md) |
+| Feedback | [Alert](alert.md), [Badge](badge.md), [Empty](empty.md), [InlineAlert](inline-alert.md), [Progress](progress.md), [RunStatus](run-status.md), [Skeleton](skeleton.md), [Spinner](spinner.md), [Toast](toast.md), [Toaster](sonner.md) |
+| Navigation | [Breadcrumb](breadcrumb.md), [Breadcrumbs](breadcrumbs.md), [NavigationMenu](navigation-menu.md), [PageHeader](page-header.md), [Pagination](pagination.md), [Sidebar](sidebar.md), [Tabs](tabs.md) |
 | Agent-facing | [Composer](composer.md), [Message](message.md), [RunStatus](run-status.md), [Transcript](transcript.md) |
+| Utilities | [DirectionProvider](direction.md), [Icon](icon.md), [Kbd](kbd.md) |
 
 Choose the matching child doc, then stop expanding this index.
 
@@ -51,39 +52,76 @@ Choose the matching child doc, then stop expanding this index.
 
 - [ActionMenu](action-menu.md)
 - [ActionWidget](action-widget.md)
+- [Accordion](accordion.md)
+- [Alert](alert.md)
+- [AlertDialog](alert-dialog.md)
 - [Amount](amount.md)
+- [AspectRatio](aspect-ratio.md)
 - [Avatar](avatar.md)
 - [Badge](badge.md)
+- [Breadcrumb](breadcrumb.md)
 - [Breadcrumbs](breadcrumbs.md)
 - [BottomSheet](bottom-sheet.md)
 - [Button](button.md)
+- [ButtonGroup](button-group.md)
+- [Calendar](calendar.md)
+- [Card](card.md)
+- [Carousel](carousel.md)
 - [Cell](cell.md)
+- [Chart](chart.md)
 - [Checkbox](checkbox.md)
+- [Collapsible](collapsible.md)
+- [Combobox](combobox.md)
+- [Command](command.md)
+- [ContextMenu](context-menu.md)
 - [Surface](surface.md)
 - [DataList](data-list.md)
 - [Details](details.md)
+- [DirectionProvider](direction.md)
 - [Message](message.md)
 - [Composer](composer.md)
 - [Dialog](dialog.md)
+- [Drawer](drawer.md)
+- [DropdownMenu](dropdown-menu.md)
+- [Empty](empty.md)
+- [Field](field.md)
 - [FilterChip](filter-chip.md)
+- [HoverCard](hover-card.md)
 - [Icon](icon.md)
 - [InlineAlert](inline-alert.md)
 - [Input](input.md)
+- [InputGroup](input-group.md)
+- [InputOTP](input-otp.md)
 - [Item](item.md)
+- [Kbd](kbd.md)
+- [Label](label.md)
 - [Menu](menu.md)
+- [Menubar](menubar.md)
+- [NativeSelect](native-select.md)
+- [NavigationMenu](navigation-menu.md)
 - [Pagination](pagination.md)
 - [PageHeader](page-header.md)
 - [Popover](popover.md)
 - [Progress](progress.md)
 - [RadioGroup](radio-group.md)
+- [Resizable](resizable.md)
 - [RunStatus](run-status.md)
+- [ScrollArea](scroll-area.md)
 - [Select](select.md)
+- [Separator](separator.md)
+- [Sheet](sheet.md)
+- [Sidebar](sidebar.md)
+- [Slider](slider.md)
 - [Skeleton](skeleton.md)
+- [Spinner](spinner.md)
 - [Switch](switch.md)
 - [Table](table.md)
 - [Tabs](tabs.md)
 - [Textarea](textarea.md)
 - [Toast](toast.md)
+- [Toaster](sonner.md)
+- [Toggle](toggle.md)
+- [ToggleGroup](toggle-group.md)
 - [Tooltip](tooltip.md)
 - [Transcript](transcript.md)
 - [TravelWidget](travel-widget.md)

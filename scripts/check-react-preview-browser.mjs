@@ -294,6 +294,13 @@ function runBrowserAssertions({ storyName, viewportName }) {
       return false;
     }
 
+    if (
+      element.getAttribute("aria-hidden") === "true" ||
+      element.closest('[aria-hidden="true"]')
+    ) {
+      return false;
+    }
+
     const style = getComputedStyle(element);
     const rect = element.getBoundingClientRect();
 

@@ -9,6 +9,28 @@ file lists current exports, prop interfaces, and exported type aliases.
 
 Run `pnpm docs:reference:sync` after changing public React component props.
 
+## Accordion
+
+Source: [packages/react/src/components/accordion.tsx](../../packages/react/src/components/accordion.tsx)
+
+Component contract: [docs/agent/components/accordion.md](../agent/components/accordion.md)
+
+### Exports
+
+- `Accordion`
+- `AccordionItem`
+- `AccordionTrigger`
+- `AccordionContent`
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `AccordionProps` | `React.ComponentPropsWithoutRef< typeof AccordionPrimitive.Root >` |
+| `AccordionItemProps` | `React.ComponentPropsWithoutRef< typeof AccordionPrimitive.Item >` |
+| `AccordionTriggerProps` | `React.ComponentPropsWithoutRef< typeof AccordionPrimitive.Trigger >` |
+| `AccordionContentProps` | `React.ComponentPropsWithoutRef< typeof AccordionPrimitive.Content >` |
+
 ## ActionMenu
 
 Source: [packages/react/src/components/action-menu.tsx](../../packages/react/src/components/action-menu.tsx)
@@ -75,6 +97,94 @@ Extends: `React.HTMLAttributes<HTMLDivElement>`
 | --- | --- |
 | `ActionWidgetLevel` | `SurfaceLevel` |
 | `ActionWidgetActionsJustify` | `"start" \| "center" \| "end"` |
+
+## AlertDialog
+
+Source: [packages/react/src/components/alert-dialog.tsx](../../packages/react/src/components/alert-dialog.tsx)
+
+Component contract: [docs/agent/components/alert-dialog.md](../agent/components/alert-dialog.md)
+
+### Exports
+
+- `AlertDialog`
+- `AlertDialogTrigger`
+- `AlertDialogPortal`
+- `AlertDialogOverlay`
+- `AlertDialogContent`
+- `AlertDialogHeader`
+- `AlertDialogFooter`
+- `AlertDialogMedia`
+- `AlertDialogTitle`
+- `AlertDialogDescription`
+- `AlertDialogAction`
+- `AlertDialogCancel`
+
+### Prop Interfaces
+
+#### AlertDialogContentProps
+
+Extends: `React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Content>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `size` | no | `AlertDialogSize` | - |
+
+#### AlertDialogActionProps
+
+Extends: `React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Action>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `intent` | no | `ButtonIntent` | - |
+| `size` | no | `ButtonSize` | - |
+
+#### AlertDialogCancelProps
+
+Extends: `React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Cancel>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `intent` | no | `ButtonIntent` | - |
+| `size` | no | `ButtonSize` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `AlertDialogSize` | `"default" \| "sm"` |
+| `AlertDialogMediaProps` | `React.HTMLAttributes<HTMLDivElement>` |
+
+## Alert
+
+Source: [packages/react/src/components/alert.tsx](../../packages/react/src/components/alert.tsx)
+
+Component contract: [docs/agent/components/alert.md](../agent/components/alert.md)
+
+### Exports
+
+- `Alert`
+- `AlertTitle`
+- `AlertDescription`
+- `AlertAction`
+
+### Prop Interfaces
+
+#### AlertProps
+
+Extends: `React.HTMLAttributes<HTMLDivElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `tone` | no | `AlertTone` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `AlertTone` | `"neutral" \| "success" \| "warning" \| "danger"` |
+| `AlertTitleProps` | `React.HTMLAttributes<HTMLDivElement>` |
+| `AlertDescriptionProps` | `React.HTMLAttributes<HTMLDivElement>` |
+| `AlertActionProps` | `React.HTMLAttributes<HTMLDivElement>` |
 
 ## Amount
 
@@ -150,6 +260,26 @@ Extends: `Omit<InputProps, "defaultValue" | "type" | "value">`
 | `showSign` | no | `boolean` | - |
 | `type` | no | `AmountInputType` | - |
 | `value` | no | `number \| string` | - |
+
+## AspectRatio
+
+Source: [packages/react/src/components/aspect-ratio.tsx](../../packages/react/src/components/aspect-ratio.tsx)
+
+Component contract: [docs/agent/components/aspect-ratio.md](../agent/components/aspect-ratio.md)
+
+### Exports
+
+- `AspectRatio`
+
+### Prop Interfaces
+
+#### AspectRatioProps
+
+Extends: `React.ComponentPropsWithoutRef<typeof AspectRatioPrimitive.Root>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `fit` | no | `"cover" \| "contain"` | - |
 
 ## Avatar
 
@@ -241,6 +371,43 @@ Extends: `React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>`
 | --- | --- | --- | --- |
 | `showCloseButton` | no | `boolean` | - |
 
+## Breadcrumb
+
+Source: [packages/react/src/components/breadcrumb.tsx](../../packages/react/src/components/breadcrumb.tsx)
+
+Component contract: [docs/agent/components/breadcrumb.md](../agent/components/breadcrumb.md)
+
+### Exports
+
+- `Breadcrumb`
+- `BreadcrumbList`
+- `BreadcrumbItem`
+- `BreadcrumbLink`
+- `BreadcrumbPage`
+- `BreadcrumbSeparator`
+- `BreadcrumbEllipsis`
+
+### Prop Interfaces
+
+#### BreadcrumbLinkProps
+
+Extends: `React.AnchorHTMLAttributes<HTMLAnchorElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `asChild` | no | `boolean` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `BreadcrumbProps` | `React.HTMLAttributes<HTMLElement>` |
+| `BreadcrumbListProps` | `React.OlHTMLAttributes<HTMLOListElement>` |
+| `BreadcrumbItemProps` | `React.LiHTMLAttributes<HTMLLIElement>` |
+| `BreadcrumbPageProps` | `React.HTMLAttributes<HTMLSpanElement>` |
+| `BreadcrumbSeparatorProps` | `React.LiHTMLAttributes<HTMLLIElement>` |
+| `BreadcrumbEllipsisProps` | `React.HTMLAttributes<HTMLSpanElement>` |
+
 ## Breadcrumbs
 
 Source: [packages/react/src/components/breadcrumbs.tsx](../../packages/react/src/components/breadcrumbs.tsx)
@@ -266,6 +433,51 @@ Extends: `React.AnchorHTMLAttributes<HTMLAnchorElement>`
 | Prop | Required | Type | Notes |
 | --- | --- | --- | --- |
 | `asChild` | no | `boolean` | - |
+
+## ButtonGroup
+
+Source: [packages/react/src/components/button-group.tsx](../../packages/react/src/components/button-group.tsx)
+
+Component contract: [docs/agent/components/button-group.md](../agent/components/button-group.md)
+
+### Exports
+
+- `ButtonGroup`
+- `ButtonGroupText`
+- `ButtonGroupSeparator`
+
+### Prop Interfaces
+
+#### ButtonGroupProps
+
+Extends: `React.HTMLAttributes<HTMLDivElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `orientation` | no | `ButtonGroupOrientation` | - |
+
+#### ButtonGroupTextProps
+
+Extends: `React.HTMLAttributes<HTMLDivElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `asChild` | no | `boolean` | - |
+
+#### ButtonGroupSeparatorProps
+
+Extends: `React.HTMLAttributes<HTMLDivElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `decorative` | no | `boolean` | - |
+| `orientation` | no | `"horizontal" \| "vertical"` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `ButtonGroupOrientation` | `"horizontal" \| "vertical"` |
 
 ## Button
 
@@ -295,6 +507,111 @@ Extends: `React.ButtonHTMLAttributes<HTMLButtonElement>`
 | --- | --- |
 | `ButtonIntent` | `"primary" \| "secondary" \| "danger" \| "quiet" \| "link"` |
 | `ButtonSize` | `"sm" \| "md" \| "lg" \| "icon"` |
+
+## Calendar
+
+Source: [packages/react/src/components/calendar.tsx](../../packages/react/src/components/calendar.tsx)
+
+Component contract: [docs/agent/components/calendar.md](../agent/components/calendar.md)
+
+### Exports
+
+- `Calendar`
+- `CalendarDayButton`
+
+### Prop Interfaces
+
+#### CalendarDayButtonProps
+
+Extends: `DayButtonProps`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `buttonVariant` | no | `ButtonIntent` | - |
+| `locale` | no | `Partial<Locale>` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `CalendarProps` | `React.ComponentProps<typeof DayPicker> & { buttonVariant?: ButtonIntent; }` |
+
+## Card
+
+Source: [packages/react/src/components/card.tsx](../../packages/react/src/components/card.tsx)
+
+Component contract: [docs/agent/components/card.md](../agent/components/card.md)
+
+### Exports
+
+- `Card`
+- `CardHeader`
+- `CardTitle`
+- `CardDescription`
+- `CardAction`
+- `CardContent`
+- `CardFooter`
+
+### Prop Interfaces
+
+#### CardProps
+
+Extends: `React.HTMLAttributes<HTMLDivElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `size` | no | `CardSize` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `CardSize` | `"default" \| "sm"` |
+| `CardHeaderProps` | `React.HTMLAttributes<HTMLDivElement>` |
+| `CardTitleProps` | `React.HTMLAttributes<HTMLDivElement>` |
+| `CardDescriptionProps` | `React.HTMLAttributes<HTMLDivElement>` |
+| `CardActionProps` | `React.HTMLAttributes<HTMLDivElement>` |
+| `CardContentProps` | `React.HTMLAttributes<HTMLDivElement>` |
+| `CardFooterProps` | `React.HTMLAttributes<HTMLDivElement>` |
+
+## Carousel
+
+Source: [packages/react/src/components/carousel.tsx](../../packages/react/src/components/carousel.tsx)
+
+Component contract: [docs/agent/components/carousel.md](../agent/components/carousel.md)
+
+### Exports
+
+- `useCarousel`
+- `Carousel`
+- `CarouselContent`
+- `CarouselItem`
+- `CarouselPrevious`
+- `CarouselNext`
+
+### Prop Interfaces
+
+#### CarouselProps
+
+Extends: `React.HTMLAttributes<HTMLDivElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `opts` | no | `CarouselOptions` | - |
+| `orientation` | no | `"horizontal" \| "vertical"` | - |
+| `plugins` | no | `CarouselPlugin` | - |
+| `setApi` | no | `(api: CarouselApi) => void` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `CarouselApi` | `UseEmblaCarouselType[1]` |
+| `CarouselOptions` | `UseCarouselParameters[0]` |
+| `CarouselPlugin` | `UseCarouselParameters[1]` |
+| `CarouselContentProps` | `React.HTMLAttributes<HTMLDivElement>` |
+| `CarouselItemProps` | `React.HTMLAttributes<HTMLDivElement>` |
+| `CarouselButtonProps` | `ButtonProps` |
 
 ## Cell
 
@@ -326,6 +643,40 @@ Extends: `React.HTMLAttributes<HTMLElement>`
 | --- | --- |
 | `CellVariant` | `\| "default" \| "disclosure" \| "choice" \| "compact" \| "accent" \| "nested"` |
 
+## Chart
+
+Source: [packages/react/src/components/chart.tsx](../../packages/react/src/components/chart.tsx)
+
+Component contract: [docs/agent/components/chart.md](../agent/components/chart.md)
+
+### Exports
+
+- `useChart`
+- `ChartContainer`
+- `ChartStyle`
+- `ChartTooltip`
+- `ChartTooltipContent`
+- `ChartLegend`
+- `ChartLegendContent`
+
+### Prop Interfaces
+
+#### ChartContainerProps
+
+Extends: `React.HTMLAttributes<HTMLDivElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `children` | yes | `React.ComponentProps< typeof RechartsPrimitive.ResponsiveContainer >["children"]` | - |
+| `config` | yes | `ChartConfig` | - |
+| `initialDimension` | no | `{ height: number; width: number; }` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `ChartConfig` | `Record< string, { icon?: React.ComponentType; label?: React.ReactNode; } & ( \| { color?: string; theme?: never } \| { color?: never; theme: Record<keyof typeof THEMES, string> } ) >` |
+
 ## Checkbox
 
 Source: [packages/react/src/components/checkbox.tsx](../../packages/react/src/components/checkbox.tsx)
@@ -347,6 +698,141 @@ Extends: `Omit< React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>, "
 | --- | --- | --- | --- |
 | `aria-invalid` | no | `React.AriaAttributes["aria-invalid"]` | - |
 | `invalid` | no | `boolean` | - |
+
+## Collapsible
+
+Source: [packages/react/src/components/collapsible.tsx](../../packages/react/src/components/collapsible.tsx)
+
+Component contract: [docs/agent/components/collapsible.md](../agent/components/collapsible.md)
+
+### Exports
+
+- `Collapsible`
+- `CollapsibleTrigger`
+- `CollapsibleContent`
+
+## Combobox
+
+Source: [packages/react/src/components/combobox.tsx](../../packages/react/src/components/combobox.tsx)
+
+Component contract: [docs/agent/components/combobox.md](../agent/components/combobox.md)
+
+### Exports
+
+- `Combobox`
+- `ComboboxValue`
+- `ComboboxTrigger`
+- `ComboboxClear`
+- `ComboboxInput`
+- `ComboboxContent`
+- `ComboboxList`
+- `ComboboxItem`
+- `ComboboxGroup`
+- `ComboboxLabel`
+- `ComboboxCollection`
+- `ComboboxEmpty`
+- `ComboboxSeparator`
+- `ComboboxChips`
+- `ComboboxChip`
+- `ComboboxChipsInput`
+- `useComboboxAnchor`
+
+### Prop Interfaces
+
+#### ComboboxClearProps
+
+Extends: `ComboboxPrimitive.Clear.Props`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `label` | no | `string` | - |
+
+#### ComboboxInputProps
+
+Extends: `Omit<ComboboxPrimitive.Input.Props, "className">`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `className` | no | `string` | - |
+| `disabled` | no | `boolean` | - |
+| `showClear` | no | `boolean` | - |
+| `showTrigger` | no | `boolean` | - |
+
+#### ComboboxContentProps
+
+Extends: `ComboboxPrimitive.Popup.Props, Pick< ComboboxPrimitive.Positioner.Props, "align" | "alignOffset" | "anchor" | "side" | "sideOffset" >`
+
+No own props; inherits from the extended type.
+
+#### ComboboxChipProps
+
+Extends: `ComboboxPrimitive.Chip.Props`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `removeLabel` | no | `string` | - |
+| `showRemove` | no | `boolean` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `ComboboxProps` | `ComboboxPrimitive.Root.Props<Value, Multiple>` |
+| `ComboboxValueProps` | `ComboboxPrimitive.Value.Props` |
+| `ComboboxTriggerProps` | `ComboboxPrimitive.Trigger.Props` |
+| `ComboboxListProps` | `ComboboxPrimitive.List.Props` |
+| `ComboboxItemProps` | `ComboboxPrimitive.Item.Props` |
+| `ComboboxGroupProps` | `ComboboxPrimitive.Group.Props` |
+| `ComboboxLabelProps` | `ComboboxPrimitive.GroupLabel.Props` |
+| `ComboboxCollectionProps` | `ComboboxPrimitive.Collection.Props` |
+| `ComboboxEmptyProps` | `ComboboxPrimitive.Empty.Props` |
+| `ComboboxSeparatorProps` | `React.ComponentPropsWithoutRef< typeof ComboboxPrimitive.Separator >` |
+| `ComboboxChipsProps` | `ComboboxPrimitive.Chips.Props` |
+| `ComboboxChipsInputProps` | `ComboboxPrimitive.Input.Props` |
+
+## Command
+
+Source: [packages/react/src/components/command.tsx](../../packages/react/src/components/command.tsx)
+
+Component contract: [docs/agent/components/command.md](../agent/components/command.md)
+
+### Exports
+
+- `Command`
+- `CommandDialog`
+- `CommandInput`
+- `CommandList`
+- `CommandEmpty`
+- `CommandGroup`
+- `CommandSeparator`
+- `CommandItem`
+- `CommandShortcut`
+
+### Prop Interfaces
+
+#### CommandDialogProps
+
+Extends: `React.ComponentPropsWithoutRef<typeof Dialog>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `className` | no | `string` | - |
+| `description` | no | `string` | - |
+| `showCloseButton` | no | `boolean` | - |
+| `title` | no | `string` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `CommandProps` | `React.ComponentPropsWithoutRef< typeof CommandPrimitive >` |
+| `CommandInputProps` | `React.ComponentPropsWithoutRef< typeof CommandPrimitive.Input >` |
+| `CommandListProps` | `React.ComponentPropsWithoutRef< typeof CommandPrimitive.List >` |
+| `CommandEmptyProps` | `React.ComponentPropsWithoutRef< typeof CommandPrimitive.Empty >` |
+| `CommandGroupProps` | `React.ComponentPropsWithoutRef< typeof CommandPrimitive.Group >` |
+| `CommandSeparatorProps` | `React.ComponentPropsWithoutRef< typeof CommandPrimitive.Separator >` |
+| `CommandItemProps` | `React.ComponentPropsWithoutRef< typeof CommandPrimitive.Item >` |
+| `CommandShortcutProps` | `React.HTMLAttributes<HTMLSpanElement>` |
 
 ## Composer
 
@@ -379,6 +865,65 @@ Extends: `Omit<React.FormHTMLAttributes<HTMLFormElement>, "aria-busy">`
 | Type | Definition |
 | --- | --- |
 | `ComposerInputProps` | `TextareaProps` |
+
+## ContextMenu
+
+Source: [packages/react/src/components/context-menu.tsx](../../packages/react/src/components/context-menu.tsx)
+
+Component contract: [docs/agent/components/context-menu.md](../agent/components/context-menu.md)
+
+### Exports
+
+- `ContextMenu`
+- `ContextMenuGroup`
+- `ContextMenuPortal`
+- `ContextMenuRadioGroup`
+- `ContextMenuSub`
+- `ContextMenuTrigger`
+- `ContextMenuContent`
+- `ContextMenuItem`
+- `ContextMenuCheckboxItem`
+- `ContextMenuRadioItem`
+- `ContextMenuLabel`
+- `ContextMenuSeparator`
+- `ContextMenuShortcut`
+- `ContextMenuSubTrigger`
+- `ContextMenuSubContent`
+
+### Prop Interfaces
+
+#### ContextMenuItemProps
+
+Extends: `React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Item>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `inset` | no | `boolean` | - |
+| `intent` | no | `MenuItemIntent` | - |
+
+#### ContextMenuCheckboxItemProps
+
+Extends: `React.ComponentPropsWithoutRef< typeof ContextMenuPrimitive.CheckboxItem >`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `inset` | no | `boolean` | - |
+| `intent` | no | `MenuItemIntent` | - |
+
+#### ContextMenuRadioItemProps
+
+Extends: `React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.RadioItem>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `inset` | no | `boolean` | - |
+| `intent` | no | `MenuItemIntent` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `ContextMenuContentProps` | `React.ComponentPropsWithoutRef< typeof ContextMenuPrimitive.Content >` |
 
 ## DataList
 
@@ -476,6 +1021,241 @@ Extends: `React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>`
 | --- | --- | --- | --- |
 | `showCloseButton` | no | `boolean` | - |
 
+## Direction
+
+Source: [packages/react/src/components/direction.tsx](../../packages/react/src/components/direction.tsx)
+
+Component contract: [docs/agent/components/direction.md](../agent/components/direction.md)
+
+### Exports
+
+- `DirectionProvider`
+- `useDirection`
+
+### Prop Interfaces
+
+#### DirectionProviderProps
+
+Extends: `Omit< React.ComponentPropsWithoutRef<typeof Direction.DirectionProvider>, "dir" >`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `dir` | no | `React.ComponentPropsWithoutRef< typeof Direction.DirectionProvider >["dir"]` | - |
+| `direction` | no | `React.ComponentPropsWithoutRef< typeof Direction.DirectionProvider >["dir"]` | - |
+
+## Drawer
+
+Source: [packages/react/src/components/drawer.tsx](../../packages/react/src/components/drawer.tsx)
+
+Component contract: [docs/agent/components/drawer.md](../agent/components/drawer.md)
+
+### Exports
+
+- `Drawer`
+- `DrawerNestedRoot`
+- `DrawerTrigger`
+- `DrawerPortal`
+- `DrawerClose`
+- `DrawerOverlay`
+- `DrawerContent`
+- `DrawerHandle`
+- `DrawerHeader`
+- `DrawerBody`
+- `DrawerFooter`
+- `DrawerTitle`
+- `DrawerDescription`
+
+### Prop Interfaces
+
+#### DrawerContentProps
+
+Extends: `React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `showCloseButton` | no | `boolean` | - |
+| `showHandle` | no | `boolean` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `DrawerTriggerProps` | `React.ComponentPropsWithoutRef< typeof DrawerPrimitive.Trigger >` |
+| `DrawerCloseProps` | `React.ComponentPropsWithoutRef< typeof DrawerPrimitive.Close >` |
+| `DrawerOverlayProps` | `React.ComponentPropsWithoutRef< typeof DrawerPrimitive.Overlay >` |
+| `DrawerHandleProps` | `React.ComponentPropsWithoutRef< typeof DrawerPrimitive.Handle >` |
+| `DrawerTitleProps` | `React.ComponentPropsWithoutRef< typeof DrawerPrimitive.Title >` |
+| `DrawerDescriptionProps` | `React.ComponentPropsWithoutRef< typeof DrawerPrimitive.Description >` |
+
+## DropdownMenu
+
+Source: [packages/react/src/components/dropdown-menu.tsx](../../packages/react/src/components/dropdown-menu.tsx)
+
+Component contract: [docs/agent/components/dropdown-menu.md](../agent/components/dropdown-menu.md)
+
+### Exports
+
+- `DropdownMenu`
+- `DropdownMenuGroup`
+- `DropdownMenuPortal`
+- `DropdownMenuRadioGroup`
+- `DropdownMenuSub`
+- `DropdownMenuTrigger`
+- `DropdownMenuContent`
+- `DropdownMenuItem`
+- `DropdownMenuCheckboxItem`
+- `DropdownMenuRadioItem`
+- `DropdownMenuLabel`
+- `DropdownMenuSeparator`
+- `DropdownMenuShortcut`
+- `DropdownMenuSubTrigger`
+- `DropdownMenuSubContent`
+
+### Prop Interfaces
+
+#### DropdownMenuItemProps
+
+Extends: `React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `inset` | no | `boolean` | - |
+| `intent` | no | `MenuItemIntent` | - |
+
+#### DropdownMenuCheckboxItemProps
+
+Extends: `React.ComponentPropsWithoutRef< typeof DropdownMenuPrimitive.CheckboxItem >`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `inset` | no | `boolean` | - |
+| `intent` | no | `MenuItemIntent` | - |
+
+#### DropdownMenuRadioItemProps
+
+Extends: `React.ComponentPropsWithoutRef< typeof DropdownMenuPrimitive.RadioItem >`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `inset` | no | `boolean` | - |
+| `intent` | no | `MenuItemIntent` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `DropdownMenuContentProps` | `React.ComponentPropsWithoutRef< typeof DropdownMenuPrimitive.Content >` |
+
+## Empty
+
+Source: [packages/react/src/components/empty.tsx](../../packages/react/src/components/empty.tsx)
+
+Component contract: [docs/agent/components/empty.md](../agent/components/empty.md)
+
+### Exports
+
+- `Empty`
+- `EmptyHeader`
+- `EmptyMedia`
+- `EmptyTitle`
+- `EmptyDescription`
+- `EmptyContent`
+
+### Prop Interfaces
+
+#### EmptyMediaProps
+
+Extends: `React.ComponentPropsWithoutRef<"div">`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `variant` | no | `EmptyMediaVariant` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `EmptyMediaVariant` | `"default" \| "icon"` |
+| `EmptyProps` | `React.ComponentPropsWithoutRef<"div">` |
+| `EmptyHeaderProps` | `React.ComponentPropsWithoutRef<"div">` |
+| `EmptyTitleProps` | `React.ComponentPropsWithoutRef<"div">` |
+| `EmptyDescriptionProps` | `React.ComponentPropsWithoutRef<"p">` |
+| `EmptyContentProps` | `React.ComponentPropsWithoutRef<"div">` |
+
+## Field
+
+Source: [packages/react/src/components/field.tsx](../../packages/react/src/components/field.tsx)
+
+Component contract: [docs/agent/components/field.md](../agent/components/field.md)
+
+### Exports
+
+- `FieldSet`
+- `FieldLegend`
+- `FieldGroup`
+- `Field`
+- `FieldContent`
+- `FieldLabel`
+- `FieldTitle`
+- `FieldDescription`
+- `FieldSeparator`
+- `FieldError`
+
+### Prop Interfaces
+
+#### FieldLegendProps
+
+Extends: `React.HTMLAttributes<HTMLLegendElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `variant` | no | `FieldLegendVariant` | - |
+
+#### FieldProps
+
+Extends: `React.ComponentPropsWithoutRef<"div">`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `disabled` | no | `boolean` | - |
+| `invalid` | no | `boolean` | - |
+| `orientation` | no | `FieldOrientation` | - |
+
+#### FieldSeparatorProps
+
+Extends: `React.ComponentPropsWithoutRef<"div">`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `children` | no | `React.ReactNode` | - |
+
+#### FieldErrorMessage
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `message` | no | `string` | - |
+
+#### FieldErrorProps
+
+Extends: `React.ComponentPropsWithoutRef<"div">`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `errors` | no | `Array<FieldErrorMessage \| undefined>` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `FieldOrientation` | `"vertical" \| "horizontal" \| "responsive"` |
+| `FieldLegendVariant` | `"legend" \| "label"` |
+| `FieldSetProps` | `React.FieldsetHTMLAttributes<HTMLFieldSetElement>` |
+| `FieldGroupProps` | `React.ComponentPropsWithoutRef<"div">` |
+| `FieldContentProps` | `React.ComponentPropsWithoutRef<"div">` |
+| `FieldLabelProps` | `LabelProps` |
+| `FieldTitleProps` | `React.ComponentPropsWithoutRef<"div">` |
+| `FieldDescriptionProps` | `React.ComponentPropsWithoutRef<"p">` |
+
 ## FilterChip
 
 Source: [packages/react/src/components/filter-chip.tsx](../../packages/react/src/components/filter-chip.tsx)
@@ -503,6 +1283,29 @@ Extends: `Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "children">`
 | `notification` | no | `boolean` | - |
 | `onRemove` | no | `React.MouseEventHandler<HTMLButtonElement>` | - |
 | `removeLabel` | no | `string` | - |
+
+## HoverCard
+
+Source: [packages/react/src/components/hover-card.tsx](../../packages/react/src/components/hover-card.tsx)
+
+Component contract: [docs/agent/components/hover-card.md](../agent/components/hover-card.md)
+
+### Exports
+
+- `HoverCard`
+- `HoverCardPortal`
+- `HoverCardTrigger`
+- `HoverCardContent`
+
+### Prop Interfaces
+
+#### HoverCardContentProps
+
+Extends: `React.ComponentPropsWithoutRef<typeof HoverCardPrimitive.Content>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `showArrow` | no | `boolean` | - |
 
 ## Icon
 
@@ -553,6 +1356,89 @@ Extends: `React.HTMLAttributes<HTMLDivElement>`
 | Type | Definition |
 | --- | --- |
 | `InlineAlertTone` | `"neutral" \| "success" \| "warning" \| "danger"` |
+
+## InputGroup
+
+Source: [packages/react/src/components/input-group.tsx](../../packages/react/src/components/input-group.tsx)
+
+Component contract: [docs/agent/components/input-group.md](../agent/components/input-group.md)
+
+### Exports
+
+- `InputGroup`
+- `InputGroupAddon`
+- `InputGroupButton`
+- `InputGroupText`
+- `InputGroupInput`
+- `InputGroupTextarea`
+
+### Prop Interfaces
+
+#### InputGroupProps
+
+Extends: `React.HTMLAttributes<HTMLDivElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `disabled` | no | `boolean` | - |
+
+#### InputGroupAddonProps
+
+Extends: `React.HTMLAttributes<HTMLDivElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `align` | no | `InputGroupAddonAlign` | - |
+
+#### InputGroupButtonProps
+
+Extends: `Omit<ButtonProps, "size">`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `intent` | no | `ButtonIntent` | - |
+| `size` | no | `InputGroupButtonSize` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `InputGroupAddonAlign` | `\| "inline-start" \| "inline-end" \| "block-start" \| "block-end"` |
+| `InputGroupButtonSize` | `"xs" \| "sm" \| "icon-xs" \| "icon-sm"` |
+| `InputGroupTextProps` | `React.HTMLAttributes<HTMLSpanElement>` |
+| `InputGroupInputProps` | `InputProps` |
+| `InputGroupTextareaProps` | `TextareaProps` |
+
+## InputOtp
+
+Source: [packages/react/src/components/input-otp.tsx](../../packages/react/src/components/input-otp.tsx)
+
+Component contract: [docs/agent/components/input-otp.md](../agent/components/input-otp.md)
+
+### Exports
+
+- `InputOTP`
+- `InputOTPGroup`
+- `InputOTPSlot`
+- `InputOTPSeparator`
+
+### Prop Interfaces
+
+#### InputOTPSlotProps
+
+Extends: `React.HTMLAttributes<HTMLDivElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `index` | yes | `number` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `InputOTPProps` | `OTPInputPrimitiveProps & { invalid?: boolean; }` |
+| `InputOTPGroupProps` | `React.HTMLAttributes<HTMLDivElement>` |
+| `InputOTPSeparatorProps` | `React.HTMLAttributes<HTMLDivElement>` |
 
 ## Input
 
@@ -657,6 +1543,44 @@ Extends: `Omit< AmountInputProps, "className" | "description" | "errorMessage" |
 | `ItemSkeletonSlotProps` | `SkeletonProps` |
 | `ItemSkeletonContainerProps` | `React.HTMLAttributes<HTMLDivElement>` |
 
+## Kbd
+
+Source: [packages/react/src/components/kbd.tsx](../../packages/react/src/components/kbd.tsx)
+
+Component contract: [docs/agent/components/kbd.md](../agent/components/kbd.md)
+
+### Exports
+
+- `Kbd`
+- `KbdGroup`
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `KbdProps` | `React.ComponentPropsWithoutRef<"kbd">` |
+| `KbdGroupProps` | `React.ComponentPropsWithoutRef<"div">` |
+
+## Label
+
+Source: [packages/react/src/components/label.tsx](../../packages/react/src/components/label.tsx)
+
+Component contract: [docs/agent/components/label.md](../agent/components/label.md)
+
+### Exports
+
+- `Label`
+
+### Prop Interfaces
+
+#### LabelProps
+
+Extends: `React.LabelHTMLAttributes<HTMLLabelElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `asChild` | no | `boolean` | - |
+
 ## Menu
 
 Source: [packages/react/src/components/menu.tsx](../../packages/react/src/components/menu.tsx)
@@ -715,6 +1639,66 @@ Extends: `React.ComponentPropsWithoutRef<typeof MenuPrimitive.RadioItem>`
 | `MenuItemIntent` | `"default" \| "danger"` |
 | `MenuContentProps` | `React.ComponentPropsWithoutRef< typeof MenuPrimitive.Content >` |
 
+## Menubar
+
+Source: [packages/react/src/components/menubar.tsx](../../packages/react/src/components/menubar.tsx)
+
+Component contract: [docs/agent/components/menubar.md](../agent/components/menubar.md)
+
+### Exports
+
+- `MenubarMenu`
+- `MenubarGroup`
+- `MenubarPortal`
+- `MenubarRadioGroup`
+- `MenubarSub`
+- `Menubar`
+- `MenubarTrigger`
+- `MenubarContent`
+- `MenubarItem`
+- `MenubarCheckboxItem`
+- `MenubarRadioItem`
+- `MenubarLabel`
+- `MenubarSeparator`
+- `MenubarShortcut`
+- `MenubarSubTrigger`
+- `MenubarSubContent`
+
+### Prop Interfaces
+
+#### MenubarItemProps
+
+Extends: `React.ComponentPropsWithoutRef<typeof MenubarPrimitive.Item>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `inset` | no | `boolean` | - |
+| `intent` | no | `MenuItemIntent` | - |
+
+#### MenubarCheckboxItemProps
+
+Extends: `React.ComponentPropsWithoutRef<typeof MenubarPrimitive.CheckboxItem>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `inset` | no | `boolean` | - |
+| `intent` | no | `MenuItemIntent` | - |
+
+#### MenubarRadioItemProps
+
+Extends: `React.ComponentPropsWithoutRef<typeof MenubarPrimitive.RadioItem>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `inset` | no | `boolean` | - |
+| `intent` | no | `MenuItemIntent` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `MenubarContentProps` | `React.ComponentPropsWithoutRef< typeof MenubarPrimitive.Content >` |
+
 ## Message
 
 Source: [packages/react/src/components/message.tsx](../../packages/react/src/components/message.tsx)
@@ -748,6 +1732,79 @@ Extends: `Omit<React.HTMLAttributes<HTMLElement>, "role">`
 | --- | --- |
 | `MessageRole` | `"user" \| "assistant" \| "system" \| "tool"` |
 | `MessageVariant` | `"default" \| "compact"` |
+
+## NativeSelect
+
+Source: [packages/react/src/components/native-select.tsx](../../packages/react/src/components/native-select.tsx)
+
+Component contract: [docs/agent/components/native-select.md](../agent/components/native-select.md)
+
+### Exports
+
+- `NativeSelect`
+- `NativeSelectOption`
+- `NativeSelectOptGroup`
+
+### Prop Interfaces
+
+#### NativeSelectProps
+
+Extends: `Omit< React.SelectHTMLAttributes<HTMLSelectElement>, "aria-invalid" | "size" >`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `aria-invalid` | no | `React.AriaAttributes["aria-invalid"]` | - |
+| `invalid` | no | `boolean` | - |
+| `size` | no | `NativeSelectSize` | - |
+| `wrapperClassName` | no | `string` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `NativeSelectSize` | `"default" \| "sm"` |
+| `NativeSelectOptionProps` | `React.OptionHTMLAttributes<HTMLOptionElement>` |
+| `NativeSelectOptGroupProps` | `React.OptgroupHTMLAttributes<HTMLOptGroupElement>` |
+
+## NavigationMenu
+
+Source: [packages/react/src/components/navigation-menu.tsx](../../packages/react/src/components/navigation-menu.tsx)
+
+Component contract: [docs/agent/components/navigation-menu.md](../agent/components/navigation-menu.md)
+
+### Exports
+
+- `NavigationMenu`
+- `NavigationMenuList`
+- `NavigationMenuItem`
+- `navigationMenuTriggerStyle`
+- `NavigationMenuTrigger`
+- `NavigationMenuContent`
+- `NavigationMenuViewport`
+- `NavigationMenuLink`
+- `NavigationMenuIndicator`
+
+### Prop Interfaces
+
+#### NavigationMenuProps
+
+Extends: `React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `viewport` | no | `boolean` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `NavigationMenuListProps` | `React.ComponentPropsWithoutRef< typeof NavigationMenuPrimitive.List >` |
+| `NavigationMenuItemProps` | `React.ComponentPropsWithoutRef< typeof NavigationMenuPrimitive.Item >` |
+| `NavigationMenuTriggerProps` | `React.ComponentPropsWithoutRef< typeof NavigationMenuPrimitive.Trigger >` |
+| `NavigationMenuContentProps` | `React.ComponentPropsWithoutRef< typeof NavigationMenuPrimitive.Content >` |
+| `NavigationMenuViewportProps` | `React.ComponentPropsWithoutRef< typeof NavigationMenuPrimitive.Viewport >` |
+| `NavigationMenuLinkProps` | `React.ComponentPropsWithoutRef< typeof NavigationMenuPrimitive.Link >` |
+| `NavigationMenuIndicatorProps` | `React.ComponentPropsWithoutRef< typeof NavigationMenuPrimitive.Indicator >` |
 
 ## PageHeader
 
@@ -847,6 +1904,35 @@ Component contract: [docs/agent/components/radio-group.md](../agent/components/r
 - `RadioGroupItem`
 - `RadioGroupIndicator`
 
+## Resizable
+
+Source: [packages/react/src/components/resizable.tsx](../../packages/react/src/components/resizable.tsx)
+
+Component contract: [docs/agent/components/resizable.md](../agent/components/resizable.md)
+
+### Exports
+
+- `ResizablePanelGroup`
+- `ResizablePanel`
+- `ResizableHandle`
+
+### Prop Interfaces
+
+#### ResizableHandleProps
+
+Extends: `SeparatorProps`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `withHandle` | no | `boolean` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `ResizablePanelGroupProps` | `GroupProps` |
+| `ResizablePanelProps` | `PanelProps` |
+
 ## RunStatus
 
 Source: [packages/react/src/components/run-status.tsx](../../packages/react/src/components/run-status.tsx)
@@ -873,6 +1959,27 @@ Extends: `React.HTMLAttributes<HTMLSpanElement>`
 | Type | Definition |
 | --- | --- |
 | `RunStatusStatus` | `\| "idle" \| "queued" \| "running" \| "success" \| "warning" \| "error" \| "cancelled"` |
+
+## ScrollArea
+
+Source: [packages/react/src/components/scroll-area.tsx](../../packages/react/src/components/scroll-area.tsx)
+
+Component contract: [docs/agent/components/scroll-area.md](../agent/components/scroll-area.md)
+
+### Exports
+
+- `ScrollArea`
+- `ScrollBar`
+
+### Prop Interfaces
+
+#### ScrollAreaProps
+
+Extends: `React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `viewportProps` | no | `React.ComponentPropsWithoutRef< typeof ScrollAreaPrimitive.Viewport >` | - |
 
 ## Select
 
@@ -912,6 +2019,179 @@ Extends: `React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>`
 | --- | --- | --- | --- |
 | `showScrollButtons` | no | `boolean` | - |
 
+## Separator
+
+Source: [packages/react/src/components/separator.tsx](../../packages/react/src/components/separator.tsx)
+
+Component contract: [docs/agent/components/separator.md](../agent/components/separator.md)
+
+### Exports
+
+- `Separator`
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `SeparatorProps` | `React.ComponentPropsWithoutRef< typeof SeparatorPrimitive.Root >` |
+
+## Sheet
+
+Source: [packages/react/src/components/sheet.tsx](../../packages/react/src/components/sheet.tsx)
+
+Component contract: [docs/agent/components/sheet.md](../agent/components/sheet.md)
+
+### Exports
+
+- `Sheet`
+- `SheetTrigger`
+- `SheetPortal`
+- `SheetClose`
+- `SheetOverlay`
+- `SheetContent`
+- `SheetHeader`
+- `SheetBody`
+- `SheetFooter`
+- `SheetTitle`
+- `SheetDescription`
+
+### Prop Interfaces
+
+#### SheetContentProps
+
+Extends: `React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `showCloseButton` | no | `boolean` | - |
+| `side` | no | `SheetSide` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `SheetSide` | `"top" \| "right" \| "bottom" \| "left"` |
+
+## Sidebar
+
+Source: [packages/react/src/components/sidebar.tsx](../../packages/react/src/components/sidebar.tsx)
+
+Component contract: [docs/agent/components/sidebar.md](../agent/components/sidebar.md)
+
+### Exports
+
+- `useSidebar`
+- `SidebarProvider`
+- `Sidebar`
+- `SidebarTrigger`
+- `SidebarRail`
+- `SidebarInset`
+- `SidebarInput`
+- `SidebarHeader`
+- `SidebarFooter`
+- `SidebarSeparator`
+- `SidebarContent`
+- `SidebarGroup`
+- `SidebarGroupLabel`
+- `SidebarGroupAction`
+- `SidebarGroupContent`
+- `SidebarMenu`
+- `SidebarMenuItem`
+- `SidebarMenuButton`
+- `SidebarMenuAction`
+- `SidebarMenuBadge`
+- `SidebarMenuSkeleton`
+- `SidebarMenuSub`
+- `SidebarMenuSubItem`
+- `SidebarMenuSubButton`
+
+### Prop Interfaces
+
+#### SidebarProviderProps
+
+Extends: `React.HTMLAttributes<HTMLDivElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `defaultOpen` | no | `boolean` | - |
+| `onOpenChange` | no | `(open: boolean) => void` | - |
+| `open` | no | `boolean` | - |
+
+#### SidebarProps
+
+Extends: `React.HTMLAttributes<HTMLDivElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `collapsible` | no | `"icon" \| "none" \| "offcanvas"` | - |
+| `side` | no | `"left" \| "right"` | - |
+| `variant` | no | `"floating" \| "inset" \| "sidebar"` | - |
+
+#### SidebarSlotDivProps
+
+Extends: `React.HTMLAttributes<HTMLDivElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `asChild` | no | `boolean` | - |
+
+#### SidebarGroupActionProps
+
+Extends: `React.ButtonHTMLAttributes<HTMLButtonElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `asChild` | no | `boolean` | - |
+
+#### SidebarMenuButtonProps
+
+Extends: `React.ButtonHTMLAttributes<HTMLButtonElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `asChild` | no | `boolean` | - |
+| `isActive` | no | `boolean` | - |
+| `size` | no | `SidebarMenuButtonSize` | - |
+| `tooltip` | no | `React.ComponentProps<typeof TooltipContent> \| string` | - |
+| `variant` | no | `SidebarMenuButtonVariant` | - |
+
+#### SidebarMenuActionProps
+
+Extends: `React.ButtonHTMLAttributes<HTMLButtonElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `asChild` | no | `boolean` | - |
+| `showOnHover` | no | `boolean` | - |
+
+#### SidebarMenuSkeletonProps
+
+Extends: `React.HTMLAttributes<HTMLDivElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `showIcon` | no | `boolean` | - |
+
+#### SidebarMenuSubButtonProps
+
+Extends: `React.AnchorHTMLAttributes<HTMLAnchorElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `asChild` | no | `boolean` | - |
+| `isActive` | no | `boolean` | - |
+| `size` | no | `"md" \| "sm"` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `SidebarTriggerProps` | `ButtonProps` |
+| `SidebarInputProps` | `InputProps` |
+| `SidebarSeparatorProps` | `SeparatorProps` |
+| `SidebarMenuButtonVariant` | `"default" \| "outline"` |
+| `SidebarMenuButtonSize` | `"default" \| "lg" \| "sm"` |
+
 ## Skeleton
 
 Source: [packages/react/src/components/skeleton.tsx](../../packages/react/src/components/skeleton.tsx)
@@ -938,6 +2218,70 @@ Extends: `React.HTMLAttributes<HTMLDivElement>`
 | Type | Definition |
 | --- | --- |
 | `SkeletonShape` | `"text" \| "block" \| "circle"` |
+
+## Slider
+
+Source: [packages/react/src/components/slider.tsx](../../packages/react/src/components/slider.tsx)
+
+Component contract: [docs/agent/components/slider.md](../agent/components/slider.md)
+
+### Exports
+
+- `Slider`
+
+### Prop Interfaces
+
+#### SliderProps
+
+Extends: `React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `thumbLabel` | no | `string` | - |
+
+## Sonner
+
+Source: [packages/react/src/components/sonner.tsx](../../packages/react/src/components/sonner.tsx)
+
+Component contract: [docs/agent/components/sonner.md](../agent/components/sonner.md)
+
+### Exports
+
+- `Toaster`
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `ToasterProps` | `SonnerToasterProps` |
+
+## Spinner
+
+Source: [packages/react/src/components/spinner.tsx](../../packages/react/src/components/spinner.tsx)
+
+Component contract: [docs/agent/components/spinner.md](../agent/components/spinner.md)
+
+### Exports
+
+- `Spinner`
+
+### Prop Interfaces
+
+#### SpinnerProps
+
+Extends: `React.HTMLAttributes<HTMLSpanElement>`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `decorative` | no | `boolean` | - |
+| `label` | no | `string` | - |
+| `size` | no | `SpinnerSize` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `SpinnerSize` | `"sm" \| "md" \| "lg"` |
 
 ## Surface
 
@@ -1099,6 +2443,55 @@ Extends: `React.ComponentPropsWithoutRef<typeof ToastPrimitive.Root>`
 | Type | Definition |
 | --- | --- |
 | `ToastTone` | `"neutral" \| "success" \| "warning" \| "danger"` |
+
+## ToggleGroup
+
+Source: [packages/react/src/components/toggle-group.tsx](../../packages/react/src/components/toggle-group.tsx)
+
+Component contract: [docs/agent/components/toggle-group.md](../agent/components/toggle-group.md)
+
+### Exports
+
+- `ToggleGroup`
+- `ToggleGroupItem`
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `ToggleGroupSpacing` | `"joined" \| "separated"` |
+| `ToggleGroupProps` | `React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root> & { size?: ToggleSize; spacing?: ToggleGroupSpacing; variant?: ToggleVariant; }` |
+| `ToggleGroupItemProps` | `React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Item> & { size?: ToggleSize; variant?: ToggleVariant; }` |
+
+## Toggle
+
+Source: [packages/react/src/components/toggle.tsx](../../packages/react/src/components/toggle.tsx)
+
+Component contract: [docs/agent/components/toggle.md](../agent/components/toggle.md)
+
+### Exports
+
+- `Toggle`
+
+### Prop Interfaces
+
+#### ToggleProps
+
+Extends: `Omit< React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root>, "aria-invalid" >`
+
+| Prop | Required | Type | Notes |
+| --- | --- | --- | --- |
+| `aria-invalid` | no | `React.AriaAttributes["aria-invalid"]` | - |
+| `invalid` | no | `boolean` | - |
+| `size` | no | `ToggleSize` | - |
+| `variant` | no | `ToggleVariant` | - |
+
+### Exported Types
+
+| Type | Definition |
+| --- | --- |
+| `ToggleSize` | `"sm" \| "md" \| "lg" \| "icon"` |
+| `ToggleVariant` | `"default" \| "outline"` |
 
 ## Tooltip
 
