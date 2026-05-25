@@ -55,6 +55,7 @@ const skillContracts = {
     "## Command",
     "## Minimum Read Path",
     "## Behavior",
+    "## Project Guidance",
     "## Invocation",
     "## Completion Message"
   ]
@@ -224,4 +225,3 @@ async function readRootFile(filePath) {
 function report(filePath, message) {
   failures.push(`${filePath}: ${message}`);
 }
-

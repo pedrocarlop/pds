@@ -62,7 +62,7 @@ function main() {
   );
   const pdsImports = collectMatches(
     sourceFiles,
-    /from\s+["']@pds\/react["']|import\s+\{[^}]*\}\s+from\s+["']@pds\/react["']/,
+    /from\s+["']@pds\/react(?:\/starter)?["']|import\s+\{[^}]*\}\s+from\s+["']@pds\/react(?:\/starter)?["']/,
     12
   );
   const deepPdsImports = collectMatches(
@@ -109,6 +109,7 @@ function main() {
     ]),
     ...findImportedStyles(sourceFiles)
   ]);
+  const pdsProjectGuidance = inspectPdsProjectGuidance(targetDir);
 
   printReport({
     cssFiles,
@@ -121,6 +122,7 @@ function main() {
     hardcodedBreakpoints,
     packageJson,
     packageManager,
+    pdsProjectGuidance,
     pdsImports,
     pdsStyleImports,
     sourceFiles,
@@ -193,7 +195,7 @@ function walk(rootDir) {
       const absolutePath = path.join(currentDir, entry.name);
 
       if (entry.isDirectory()) {
-        if (!IGNORE_DIRS.has(entry.name)) {
+        if (!shouldIgnoreDirectory(rootDir, absolutePath, entry.name)) {
           queue.push(absolutePath);
         }
         continue;
@@ -206,6 +208,15 @@ function walk(rootDir) {
   }
 
   return result.sort();
+}
+
+function shouldIgnoreDirectory(rootDir, absolutePath, entryName) {
+  if (IGNORE_DIRS.has(entryName)) {
+    return true;
+  }
+
+  const relativePath = toPosix(path.relative(rootDir, absolutePath));
+  return relativePath === "docs/pds/context";
 }
 
 function safeReadDir(directory) {
@@ -383,12 +394,37 @@ function uniqueFiles(files) {
   return Array.from(new Set(files)).sort();
 }
 
+function inspectPdsProjectGuidance(targetDir) {
+  const requiredFiles = [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "DESIGN.md",
+    "docs/pds/context/docs/agent/router.md",
+    "docs/pds/context/docs/agent/workflow.md",
+    "docs/pds/context/docs/agent/skills/implement-screen.md",
+    "docs/pds/context/docs/agent/skills/create-component.md",
+    "docs/pds/context/docs/agent/skills/self-improve.md",
+    "docs/pds/context/docs/agent/readiness-audit.md",
+    "docs/pds/context/docs/agent/evaluation-scenarios.md"
+  ];
+  const missingFiles = requiredFiles.filter(
+    (filePath) => !existsSync(path.join(targetDir, filePath))
+  );
+
+  return {
+    missingFiles,
+    requiredFiles
+  };
+}
+
 function printReport(context) {
   const rel = (file) => path.relative(context.targetDir, file) || ".";
   const hasReact = Boolean(context.dependencies.react);
   const hasPdsPackage = Boolean(context.dependencies["@pds/react"]);
   const hasPdsTokens = Boolean(context.dependencies["@pds/tokens"]);
   const hasStyleImport = context.pdsStyleImports.length > 0;
+  const hasPdsProjectGuidance =
+    context.pdsProjectGuidance.missingFiles.length === 0;
 
   console.log("# PDS Web Project Audit");
   console.log("");
@@ -408,6 +444,7 @@ function printReport(context) {
   console.log(`- public \`@pds/react\` component imports: ${context.pdsImports.length}`);
   console.log(`- PDS token references: ${context.tokenReferences.length}`);
   console.log(`- deep PDS import risks: ${context.deepPdsImports.length}`);
+  console.log(`- project-local PDS guidance: ${formatStatus(hasPdsProjectGuidance)}`);
   console.log("");
   console.log("## Likely Integration Files");
   printFileList("Entrypoints", context.entrypoints, rel);
@@ -418,6 +455,10 @@ function printReport(context) {
   if (!hasReact) {
     console.log(
       "- Current plugin focus is React web. Treat this as an adapter or future-framework project before using PDS React components."
+    );
+  } else if (!hasPdsProjectGuidance) {
+    console.log(
+      "- Install project-local PDS guidance so agents can resolve PDS routes before creating screens, components, reviews, or self-improvement patches."
     );
   } else if (!hasPdsPackage) {
     console.log(
@@ -456,6 +497,7 @@ function printReport(context) {
   printMatches("Deep import risks", context.deepPdsImports, rel);
   printMatches("Hard-coded color hints", context.hardcodedColors, rel);
   printMatches("Hard-coded breakpoint hints", context.hardcodedBreakpoints, rel);
+  printMissingGuidance(context.pdsProjectGuidance.missingFiles);
   console.log("");
   console.log("## Verification To Plan");
   console.log("- Run the app's typecheck/build command after integration.");
@@ -463,8 +505,25 @@ function printReport(context) {
   console.log("- Check long labels, generated/user content, loading, empty, error, and success states.");
 }
 
+function printMissingGuidance(missingFiles) {
+  console.log("### Missing project-local PDS guidance files");
+
+  if (missingFiles.length === 0) {
+    console.log("- none found");
+    return;
+  }
+
+  for (const filePath of missingFiles.slice(0, 12)) {
+    console.log(`- ${filePath}`);
+  }
+}
+
 function formatStatus(value) {
   return value ? "found" : "not found";
+}
+
+function toPosix(value) {
+  return value.split(path.sep).join("/");
 }
 
 function printFileList(label, files, rel) {

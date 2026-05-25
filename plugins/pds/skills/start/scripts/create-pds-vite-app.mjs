@@ -14,6 +14,8 @@ import {
 import { tmpdir } from "node:os";
 import path from "node:path";
 
+import { installPdsProjectContext } from "./pds-project-context.mjs";
+
 const SAFE_EXISTING_ENTRIES = new Set([".git", ".gitignore", ".DS_Store"]);
 
 try {
@@ -71,6 +73,7 @@ function main() {
     }
     createViteApp(appDir);
     writeStarterFiles(appDir, targetDir);
+    installPdsProjectContext(appDir, { adapterMode: "replace" });
     if (pdsRepo) {
       installLocalPdsPackages(appDir, packDir);
     } else {
@@ -91,6 +94,7 @@ function main() {
 
   console.log("");
   console.log("PDS React app created successfully.");
+  console.log("Project-local PDS guidance was installed in docs/pds/context.");
   console.log(`Run it with: cd ${shellQuote(targetDir)} && pnpm dev`);
 }
 

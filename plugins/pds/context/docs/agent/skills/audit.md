@@ -37,7 +37,7 @@ node ./scripts/audit-web-project.mjs --target <project-path>
 
 - Detected stack and whether the current PDS web path fits.
 - Current PDS integration status: dependencies, `@pds/react/styles.css`, public
-  imports, token usage, and deep-import risks.
+  imports, token usage, project-local PDS guidance, and deep-import risks.
 - Recommended adoption path: install/wire styles, migrate one screen, or defer
   because the stack is outside the current React focus.
 - Specific files likely to change during implementation.

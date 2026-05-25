@@ -51,6 +51,18 @@ After installing, restart Codex or Claude. Open any React project and run:
 /pds:help
 ```
 
+When a project should keep PDS rules available for future LLM work, install or
+refresh the project-local guidance bundle from the PDS plugin. New apps created
+with `/pds:start` do this automatically. Existing apps can run:
+
+```sh
+node <plugin-root>/skills/start/scripts/install-pds-project-context.mjs --target <react-app-path>
+```
+
+This writes `docs/pds/context` plus top-level `AGENTS.md`, `CLAUDE.md`, and
+`DESIGN.md` adapters so agents can resolve the PDS routes for pages, reusable
+components, reviews, and self-improvement.
+
 Codex copy-paste prompt:
 
 ```text
@@ -108,7 +120,8 @@ Open Codex in the React app folder and ask:
 ```text
 Install the latest PDS package in this React app. Import
 @pds/react/styles.css once at the app root, use public imports from @pds/react,
-and run the app checks.
+install or refresh project-local PDS guidance at docs/pds/context, and run the
+app checks.
 ```
 
 For an app inside this repository, ask Codex to use the workspace package:

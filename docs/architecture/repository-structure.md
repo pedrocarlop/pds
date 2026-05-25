@@ -85,6 +85,13 @@ context bundle for installed plugins. Skills should route agents to the bundled
 context, while canonical source guidance stays in `docs/agent/skills` and
 package source rather than being rewritten inside plugin adapters.
 
+The same generated context is installed into consuming projects by `/pds:start`
+and by the project guidance installer at
+`plugins/pds/skills/start/scripts/install-pds-project-context.mjs`. Consuming
+apps keep that copy under `docs/pds/context` with thin root `AGENTS.md`,
+`CLAUDE.md`, and `DESIGN.md` adapters so later LLM work can resolve PDS routes
+without depending on chat history.
+
 Plugin skills may create or modify app code, but durable PDS guidance should
 move through the narrowest owner named by
 [docs/agent/router.md](../agent/router.md) and

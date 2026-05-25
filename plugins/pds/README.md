@@ -19,7 +19,16 @@ PDS plugin for Codex and Claude. It ships generated [context](context) plus thin
 ## What `/pds:start` Creates
 
 Vite React TypeScript files, `@pds/react@latest`, a root
-`@pds/react/styles.css` import, and a token-based first screen.
+`@pds/react/styles.css` import, a token-based first screen, and project-local
+PDS guidance in `docs/pds/context` with `AGENTS.md`, `CLAUDE.md`, and
+`DESIGN.md` adapters.
+
+For an existing app, refresh the same project-local guidance without replacing
+project instructions:
+
+```sh
+node <plugin-root>/skills/start/scripts/install-pds-project-context.mjs --target <project-path>
+```
 
 ## Requirements
 

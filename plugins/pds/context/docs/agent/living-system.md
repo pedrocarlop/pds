@@ -45,8 +45,12 @@ outcome-oriented Codex and Claude sampling across representative agent work.
 - Root and plugin adapters should stay thin. `pnpm docs:lint` enforces the
   adapter references and line budgets.
 - Generated plugin context includes the root adapters, `DESIGN.md`, canonical
-  docs, and package README files so installed Codex and Claude plugin skills
-  can resolve the same guidance graph.
+  docs, package README files, readiness evidence, and evaluation scenarios so
+  installed Codex and Claude plugin skills can resolve the same guidance graph.
+- Generated and adopted apps must receive the same context under
+  `docs/pds/context` plus thin `AGENTS.md`, `CLAUDE.md`, and `DESIGN.md`
+  adapters so future LLM work can use PDS routes without relying on chat
+  history or the starter transcript.
 
 ## Growth Routing
 
@@ -104,6 +108,9 @@ A PDS change is agent-reliable when:
 - Long content, translated labels, narrow layouts, keyboard focus, and 200%
   zoom are covered by guidance, examples, tests, or quality gates when relevant.
 - Plugin context is regenerated after canonical agent-facing docs change.
+- Project-local PDS context is installed when starting a new app and can be
+  refreshed in existing apps before LLM-driven page, component, review, or
+  self-improvement work.
 - Package contract coverage keeps publishable exports, install docs, and source
   entrypoints aligned.
 - Foundation contract coverage keeps token-backed guidance aligned with

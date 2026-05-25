@@ -48,6 +48,10 @@ linked docs and the token package source before making a visual decision.
 
 ## How To Use PDS In Generated Code
 
+- For generated or adopted apps, keep project-local PDS guidance under
+  `docs/pds/context` and route top-level `AGENTS.md`, `CLAUDE.md`, and
+  `DESIGN.md` adapters to it. Install or refresh that bundle before LLM-driven
+  page, component, review, or self-improvement work when it is missing.
 - Import tokens from `@pds/tokens`.
 - Import `@pds/react/styles.css` when using React components from `@pds/react`.
 - Import `@pds/tokens/styles.css` directly only for token-only consumers.

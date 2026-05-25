@@ -90,22 +90,29 @@ shape.
 node <plugin-root>/skills/audit/scripts/audit-web-project.mjs --target <project-path>
 ```
 
-3. Load PDS guidance through the [Minimum Read Path](#minimum-read-path). Use
+3. If the project lacks `docs/pds/context`, install project-local PDS guidance
+   before editing so future LLM work can resolve the same routes:
+
+```sh
+node <plugin-root>/skills/start/scripts/install-pds-project-context.mjs --target <project-path>
+```
+
+4. Load PDS guidance through the [Minimum Read Path](#minimum-read-path). Use
    indexes to choose matching structure, pattern, and component docs, then stop.
-4. Complete [Structure Selection](#structure-selection) and output the
+5. Complete [Structure Selection](#structure-selection) and output the
    [Pre-build Preview](#pre-build-preview) before making code changes.
-5. If PDS is not wired in an existing React app, follow the existing-app recipe:
+6. If PDS is not wired in an existing React app, follow the existing-app recipe:
    install or use the available `@pds/react` package path, import `@pds/react/styles.css`
    once at the app root, and keep app CSS layout-focused.
-6. Map the design to PDS primitives before creating local UI: surfaces,
+7. Map the design to PDS primitives before creating local UI: surfaces,
    buttons, badges, form controls, overlays, table/data-list, navigation, and
    agent-facing `Message`, `Transcript`, `Composer`, or `RunStatus` when the
    workflow calls for them.
-7. Implement the smallest coherent screen or flow. Preserve business logic,
+8. Implement the smallest coherent screen or flow. Preserve business logic,
    data loading, routing, analytics, and app-owned state boundaries.
-8. Use app CSS only for layout and composition. Use PDS tokens for visuals and
+9. Use app CSS only for layout and composition. Use PDS tokens for visuals and
    do not deep-import PDS source files.
-9. Verify with the app's normal typecheck/build/test command. For visible UI,
+10. Verify with the app's normal typecheck/build/test command. For visible UI,
    check narrow viewport, long text, loading/empty/error/success states, and
    200% zoom where practical. Do not hand back until the
    [PDS Screen Quality Gates](../pds-screen-quality-gates.md) pass.

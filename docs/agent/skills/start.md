@@ -24,12 +24,12 @@ folder.
 
 The script creates a Vite React TypeScript app, installs `@pds/react@latest`
 from npm, imports `@pds/react/styles.css` once, replaces the default Vite UI
-with a PDS starter surface, and runs the generated app build. It stages the app
-in a temporary directory first, then copies the generated files into the target
-only after the staged install and build succeed. Do not copy staged
-`node_modules` into the target; pnpm symlinks can point back to the temporary
-directory. After copying, run the target folder's own install and build so the
-new environment is immediately runnable.
+with a PDS starter surface, installs project-local PDS guidance, and runs the
+generated app build. It stages the app in a temporary directory first, then
+copies the generated files into the target only after the staged install and
+build succeed. Do not copy staged `node_modules` into the target; pnpm symlinks
+can point back to the temporary directory. After copying, run the target
+folder's own install and build so the new environment is immediately runnable.
 
 Generated Vite apps should import the first-screen primitives from
 `@pds/react/starter`. That narrow public export keeps the starter dev server on
@@ -42,6 +42,34 @@ tarball installation is available when `--pds-repo` is passed explicitly, when
 `PDS_REPO` points to a checkout, or when the starter is run from inside this PDS
 repo.
 
+## Project Guidance
+
+`/pds:start` must install the local PDS guidance bundle in every generated app.
+The bundle lives at `docs/pds/context` and includes root adapters, `DESIGN.md`,
+router and workflow docs, every skill workflow, component contracts,
+foundations, patterns, screen structures, recipes, package READMEs, reference
+docs, readiness evidence, and evaluation scenarios. This is not optional:
+without the local bundle, later LLM work in the project can miss the PDS routes
+for [implementing screens](implement-screen.md),
+[creating reusable components](create-component.md), reviewing UI, and
+[self-improving from design feedback](self-improve.md).
+
+The starter must also create top-level `AGENTS.md`, `CLAUDE.md`, and
+`DESIGN.md` adapters that point to the local bundle. Treat
+`docs/pds/context` as generated reference material; refresh it from the plugin
+instead of editing it by hand.
+
+For existing apps, run the project guidance installer from the plugin before or
+during PDS adoption:
+
+```sh
+node <plugin-root>/skills/start/scripts/install-pds-project-context.mjs --target <project-path>
+```
+
+The existing-app installer refreshes `docs/pds/context` and merges a marked PDS
+section into existing `AGENTS.md`, `CLAUDE.md`, and `DESIGN.md` files instead
+of replacing project-specific instructions.
+
 ## Invocation
 
 From `plugins/pds/skills/start`:
@@ -50,6 +78,7 @@ From `plugins/pds/skills/start`:
 node ./scripts/create-pds-vite-app.mjs
 node ./scripts/create-pds-vite-app.mjs --target <empty-folder>
 node ./scripts/create-pds-vite-app.mjs --pds-repo <pds-repo-path>
+node ./scripts/install-pds-project-context.mjs --target <existing-project>
 ```
 
 When invoked through Claude, `${CLAUDE_PLUGIN_ROOT}` may be used as the plugin
@@ -59,7 +88,8 @@ resource root.
 ## Completion Message
 
 Report the generated app path, whether PDS was installed from npm or local
-tarballs, and the generated app commands `pnpm dev` and `pnpm build`. If the
-registry package is unavailable, report that no app files were written and ask
-for `--pds-repo <path>` or `PDS_REPO`. Do not start the development server
-unless the user asks for it.
+tarballs, that project-local PDS guidance was installed in `docs/pds/context`,
+and the generated app commands `pnpm dev` and `pnpm build`. If the registry
+package is unavailable, report that no app files were written and ask for
+`--pds-repo <path>` or `PDS_REPO`. Do not start the development server unless
+the user asks for it.

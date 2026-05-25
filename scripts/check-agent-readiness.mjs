@@ -41,6 +41,10 @@ const requiredFiles = [
   "plugins/pds/README.md",
   "plugins/pds/context/AGENTS.md",
   "plugins/pds/context/CLAUDE.md",
+  "plugins/pds/context/docs/agent/evaluation-scenarios.md",
+  "plugins/pds/context/docs/agent/readiness-audit.md",
+  "plugins/pds/skills/start/scripts/install-pds-project-context.mjs",
+  "plugins/pds/skills/start/scripts/pds-project-context.mjs",
   "scripts/check-package-contracts.mjs",
   "scripts/check-agent-component-contracts.mjs",
   "scripts/check-agent-foundation-contracts.mjs",
@@ -118,6 +122,7 @@ await expectIncludes("docs/agent/router.md", [
   "evaluation-scenarios.md"
 ]);
 await expectIncludes("docs/agent/workflow.md", [
+  "docs/pds/context",
   "package contract coverage",
   "skill contract coverage",
   "foundation contract coverage",
@@ -131,6 +136,7 @@ await expectIncludes("docs/agent/living-system.md", [
   "evaluation-scenarios.md",
   "Agent Reliability Bar",
   "Adapter Contract",
+  "docs/pds/context",
   "package contract coverage",
   "skill contract coverage",
   "agent evaluation scenario coverage"
@@ -151,6 +157,7 @@ await expectIncludes("docs/agent/evaluation-scenarios.md", [
   "Route Fidelity",
   "Package API Correctness",
   "Self-Improvement Handling",
+  "docs/pds/context",
   "examples/react/src/stories/agent-scenarios.stories.tsx",
   "pnpm examples:visual:check",
   "package contract coverage",
@@ -164,6 +171,8 @@ await expectIncludes("docs/agent/readiness-audit.md", [
   "## Requirement Evidence",
   "## Automated Readiness Floor",
   "## Not Completion Proof",
+  "install-pds-project-context.mjs",
+  "docs/pds/context",
   "scripts/check-package-contracts.mjs",
   "scripts/check-agent-skill-contracts.mjs",
   "scripts/check-agent-foundation-contracts.mjs",
@@ -253,7 +262,53 @@ await expectIncludes("docs/start-here.md", [
 await expectIncludes("plugins/pds/README.md", [
   "Codex",
   "Claude",
-  "context"
+  "context",
+  "docs/pds/context"
+]);
+await expectIncludes("docs/agent/skills/start.md", [
+  "## Project Guidance",
+  "docs/pds/context",
+  "implement-screen.md",
+  "create-component.md",
+  "self-improve.md",
+  "readiness evidence",
+  "evaluation scenarios",
+  "install-pds-project-context.mjs"
+]);
+await expectIncludes("docs/recipes/add-to-existing-react-app.md", [
+  "Install Project Guidance",
+  "docs/pds/context",
+  "install-pds-project-context.mjs",
+  "self-improvement patches"
+]);
+await expectIncludes("docs/recipes/start-new-react-app.md", [
+  "Install Project Guidance",
+  "docs/pds/context",
+  "AGENTS.md",
+  "CLAUDE.md",
+  "DESIGN.md"
+]);
+await expectIncludes("plugins/pds/skills/audit/scripts/audit-web-project.mjs", [
+  "project-local PDS guidance",
+  "docs/pds/context/docs/agent/router.md",
+  "docs/pds/context/docs/agent/skills/implement-screen.md",
+  "docs/pds/context/docs/agent/skills/create-component.md",
+  "docs/pds/context/docs/agent/skills/self-improve.md"
+]);
+await expectIncludes("plugins/pds/skills/start/scripts/create-pds-vite-app.mjs", [
+  "installPdsProjectContext",
+  "docs/pds/context"
+]);
+await expectIncludes("plugins/pds/skills/start/scripts/pds-project-context.mjs", [
+  "docs/pds/context",
+  "docs/agent/skills/implement-screen.md",
+  "docs/agent/skills/create-component.md",
+  "docs/agent/skills/self-improve.md",
+  "docs/agent/readiness-audit.md",
+  "docs/agent/evaluation-scenarios.md",
+  "AGENTS.md",
+  "CLAUDE.md",
+  "DESIGN.md"
 ]);
 await expectIncludes("packages/README.md", [
   "tokens/README.md",
@@ -264,8 +319,7 @@ await expectIncludes("scripts/sync-plugin-context.mjs", [
   'addFile("AGENTS.md")',
   'addFile("CLAUDE.md")',
   'addDirectory("docs/agent")',
-  'addDirectory("docs/reference")',
-  "skippedContextPaths"
+  'addDirectory("docs/reference")'
 ]);
 await expectIncludes("scripts/check-react-preview-browser.mjs", [
   'name: "desktop"',

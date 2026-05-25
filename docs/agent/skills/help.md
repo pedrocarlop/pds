@@ -41,6 +41,9 @@ the workflow the user is trying to choose.
 
 ## Common Checks
 
+- Project-local PDS guidance exists at `docs/pds/context`, with top-level
+  `AGENTS.md`, `CLAUDE.md`, and `DESIGN.md` adapters routing future LLM work
+  to it.
 - `@pds/react` is installed for React component use.
 - `@pds/react/styles.css` is imported once at the app root.
 - Components come from public `@pds/react` imports, not package source paths.

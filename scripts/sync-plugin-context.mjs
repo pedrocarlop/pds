@@ -15,10 +15,6 @@ const contextRoot = path.join(root, "plugins/pds/context");
 const check = process.argv.includes("--check");
 const allowedExtensions = new Set([".css", ".md", ".png", ".ts"]);
 const expected = new Map();
-const skippedContextPaths = new Set([
-  "docs/agent/evaluation-scenarios.md",
-  "docs/agent/readiness-audit.md"
-]);
 
 const contextReadme = `# PDS Plugin Context
 
@@ -64,11 +60,6 @@ function addDirectory(relativePath) {
 
   for (const entry of readdirSync(absolutePath, { withFileTypes: true })) {
     const entryRelativePath = path.join(relativePath, entry.name);
-    const posixEntryRelativePath = toPosix(entryRelativePath);
-
-    if (skippedContextPaths.has(posixEntryRelativePath)) {
-      continue;
-    }
 
     if (entry.isDirectory()) {
       addDirectory(entryRelativePath);

@@ -19,6 +19,26 @@ and update commands. Return here for app-root style wiring and verification.
 Use the Codex prompt in the root [install guide](../../README.md#install-with-codex),
 then continue with this recipe's style and smoke-test steps.
 
+## Install Project Guidance
+
+Before asking an LLM to create pages, flows, reusable components, reviews, or
+self-improvement patches in an existing app, install the project-local PDS
+guidance bundle:
+
+```sh
+node <plugin-root>/skills/start/scripts/install-pds-project-context.mjs --target <react-app-path>
+```
+
+The installer refreshes `docs/pds/context` with the generated PDS plugin
+context: root adapters, `DESIGN.md`, router and workflow docs, every skill
+workflow, component contracts, foundations, patterns, screen structures,
+recipes, package READMEs, reference docs, readiness evidence, and evaluation
+scenarios. It creates top-level `AGENTS.md`, `CLAUDE.md`, and `DESIGN.md` when
+they are missing, and merges a marked PDS section when they already exist.
+
+Treat `docs/pds/context` as generated reference material. Refresh it from the
+PDS plugin instead of editing it by hand.
+
 ## Install From This Repo Before A Registry Release
 
 For an app inside this pnpm workspace, add `@pds/react` with the workspace protocol:
@@ -98,6 +118,9 @@ motion values.
 ## Acceptance Check
 
 - The app installs or updates `@pds/react` without deep imports.
+- Project-local PDS guidance exists at `docs/pds/context`, and top-level
+  `AGENTS.md`, `CLAUDE.md`, and `DESIGN.md` route to it or contain the marked
+  PDS section.
 - The app imports `@pds/react/styles.css` once.
 - A smoke-test surface renders with PDS styling.
 - Local app CSS does not duplicate token values.

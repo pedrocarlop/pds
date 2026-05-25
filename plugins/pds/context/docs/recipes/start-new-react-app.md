@@ -38,6 +38,27 @@ If the app should live inside this workspace, create it under `examples/` or add
 its folder to [pnpm-workspace.yaml](../../pnpm-workspace.yaml) before installing
 workspace dependencies.
 
+## Install Project Guidance
+
+Generated PDS starters must include the project-local PDS guidance bundle:
+
+- `docs/pds/context`: generated PDS context with root adapters, `DESIGN.md`,
+  router and workflow docs, every skill workflow, component contracts,
+  foundations, patterns, screen structures, recipes, package READMEs, reference
+  docs, readiness evidence, and evaluation scenarios.
+- `AGENTS.md`, `CLAUDE.md`, and `DESIGN.md`: top-level adapters that route
+  future LLM work to the local PDS bundle.
+
+When using `/pds:start`, this happens automatically. When creating a fresh app
+by hand from an installed PDS plugin, run:
+
+```sh
+node <plugin-root>/skills/start/scripts/install-pds-project-context.mjs --target <new-app-path>
+```
+
+Do this before asking an agent to create pages, flows, reusable components, UI
+reviews, or self-improvement patches in the new app.
+
 ## Install PDS From The Registry
 
 Use the root [install guide](../../README.md#install-in-an-app) for registry
@@ -198,6 +219,8 @@ Keep the surrounding shell CSS layout-focused:
 - The app installs PDS through the registry, a workspace dependency, or both
   local tarballs.
 - `@pds/react/styles.css` is imported once at the root.
+- Project-local PDS guidance exists at `docs/pds/context`, and top-level
+  `AGENTS.md`, `CLAUDE.md`, and `DESIGN.md` route to it.
 - Root CSS uses PDS tokens for base color, typography, spacing, and layout.
 - The first screen uses public imports from `@pds/react/starter` or
   `@pds/react`.
