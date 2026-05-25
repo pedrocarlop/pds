@@ -5,6 +5,8 @@ React components for PDS agent-facing product surfaces.
 ## Owns
 
 - Public React component exports from `@pds/react`.
+- A narrow starter export at `@pds/react/starter` for generated Vite starter
+  apps that only need Button, Badge, and Surface primitives.
 - The package stylesheet at `@pds/react/styles.css`.
 - Component CSS that consumes `@pds/tokens` CSS variables.
 

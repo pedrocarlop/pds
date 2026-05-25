@@ -26,6 +26,14 @@ cd my-pds-app
 pnpm install
 ```
 
+For generated Vite starters, use the narrow starter export for the first screen.
+It keeps the dev server focused on Button, Badge, and Surface primitives while
+the full component barrel remains available from `@pds/react` as the app grows:
+
+```tsx
+import { Badge, Button, Surface } from "@pds/react/starter";
+```
+
 If the app should live inside this workspace, create it under `examples/` or add
 its folder to [pnpm-workspace.yaml](../../pnpm-workspace.yaml) before installing
 workspace dependencies.
@@ -115,7 +123,7 @@ import {
   SurfaceDescription,
   SurfaceHeader,
   SurfaceTitle
-} from "@pds/react";
+} from "@pds/react/starter";
 
 export function App() {
   return (
@@ -191,7 +199,8 @@ Keep the surrounding shell CSS layout-focused:
   local tarballs.
 - `@pds/react/styles.css` is imported once at the root.
 - Root CSS uses PDS tokens for base color, typography, spacing, and layout.
-- The first screen uses public imports from `@pds/react`.
+- The first screen uses public imports from `@pds/react/starter` or
+  `@pds/react`.
 - The app builds without deep imports or copied token values.
 - Narrow viewport and 200% zoom checks keep primary actions and required text
   visible.

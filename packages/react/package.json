@@ -12,6 +12,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./starter": {
+      "types": "./dist/starter.d.ts",
+      "import": "./dist/starter.js"
+    },
     "./styles.css": "./dist/styles.css"
   },
   "files": [

@@ -25,8 +25,16 @@ folder.
 The script creates a Vite React TypeScript app, installs `@pds/react@latest`
 from npm, imports `@pds/react/styles.css` once, replaces the default Vite UI
 with a PDS starter surface, and runs the generated app build. It stages the app
-in a temporary directory first, then copies the result into the target only
-after install and build succeed.
+in a temporary directory first, then copies the generated files into the target
+only after the staged install and build succeed. Do not copy staged
+`node_modules` into the target; pnpm symlinks can point back to the temporary
+directory. After copying, run the target folder's own install and build so the
+new environment is immediately runnable.
+
+Generated Vite apps should import the first-screen primitives from
+`@pds/react/starter`. That narrow public export keeps the starter dev server on
+the Button, Badge, and Surface surface area instead of loading the full component
+barrel during dependency optimization.
 
 If `@pds/react@latest` is not available from the configured registry, the
 script stops before writing app files and asks for a local PDS checkout. Local

@@ -77,7 +77,11 @@ function main() {
       installRegistryPdsPackages(appDir);
     }
     run("pnpm", ["build"], { cwd: appDir });
-    copyDirectoryContents(appDir, targetDir);
+    copyDirectoryContents(appDir, targetDir, {
+      exclude: new Set(["node_modules"])
+    });
+    run("pnpm", ["install", "--frozen-lockfile"], { cwd: targetDir });
+    run("pnpm", ["build"], { cwd: targetDir });
   } finally {
     if (packDir) {
       rmSync(packDir, { force: true, recursive: true });
@@ -295,8 +299,14 @@ function createViteApp(viteDir) {
   });
 }
 
-function copyDirectoryContents(sourceDir, targetDir) {
+function copyDirectoryContents(sourceDir, targetDir, options = {}) {
+  const exclude = options.exclude ?? new Set();
+
   for (const entry of readdirSync(sourceDir)) {
+    if (exclude.has(entry)) {
+      continue;
+    }
+
     cpSync(path.join(sourceDir, entry), path.join(targetDir, entry), {
       force: true,
       recursive: true
@@ -307,6 +317,18 @@ function copyDirectoryContents(sourceDir, targetDir) {
 function writeStarterFiles(appDir, targetDir) {
   const srcDir = path.join(appDir, "src");
   const publicDir = path.join(appDir, "public");
+
+  writeFileSync(
+    path.join(appDir, "vite.config.ts"),
+    `import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()]
+});
+`,
+    "utf8"
+  );
 
   writeFileSync(
     path.join(srcDir, "main.tsx"),
@@ -338,11 +360,11 @@ createRoot(document.getElementById("root")!).render(
   SurfaceDescription,
   SurfaceHeader,
   SurfaceTitle
-} from "@pds/react";
+} from "@pds/react/starter";
 
 const readinessItems = [
   "PDS styles load from the package root",
-  "Components import from the public @pds/react API",
+  "Starter components import from the public @pds/react/starter API",
   "Layout CSS uses PDS tokens"
 ];
 

@@ -472,6 +472,10 @@ describe("PDS package contract", () => {
         types: "./dist/index.d.ts",
         import: "./dist/index.js"
       },
+      "./starter": {
+        types: "./dist/starter.d.ts",
+        import: "./dist/starter.js"
+      },
       "./styles.css": "./dist/styles.css"
     });
     expect(packageJson.files).toEqual(["dist"]);
@@ -481,6 +485,9 @@ describe("PDS package contract", () => {
   it("keeps source stylesheet paths aligned with the package export map", () => {
     expect(readFileSync(resolve(process.cwd(), "src/index.ts"), "utf8")).toContain(
       'export * from "./components";'
+    );
+    expect(readFileSync(resolve(process.cwd(), "src/starter.ts"), "utf8")).toContain(
+      'from "./components/surface";'
     );
     expect(readFileSync(resolve(process.cwd(), "src/styles.css"), "utf8")).toBe(
       '@import "@pds/tokens/styles.css";\n@import "./components.css";\n'

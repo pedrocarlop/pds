@@ -79,6 +79,10 @@ async function checkReactPackage() {
         types: "./dist/index.d.ts",
         import: "./dist/index.js"
       },
+      "./starter": {
+        types: "./dist/starter.d.ts",
+        import: "./dist/starter.js"
+      },
       "./styles.css": "./dist/styles.css"
     },
     "export map"
@@ -89,6 +93,11 @@ async function checkReactPackage() {
     "\"react-dom\":\"^18.3.0 || ^19.0.0\""
   ]);
   expectIncludes("packages/react/src/index.ts", index, ['export * from "./components";']);
+  expectIncludes("packages/react/src/starter.ts", await readRootFile("packages/react/src/starter.ts"), [
+    'from "./components/badge";',
+    'from "./components/button";',
+    'from "./components/surface";'
+  ]);
   expectEqual(
     "packages/react/src/styles.css",
     styles,
