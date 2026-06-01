@@ -23,11 +23,12 @@ Copy and paste this into your normal terminal:
 ```sh
 mkdir -p ~/pds-tryout
 cd ~/pds-tryout
-npx @pds/cli@latest install --tool claude
+claude plugin marketplace add pedrocarlop/pds --scope user
+claude plugin install pds@pds --scope user
 claude
 ```
 
-If `npx` asks to install `@pds/cli`, type `y` and press Enter.
+If Claude says the marketplace or plugin already exists, keep going.
 
 When Claude opens, paste this into Claude:
 
@@ -35,17 +36,19 @@ When Claude opens, paste this into Claude:
 /pds:help
 ```
 
-To create a new PDS React app in that empty folder, paste this into Claude:
+To create a new PDS React app in that empty folder while PDS is still in alpha,
+paste this into Claude. Replace `/path/to/PDS` with your local PDS checkout:
 
 ```text
-/pds:start
+/pds:start --pds-repo /path/to/PDS
 ```
 
 To add PDS to an existing React app instead, open the app folder in terminal,
-run `claude`, then paste this into Claude:
+run `claude`, then paste this into Claude. Use `--pds-repo` until
+`@pds/react` is published to npm:
 
 ```text
-/pds:start --target .
+/pds:start --target . --pds-repo /path/to/PDS
 ```
 
 If Claude was already open before the install command, quit Claude and open it
@@ -62,33 +65,15 @@ codex plugin marketplace add pedrocarlop/pds --ref v0.1.0
 codex plugin add pds@pds
 ```
 
-Or install with the published CLI:
+Direct Claude install from GitHub:
 
 ```sh
-npx @pds/cli@latest install
+claude plugin marketplace add pedrocarlop/pds --scope user
+claude plugin install pds@pds --scope user
 ```
 
-The installer registers the PDS marketplace from GitHub, installs and enables
-`pds@pds` where the local agent CLI supports it, and tells you when to restart
-the app. It installs Codex and Claude support when their CLIs are available.
-
-Codex-only install:
-
-```sh
-npx @pds/cli@latest install --tool codex
-```
-
-Claude-only install:
-
-```sh
-npx @pds/cli@latest install --tool claude
-```
-
-Dry run:
-
-```sh
-npx @pds/cli@latest install --dry-run
-```
+The npm installer is planned but is not published yet. Until `@pds/cli` is
+available on npm, use the direct Codex or Claude commands above.
 
 After installing, restart Codex or Claude. Open any React project and run:
 
@@ -102,6 +87,13 @@ guidance, run:
 ```text
 /pds:start --target <path>
 /pds:start --target <path> --mode context
+```
+
+Until `@pds/react` is published to npm, pass your local PDS checkout when
+creating or adopting an app:
+
+```text
+/pds:start --target <path> --pds-repo /path/to/PDS
 ```
 
 When a project should keep PDS rules available for future LLM work, install or
@@ -132,6 +124,9 @@ From the folder of the React app that will use PDS:
 ```sh
 pnpm add @pds/react@latest
 ```
+
+If npm says `@pds/react` was not found, use the
+[local install guide](#local-install-before-a-registry-release) instead.
 
 Other package managers work the same way:
 

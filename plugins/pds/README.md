@@ -60,14 +60,14 @@ codex plugin marketplace add pedrocarlop/pds --ref v0.1.0
 codex plugin add pds@pds
 ```
 
-Install with the npm CLI:
+Direct Claude install from GitHub:
 
 ```sh
-npx @pds/cli@latest install --tool codex
-npx @pds/cli@latest install --tool claude
+claude plugin marketplace add pedrocarlop/pds --scope user
+claude plugin install pds@pds --scope user
 ```
 
-Use `--dry-run` to preview files before writing them. Restart Codex or Claude,
+The npm installer is planned but is not published yet. Restart Codex or Claude,
 then run:
 
 ```text

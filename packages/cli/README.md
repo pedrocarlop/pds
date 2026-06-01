@@ -19,7 +19,15 @@ codex plugin marketplace add pedrocarlop/pds --ref v0.1.0
 codex plugin add pds@pds
 ```
 
-Run from any folder:
+Direct Claude install from GitHub:
+
+```sh
+claude plugin marketplace add pedrocarlop/pds --scope user
+claude plugin install pds@pds --scope user
+```
+
+The npm CLI package is planned but is not published yet. After publishing, it
+can be run from any folder:
 
 ```sh
 npx @pds/cli@latest install
