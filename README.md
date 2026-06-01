@@ -13,6 +13,44 @@ If you want Codex or Claude to get `/pds:*` commands, install the PDS plugin
 first. The plugin is separate from the React package: the plugin teaches the
 agent how to audit, build, review, or start PDS-backed React apps.
 
+## Quick Start With Claude CLI
+
+Use this when you have the Claude CLI open in a new or empty terminal folder
+and want to try PDS.
+
+Copy and paste this into your normal terminal:
+
+```sh
+mkdir -p ~/pds-tryout
+cd ~/pds-tryout
+npx @pds/cli@latest install --tool claude
+claude
+```
+
+If `npx` asks to install `@pds/cli`, type `y` and press Enter.
+
+When Claude opens, paste this into Claude:
+
+```text
+/pds:help
+```
+
+To create a new PDS React app in that empty folder, paste this into Claude:
+
+```text
+/pds:start
+```
+
+To add PDS to an existing React app instead, open the app folder in terminal,
+run `claude`, then paste this into Claude:
+
+```text
+/pds:start --target .
+```
+
+If Claude was already open before the install command, quit Claude and open it
+again before using `/pds:help`.
+
 ## Install The PDS Plugin
 
 Use this when you want to use PDS from Codex or Claude in any project.
