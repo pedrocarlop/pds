@@ -186,6 +186,12 @@ function installCodex(options, { env, io, now, spawn }) {
     ],
     { dryRun: options.dryRun, env, io, spawn }
   );
+  runCommand("codex", ["plugin", "add", NEW_CODEX_PLUGIN], {
+    dryRun: options.dryRun,
+    env,
+    io,
+    spawn
+  });
   updateCodexConfig({
     dryRun: options.dryRun,
     env,

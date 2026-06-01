@@ -45,6 +45,8 @@ const requiredFiles = [
   "plugins/pds/context/docs/agent/readiness-audit.md",
   "plugins/pds/skills/start/scripts/install-pds-project-context.mjs",
   "plugins/pds/skills/start/scripts/pds-project-context.mjs",
+  "plugins/pds/skills/start/scripts/start-pds-project.mjs",
+  "scripts/check-pds-start-workflow.mjs",
   "scripts/check-package-contracts.mjs",
   "scripts/check-agent-component-contracts.mjs",
   "scripts/check-agent-foundation-contracts.mjs",
@@ -96,6 +98,7 @@ expectScriptIncludes("lint", [
   "eslint scripts plugins/pds/skills/*/scripts",
   "turbo run lint"
 ]);
+expectScriptIncludes("test", ["node scripts/check-pds-start-workflow.mjs"]);
 expectScriptEquals("css:lint", "node scripts/lint-component-css-tokens.mjs");
 expectScriptEquals("docs:component-images", "node scripts/capture-component-doc-images.mjs");
 expectScriptEquals(
@@ -142,7 +145,7 @@ await expectIncludes("docs/agent/living-system.md", [
   "agent evaluation scenario coverage"
 ]);
 await expectIncludes("docs/agent/evaluation-scenarios.md", [
-  "## Scenario: start-new-pds-app",
+  "## Scenario: start-or-adopt-pds-app",
   "## Scenario: implement-review-queue-screen",
   "## Scenario: create-reusable-component",
   "## Scenario: review-and-self-improve",
@@ -268,6 +271,7 @@ await expectIncludes("plugins/pds/README.md", [
 await expectIncludes("docs/agent/skills/start.md", [
   "## Project Guidance",
   "docs/pds/context",
+  "start-pds-project.mjs",
   "implement-screen.md",
   "create-component.md",
   "self-improve.md",
@@ -278,7 +282,7 @@ await expectIncludes("docs/agent/skills/start.md", [
 await expectIncludes("docs/recipes/add-to-existing-react-app.md", [
   "Install Project Guidance",
   "docs/pds/context",
-  "install-pds-project-context.mjs",
+  "start-pds-project.mjs",
   "self-improvement patches"
 ]);
 await expectIncludes("docs/recipes/start-new-react-app.md", [
@@ -295,8 +299,9 @@ await expectIncludes("plugins/pds/skills/audit/scripts/audit-web-project.mjs", [
   "docs/pds/context/docs/agent/skills/create-component.md",
   "docs/pds/context/docs/agent/skills/self-improve.md"
 ]);
-await expectIncludes("plugins/pds/skills/start/scripts/create-pds-vite-app.mjs", [
+await expectIncludes("plugins/pds/skills/start/scripts/start-pds-project.mjs", [
   "installPdsProjectContext",
+  "addPdsStylesImport",
   "docs/pds/context"
 ]);
 await expectIncludes("plugins/pds/skills/start/scripts/pds-project-context.mjs", [

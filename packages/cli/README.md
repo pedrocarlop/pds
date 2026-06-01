@@ -12,6 +12,13 @@ Installer CLI for PDS Codex and Claude plugin setup.
 
 ## Install And Run
 
+Direct Codex install from GitHub:
+
+```sh
+codex plugin marketplace add pedrocarlop/pds --ref v0.1.0
+codex plugin add pds@pds
+```
+
 Run from any folder:
 
 ```sh
@@ -39,6 +46,8 @@ Use `--scope user|project|local` for Claude plugin scope when needed.
 - `--tool all` is the default and attempts Codex and Claude setup.
 - If one CLI is missing during an all-tools install, the installer skips that
   tool and continues with the available one.
+- Codex setup registers the GitHub marketplace, runs
+  `codex plugin add pds@pds`, and enables the plugin in config.
 - Codex config changes are backed up before writing.
 - Local marketplace paths are supported through `--repo <path>`; local Codex
   installs do not pass `--ref`.
@@ -51,4 +60,3 @@ Use `--scope user|project|local` for Claude plugin scope when needed.
   workflows.
 - [docs/agent/readiness-audit.md](../../docs/agent/readiness-audit.md) for
   agent reliability evidence.
-

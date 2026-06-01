@@ -81,26 +81,28 @@ Follow-Up:
 Verification Commands:
 ```
 
-## Scenario: start-new-pds-app
+## Scenario: start-or-adopt-pds-app
 
 - Route: [skills/start.md](skills/start.md) and
-  [recipes/start-new-react-app.md](../recipes/start-new-react-app.md).
-- Prompt: Create a new PDS React app in a temporary folder, keep the first
-  screen operational, and verify it builds.
+  either [recipes/start-new-react-app.md](../recipes/start-new-react-app.md) or
+  [recipes/add-to-existing-react-app.md](../recipes/add-to-existing-react-app.md).
+- Prompt: Create a new PDS React app in an empty temporary folder or adopt PDS
+  into an existing React app, then verify the selected path.
 - Required Evidence: package manifest, app entrypoint, token stylesheet import,
   React stylesheet import, project-local PDS guidance in `docs/pds/context`,
   root `AGENTS.md`, `CLAUDE.md`, and `DESIGN.md` adapters, generated first
-  screen, and build command output.
+  screen for new apps or existing app root entrypoint for adoption, and build or
+  package-install output.
 - Quality Signals: the first screen is a usable product surface, imports
   `@pds/tokens` and `@pds/react` through public package APIs, avoids hard-coded
   visual values, and remains readable at a 200% zoom proxy.
 - Failure Signals: landing-page filler, local token-like variables, missing
   package imports, missing project-local PDS guidance, unverified build output,
   or setup instructions that diverge between Codex and Claude.
-- Pass Conditions: public package imports and stylesheet imports are present,
-  local PDS routes are available through `docs/pds/context`, the generated app
-  builds, the first screen is inspectable in browser, and the run meets the
-  shared scoring rubric.
+- Pass Conditions: public package imports and stylesheet imports are present or
+  a skipped stylesheet import names the manual root-file decision, local PDS
+  routes are available through `docs/pds/context`, the generated app builds for
+  new-app mode, and the run meets the shared scoring rubric.
 - Verification: run the generated app's documented checks, inspect the first
   screen in a browser, then run this repo's `pnpm check` if repo guidance or
   plugin context changed.

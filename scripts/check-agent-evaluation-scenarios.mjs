@@ -30,7 +30,7 @@ const requiredGlobalFragments = [
 ];
 
 const requiredScenarios = [
-  "start-new-pds-app",
+  "start-or-adopt-pds-app",
   "implement-review-queue-screen",
   "create-reusable-component",
   "review-and-self-improve",

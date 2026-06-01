@@ -4,6 +4,18 @@
   "description": "PDS installer CLI for Codex and Claude agent plugins.",
   "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedrocarlop/pds.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/pedrocarlop/pds#readme",
+  "bugs": {
+    "url": "https://github.com/pedrocarlop/pds/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "pds": "./src/index.js"
   },

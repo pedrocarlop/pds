@@ -16,6 +16,10 @@ APIs are stable.
 - Rendered agent workflow templates for agent workspace, review queue, run
   details, settings, and approval/signing flows.
 - Public repository contribution, security, release, and CI guidance.
+- Public package metadata for npm publishing and GitHub-backed Codex plugin
+  install commands.
+- Unified PDS starter flow for new apps, existing React app adoption, and
+  context-only refreshes.
 
 ## 0.1.0
 

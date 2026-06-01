@@ -176,7 +176,7 @@ This directory is generated from the installed PDS plugin context.
   when design feedback reveals a reusable PDS guidance gap.
 
 Do not edit files under \`context\` by hand. Refresh them from the PDS plugin
-with \`node <plugin-root>/skills/start/scripts/install-pds-project-context.mjs --target <project-path>\`.
+with \`node <plugin-root>/skills/start/scripts/start-pds-project.mjs --target <project-path> --mode context\`.
 `;
 }
 

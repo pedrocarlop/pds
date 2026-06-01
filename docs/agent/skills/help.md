@@ -20,6 +20,8 @@ the workflow the user is trying to choose.
 
 - Empty folder and user wants a new app: `/pds:start`.
 - Existing app and user wants readiness: `/pds:audit`.
+- Existing React app and user wants to install or refresh PDS now:
+  `/pds:start --target <path>`.
 - Brief, screenshot, or Figma URL and user wants code: `/pds:implement-screen`.
 - Generated code or a diff and user wants design-system feedback:
   `/pds:review-pds`.

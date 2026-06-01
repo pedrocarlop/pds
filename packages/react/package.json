@@ -4,6 +4,18 @@
   "description": "PDS React components for agent-facing product surfaces.",
   "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedrocarlop/pds.git",
+    "directory": "packages/react"
+  },
+  "homepage": "https://github.com/pedrocarlop/pds#readme",
+  "bugs": {
+    "url": "https://github.com/pedrocarlop/pds/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",

@@ -94,7 +94,7 @@ node <plugin-root>/skills/audit/scripts/audit-web-project.mjs --target <project-
    before editing so future LLM work can resolve the same routes:
 
 ```sh
-node <plugin-root>/skills/start/scripts/install-pds-project-context.mjs --target <project-path>
+node <plugin-root>/skills/start/scripts/start-pds-project.mjs --target <project-path> --mode context
 ```
 
 4. Load PDS guidance through the [Minimum Read Path](#minimum-read-path). Use

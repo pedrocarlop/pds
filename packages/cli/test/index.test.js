@@ -114,6 +114,9 @@ enabled = true
     expect(readFileSync(logPath, "utf8")).toContain(
       "codex plugin marketplace add pedrocarlop/pds --ref v0.1.0"
     );
+    expect(readFileSync(logPath, "utf8")).toContain(
+      "codex plugin add pds@pds"
+    );
 
     const config = readFileSync(path.join(codexConfigDir, "config.toml"), "utf8");
     expect(getPluginEnabled(config, "pds@pds")).toBe(true);
@@ -156,6 +159,7 @@ enabled = true
     expect(messages.join("\n")).toContain(
       "$ codex plugin marketplace add pedrocarlop/pds --ref v0.1.0"
     );
+    expect(messages.join("\n")).toContain("$ codex plugin add pds@pds");
     expect(messages.join("\n")).toContain(
       "$ claude plugin marketplace add pedrocarlop/pds --scope user"
     );

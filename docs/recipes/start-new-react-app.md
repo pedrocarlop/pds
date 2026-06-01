@@ -53,7 +53,7 @@ When using `/pds:start`, this happens automatically. When creating a fresh app
 by hand from an installed PDS plugin, run:
 
 ```sh
-node <plugin-root>/skills/start/scripts/install-pds-project-context.mjs --target <new-app-path>
+node <plugin-root>/skills/start/scripts/start-pds-project.mjs --target <new-app-path> --mode context
 ```
 
 Do this before asking an agent to create pages, flows, reusable components, UI
@@ -68,6 +68,11 @@ and update commands. Return here to wire the Vite root and first screen.
 
 Use the Codex prompt in the root [install guide](../../README.md#install-with-codex),
 then continue with this recipe's root wiring.
+
+The installed plugin's `/pds:start --target <path>` command is the preferred
+path for new apps. It creates the Vite app, installs `@pds/react@latest`, adds
+the stylesheet import, writes the starter surface, vendors project-local PDS
+guidance, and verifies the generated build before copying files into the target.
 
 ## Install PDS From This Repo Before A Registry Release
 

@@ -19,8 +19,8 @@ clear migration notes, and package consumers who can update safely.
    matrix inputs changed.
 3. Run `pnpm check`.
 4. Confirm `dist/` output is not committed.
-5. Pack or publish packages from `packages/tokens`, `packages/react`, and
-   `packages/cli` according to the release scope.
+5. Pack or publish packages according to dependency order: `packages/tokens`,
+   then `packages/react`, then `packages/cli`.
 6. Tag the release and include migration notes for any changed component API,
    token, plugin workflow, or verification expectation.
 

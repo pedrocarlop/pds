@@ -17,7 +17,7 @@ Use this index to choose one workflow, then stop.
 | Implement or modify a React screen, page, or flow | `/pds:implement-screen`, [implement-screen.md](implement-screen.md) |
 | Review UI changes against PDS | `/pds:review-pds`, [review-pds.md](review-pds.md) |
 | Turn design feedback into durable PDS guidance | `/pds:self-improve`, [self-improve.md](self-improve.md) |
-| Bootstrap an empty folder into a PDS-backed Vite React app | `/pds:start`, [start.md](start.md) |
+| Create a new app, adopt an existing React app, or refresh PDS guidance | `/pds:start`, [start.md](start.md) |
 
 ## Workflow Contract
 
@@ -39,8 +39,8 @@ a pointer into generated plugin context.
 - `/pds:review-pds`, [review-pds.md](review-pds.md): review UI changes against PDS.
 - `/pds:self-improve`, [self-improve.md](self-improve.md): turn design feedback into durable guidance
   improvements.
-- `/pds:start`, [start.md](start.md): bootstrap an empty folder into a PDS-backed Vite React
-  app.
+- `/pds:start`, [start.md](start.md): create a PDS-backed Vite React app, adopt an
+  existing React app, or refresh project-local PDS guidance.
 
 Keep these workflows concise and route detailed design, component, and pattern
 rules to the neighboring docs in `docs/agent`.

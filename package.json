@@ -31,7 +31,7 @@
     "plugin:context": "node scripts/sync-plugin-context.mjs",
     "plugin:context:check": "node scripts/sync-plugin-context.mjs --check",
     "packages:check": "node scripts/check-package-contracts.mjs",
-    "test": "pnpm --filter @pds/react test && pnpm --filter @pds/cli test",
+    "test": "pnpm --filter @pds/react test && pnpm --filter @pds/cli test && node scripts/check-pds-start-workflow.mjs",
     "typecheck": "turbo run typecheck --filter=./packages/*"
   },
   "devDependencies": {

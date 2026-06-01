@@ -14,28 +14,34 @@ PDS plugin for Codex and Claude. It ships generated [context](context) plus thin
 | `/pds:create-component` | Add a reusable `@pds/react` component. |
 | `/pds:review-pds` | Review UI against PDS rules. |
 | `/pds:self-improve` | Turn design feedback into durable PDS fixes. |
-| `/pds:start` | Bootstrap an empty folder into a PDS Vite app. |
+| `/pds:start` | Create a new PDS app, adopt an existing React app, or refresh project guidance. |
 
 ## What `/pds:start` Creates
 
-Vite React TypeScript files, `@pds/react@latest`, a root
+For an empty target, Vite React TypeScript files, `@pds/react@latest`, a root
 `@pds/react/styles.css` import, a token-based first screen, and project-local
 PDS guidance in `docs/pds/context` with `AGENTS.md`, `CLAUDE.md`, and
 `DESIGN.md` adapters.
+
+For an existing React app, `/pds:start --target <project-path>` installs or
+updates `@pds/react@latest`, refreshes `docs/pds/context`, merges the root
+adapters, and adds the stylesheet import when exactly one supported root
+entrypoint is detected.
 
 For an existing app, refresh the same project-local guidance without replacing
 project instructions:
 
 ```sh
-node <plugin-root>/skills/start/scripts/install-pds-project-context.mjs --target <project-path>
+/pds:start --target <project-path> --mode context
 ```
 
 ## Requirements
 
 - Node compatible with the PDS workspace engines.
 - `pnpm >= 9`.
-- An empty target folder, or a folder that only contains `.git`,
-  `.gitignore`, or `.DS_Store`.
+- For new-app mode, an empty target folder or a folder that only contains
+  `.git`, `.gitignore`, or `.DS_Store`.
+- For adoption mode, an existing React app with a `package.json`.
 
 If `@pds/react@latest` is not available from the configured registry, the
 starter stops before writing app files. For local package tarball development
@@ -46,6 +52,15 @@ before publishing, pass a PDS checkout:
 ```
 
 ## Install
+
+Direct Codex install from GitHub:
+
+```sh
+codex plugin marketplace add pedrocarlop/pds --ref v0.1.0
+codex plugin add pds@pds
+```
+
+Install with the npm CLI:
 
 ```sh
 npx @pds/cli@latest install --tool codex
@@ -62,8 +77,8 @@ then run:
 Codex copy-paste prompt:
 
 ```text
-Run `npx @pds/cli@latest install --tool codex`, restart Codex, then use
-`/pds:help`.
+Run `codex plugin marketplace add pedrocarlop/pds --ref v0.1.0`, then
+`codex plugin add pds@pds`, restart Codex, and use `/pds:help`.
 ```
 
 ## Usage
@@ -76,6 +91,8 @@ Run `npx @pds/cli@latest install --tool codex`, restart Codex, then use
 /pds:review-pds src/App.tsx
 /pds:self-improve The component feedback is that this Button treatment hides the primary action
 /pds:start
+/pds:start --target ./existing-react-app
+/pds:start --target ./any-project --mode context
 ```
 
 Claude plugin skills are namespaced by plugin, so the command is

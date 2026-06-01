@@ -17,15 +17,22 @@ agent how to audit, build, review, or start PDS-backed React apps.
 
 Use this when you want to use PDS from Codex or Claude in any project.
 
-Install the plugin with the published CLI:
+Direct Codex install from GitHub:
+
+```sh
+codex plugin marketplace add pedrocarlop/pds --ref v0.1.0
+codex plugin add pds@pds
+```
+
+Or install with the published CLI:
 
 ```sh
 npx @pds/cli@latest install
 ```
 
-The installer registers the PDS marketplace, enables the plugin where the local
-agent CLI supports it, and tells you when to restart the app. It installs Codex
-and Claude support when their CLIs are available.
+The installer registers the PDS marketplace from GitHub, installs and enables
+`pds@pds` where the local agent CLI supports it, and tells you when to restart
+the app. It installs Codex and Claude support when their CLIs are available.
 
 Codex-only install:
 
@@ -51,12 +58,20 @@ After installing, restart Codex or Claude. Open any React project and run:
 /pds:help
 ```
 
+To create a new app, adopt an existing React app, or refresh only local PDS
+guidance, run:
+
+```text
+/pds:start --target <path>
+/pds:start --target <path> --mode context
+```
+
 When a project should keep PDS rules available for future LLM work, install or
 refresh the project-local guidance bundle from the PDS plugin. New apps created
 with `/pds:start` do this automatically. Existing apps can run:
 
 ```sh
-node <plugin-root>/skills/start/scripts/install-pds-project-context.mjs --target <react-app-path>
+node <plugin-root>/skills/start/scripts/start-pds-project.mjs --target <react-app-path> --mode context
 ```
 
 This writes `docs/pds/context` plus top-level `AGENTS.md`, `CLAUDE.md`, and
@@ -66,8 +81,8 @@ components, reviews, and self-improvement.
 Codex copy-paste prompt:
 
 ```text
-Run `npx @pds/cli@latest install --tool codex`, restart Codex, then use
-`/pds:help`.
+Run `codex plugin marketplace add pedrocarlop/pds --ref v0.1.0`, then
+`codex plugin add pds@pds`, restart Codex, and use `/pds:help`.
 ```
 
 The full plugin guide is in [plugins/pds/README.md](plugins/pds/README.md).

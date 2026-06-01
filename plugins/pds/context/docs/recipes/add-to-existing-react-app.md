@@ -14,6 +14,11 @@ components and styles.
 Use the root [install guide](../../README.md#install-in-an-app) for registry
 and update commands. Return here for app-root style wiring and verification.
 
+When the PDS plugin is installed, `/pds:start --target <react-app-path>` is the
+preferred adoption path. It installs or updates `@pds/react@latest`, refreshes
+project-local PDS guidance, and adds the stylesheet import when exactly one
+supported React root entrypoint is detected.
+
 ## Install With Codex
 
 Use the Codex prompt in the root [install guide](../../README.md#install-with-codex),
@@ -26,7 +31,7 @@ self-improvement patches in an existing app, install the project-local PDS
 guidance bundle:
 
 ```sh
-node <plugin-root>/skills/start/scripts/install-pds-project-context.mjs --target <react-app-path>
+node <plugin-root>/skills/start/scripts/start-pds-project.mjs --target <react-app-path> --mode context
 ```
 
 The installer refreshes `docs/pds/context` with the generated PDS plugin

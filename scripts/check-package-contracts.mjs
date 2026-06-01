@@ -42,6 +42,7 @@ async function checkCliPackage() {
 
   expectEqual(packagePath, packageJson.name, "@pds/cli", "package name");
   expectEqual(packagePath, packageJson.type, "module", "package type");
+  expectPublicPackageMetadata(packagePath, packageJson, "packages/cli");
   expectEqual(packagePath, packageJson.bin, { pds: "./src/index.js" }, "bin map");
   expectEqual(packagePath, packageJson.files, ["src"], "published files");
   expectScript(packagePath, packageJson, "build", "node --check src/index.js");
@@ -54,6 +55,7 @@ async function checkCliPackage() {
     "--tool codex",
     "--tool claude",
     "--dry-run",
+    "codex plugin add pds@pds",
     "Codex",
     "Claude",
     "plugins/pds/README.md"
@@ -69,6 +71,7 @@ async function checkReactPackage() {
 
   expectEqual(packagePath, packageJson.name, "@pds/react", "package name");
   expectEqual(packagePath, packageJson.type, "module", "package type");
+  expectPublicPackageMetadata(packagePath, packageJson, "packages/react");
   expectEqual(packagePath, packageJson.files, ["dist"], "published files");
   expectEqual(packagePath, packageJson.sideEffects, ["**/*.css"], "side effects");
   expectEqual(
@@ -133,6 +136,7 @@ async function checkTokensPackage() {
 
   expectEqual(packagePath, packageJson.name, "@pds/tokens", "package name");
   expectEqual(packagePath, packageJson.type, "module", "package type");
+  expectPublicPackageMetadata(packagePath, packageJson, "packages/tokens");
   expectEqual(packagePath, packageJson.files, ["dist"], "published files");
   expectEqual(packagePath, packageJson.sideEffects, ["**/*.css"], "side effects");
   expectEqual(packagePath, packageJson.exports, expectedExports, "export map");
@@ -185,6 +189,41 @@ function foundationDocForCss(fileName) {
   }
 
   return `${name}.md`;
+}
+
+function expectPublicPackageMetadata(packagePath, packageJson, directory) {
+  expectEqual(
+    packagePath,
+    packageJson.repository,
+    {
+      type: "git",
+      url: "git+https://github.com/pedrocarlop/pds.git",
+      directory
+    },
+    "repository metadata"
+  );
+  expectEqual(
+    packagePath,
+    packageJson.homepage,
+    "https://github.com/pedrocarlop/pds#readme",
+    "homepage"
+  );
+  expectEqual(
+    packagePath,
+    packageJson.bugs,
+    {
+      url: "https://github.com/pedrocarlop/pds/issues"
+    },
+    "bugs metadata"
+  );
+  expectEqual(
+    packagePath,
+    packageJson.publishConfig,
+    {
+      access: "public"
+    },
+    "publish config"
+  );
 }
 
 function expectScript(filePath, packageJson, scriptName, expected) {

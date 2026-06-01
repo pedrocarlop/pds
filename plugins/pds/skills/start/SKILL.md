@@ -1,7 +1,7 @@
 ---
 name: start
-description: Use to bootstrap an empty folder into a Vite React TypeScript app wired to PDS.
-argument-hint: [--target empty-folder]
+description: Use to create a PDS Vite React app, adopt PDS into an existing React app, or refresh project guidance.
+argument-hint: [--target path] [--mode auto|new|adopt|context]
 disable-model-invocation: true
 allowed-tools: [Bash, Read]
 ---
